@@ -39,8 +39,8 @@ class ClientController extends Controller
                   ->orWhere('gender', 'like', '%'.$data['data'].'%')
                   ->orWhere('contact','like','%'.$data['data'].'%')
                   ->orWhere('address','like','%'.$data['data'].'%');
-        })->paginate(999);
-   
+        })->paginate(2);
+        $clients =  $clients->appends(array ('data' => $data['data']));
         return view('client.index',compact('clients'))->with('title',$this->title);
     }
 
@@ -95,7 +95,15 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $data = $request->validate([
+            'name'=>'required',
+            'gender'=>'required',
+            'contact'=>'required',
+            'address'=>'required'
+        ]);
+        $client->update($data);
+
+        return redirect('dashboard/client')->with('success','Successfully Updated!');
     }
 
     /**

@@ -73,7 +73,7 @@
 					@endif
 				</tbody>
 			</table>
-			<div class="float-right mt-1">{{ $clients->links() }}</div>
+			<div class="float-right mt-1">{{ $clients->appends(Request::all())->links() }} </div>
 		</div>
 	</div>
 @endsection

@@ -15,8 +15,8 @@
 	<div class="card">
 		<div class="card-header">Update Client</div>
 		<div class="card-body">
-			<form  class="" method="POST" action="/dashboard/client">
-				@method('PATCH')
+			<form  class="" method="POST" action="/dashboard/client/{{$client->id}}">
+				@method('PUT')
 				@csrf
 				<div class="form-group"><input type="text" name="name" class="form-control " placeholder="Name" value="{{$client->name}}" ></div>
 				<div class="form-group">

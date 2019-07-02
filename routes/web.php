@@ -17,7 +17,6 @@ Route::get('/', function () {
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
 // Client module
-Route::post('/dashboard/client/search','ClientController@search');
-Route::get('/dashboard/client/search','ClientController@index');
+Route::any('/dashboard/client/search','ClientController@search');
 Route::resource('/dashboard/client','ClientController');
 
