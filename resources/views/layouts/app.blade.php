@@ -91,6 +91,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="/dashboard/announcement" class="nav-link @if($title=='Announcement') active @endif">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Announcement
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="/dashboard/client" class="nav-link @if($title=='Client') active @endif">
               <i class="nav-icon fas fa-users"></i>
               <p>

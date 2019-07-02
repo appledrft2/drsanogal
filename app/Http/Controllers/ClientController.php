@@ -39,7 +39,7 @@ class ClientController extends Controller
                   ->orWhere('gender', 'like', '%'.$data['data'].'%')
                   ->orWhere('contact','like','%'.$data['data'].'%')
                   ->orWhere('address','like','%'.$data['data'].'%');
-        })->paginate(2);
+        })->paginate(4);
         $clients =  $clients->appends(array ('data' => $data['data']));
         return view('client.index',compact('clients'))->with('title',$this->title);
     }
