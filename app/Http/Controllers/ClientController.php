@@ -16,7 +16,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.index')->with('title',$this->title);
+        $clients = Client::orderBy('created_at','DESC')->paginate(4);
+        return view('client.index',compact('clients'))->with('title',$this->title);
     }
 
     /**
@@ -26,14 +27,21 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $data = request()->validate([
-            'name'=>'required',
-            'gender'=>'required',
-            'contact'=>'required',
-            'address'=>'required'
-        ]);
+        return view('client.create')->with('title',$this->title);
+    }
 
-        Client::create($data);
+    public function search()
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $clients = Client::where(function ($query) use($data) {
+            $query->where('name', 'like', '%'.$data['data'].'%')
+                  ->orWhere('gender', 'like', '%'.$data['data'].'%')
+                  ->orWhere('contact','like','%'.$data['data'].'%')
+                  ->orWhere('address','like','%'.$data['data'].'%');
+        })->paginate(999);
+   
+        return view('client.index',compact('clients'))->with('title',$this->title);
     }
 
     /**
@@ -44,7 +52,16 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name'=>'required',
+            'gender'=>'required',
+            'contact'=>'required',
+            'address'=>'required'
+        ]);
+
+        Client::create($data);
+
+        return redirect('dashboard/client')->with('success','Successfully Added!');
     }
 
     /**
@@ -66,7 +83,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('client.edit',compact('client'))->with('title',$this->title);
     }
 
     /**
@@ -89,6 +106,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect('dashboard/client')->with('success','Successfully Deleted!');
     }
 }
