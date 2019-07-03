@@ -12,11 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$announcements = \App\Announcement::all();
+    return view('welcome',compact('announcements'));
 });
-// Dashboard module
-Route::get('/dashboard','DashboardController@index');
-// Client module
-Route::any('/dashboard/client/search','ClientController@search');
-Route::resource('/dashboard/client','ClientController');
 
+// Dashboard module
+Route::get('/dashboard','DashboardController@index')->middleware('auth');
+// Client module
+Route::any('/dashboard/client/search','ClientController@search')->middleware('auth');
+Route::resource('/dashboard/client','ClientController')->middleware('auth');
+//Announcement module
+Route::resource('/dashboard/announcement','AnnouncementController')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

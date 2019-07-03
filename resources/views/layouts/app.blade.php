@@ -49,7 +49,11 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <a href="/logout" class="btn"><i class="fa fa-sign-out-alt"></i> Logout</a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+          @csrf
+          <button type="submit" class="btn"><i class="fa fa-sign-out-alt"></i> Logout</button>
+      </form>
+      
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -71,7 +75,7 @@
           <img src="{{asset('adminlte3/dist/img/taylor.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Taylor Otwel</a>
+          <a href="#" class="d-block">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}</a>
           	<a href="/dashboard/profile" class="d-block text-sm">View Profile</a>
         </div>
       </div>
@@ -92,7 +96,7 @@
 
           <li class="nav-item">
             <a href="/dashboard/announcement" class="nav-link @if($title=='Announcement') active @endif">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-bullhorn"></i>
               <p>
                 Announcement
               </p>

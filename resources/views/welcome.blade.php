@@ -39,7 +39,7 @@
 
       </nav>
 
-      <a class="btn btn-outline-primary" href="/view/login">Sign in</a>
+      <a class="btn btn-outline-primary" href="/login">Sign in</a>
 
     </div>
 
@@ -96,39 +96,25 @@
 
               <h1 class="display-4 text-center mb-3">Announcements</h1>
 
-              <div class="col-md-12 mb-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="lead display-4">New Post</h3>
-                    <p>Posted at: 1 hour ago</p>
-                    <p class="brand-text text-justify">
-                    <div class="form-group"><center><img src="https://c881f0228c97d2dff415-fe3700e5b950a119c046fc4abfc0711c.ssl.cf2.rackcdn.com/2012/12/bg-pets.jpg" width="100%" height="360px"></center></div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              @if(count($announcements))
+                @foreach($announcements as $announcement)
+                <div class="col-md-12 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="lead display-4">{{$announcement->title}}</h3>
+                      <p>Posted at: {{$announcement->created_at}}</p>
+                      
+                      <!-- <div class="form-group"><center><img src="https://c881f0228c97d2dff415-fe3700e5b950a119c046fc4abfc0711c.ssl.cf2.rackcdn.com/2012/12/bg-pets.jpg" class="img-fluid rounded"></center></div> -->
+                      <p class="brand-text text-justify">
+                      {{$announcement->body}}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+                @endforeach
+              @endif
 
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="lead display-4">Another Post</h3>
-                    <p>Posted at: 1 hour ago</p>
-                    <p class="brand-text text-justify">
-                    <div class="form-group"><center><img src="https://c881f0228c97d2dff415-fe3700e5b950a119c046fc4abfc0711c.ssl.cf2.rackcdn.com/2012/12/bg-pets.jpg" width="100%" height="360px"></center></div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  </div>
-                </div>
-              </div>
+   
 
             </div>
 
