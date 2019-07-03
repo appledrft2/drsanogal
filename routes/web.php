@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(5);
+	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
     return view('welcome',compact('announcements'));
 });
 
