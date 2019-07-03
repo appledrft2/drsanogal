@@ -26,6 +26,7 @@
 						<th>Gender</th>
 						<th>Contact</th>
 						<th>Address</th>
+						<th>Pets</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -44,9 +45,10 @@
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->gender}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->contact}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{!!$client->address!!}</td>
+								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';"><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
 								<td width="15%">
 									<div class="form-inline">
-										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-success btn-sm mr-1"><i class="fa fa-paw"></i></a>
+										
 										<a href="/dashboard/client/{{$client->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
 										<form onsubmit="return confirm('Do you want to delete this record?');" method="POST" action="/dashboard/client/{{$client->id}}">
 											@method('delete')

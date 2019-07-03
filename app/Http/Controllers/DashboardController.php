@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Client;
 use App\Announcement;
 use Illuminate\Http\Request;
@@ -14,11 +15,13 @@ class DashboardController extends Controller
     	
     	$announcements = Announcement::count('id');
     	$clients = Client::count('id');
+        $users =User::count('id');
 
     	return view('dashboard.index',[
     		'title'=>$this->title,
     		'announcements'=>$announcements,
-    		'clients'=>$clients
+    		'clients'=>$clients,
+            'users'=>$users
     	]);
     }
 }

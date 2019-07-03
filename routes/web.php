@@ -15,16 +15,20 @@ Route::get('/', function () {
 	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
     return view('welcome',compact('announcements'));
 });
-
+// Route group for auth
+Route::group(['middleware'=>'auth'],function(){
 // Dashboard module
-Route::get('/dashboard','DashboardController@index')->middleware('auth');
-// Client module
-Route::any('/dashboard/client/search','ClientController@search')->middleware('auth');
-Route::resource('/dashboard/client','ClientController')->middleware('auth');
+Route::get('/dashboard','DashboardController@index');
 //Announcement module
-Route::any('/dashboard/announcement/search','AnnouncementController@search')->middleware('auth');
-Route::resource('/dashboard/announcement','AnnouncementController')->middleware('auth');
+Route::any('/dashboard/announcement/search','AnnouncementController@search');
+Route::resource('/dashboard/announcement','AnnouncementController');
+// Client module
+Route::any('/dashboard/client/search','ClientController@search');
+Route::resource('/dashboard/client','ClientController');
+// Patient module
+Route::resource('/dashboard/client/{client}/patient','PatientController');
+});
 
+// Login module
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

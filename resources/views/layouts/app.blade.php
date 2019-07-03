@@ -118,7 +118,7 @@
           </li>
           @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
-            <a href="/dashboard/patient" class="nav-link @if($title=='Patient') active @endif">
+            <a href="/dashboard/patient" class="nav-link @if($title=='Patient_history') active @endif">
               <i class="nav-icon fas fa-paw"></i>
               <p>
                 Patient
