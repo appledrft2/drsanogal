@@ -19,7 +19,7 @@
 
 
 
-    <title>Dr S & J Veterinary Clinic and Grooming Centre</title>
+    <title>Dr S & J Veterinary Clinic</title>
 
   </head>
 

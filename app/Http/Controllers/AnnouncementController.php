@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class AnnouncementController extends Controller
 {
+
     public $title = 'Announcement';
+
     /**
      * Display a listing of the resource.
      *

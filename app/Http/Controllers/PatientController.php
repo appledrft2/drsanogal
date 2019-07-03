@@ -26,9 +26,9 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($client)
     {
-        return 'test';
+        return view('patient.create',compact('client'))->with('title',$this->title);
     }
 
     /**
@@ -37,9 +37,21 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($client,Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'breed' => 'required',
+            'specie' => 'required',
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+        ]);
+        
+        $data['client_id'] = $client;
+
+        Patient::create($data);
+
+        return redirect('dashboard/client/'.$client.'/patient')->with('success','Successfully Added!')->with('title',$this->title);
     }
 
     /**
@@ -82,8 +94,10 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy($client,Patient $patient)
     {
-        //
+        $patient->delete();
+
+        return redirect('dashboard/client/'.$client.'/patient')->with('success','Sucessfully Deleted!');
     }
 }

@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
+
 	<div class="form-group">
-		<button onclick="history.back()" class="btn btn-default">Go Back</button>
+		<a href="/dashboard/client" class="btn btn-default">Go Back</a>
 	</div>
 	<div class="card">
 		<div class="card-body">
-			<div class="card">
+			<div class="card card-sm">
 				<div class="card-header"><p class="lead">Owner Information</p></div>
 				<div class="card-body">
 					<div class="row">
@@ -35,7 +36,7 @@
 						</div>
 						<div class="col-6">
 							<div class="float-right">
-								<img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 50%">
+								<img src="@if($client->gender == 'Male') {{asset('adminlte3/dist/img/male.png')}} @else {{asset('adminlte3/dist/img/female.png')}} @endif" class="img-fluid" style="border-radius: 90%;width: 50%">
 							</div>
 						</div>
 					</div>
