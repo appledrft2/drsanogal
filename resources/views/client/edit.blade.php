@@ -27,7 +27,7 @@
 					</select>
 				</div>
 				<div class="form-group"><input type="number" value="{{$client->contact}}" name="contact" class="form-control " placeholder="Contact" ></div>
-				<div class="form-group"><textarea class="form-control" name="address" placeholder="Address">{{$client->address}}</textarea></div>
+				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="address" placeholder="Address">{{$client->address}}</textarea></div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
 		</div>

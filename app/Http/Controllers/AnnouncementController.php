@@ -26,7 +26,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        return view('announcement.create')->with('title',$this->title);
     }
 
     /**
@@ -37,7 +37,11 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate(['title'=>'required','body'=>'required']);
+
+        Announcement::create($data);
+
+        return redirect('dashboard/announcement')->with('success','Successfully Added!');
     }
 
     /**
@@ -48,7 +52,7 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        //
+
     }
 
     /**
@@ -59,7 +63,7 @@ class AnnouncementController extends Controller
      */
     public function edit(Announcement $announcement)
     {
-        //
+        return view('announcement.edit',compact('announcement'))->with('title',$this->title);
     }
 
     /**
@@ -71,7 +75,15 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, Announcement $announcement)
     {
-        //
+        $data = request()->validate([
+            'title'=>'required',
+            'body'=>'required'
+
+        ]);
+
+        $announcement->update($data);
+
+        return redirect('dashboard/announcement')->with('success','Successfully Updated!');
     }
 
     /**
@@ -82,6 +94,8 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        $announcement->delete();
+
+        return redirect('dashboard/announcement')->with('success','Successfully Deleted!');
     }
 }

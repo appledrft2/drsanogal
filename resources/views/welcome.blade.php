@@ -10,7 +10,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" href="logo.jpg" type="image/x-icon" />
+    <link rel="icon" type="image/x-icon" href="{{asset('adminlte3/dist/img/logo.jpg')}}">
 
 
     <!-- Bootstrap CSS -->
@@ -90,7 +90,7 @@
 
         <div class="row">
 
-          <div class="col-md-12" style="padding-top: 200px;padding-bottom: 10px">
+          <div class="col-md-12" style="padding-top: 200px;padding-bottom: 300px">
 
             <div class="col-md-10 mx-auto mb-5">
 
@@ -102,17 +102,27 @@
                   <div class="card">
                     <div class="card-body">
                       <h3 class="lead display-4">{{$announcement->title}}</h3>
-                      <p>Posted at: {{$announcement->created_at}}</p>
+                      <p>Posted at: {{$announcement->created_at}} - {{$announcement->created_at->diffForhumans()}}</p>
                       
                       <!-- <div class="form-group"><center><img src="https://c881f0228c97d2dff415-fe3700e5b950a119c046fc4abfc0711c.ssl.cf2.rackcdn.com/2012/12/bg-pets.jpg" class="img-fluid rounded"></center></div> -->
                       <p class="brand-text text-justify">
-                      {{$announcement->body}}
+                      {!!$announcement->body !!}
                       </p>
                     </div>
                   </div>
                 </div>
                 @endforeach
+                @else
+                <div class="col-md-12 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="lead text-center">There are no announcements.</h3>
+                    </div>
+                  </div>
+                </div>
               @endif
+
+              <div class="float-right">{{ $announcements->appends(Request::all())->links() }}</div>
 
    
 

@@ -1,17 +1,6 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-
-@if($errors->any())
-	@foreach($errors->all() as $error)
-		<div class="alert alert-danger">{{$error}}</div>
-	@endforeach
-@endif
-
-@if(session('success'))
-		<div class="alert alert-success">{{session('success')}}</div>
-@endif
-
 	<div class="card">
 		<div class="card-body">
 
@@ -34,8 +23,8 @@
 				<thead>
 					<tr>
 						<th>Title</th>
-						<th>Body</th>
-						<th>Owner</th>
+						<th>Author</th>
+						<th>Created</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -51,8 +40,8 @@
 						@foreach($announcements as $announcement)
 							<tr>
 								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->title}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->body}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->user->name}}</td>
+								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">@if($announcement->user_id == null) Anonymous @else $announcement->user_id @endif</td>
+								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->created_at->diffForhumans()}}</td>
 								
 								<td width="15%">
 									<div class="form-inline">

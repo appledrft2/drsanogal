@@ -1,17 +1,6 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-
-@if($errors->any())
-	@foreach($errors->all() as $error)
-		<div class="alert alert-danger">{{$error}}</div>
-	@endforeach
-@endif
-
-@if(session('success'))
-		<div class="alert alert-success">{{session('success')}}</div>
-@endif
-
 	<div class="card">
 		<div class="card-body">
 
@@ -54,7 +43,7 @@
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->name}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->gender}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->contact}}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->address}}</td>
+								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{!!$client->address!!}</td>
 								<td width="15%">
 									<div class="form-inline">
 										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-success btn-sm mr-1"><i class="fa fa-paw"></i></a>
