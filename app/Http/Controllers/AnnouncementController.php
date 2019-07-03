@@ -29,6 +29,18 @@ class AnnouncementController extends Controller
         return view('announcement.create')->with('title',$this->title);
     }
 
+    public function search()
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $announcements = Announcement::where(function ($query) use($data) {
+            $query->where('title', 'like', '%'.$data['data'].'%');
+                  
+        })->paginate(4);
+        $announcements =  $announcements->appends(array ('data' => $data['data']));
+        return view('announcement.index',compact('announcements'))->with('title',$this->title);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

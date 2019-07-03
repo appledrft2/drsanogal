@@ -74,11 +74,14 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('adminlte3/dist/img/taylor.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="@if(Auth::user()->role == 'doctor') {{asset('adminlte3/dist/img/doctor.png')}} @else {{asset('adminlte3/dist/img/staff.png')}} @endif " class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}</a>
-          	<a href="/dashboard/profile" class="d-block text-sm">View Profile</a>
+            <a href="#" class="d-block">{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}</a>
+            <div class="form-inline">
+                <a href="#" class="d-block text-sm">{{ ucfirst(Auth::user()->role) }} - &nbsp;</a> 
+                <a href="/dashboard/profile" class="d-block text-sm">View Profile</a>
+            </div>
         </div>
       </div>
       <!-- Sidebar Menu -->

@@ -22,6 +22,7 @@ Route::get('/dashboard','DashboardController@index')->middleware('auth');
 Route::any('/dashboard/client/search','ClientController@search')->middleware('auth');
 Route::resource('/dashboard/client','ClientController')->middleware('auth');
 //Announcement module
+Route::any('/dashboard/announcement/search','AnnouncementController@search')->middleware('auth');
 Route::resource('/dashboard/announcement','AnnouncementController')->middleware('auth');
 
 Auth::routes();
