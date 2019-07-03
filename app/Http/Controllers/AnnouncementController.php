@@ -38,7 +38,7 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate(['title'=>'required','body'=>'required']);
-
+        $data['user_id'] = auth()->user()->id;
         Announcement::create($data);
 
         return redirect('dashboard/announcement')->with('success','Successfully Added!');

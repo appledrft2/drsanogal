@@ -38,9 +38,11 @@
         <a class="p-2 text-dark" href="#contact">Contact</a>
 
       </nav>
-
+      @guest
       <a class="btn btn-outline-primary" href="/login">Sign in</a>
-
+      @else
+      <a class="btn btn-outline-primary" href="/dashboard">Home</a>
+      @endguest
     </div>
 
     <!-- END NAVBAR -->
@@ -102,7 +104,8 @@
                   <div class="card">
                     <div class="card-body">
                       <h3 class="lead display-4">{{$announcement->title}}</h3>
-                      <p>Posted at: {{$announcement->created_at}} - {{$announcement->created_at->diffForhumans()}}</p>
+                      <span><strong>Author:</strong> {{$announcement->user->name}}</span>
+                      <p><strong>Posted at: </strong>{{$announcement->created_at}} - {{$announcement->created_at->diffForhumans()}}</p>
                       
                       <!-- <div class="form-group"><center><img src="https://c881f0228c97d2dff415-fe3700e5b950a119c046fc4abfc0711c.ssl.cf2.rackcdn.com/2012/12/bg-pets.jpg" class="img-fluid rounded"></center></div> -->
                       <p class="brand-text text-justify">

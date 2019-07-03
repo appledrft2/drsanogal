@@ -40,7 +40,7 @@
 						@foreach($announcements as $announcement)
 							<tr>
 								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->title}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">@if($announcement->user_id == null) Anonymous @else $announcement->user_id @endif</td>
+								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->user->name}}</td>
 								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->created_at->diffForhumans()}}</td>
 								
 								<td width="15%">

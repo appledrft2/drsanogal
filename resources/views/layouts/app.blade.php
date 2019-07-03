@@ -49,10 +49,12 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-          @csrf
-          <button type="submit" class="btn"><i class="fa fa-sign-out-alt"></i> Logout</button>
-      </form>
+      <li class="nav-item">
+        <form id="logout-form" style="margin:0px" action="{{ route('logout') }}" method="POST" >
+            @csrf
+            <button type="submit" class="btn"><i class="fa fa-sign-out-alt"></i> Logout</button>
+        </form>
+      </li>
       
     </ul>
   </nav>
