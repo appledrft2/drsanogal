@@ -39,9 +39,9 @@
 					@if(count($announcements))
 						@foreach($announcements as $announcement)
 							<tr>
-								<td>{{$announcement->title}}</td>
-								<td>{{$announcement->user->name}}</td>
-								<td>{{$announcement->created_at->diffForhumans()}}</td>
+								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->title}}</td>
+								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->user->name}}</td>
+								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->created_at->diffForhumans()}}</td>
 								
 								<td width="15%">
 									<div class="form-inline">
