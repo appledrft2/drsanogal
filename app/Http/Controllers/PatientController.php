@@ -71,9 +71,9 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit($client,Patient $patient)
     {
-        //
+        return view('patient.edit',['patient'=>$patient,'client'=>$client])->with('title',$this->title);
     }
 
     /**
@@ -83,9 +83,20 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update($client,Request $request, Patient $patient)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'breed' => 'required',
+            'specie' => 'required',
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+        ]);
+
+        $patient->update($data);
+
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/client/'.$client.'/patient');
     }
 
     /**
