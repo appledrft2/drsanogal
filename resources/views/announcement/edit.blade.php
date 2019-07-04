@@ -20,9 +20,9 @@
 				@csrf
 				<div class="form-group"><input type="text" name="title" class="form-control " placeholder="Name" value="{{$announcement->title}}" ></div>
 				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="body" placeholder="Address">{{$announcement->body}}</textarea></div>
-				<div class="form-group">
+			<!-- 	<div class="form-group">
 					<img src="/storage/uploads/{{$announcement->cover_image}}" class="img-fluid rounded" style="width: 200px;height:100px">
-				</div>
+				</div> -->
 				<!-- <div class="form-group">
 					<input type="file" name="cover_image" class="btn">
 				</div> -->
