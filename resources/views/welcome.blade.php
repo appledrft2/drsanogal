@@ -100,17 +100,20 @@
 
               @if(count($announcements))
                 @foreach($announcements as $announcement)
-                <div class="col-md-12 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <h3 class="lead display-4">{{$announcement->title}}</h3>
-                      <span><strong>Author:</strong> {{$announcement->user->name}}</span>
-                      <p><strong>Posted at: </strong>{{$announcement->created_at}} - {{$announcement->created_at->diffForhumans()}}</p>
-                      
-                      <!-- <div class="form-group"><center><img src="https://c881f0228c97d2dff415-fe3700e5b950a119c046fc4abfc0711c.ssl.cf2.rackcdn.com/2012/12/bg-pets.jpg" class="img-fluid rounded"></center></div> -->
-                      <p class="brand-text text-justify">
-                      {!!$announcement->body !!}
-                      </p>
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group"><center><img src="/storage/uploads/{{$announcement->cover_image}}" style="width:100%;height:300px" class="img-fluid rounded"></center></div>
+                      </div>
+                      <div class="col-md-8">
+                          <h3 class="lead display-4">{{$announcement->title}}</h3>
+                          <span><strong>Author:</strong> {{$announcement->user->email}}</span>
+                          <p><strong>Posted at: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</p>
+                          <p class="brand-text text-justify">
+                          {!!$announcement->body !!}
+                          </p>
+                      </div>
                     </div>
                   </div>
                 </div>

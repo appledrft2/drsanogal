@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 class AnnouncementController extends Controller
 {
 
@@ -51,7 +52,32 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate(['title'=>'required','body'=>'required']);
+        $data = request()->validate([
+            'title'=>'required',
+            'body'=>'required',
+            'cover_image' => 'image|nullable|max:1999'
+        ]);
+        
+        //handle file uploading
+        if($request->hasFile('cover_image')){
+            // Get filename w/ extension
+            $filenameExt = $request->file('cover_image')->getClientOriginalName();
+            //Get filename only
+            $filename = pathinfo($filenameExt,PATHINFO_FILENAME);
+            // Get extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $filenameToStore = $filename.'-'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/uploads',$filenameToStore);
+
+        }else{
+            $filenameToStore = 'noimage.jpg';
+        }
+
+        // Save filename to database
+        $data['cover_image'] = $filenameToStore;
+        // Add the author
         $data['user_id'] = auth()->user()->id;
         Announcement::create($data);
 
@@ -91,9 +117,29 @@ class AnnouncementController extends Controller
     {
         $data = request()->validate([
             'title'=>'required',
-            'body'=>'required'
-
+            'body'=>'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        //handle file uploading
+        if($request->hasFile('cover_image')){
+
+            // Delete existing image
+            Storage::delete('public/uploads/'.$announcement->cover_image);
+            
+            // Get filename w/ extension
+            $filenameExt = $request->file('cover_image')->getClientOriginalName();
+            //Get filename only
+            $filename = pathinfo($filenameExt,PATHINFO_FILENAME);
+            // Get extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $filenameToStore = $filename.'-'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/uploads',$filenameToStore);
+            // update filename to database
+            $data['cover_image'] = $filenameToStore;
+        }
 
         $announcement->update($data);
 
@@ -108,6 +154,11 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
+        if($announcement->cover_image != 'noimage.jpg'){
+            // Delete image
+            Storage::delete('public/uploads/'.$announcement->cover_image);
+        }
+
         $announcement->delete();
 
         return redirect('dashboard/announcement')->with('success','Successfully Deleted!');

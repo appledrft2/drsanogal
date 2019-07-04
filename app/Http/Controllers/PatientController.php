@@ -16,8 +16,8 @@ class PatientController extends Controller
      */
     public function index($client)
     {
-        $patients = Patient::where('client_id',$client)->paginate(4);
         $client = Client::findOrfail($client);
+        $patients = Patient::where('client_id',$client)->paginate(4);
         return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title);
     }
 

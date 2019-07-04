@@ -63,6 +63,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>ID</th>
 						<th>Name</th>
 						<th>Breed</th>
 						<th>Gender</th>
@@ -82,6 +83,7 @@
 					@if(count($patients))
 						@foreach($patients as $patient)
 							<tr>
+								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->id}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->name}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->breed}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->gender}}</td>

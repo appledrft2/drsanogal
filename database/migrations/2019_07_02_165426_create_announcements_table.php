@@ -18,6 +18,7 @@ class CreateAnnouncementsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->string('title');
             $table->text('body');
+            $table->text('cover_image');
             $table->timestamps();
 
             $table->foreign('user_id')

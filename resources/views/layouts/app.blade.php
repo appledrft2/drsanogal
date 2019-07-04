@@ -199,21 +199,11 @@
         <br/ >
 
         @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('success')}}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+            <input type="hidden" name="success" id="success" value="{{session('success')}}">
         @endif
         
         @if(session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {{session('error')}}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+            <input type="hidden" name="error" id="error" value="{{session('error')}}">
         @endif
 
         @yield('content')
@@ -288,8 +278,19 @@ function closeFullscreen() {
 }
 </script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'article-ckeditor' );
-    </script>
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
+<script type="text/javascript">
+  
+  let success = $('#success').val();
+  let error = $('#error').val();
+  if(success){
+    alert(success);
+  }if(error){
+    alert(error);
+  }
+
+</script>
 </body>
 </html>
