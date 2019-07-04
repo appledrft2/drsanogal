@@ -60,7 +60,7 @@ class ClientController extends Controller
         ]);
 
         Client::create($data);
-
+        toast('Successfully added!','success');
         return redirect('dashboard/client')->with('success','Successfully Added!');
     }
 
@@ -102,8 +102,8 @@ class ClientController extends Controller
             'address'=>'required'
         ]);
         $client->update($data);
-
-        return redirect('dashboard/client')->with('success','Successfully Updated!');
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/client');
     }
 
     /**
@@ -115,6 +115,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect('dashboard/client')->with('success','Successfully Deleted!');
+        toast('Record successfully deleted!','error');
+        return redirect('dashboard/client');
     }
 }

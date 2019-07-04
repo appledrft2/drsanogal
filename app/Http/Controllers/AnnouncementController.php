@@ -6,6 +6,7 @@ use App\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 class AnnouncementController extends Controller
 {
 
@@ -17,7 +18,7 @@ class AnnouncementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $announcements = Announcement::orderBy('created_at','DESC')->paginate(4);
         return view('announcement.index',compact('announcements'))->with('title',$this->title);
     }
@@ -80,8 +81,8 @@ class AnnouncementController extends Controller
         // Add the author
         $data['user_id'] = auth()->user()->id;
         Announcement::create($data);
-
-        return redirect('dashboard/announcement')->with('success','Successfully Added!');
+        toast('Successfully added!','success');
+        return redirect('dashboard/announcement');
     }
 
     /**
@@ -142,8 +143,8 @@ class AnnouncementController extends Controller
         }
 
         $announcement->update($data);
-
-        return redirect('dashboard/announcement')->with('success','Successfully Updated!');
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/announcement');
     }
 
     /**
@@ -160,7 +161,7 @@ class AnnouncementController extends Controller
         }
 
         $announcement->delete();
-
-        return redirect('dashboard/announcement')->with('success','Successfully Deleted!');
+        toast('Record has been deleted!','error');
+        return redirect('dashboard/announcement');
     }
 }

@@ -2,13 +2,10 @@
 @section('title',$title)
 @section('content')
 
-	<div class="form-group">
-		<a href="/dashboard/client" class="btn btn-default">Go Back</a>
-	</div>
 	<div class="card">
 		<div class="card-body">
 			<div class="card card-sm">
-				<div class="card-header"><p class="lead">Owner Information</p></div>
+				<div class="card-header"><p class="lead float-left">Owner Information</p> <span class="float-right"><a href="/dashboard/client" class="btn btn-default">Go Back</a></span></div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
@@ -59,7 +56,7 @@
 			</div>
 			<div class="pull-left">
 				<a href="/dashboard/client/{{$client->id}}/patient/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
-			</div>
+			</div>	
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -83,27 +80,27 @@
 					@if(count($patients))
 						@foreach($patients as $patient)
 							<tr>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->id}}</td>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->name}}</td>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->breed}}</td>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->gender}}</td>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->specie}}</td>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/patient';">{{$patient->date_of_birth}}</td>
+								<td>{{$patient->id}}</td>
+								<td>{{$patient->name}}</td>
+								<td>{{$patient->breed}}</td>
+								<td>{{$patient->gender}}</td>
+								<td>{{$patient->specie}}</td>
+								<td>{{$patient->date_of_birth}}</td>
 								<td width="15%">
 									<div class="form-inline">
 										
 										<a href="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form onsubmit="return confirm('Do you want to delete this record?');" method="POST" action="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}">
+										<form method="POST" action="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm mt-3" id="btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
 									</div>
 								</td>
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="6" class="text-center">No Data</td></tr>
+					<tr><td colspan="7" class="text-center">No Data</td></tr>
 					@endif
 				</tbody>
 			</table>

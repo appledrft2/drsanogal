@@ -16,8 +16,8 @@ class PatientController extends Controller
      */
     public function index($client)
     {
-        $client = Client::findOrfail($client);
         $patients = Patient::where('client_id',$client)->paginate(4);
+        $client = Client::findOrfail($client);
         return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title);
     }
 
@@ -50,8 +50,8 @@ class PatientController extends Controller
         $data['client_id'] = $client;
 
         Patient::create($data);
-
-        return redirect('dashboard/client/'.$client.'/patient')->with('success','Successfully Added!')->with('title',$this->title);
+        toast('Successfully added!','success');
+        return redirect('dashboard/client/'.$client.'/patient')->with('title',$this->title);
     }
 
     /**
@@ -97,7 +97,7 @@ class PatientController extends Controller
     public function destroy($client,Patient $patient)
     {
         $patient->delete();
-
-        return redirect('dashboard/client/'.$client.'/patient')->with('success','Sucessfully Deleted!');
+        toast('Record has been deleted!','error');
+        return redirect('dashboard/client/'.$client.'/patient');
     }
 }

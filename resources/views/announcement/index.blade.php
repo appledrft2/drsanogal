@@ -39,17 +39,17 @@
 					@if(count($announcements))
 						@foreach($announcements as $announcement)
 							<tr>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->title}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->user->name}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/patient';">{{$announcement->created_at->diffForhumans()}}</td>
+								<td>{{$announcement->title}}</td>
+								<td>{{$announcement->user->name}}</td>
+								<td>{{$announcement->created_at->diffForhumans()}}</td>
 								
 								<td width="15%">
 									<div class="form-inline">
 										<a href="/dashboard/announcement/{{$announcement->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form onsubmit="return confirm('Do you want to delete this record?');" method="POST" action="/dashboard/announcement/{{$announcement->id}}">
+										<form method="POST" action="/dashboard/announcement/{{$announcement->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm mt-3" id="btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
 									</div>
 								</td>

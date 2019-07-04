@@ -197,15 +197,7 @@
     <div class="content">
       <div class="container">
         <br/ >
-
-        @if(session('success'))
-            <input type="hidden" name="success" id="success" value="{{session('success')}}">
-        @endif
         
-        @if(session('error'))
-            <input type="hidden" name="error" id="error" value="{{session('error')}}">
-        @endif
-
         @yield('content')
         <br />
       </div><!-- /.container-fluid -->
@@ -281,16 +273,42 @@ function closeFullscreen() {
 <script>
     CKEDITOR.replace( 'article-ckeditor' );
 </script>
-<script type="text/javascript">
+  @include('sweetalert::alert')
+  @if($errors->any())
+    @foreach($errors->all() as $error)
+      <script type="text/javascript">
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+          Toast.fire({
+            type: 'error',
+            title: '{{$error}}'
+          });
+      </script>
+    @endforeach
+  @endif
   
-  let success = $('#success').val();
-  let error = $('#error').val();
-  if(success){
-    alert(success);
-  }if(error){
-    alert(error);
-  }
-
-</script>
+  <script type="text/javascript">
+    $('#btn-submit').on('click',function(e){
+        e.preventDefault();
+        var form = $(this).parents('form');
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.value) {
+            form.submit();
+          }
+        });
+    });
+  </script>
 </body>
 </html>

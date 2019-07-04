@@ -50,17 +50,17 @@
 									<div class="form-inline">
 										
 										<a href="/dashboard/client/{{$client->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form onsubmit="return confirm('Do you want to delete this record?');" method="POST" action="/dashboard/client/{{$client->id}}">
+										<form  method="POST" action="/dashboard/client/{{$client->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm mt-3" id="btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
 									</div>
 								</td>
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="5" class="text-center">No Data</td></tr>
+					<tr><td colspan="6" class="text-center">No Data</td></tr>
 					@endif
 				</tbody>
 			</table>

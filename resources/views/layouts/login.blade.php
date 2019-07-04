@@ -21,24 +21,28 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page" style="background-image: url('{{asset('adminlte3/dist/img/pets.png')}}');background-size: contain">
-<div class="col-6 mx-auto">
-    @if($errors->any())
-      @foreach($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {{$error}}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-      @endforeach
-    @endif
-</div>
 @yield('content')
 
 <!-- jQuery -->
 <script src="{{asset('adminlte3/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+@include('sweetalert::alert')
+@if($errors->any())
+  @foreach($errors->all() as $error)
+    <script type="text/javascript">
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        Toast.fire({
+          type: 'error',
+          title: '{{$error}}'
+        });
+    </script>
+  @endforeach
+@endif
 </body>
 </html>

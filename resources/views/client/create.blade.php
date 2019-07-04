@@ -3,11 +3,6 @@
 
 @section('content')
 
-@if($errors->any())
-	@foreach($errors->all() as $error)
-		<div class="alert alert-danger">{{$error}}</div>
-	@endforeach
-@endif
 <div class="col-md-10 mx-auto">
 	<div class="form-group">
 		<button onclick="history.back()" class="btn btn-default">Go Back</button>
