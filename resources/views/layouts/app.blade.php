@@ -292,8 +292,8 @@ function closeFullscreen() {
   @endif
   
   <script type="text/javascript">
-    $('#btn-submit').on('click',function(e){
-        e.preventDefault();
+    $(document).on('click', '.btn-submit', function(e){
+      e.preventDefault();
         var form = $(this).parents('form');
         Swal.fire({
           title: 'Are you sure?',

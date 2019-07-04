@@ -30,6 +30,19 @@ class SupplierController extends Controller
         return view('supplier.create')->with('title',$this->title);
     }
 
+    public function search()
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $suppliers = Supplier::where(function ($query) use($data) {
+            $query->where('name', 'like', '%'.$data['data'].'%')
+                  ->orWhere('contact','like','%'.$data['data'].'%')
+                  ->orWhere('address','like','%'.$data['data'].'%');
+        })->paginate(4);
+        $suppliers =  $suppliers->appends(array ('data' => $data['data']));
+        return view('supplier.index',compact('suppliers'))->with('title',$this->title)->with('btn',true);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

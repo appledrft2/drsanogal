@@ -56,7 +56,7 @@
 										<form  method="POST" action="/dashboard/client/{{$client->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3" id="btn-submit"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
 									</div>
 								</td>
