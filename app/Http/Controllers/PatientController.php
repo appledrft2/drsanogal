@@ -31,6 +31,22 @@ class PatientController extends Controller
         return view('patient.create',compact('client'))->with('title',$this->title);
     }
 
+    public function search($client)
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $patients = Client::find($client)->patients()->where(function ($query) use($data) {
+            $query->where('name', 'like', '%'.$data['data'].'%')
+                  ->orWhere('breed', 'like', '%'.$data['data'].'%')
+                  ->orWhere('specie','like','%'.$data['data'].'%')
+                  ->orWhere('gender','like','%'.$data['data'].'%')
+                  ->orWhere('date_of_birth','like','%'.$data['data'].'%');
+        })->paginate(4);
+        $patients =  $patients->appends(array ('data' => $data['data']));
+        $client = Client::findOrfail($client);
+        return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

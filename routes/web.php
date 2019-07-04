@@ -26,6 +26,7 @@ Route::resource('/dashboard/announcement','AnnouncementController');
 Route::any('/dashboard/client/search','ClientController@search');
 Route::resource('/dashboard/client','ClientController');
 // Patient module
+Route::any('/dashboard/client/{client}/patient/search','PatientController@search');
 Route::resource('/dashboard/client/{client}/patient','PatientController');
 // Patient List
 Route::get('/dashboard/patient','PatientListController@index');
