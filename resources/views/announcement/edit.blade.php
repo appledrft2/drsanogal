@@ -23,9 +23,9 @@
 				<div class="form-group">
 					<img src="/storage/uploads/{{$announcement->cover_image}}" class="img-fluid rounded" style="width: 200px;height:100px">
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<input type="file" name="cover_image" class="btn">
-				</div>
+				</div> -->
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
 		</div>

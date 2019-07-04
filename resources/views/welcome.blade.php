@@ -103,10 +103,10 @@
                 <div class="card mb-3">
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-md-4">
+                      <!-- <div class="col-md-4">
                         <div class="form-group"><center><img src="/storage/uploads/{{$announcement->cover_image}}" style="width:100%;height:300px" class="img-fluid rounded"></center></div>
-                      </div>
-                      <div class="col-md-8">
+                      </div> -->
+                      <div class="col-md-12">
                           <h3 class="lead display-4">{{$announcement->title}}</h3>
                           <span><strong>Author:</strong> {{$announcement->user->email}}</span>
                           <p><strong>Posted at: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</p>
