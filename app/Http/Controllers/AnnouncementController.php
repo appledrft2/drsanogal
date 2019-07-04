@@ -42,7 +42,7 @@ class AnnouncementController extends Controller
                   
         })->paginate(4);
         $announcements =  $announcements->appends(array ('data' => $data['data']));
-        return view('announcement.index',compact('announcements'))->with('title',$this->title);
+        return view('announcement.index',compact('announcements'))->with('title',$this->title)->with('btn',true);
     }
 
     /**

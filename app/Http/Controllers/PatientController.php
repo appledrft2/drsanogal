@@ -44,7 +44,7 @@ class PatientController extends Controller
         })->paginate(4);
         $patients =  $patients->appends(array ('data' => $data['data']));
         $client = Client::findOrfail($client);
-        return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title);
+        return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title)->with('btn',true);
     }
 
     /**

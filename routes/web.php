@@ -28,8 +28,14 @@ Route::resource('/dashboard/client','ClientController');
 // Patient module
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');
 Route::resource('/dashboard/client/{client}/patient','PatientController');
-// Patient List
+// Patient List module
+Route::any('/dashboard/patient/search','PatientListController@search');
 Route::get('/dashboard/patient','PatientListController@index');
+//Appointment module
+Route::resource('/dashboard/patient/{patient}/appointment','AppointmentController');
+//Supplier module
+Route::any('/dashboard/supplier/search','SupplierController@search');
+Route::resource('/dashboard/supplier','SupplierController');
 });
 
 // Login module

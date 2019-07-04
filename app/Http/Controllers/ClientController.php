@@ -41,7 +41,7 @@ class ClientController extends Controller
                   ->orWhere('address','like','%'.$data['data'].'%');
         })->paginate(4);
         $clients =  $clients->appends(array ('data' => $data['data']));
-        return view('client.index',compact('clients'))->with('title',$this->title);
+        return view('client.index',compact('clients'))->with('title',$this->title)->with('btn',true);
     }
 
     /**
@@ -61,7 +61,7 @@ class ClientController extends Controller
 
         Client::create($data);
         toast('Successfully added!','success');
-        return redirect('dashboard/client')->with('success','Successfully Added!');
+        return redirect('dashboard/client');
     }
 
     /**

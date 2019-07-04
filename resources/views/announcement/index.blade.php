@@ -5,15 +5,18 @@
 		<div class="card-body">
 
 			<div class="float-right">
-				<form method="POST" action="/dashboard/announcement/search">
-					@csrf
-					<div class="input-group ">
-					  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search by title" aria-label="Recipient's username" aria-describedby="basic-addon2">
-					  <div class="input-group-append">
-					    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-					  </div>
-					</div>
-				</form>
+				<div class="form-inline">
+					@if(isset($btn)) <a href="/dashboard/announcement" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
+					<form method="POST" action="/dashboard/announcement/search">
+						@csrf
+						<div class="input-group ">
+						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search by title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+						  <div class="input-group-append">
+						    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+						  </div>
+						</div>
+					</form>
+				</div>
 				
 			</div>
 			<div class="pull-left">
