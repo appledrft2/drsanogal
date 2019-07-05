@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-class AnnouncementController extends BaseController
+class AnnouncementController extends Controller
 {
 
     public $title = 'Announcement';

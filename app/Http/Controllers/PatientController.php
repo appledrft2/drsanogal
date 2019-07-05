@@ -6,7 +6,7 @@ use App\Client;
 use App\Patient;
 use Illuminate\Http\Request;
 
-class PatientController extends BaseController
+class PatientController extends Controller
 {
     public $title = "Client";
     /**

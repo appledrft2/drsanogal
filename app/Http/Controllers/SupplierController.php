@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Supplier;
 use Illuminate\Http\Request;
 
-class SupplierController extends BaseController
+class SupplierController extends Controller
 {
     public $title = "Supplier";
     /**
