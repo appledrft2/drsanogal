@@ -48,7 +48,5 @@ class User extends Authenticatable
         return $this->hasMany(Announcement::class);
 
     }
-    public function patients(){
-        return $this->hasMany(Patient::class);
-    }
+
 }

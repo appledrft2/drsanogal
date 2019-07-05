@@ -94,7 +94,7 @@
 								<td>{{$patient->markings}}</td>
 								<td>{{$patient->special_considerations}}</td>
 								<td>{{$patient->date_of_birth}}</td>
-								<td>{{$patient->user->name}}</td>
+								<td>{{$patient->veterinarian}}</td>
 								<td width="15%">
 									<div class="form-inline">
 										

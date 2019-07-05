@@ -34,6 +34,7 @@
 				</div>
 				<div class="form-group"><input type="text" name="markings" class="form-control " placeholder="markings" value="{{$patient->markings}}" ></div>
 				<div class="form-group"><input type="text" name="special_considerations" class="form-control " placeholder="Special Considerations (Allergues,Surgeries,etc.)" value="{{$patient->special_considerations}}" ></div>
+				<div class="form-group"><input type="text" name="veterinarian" class="form-control " placeholder="Attending Veterinarian" value="{{$patient->veterinarian}}" ></div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 
 			</form>

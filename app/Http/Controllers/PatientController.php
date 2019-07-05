@@ -62,12 +62,12 @@ class PatientController extends Controller
             'specie' => 'required',
             'date_of_birth' => 'required',
             'gender' => 'required',
+            'veterinarian' => 'required',
             'markings' => 'nullable',
             'special_considerations' => 'nullable',
         ]);
         
         $data['client_id'] = $client;
-        $data['user_id'] = auth()->user()->id;
 
         Patient::create($data);
         toast('Successfully added!','success');
@@ -110,6 +110,7 @@ class PatientController extends Controller
             'breed' => 'required',
             'specie' => 'required',
             'date_of_birth' => 'required',
+            'veterinarian' => 'required',
             'gender' => 'required',
         ]);
 
