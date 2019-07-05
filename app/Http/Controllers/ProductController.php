@@ -32,6 +32,17 @@ class ProductController extends Controller
         return view('product.create',compact('suppliers'))->with('title',$this->title);
     }
 
+    public function search()
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $products = Product::where(function ($query) use($data) {
+            $query->where('name', 'like', '%'.$data['data'].'%')
+                  ->orWhere('category', 'like', '%'.$data['data'].'%');        
+        })->paginate(4);
+        $products =  $products->appends(array ('data' => $data['data']));
+        return view('product.index',compact('products'))->with('title',$this->title)->with('btn',true);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -108,6 +119,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        toast('Record successfully deleted!','error');
+        return redirect('dashboard/product');
     }
 }

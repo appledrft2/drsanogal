@@ -10,7 +10,7 @@
 					<form method="POST" action="/dashboard/product/search">
 						@csrf
 						<div class="input-group ">
-						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search by name" aria-label="Recipient's username" aria-describedby="basic-addon2">
 						  <div class="input-group-append">
 						    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
 						  </div>
