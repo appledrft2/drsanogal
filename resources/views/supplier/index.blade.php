@@ -28,7 +28,7 @@
 						<th>Name</th>
 						<th>Contact</th>
 						<th>Address</th>
-
+						<th width="10%">Products in stock</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -39,6 +39,7 @@
 								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$supplier->name}}</td>
 								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$supplier->contact}}</td>
 								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{!!$supplier->address!!}</td>
+								<th><a href="/dashboard/product">{{$supplier->products->count()}}</a></th>
 								<td width="15%">
 									<div class="form-inline">
 										

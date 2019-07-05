@@ -20,6 +20,10 @@ Route::get('/', function () {
 Route::group(['middleware'=>'auth'],function(){
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
+// My profile module
+Route::get('/dashboard/profile','ProfileController@index');
+Route::patch('/dashboard/profile/{id}','ProfileController@update');
+Route::patch('/dashboard/profile/{id}/password','ProfileController@UpdatePassword');
 //Announcement module
 Route::any('/dashboard/announcement/search','AnnouncementController@search');
 Route::resource('/dashboard/announcement','AnnouncementController');
