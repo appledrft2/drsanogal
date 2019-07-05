@@ -13,8 +13,11 @@
 
 
 Route::get('/', function () {
-	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
-    return view('welcome',compact('announcements'));
+	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(1);
+	$products = \App\Product::orderBy('created_at','DESC')->paginate(6);
+
+	$products =  $products->appends(array ('data' => 'product'));
+    return view('welcome',compact('announcements','products'));
 });
 // Route group for auth
 Route::group(['middleware'=>'auth'],function(){

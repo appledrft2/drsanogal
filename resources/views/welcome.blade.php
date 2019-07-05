@@ -118,9 +118,38 @@
       @else
         <div class="col-md-8 mx-auto mb-5 lead"> There are no announcements. </div>
       @endif
-
+      <div class="col-md-12">
+        <div class="float-right">{{$announcements->links()}}</div>
+      </div>
       </div>
     <!-- /.row -->
+
+    <div class="row">
+    <div class="col-md-12 mb-5"><h2>Available Products</h2><hr></div>
+    @if(count($products))
+      @foreach($products as $product)
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          
+          <div class="card-body">
+            <h4 class="card-title">{{$product->name}}</h4>
+            <span><strong>Price:</strong> &#8369;{{$product->price}}</span><br>
+            <span><strong>Category:</strong> {{$product->category}}</span><br>
+           
+          </div>
+          
+        </div>
+      </div>
+      @endforeach
+      @else
+        <div class="col-md-8 mx-auto mb-5 lead"> There are no product. </div>
+      @endif
+       <div class="col-md-12">
+        <div class="float-right">{{$products->appends(Request::all())->links()}}</div>
+      </div>
+      </div>
+    <!-- /.row -->
+
 
   </div>
   <!-- /.container -->
