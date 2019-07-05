@@ -28,28 +28,7 @@
         <button onclick="togglefs()" type="button" class="toggle-expand-btn btn"><i class="fa fa-expand"></i></button>
       </li>
       
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          @if(count($lowprod))
-            <span class="badge badge-danger navbar-badge">{{count($lowprod)}}</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
-              <span class="dropdown-header">Product Notifications</span>
-              <div class="dropdown-divider"></div>
-               @foreach($lowprod as $lowprod)
-              <a href="#" class="dropdown-item">
-               
-                <i class="fas fa-archive mr-3 text-danger"></i>{{$lowprod->name}} {{$lowprod->quantity}} remaining in stocks  
-              @endforeach
-            @endif
-          </a>
-          
-          <div class="dropdown-divider"></div>
-          <a href="/product" class="dropdown-item dropdown-footer">See All Product</a>
-        </div>
-      </li>
+     
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
