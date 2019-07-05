@@ -11,6 +11,10 @@
 |
 */
 
+if(config('APP_ENV') == "production"){
+	\URL::forceScheme('https');
+}
+
 Route::get('/', function () {
 	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
     return view('welcome',compact('announcements'));
@@ -36,6 +40,9 @@ Route::resource('/dashboard/patient/{patient}/appointment','AppointmentControlle
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');
 Route::resource('/dashboard/supplier','SupplierController');
+// Product module
+Route::any('/dashboard/product/search','ProductController@search');
+Route::resource('/dashboard/product','ProductController');
 });
 
 // Login module
