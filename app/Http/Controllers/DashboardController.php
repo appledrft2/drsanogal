@@ -8,7 +8,7 @@ use App\Patient;
 use App\Announcement;
 use Illuminate\Http\Request;
 
-class DashboardController extends BaseController
+class DashboardController extends Controller
 {
 	public $title = "Dashboard";
 
