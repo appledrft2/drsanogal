@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Role;
+use App\Patient;
 use App\Announcement;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,5 +47,8 @@ class User extends Authenticatable
 
         return $this->hasMany(Announcement::class);
 
+    }
+    public function patients(){
+        return $this->hasMany(Patient::class);
     }
 }

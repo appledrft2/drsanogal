@@ -20,6 +20,7 @@
 					<option value="">Specie</option>
 					<option @if(old('specie')=='Canine') selected @endif>Canine</option>
 					<option @if(old('specie')=='Feline') selected @endif>Feline</option>
+					<option @if(old('specie')=='Other') selected @endif>Other</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -31,6 +32,8 @@
 					<option @if(old('gender')=='Spayed') selected @endif>Spayed (Female)</option>
 					</select>
 				</div>
+				<div class="form-group"><input type="text" name="markings" class="form-control " placeholder="markings" value="{{old('markings')}}" ></div>
+				<div class="form-group"><input type="text" name="special_considerations" class="form-control " placeholder="Special Considerations (Allergues,Surgeries,etc.)" value="{{old('special_considerations')}}" ></div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 
 			</form>
