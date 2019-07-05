@@ -74,11 +74,12 @@
       <!-- /.card-header -->
       <div class="card-body p-0">
         <ul class="products-list product-list-in-card pl-2 pr-2">
+          @if(count($lowproducts))
           @foreach($lowproducts as $lowproduct)
           <li class="item">
             <div class="row">
               <div class="col-md-8">
-                  <a href="javascript:void(0)" class="lead text-dark">{{$lowproduct->name}}
+                  <a href="dashboard/product/" class="lead text-dark">{{$lowproduct->name}}
                    </a>
                   <span class="product-description">
                      {{$lowproduct->category}}<br>
@@ -92,7 +93,11 @@
               </div>
             </div>
           </li>
+          
           @endforeach
+          @else
+          <li class="item text-center">No products in low stock</li>
+          @endif
           <!-- /.item -->
         </ul>
       </div>
