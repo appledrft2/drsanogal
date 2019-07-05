@@ -115,6 +115,8 @@
         </div>
       </div>
       @endforeach
+      @else
+        <div class="col-md-8 mx-auto mb-5 lead"> There are no announcements. </div>
       @endif
 
       </div>

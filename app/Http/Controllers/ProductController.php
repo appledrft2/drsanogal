@@ -6,7 +6,7 @@ use App\Product;
 use App\Supplier;
 use Illuminate\Http\Request;
 
-class ProductController extends BaseController
+class ProductController extends Controller
 {
     public $title = "Product";
     /**
@@ -16,9 +16,10 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        
+
+        $lowprod= Product::all();
         $products = Product::orderBy('created_at','DESC')->paginate(4);
-        return view('product.index',compact('products'))->with('title',$this->title);
+        return view('product.index',compact('products'))->with('title',$this->title)->with('lowprod',$lowprod);
     }
 
     /**
