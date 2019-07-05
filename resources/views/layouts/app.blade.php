@@ -32,14 +32,18 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-danger navbar-badge">1</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
-          <span class="dropdown-header">Product Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-archive mr-3 text-danger"></i> Product Whiskas low in stocks
-            
+          @if(count($lowprod))
+            <span class="badge badge-danger navbar-badge">{{count($lowprod)}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
+              <span class="dropdown-header">Product Notifications</span>
+              <div class="dropdown-divider"></div>
+               @foreach($lowprod as $lowprod)
+              <a href="#" class="dropdown-item">
+               
+                <i class="fas fa-archive mr-3 text-danger"></i>{{$lowprod->name}} {{$lowprod->quantity}} remaining in stocks  
+              @endforeach
+            @endif
           </a>
           
           <div class="dropdown-divider"></div>

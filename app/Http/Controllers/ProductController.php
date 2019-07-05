@@ -6,7 +6,7 @@ use App\Product;
 use App\Supplier;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     public $title = "Product";
     /**
@@ -16,6 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        
         $products = Product::orderBy('created_at','DESC')->paginate(4);
         return view('product.index',compact('products'))->with('title',$this->title);
     }
@@ -39,7 +40,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'supplier_id'=>'required',
+            'name'=>'required',
+            'category'=>'required',
+            'unit'=>'required',
+            'price'=>'required',
+            'quantity'=>'required'
+        ]);
+
+        Product::create($data);
+        toast('Successfully added!','success');
+        return redirect('dashboard/product');
     }
 
     /**
@@ -61,7 +73,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $suppliers = Supplier::all();
+        return view('product.edit',['product'=>$product,'suppliers'=>$suppliers])->with('title',$this->title);
     }
 
     /**
@@ -73,7 +86,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $data = request()->validate([
+            'supplier_id'=>'required',
+            'name'=>'required',
+            'category'=>'required',
+            'unit'=>'required',
+            'price'=>'required',
+            'quantity'=>'required'
+        ]);
+
+        $product->update($data);
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/product');
     }
 
     /**

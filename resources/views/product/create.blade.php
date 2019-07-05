@@ -13,7 +13,7 @@
 			<form  class="" method="POST" action="/dashboard/product">
 				@csrf
 				<div class="form-group">
-					<select  name="supplier" class="form-control ">
+					<select  name="supplier_id" class="form-control ">
 					<option value="">Supplier</option>
 						@foreach($suppliers as $supplier)
 						<option value="{{$supplier->id}}">{{$supplier->name}}</option>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class ClientController extends BaseController
 {
 
     public $title = 'Client';
