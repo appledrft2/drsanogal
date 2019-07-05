@@ -20,11 +20,17 @@ class CreatePatientsTable extends Migration
             $table->string('breed');
             $table->string('gender');
             $table->string('specie');
+            $table->string('markings');
+            $table->string('special_considerations');            
+            $table->bigInteger('user_id')->unsigned()->index();            
             $table->date('date_of_birth');
             $table->timestamps();
-
+            
             $table->foreign('client_id')
             ->references('id')->on('clients')
+            ->onDelete('cascade');
+            $table->foreign('user_id')
+            ->references('id')->on('users')
             ->onDelete('cascade');
         });
     }

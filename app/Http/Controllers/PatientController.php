@@ -35,8 +35,9 @@ class PatientController extends Controller
     {
         $data = request()->validate(['data'=>'required']);
 
-        $patients = Client::find($client)->patients()->where(function ($query) use($data) {
-            $query->where('name', 'like', '%'.$data['data'].'%')
+        $patients = Client::findOrfail($client)->patients()->where(function ($query) use($data) {
+            $query->where('id', 'like', '%'.$data['data'].'%')
+                  ->orWhere('name', 'like', '%'.$data['data'].'%')
                   ->orWhere('breed', 'like', '%'.$data['data'].'%')
                   ->orWhere('specie','like','%'.$data['data'].'%')
                   ->orWhere('gender','like','%'.$data['data'].'%')
