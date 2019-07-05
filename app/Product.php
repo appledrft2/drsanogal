@@ -12,4 +12,8 @@ class Product extends Model
     public function supplier(){
     	return $this->belongsTo(Supplier::class);
     }
+
+    public function setTotal() {
+    	$this->total = $this->price * $this->quantity;
+	}
 }

@@ -11,9 +11,6 @@
 |
 */
 
-if(config('APP_ENV') == "production"){
-	\URL::forceScheme('https');
-}
 
 Route::get('/', function () {
 	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);

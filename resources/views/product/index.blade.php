@@ -31,6 +31,7 @@
 						<th>Unit</th>
 						<th>Price</th>
 						<th>Quantity</th>
+						<th>Sub Total</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -42,12 +43,12 @@
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->name}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->category}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->unit}}</td>
-								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->price}}</td>
+								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';" class="text-right">&#8369; {{$product->price}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->quantity}}</td>
+								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';" class="text-right">&#8369; {{number_format($product->quantity * $product->price,2)}}</td>
 								
 								<td width="15%">
-									<div class="form-inline">
-										
+									<div class="form-inline">		
 										<a href="/dashboard/product/{{$product->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
 										<form  method="POST" action="/dashboard/product/{{$product->id}}">
 											@method('delete')
@@ -58,6 +59,18 @@
 								</td>
 							</tr>
 						@endforeach
+						<tr>
+							<td colspan="5"></td>
+							<td class="text-center"><label>Total</label></td>
+							<td class="text-right"><?php $sum=0; ?>
+								@foreach($products as $product)
+									<?php $sum = $sum + $product->quantity * $product->price ?>
+								@endforeach
+								&#8369; <?php echo number_format($sum,2); ?>
+							</td>
+							<td></td>
+						</tr>
+						<tbody></tbody>
 					@else
 					<tr><td colspan="7" class="text-center">No Data</td></tr>
 					@endif

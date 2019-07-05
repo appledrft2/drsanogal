@@ -5,7 +5,7 @@
 
 <div class="col-md-10 mx-auto">
 	<div class="form-group">
-		<button onclick="history.back()" class="btn btn-default">Go Back</button>
+		<a href="/dashboard/client/{{$client}}/patient" class="btn btn-default">Go Back</a>
 	</div>
 	<div class="card">
 		<div class="card-header">New Patient</div>
