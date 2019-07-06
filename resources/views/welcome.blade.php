@@ -16,6 +16,14 @@
   <!-- Custom styles for this template -->
   <link href="{{asset('css/business-frontpage.css')}}" rel="stylesheet">
 
+  <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+          height: 400px;  /* The height is 400 pixels */
+          width: 100%;  /* The width is the width of the web page */
+         }
+      </style>
+
 </head>
 
 <body>
@@ -94,6 +102,15 @@
           <abbr title="Email">E:</abbr>
           <a href="mailto:drsanogal@gmail.com">drsanogal@gmail.com</a>
         </address>
+
+        <div>
+          
+          <h3>Google Map Location</h3>
+              <!--The div element for the map -->
+              <div id="map"></div>
+
+
+        </div>
       </div>
     </div>
     <!-- /.row -->
@@ -102,7 +119,7 @@
       <div class="col-md-12 mb-5"><h2>Announcements</h2><hr></div>
     @if(count($announcements))
       @foreach($announcements as $announcement)
-      <div class="col-md-8 mx-auto mb-5">
+      <div class="col-md-8 mx-auto mb-5 ">
         <div class="card h-100">
           
           <div class="card-body">
@@ -116,9 +133,9 @@
       </div>
       @endforeach
       @else
-        <div class="col-md-8 mx-auto mb-5 lead"> There are no announcements. </div>
+        <div class="col-md-8 mx-auto mb-5 lead text-center"> There are no announcements. </div>
       @endif
-      <div class="col-md-12">
+      <div class="col-md-12 ">
         <div class="float-right">{{$announcements->links()}}</div>
       </div>
       </div>
@@ -129,11 +146,11 @@
     @if(count($products))
       @foreach($products as $product)
       <div class="col-md-4 mb-5">
-        <div class="card h-100">
+        <div class="card h-100" >
           
-          <div class="card-body">
+          <div class="card-body" >
             <h4 class="card-title">{{$product->name}}</h4>
-            <span><strong>Price:</strong> &#8369;{{$product->price}}</span><br>
+            <span><strong>Price:</strong> &#8369;{{number_format($product->price,2)}}</span><br>
             <span><strong>Category:</strong> {{$product->category}}</span><br>
            
           </div>
@@ -142,7 +159,7 @@
       </div>
       @endforeach
       @else
-        <div class="col-md-8 mx-auto mb-5 lead"> There are no product. </div>
+        <div class="col-md-8 mx-auto mb-5 lead text-center"> There are no product. </div>
       @endif
        <div class="col-md-12">
         <div class="float-right">{{$products->appends(Request::all())->links()}}</div>
@@ -178,6 +195,22 @@
   })();
   </script>
   <!--End of Tawk.to Script-->
+
+  <script>
+  // Initialize and add the map
+  function initMap() {
+    // The location of Uluru
+    var uluru = {lat: 10.6420032, lng: 122.9453301};
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 17, center: uluru});
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1S2VzQ6Y-Q0evdQ53L2p9H1E97DdRzcg&callback=initMap">
+      </script>
 </body>
 
 </html>
