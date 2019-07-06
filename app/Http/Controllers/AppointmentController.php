@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
+    public $title = 'Patient';
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +16,9 @@ class AppointmentController extends Controller
      */
     public function index($patient)
     {
-       $patient = Patient::findOrfail($patient)->patient;
-       dd($patient);
+       $appointments = Patient::findOrfail($patient)->appointments()->paginate(4);
+       $patient = Patient::findOrfail($patient);
+       return view('appointment.index',['appointments'=>$appointments,'patient'=>$patient])->with('title',$this->title);
     }
 
     /**

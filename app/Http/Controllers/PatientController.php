@@ -63,8 +63,8 @@ class PatientController extends Controller
             'date_of_birth' => 'required',
             'gender' => 'required',
             'veterinarian' => 'required',
-            'markings' => 'nullable',
-            'special_considerations' => 'nullable',
+            'markings' => 'required',
+            'special_considerations' => 'required'
         ]);
         
         $data['client_id'] = $client;
@@ -112,6 +112,8 @@ class PatientController extends Controller
             'date_of_birth' => 'required',
             'veterinarian' => 'required',
             'gender' => 'required',
+            'markings' => 'required',
+            'special_considerations' => 'required'
         ]);
 
         $patient->update($data);
