@@ -96,10 +96,8 @@
           <abbr title="Email">E:</abbr>
           <a href="mailto:drsanogal@gmail.com">drsanogal@gmail.com</a>
         </address>
-            <div class="col-md-12">
-              <h3>Google Map Location</h3>
-              <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=dr%20s%20and%20j%20veterinary%20clinic&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
-            </div>
+          <h3>Google Map Location</h3>
+          <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=dr%20s%20and%20j%20veterinary%20clinic&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
       </div>
     </div>
     <!-- /.row -->
