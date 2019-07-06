@@ -78,8 +78,8 @@
 		
 			<div class="float-right">
 				<div class="form-inline">
-					@if(isset($btn)) <a href="/dashboard/appointment/{{$patient->id}}" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
-					<form method="POST" action="/dashboard/appointment/{{$patient->id}}/search">
+					@if(isset($btn)) <a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
+					<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/search">
 						@csrf
 						<div class="input-group ">
 						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -92,7 +92,7 @@
 				
 			</div>
 			<div class="pull-left">
-				<a href="/dashboard/appointment/{{$patient->id}}/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+				<a href="/dashboard/patient/{{$patient->id}}/appointment/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
 			</div>	
 			<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -116,15 +116,16 @@
 					@if(count($appointments))
 						@foreach($appointments as $appointment)
 							<tr>
-								<td>{{$appointment->description}}</td>
+								<td>{!!$appointment->description!!}</td>
 								<td>{{$appointment->date_from}}</td>
 								<td>{{$appointment->date_to}}</td>
-								<td>{{$appointment->status}}</td>
+								<td>@if($appointment->status =='') not completed yet @else {{$appointment->status}} @endif</td>
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/appointment/{{$appointment->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form method="POST" action="/dashboard/appointment/{{$appointment->id}}/appointment/{{$appointment->id}}">
+										<a href="/dashboard/appointment/{{$appointment->id}}/details" class="btn btn-success btn-sm mr-1"><i class="fa fa-search"></i> More Details</a>
+										<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+										<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}">
 											@method('delete')
 											@csrf
 											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
