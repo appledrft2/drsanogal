@@ -31,6 +31,19 @@ class AccountController extends Controller
         return view('account.create')->with('title',$this->title);
     }
 
+    public function search()
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $users = User::where(function ($query) use($data) {
+            $query->where('name', 'like', '%'.$data['data'].'%')
+                  ->orWhere('email', 'like', '%'.$data['data'].'%')
+                  ->orWhere('role','like','%'.$data['data'].'%');
+        })->paginate(4);
+        $users =  $users->appends(array ('data' => $data['data']));
+        return view('account.index',compact('users'))->with('title',$this->title)->with('btn',true);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -72,7 +85,8 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrfail($id);
+        return view('account.edit',compact('user'))->with('title',$this->title);
     }
 
     /**
@@ -84,7 +98,26 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $data = $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'role'=>'required',
+        ]);
+        $user = User::findOrfail($id);
+        $user->update($data);
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/account');
+    }
+
+    public function UpdatePassword($id){
+        $data = request()->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        $data['password'] = Hash::make($data['password']);
+        $user = User::findOrfail($id);
+        $user->update($data);
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/account');
     }
 
     /**
@@ -95,6 +128,9 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrfail($id);
+        $user->delete();
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/account');
     }
 }

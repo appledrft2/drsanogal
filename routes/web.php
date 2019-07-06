@@ -27,7 +27,10 @@ Route::get('/dashboard/profile','ProfileController@index');
 Route::patch('/dashboard/profile/{id}','ProfileController@update');
 Route::patch('/dashboard/profile/{id}/password','ProfileController@UpdatePassword');
 // Accounts module
+Route::any('/dashboard/account/search','AccountController@search')->middleware('denyStaff'); // staff cant access this module
 Route::resource('/dashboard/account','AccountController')->middleware('denyStaff'); // staff cant access this module
+Route::patch('/dashboard/account/{id}/password','AccountController@UpdatePassword')->middleware('denyStaff'); // staff cant access this module
+Route::delete('/dashboard/account/{id}/destroy','AccountController@destroy')->middleware('denyStaff'); // staff cant access this module
 //Announcement module
 Route::any('/dashboard/announcement/search','AnnouncementController@search');
 Route::resource('/dashboard/announcement','AnnouncementController');

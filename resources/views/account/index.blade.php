@@ -53,8 +53,8 @@
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/user/{{$user->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form  method="POST" action="/dashboard/user/{{$user->id}}">
+										<a href="/dashboard/account/{{$user->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+										<form  method="POST" action="/dashboard/account/{{$user->id}}">
 											@method('delete')
 											@csrf
 											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
