@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('category');
             $table->string('unit');
+            $table->double('original');
             $table->double('price');
             $table->Integer('quantity');
             $table->Integer('lowstock');

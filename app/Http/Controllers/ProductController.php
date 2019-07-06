@@ -57,6 +57,7 @@ class ProductController extends Controller
             'name'=>'required',
             'category'=>'required',
             'unit'=>'required',
+            'original'=>'required',
             'price'=>'required',
             'quantity'=>'required',
             'lowstock'=>'required'

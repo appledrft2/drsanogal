@@ -30,7 +30,8 @@
 						<th>Name</th>
 						<th>Category</th>
 						<th>Unit</th>
-						<th>Price</th>
+						<th>Original Price</th>
+						<th>Selling Price</th>
 						<th>Quantity</th>
 						<th>Sub Total</th>
 						<th>Action</th>
@@ -44,7 +45,8 @@
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->name}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->category}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->unit}}</td>
-								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';" class="text-right">&#8369; {{$product->price}}</td>
+								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';" class="text-right">&#8369; {{number_format($product->original,2)}}</td>
+								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';" class="text-right">&#8369; {{number_format($product->price,2)}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->quantity}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';" class="text-right">&#8369; {{number_format($product->quantity * $product->price,2)}}</td>
 								
@@ -61,7 +63,7 @@
 							</tr>
 						@endforeach
 						<tr>
-							<td colspan="5"></td>
+							<td colspan="6"></td>
 							<td class="text-center"><label>Total</label></td>
 							<td class="text-right"><?php $sum=0; ?>
 								@foreach($products as $product)
@@ -73,7 +75,7 @@
 						</tr>
 						<tbody></tbody>
 					@else
-					<tr><td colspan="8" class="text-center">No Data</td></tr>
+					<tr><td colspan="9" class="text-center">No Data</td></tr>
 					@endif
 				</tbody>
 			</table>

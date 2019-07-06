@@ -39,7 +39,8 @@
 					<option @if(old('unit')=='Other') selected @endif>Other</option>
 					</select>
 				</div>
-				<div class="form-group"><input type="text" value="{{old('price')}}" name="price" class="form-control " placeholder="Price" ></div>
+				<div class="form-group"><input type="text" value="{{old('original')}}" name="original" class="form-control " placeholder="Original price" ></div>
+				<div class="form-group"><input type="text" value="{{old('price')}}" name="price" class="form-control " placeholder="Selling price" ></div>
 				<div class="form-group"><input type="number" value="{{old('quantity')}}" name="quantity" class="form-control " placeholder="Quantity" ></div>
 				<div class="form-group"><input type="number" value="{{old('lowstock')}}" name="lowstock" class="form-control " placeholder="Low Stock" ></div>
 				
