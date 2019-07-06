@@ -75,28 +75,36 @@
       <div class="card-body p-0">
         <ul class="products-list product-list-in-card pl-2 pr-2">
           @if(count($lowproducts))
+            <?php $check = 0;?>
           @foreach($lowproducts as $lowproduct)
-          <li class="item">
-            <div class="row">
-              <div class="col-md-8">
-                  <a href="dashboard/product/" class="lead text-dark">{{$lowproduct->name}}
-                   </a>
-                  <span class="product-description">
-                     {{$lowproduct->category}}<br>
-                     Only {{$lowproduct->quantity}} stocks remaining
-                  </span>
-              </div>
-              <div class="col-md-4">
-                <div class="info-box">
-                  <span class="info-box-icon bg-danger ml-2"><i class="fas fa-truck"></i></span>
+            
+            @if($lowproduct->quantity <= $lowproduct->lowstock)
+            <?php $check = $check+1;?>
+            <li class="item">
+              <div class="row">
+                <div class="col-md-8">
+                    <a href="dashboard/product/" class="lead text-dark">{{$lowproduct->name}}
+                     </a>
+                    <span class="product-description">
+                       {{$lowproduct->category}}<br>
+                       Only {{$lowproduct->quantity}} stocks remaining <br>
+                       Product critical: {{$lowproduct->lowstock}} items
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-danger ml-2"><i class="fas fa-truck"></i></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-          
+            </li>
+            @endif
           @endforeach
+            @if($check == 0)
+              <li class="item text-center">No product in critical level</li>
+            @endif
           @else
-          <li class="item text-center">No products in low stock</li>
+          <li class="item text-center">There are no products</li>
           @endif
           <!-- /.item -->
         </ul>

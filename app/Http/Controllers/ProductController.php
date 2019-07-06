@@ -57,7 +57,8 @@ class ProductController extends Controller
             'category'=>'required',
             'unit'=>'required',
             'price'=>'required',
-            'quantity'=>'required'
+            'quantity'=>'required',
+            'lowstock'=>'required'
         ]);
 
         Product::create($data);
@@ -103,7 +104,8 @@ class ProductController extends Controller
             'category'=>'required',
             'unit'=>'required',
             'price'=>'required',
-            'quantity'=>'required'
+            'quantity'=>'required',
+            'lowstock'=>'required'
         ]);
 
         $product->update($data);

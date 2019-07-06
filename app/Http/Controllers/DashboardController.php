@@ -16,7 +16,8 @@ class DashboardController extends Controller
     public function index(){
 
         // Low product notification
-        $lowproducts = Product::orderBy('quantity','ASC')->where('quantity','<=',10)->limit(5)->get(); 
+        $lowproducts = Product::orderBy('quantity','ASC')->limit(5)->get(); 
+
     	// Boxes
     	$announcements = Announcement::count('id');
     	$clients = Client::count('id');

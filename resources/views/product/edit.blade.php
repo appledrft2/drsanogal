@@ -42,7 +42,8 @@
 				</div>
 				<div class="form-group"><input type="number" value="{{$product->price}}" name="price" class="form-control " placeholder="Price" ></div>
 				<div class="form-group"><input type="number" value="{{$product->quantity}}" name="quantity" class="form-control " placeholder="Quantity" ></div>
-				
+				<div class="form-group"><input type="number" value="{{$product->lowstock}}" name="lowstock" class="form-control " placeholder="Low Stock" ></div>
+
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
 		</div>
