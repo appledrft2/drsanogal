@@ -40,7 +40,7 @@
 								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$supplier->name}}</td>
 								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$supplier->contact}}</td>
 								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{!!$supplier->address!!}</td>
-								<th><a href="/dashboard/product">{{$supplier->products->count()}}</a></th>
+								<th><form method="post" action="/dashboard/product/search">@csrf<input type="hidden" name="data" value="{{$supplier->id}}"><button class="btn btn-link">{{$supplier->products->count()}}</button></form></th>
 								<td width="15%">
 									<div class="form-inline">
 										

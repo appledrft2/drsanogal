@@ -38,7 +38,8 @@ class ProductController extends Controller
 
         $products = Product::where(function ($query) use($data) {
             $query->where('name', 'like', '%'.$data['data'].'%')
-                  ->orWhere('category', 'like', '%'.$data['data'].'%');        
+                  ->orWhere('category', 'like', '%'.$data['data'].'%')
+                  ->orWhere('supplier_id', 'like', '%'.$data['data'].'%');        
         })->paginate(4);
         $products =  $products->appends(array ('data' => $data['data']));
         return view('product.index',compact('products'))->with('title',$this->title)->with('btn',true);

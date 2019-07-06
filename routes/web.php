@@ -11,11 +11,10 @@
 |
 */
 
-
+// Home page, yeah i still use welcome.blade.php LOL
 Route::get('/', function () {
 	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(1);
 	$products = \App\Product::orderBy('created_at','DESC')->paginate(6);
-
 	$products =  $products->appends(array ('data' => 'product'));
     return view('welcome',compact('announcements','products'));
 });
