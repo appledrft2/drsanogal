@@ -16,13 +16,7 @@
   <!-- Custom styles for this template -->
   <link href="{{asset('css/business-frontpage.css')}}" rel="stylesheet">
 
-  <style>
-        /* Set the size of the div element that contains the map */
-        #map {
-          height: 400px;  /* The height is 400 pixels */
-          width: 100%;  /* The width is the width of the web page */
-         }
-      </style>
+ 
 
 </head>
 
@@ -102,15 +96,10 @@
           <abbr title="Email">E:</abbr>
           <a href="mailto:drsanogal@gmail.com">drsanogal@gmail.com</a>
         </address>
-
-        <div>
-          
-          <h3>Google Map Location</h3>
-              <!--The div element for the map -->
-              <div id="map"></div>
-
-
-        </div>
+            <div class="col-md-12">
+              <h3>Google Map Location</h3>
+              <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=dr%20s%20and%20j%20veterinary%20clinic&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
+            </div>
       </div>
     </div>
     <!-- /.row -->
@@ -195,22 +184,6 @@
   })();
   </script>
   <!--End of Tawk.to Script-->
-
-  <script>
-  // Initialize and add the map
-  function initMap() {
-    // The location of Uluru
-    var uluru = {lat: 10.6420032, lng: 122.9453301};
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 17, center: uluru});
-    // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({position: uluru, map: map});
-  }
-      </script>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1S2VzQ6Y-Q0evdQ53L2p9H1E97DdRzcg&callback=initMap">
-      </script>
 </body>
 
 </html>

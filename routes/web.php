@@ -26,6 +26,8 @@ Route::get('/dashboard','DashboardController@index');
 Route::get('/dashboard/profile','ProfileController@index');
 Route::patch('/dashboard/profile/{id}','ProfileController@update');
 Route::patch('/dashboard/profile/{id}/password','ProfileController@UpdatePassword');
+// Accounts module
+Route::resource('/dashboard/account','AccountController')->middleware('denyStaff'); // staff cant access this module
 //Announcement module
 Route::any('/dashboard/announcement/search','AnnouncementController@search');
 Route::resource('/dashboard/announcement','AnnouncementController');
@@ -36,10 +38,10 @@ Route::resource('/dashboard/client','ClientController');
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');
 Route::resource('/dashboard/client/{client}/patient','PatientController');
 // Patient List module
-Route::any('/dashboard/patient/search','PatientListController@search');
-Route::get('/dashboard/patient','PatientListController@index');
+Route::any('/dashboard/patient/search','PatientListController@search')->middleware('denyStaff'); // staff cant access this module
+Route::get('/dashboard/patient','PatientListController@index')->middleware('denyStaff'); // staff cant access this module
 //Appointment module
-Route::resource('/dashboard/patient/{patient}/appointment','AppointmentController');
+Route::resource('/dashboard/patient/{patient}/appointment','AppointmentController')->middleware('denyStaff'); // staff cant access this module
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');
 Route::resource('/dashboard/supplier','SupplierController');
@@ -48,6 +50,6 @@ Route::any('/dashboard/product/search','ProductController@search');
 Route::resource('/dashboard/product','ProductController');
 });
 
-// Login module
+// Login module provided by laravel
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

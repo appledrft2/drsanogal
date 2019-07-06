@@ -17,7 +17,8 @@ class checkRole
     {
 
         if(Auth::user()->role == "staff"){
-            return redirect('dashboard')->with('error','You dont have enough privilege to access this module.');
+            toast('You dont have enough privilege to access this module.','error');
+            return redirect('dashboard');
         }
 
         return $next($request);
