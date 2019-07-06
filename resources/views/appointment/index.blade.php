@@ -117,18 +117,28 @@
 						@foreach($appointments as $appointment)
 							<tr>
 								<td>{!!$appointment->description!!}</td>
-								<td>{{$appointment->date_from}}</td>
-								<td>{{$appointment->date_to}}</td>
-								<td>@if($appointment->status =='') not completed yet @else {{$appointment->status}} @endif</td>
+								<td>{{ date('M d, D Y', strtotime($appointment->date_from))}}</td>
+								<td>{{date('M d, D Y', strtotime($appointment->date_to))}}</td>
+								<td>
+									<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
+										@method('PATCH')
+										@csrf
+										<select onchange="this.form.submit()" class="select form-control" name="status">
+											<option @if($appointment->status == 'Not Completed') selected  @endif)>Not Completed</option>
+											<option @if($appointment->status == 'Completed') selected  @endif>Completed</option>
+											<option @if($appointment->status == 'Rescheduled') selected  @endif>Rescheduled</option>
+										</select>
+									</form>
+								</td>
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/appointment/{{$appointment->id}}/details" class="btn btn-success btn-sm mr-1"><i class="fa fa-search"></i> More Details</a>
-										<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}">
+										<a href="/dashboard/appointment/{{$appointment->id}}/details" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-list"></i> More Details</a>
+										<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+										<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-block btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
 									</div>
 								</td>

@@ -113,6 +113,16 @@ class AppointmentController extends Controller
         return redirect('dashboard/patient/'.$patient.'/appointment');
     }
 
+    public function UpdateStatus($patient,Request $request, Appointment $appointment){
+        $data = $request->validate([
+                    'status' => 'required'
+                ]);
+        $appointment->update($data);
+
+        toast('Status successfully updated!','success');
+        return redirect('dashboard/patient/'.$patient.'/appointment');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
