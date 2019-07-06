@@ -63,11 +63,14 @@ class PatientController extends Controller
             'date_of_birth' => 'required',
             'gender' => 'required',
             'veterinarian' => 'required',
-            'markings' => 'required',
-            'special_considerations' => 'required'
+            
         ]);
         
+        $markings = (request('markings')) ? request('markings') : "none";
+        $special_considerations = (request('special_considerations')) ? request('special_considerations') : "none";
         $data['client_id'] = $client;
+        $data['markings'] = $markings;
+        $data['special_considerations'] = $special_considerations;
 
         Patient::create($data);
         toast('Successfully added!','success');
