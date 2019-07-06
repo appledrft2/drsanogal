@@ -22,6 +22,7 @@
 			<div class="pull-left">
 				<a href="/dashboard/product/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
 			</div>
+			<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -76,6 +77,7 @@
 					@endif
 				</tbody>
 			</table>
+			</div>
 			<div class="float-right mt-1">{{ $products->appends(Request::all())->links() }} </div>
 		</div>
 	</div>
