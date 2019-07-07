@@ -69,8 +69,7 @@
 						<th>Breed</th>
 						<th>Gender</th>
 						<th>Specie</th>
-						<th>Markings</th>
-						<th>Special Considerations</th>
+						
 						<th>Birthday</th>
 						<th>Attending Veterinarian</th>
 						<th>Action</th>
@@ -92,9 +91,8 @@
 								<td>{{$patient->breed}}</td>
 								<td>{{$patient->gender}}</td>
 								<td>{{$patient->specie}}</td>
-								<td>{{$patient->markings}}</td>
-								<td>{{$patient->special_considerations}}</td>
-								<td>{{$patient->date_of_birth}}</td>
+						
+								<td>{{ date('M d, Y', strtotime($patient->date_of_birth))}}</td>
 								<td>{{$patient->veterinarian}}</td>
 								<td width="15%">
 									<div class="form-inline">

@@ -29,7 +29,7 @@
 						<th>Name</th>
 						<th>Contact</th>
 						<th>Address</th>
-						<th width="10%">Products in stock</th>
+						<th width="20%">Products in stock</th>
 						<th>Action</th>
 					</tr>
 				</thead>

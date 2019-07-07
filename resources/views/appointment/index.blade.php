@@ -34,7 +34,7 @@
 							</div>
 							<div class="form-group">
 								<label style="font-size:18" class="lead">Date of Birth:</label>
-								<span class="lead">{{$patient->date_of_birth}}</span>
+								<span class="lead">{{date('M d, Y', strtotime($patient->date_of_birth))}}</span>
 							</div>
 							
 							
@@ -133,7 +133,7 @@
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/appointment/{{$appointment->id}}/details" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-list"></i> More Details</a>
+										<a href="/dashboard/appointment/{{$appointment->id}}/services" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-list"></i> More Details</a>
 										<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
 										<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
 											@method('delete')

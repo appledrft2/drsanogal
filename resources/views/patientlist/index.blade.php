@@ -26,9 +26,9 @@
 						<th>Patient ID</th>
 						<th>Name</th>
 						<th>Breed</th>
-						<th>Birthday</th>
 						<th>Specie</th>
 						<th>Gender</th>
+						<th>Veterinarian</th>
 						<th>Owner</th>
 						<th>Action</th>
 					</tr>
@@ -40,9 +40,10 @@
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->id}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->name}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->breed}}</td>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->date_of_birth}}</td>
+								
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->specie}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->gender}}</td>
+								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->veterinarian}}</td>
 								<td  onclick="window.location = '/dashboard/client/{{$patient->client->id}}/patient';"><span class="text-primary">{{$patient->client->name}}</span></td>
 								<td width="15%">
 									<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-success btn-sm mr-1"><i class="fa fa-calendar"></i> &nbsp;View Details</a>

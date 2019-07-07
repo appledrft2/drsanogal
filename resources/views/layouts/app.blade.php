@@ -13,7 +13,25 @@
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style type="text/css">
+    /* Paste this css to your style sheet file or under head tag */
+    /* This only works with JavaScript, 
+    if it's not present, don't show loader */
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 9999;
+      background: url('{{asset('adminlte3/dist/img/loader.gif')}}') center no-repeat #fff ;
+      background-size: 100px 100px !important;
+    }
+  </style>
 </head>
+<div class="se-pre-con" ></div>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -290,6 +308,16 @@ function closeFullscreen() {
             form.submit();
           }
         });
+    });
+  </script>
+  <!-- Loader -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+       setTimeout(loader, 100);
+      
+      function loader(){
+        $(".se-pre-con").fadeOut("slow");
+      }
     });
   </script>
 </body>
