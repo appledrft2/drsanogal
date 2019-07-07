@@ -6,6 +6,7 @@ use App\User;
 use App\Client;
 use App\Patient;
 use App\Product;
+use App\Appointment;
 use App\Announcement;
 use Illuminate\Http\Request;
 
@@ -24,13 +25,28 @@ class DashboardController extends Controller
         $products =Product::count('id');
         $patients =Patient::count('id');
 
+        // Upcomming Appointments
+        $appointments = Appointment::where('date_to','=',date('Y-m-d'))->paginate(5);
+
+        foreach($appointments as $appointment){
+
+            if($appointment->date_to == date('Y-m-d')){
+                if($appointment->isNotified != 1){
+                    $app = Appointment::findOrfail($appointment->id);
+                    $app->isNotified = 1;
+                    $app->update();
+                }
+            }
+        }
+
     	return view('dashboard.index',[
     		'title'=>$this->title,
     		'announcements'=>$announcements,
     		'clients'=>$clients,
             'products'=>$products,
             'patients'=>$patients,
-            'lowproducts'=>$lowproducts
+            'lowproducts'=>$lowproducts,
+            'appointments'=> $appointments
     	]);
     }
 }

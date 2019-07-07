@@ -120,7 +120,7 @@ class AppointmentController extends Controller
         $appointment->update($data);
 
         toast('Status successfully updated!','success');
-        return redirect('dashboard/patient/'.$patient.'/appointment');
+        return redirect('dashboard');
     }
 
     /**

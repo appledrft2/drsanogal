@@ -120,7 +120,16 @@
 								<td>{{ date('M d, D Y', strtotime($appointment->date_from))}}</td>
 								<td>{{date('M d, D Y', strtotime($appointment->date_to))}}</td>
 								<td>
-									<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
+								@if($appointment->status == 'Not Completed')
+									<span class="badge badge-secondary">Not Completed</span>
+								@endif
+								@if($appointment->status == 'Completed')
+									<span class="badge badge-success">Completed</span>
+								@endif
+								@if($appointment->status == 'Rescheduled')
+									<span class="badge badge-primary">Rescheduled</span>
+								@endif
+									<!-- <form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
 										@method('PATCH')
 										@csrf
 										<select onchange="this.form.submit()" class="select form-control" name="status">
@@ -128,7 +137,7 @@
 											<option @if($appointment->status == 'Completed') selected  @endif>Completed</option>
 											<option @if($appointment->status == 'Rescheduled') selected  @endif>Rescheduled</option>
 										</select>
-									</form>
+									</form> -->
 								</td>
 								<td width="15%">
 									<div class="form-inline">
