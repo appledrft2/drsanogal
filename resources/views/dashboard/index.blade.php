@@ -77,11 +77,11 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <ul class="products-list product-list-in-card pl-2 pr-2" style=" max-height: 200px;margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch;">
+        <ul class="products-list product-list-in-card pl-2 pr-2" style=" max-height: 150px;margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch;">
           @if(count($lowproducts))
             <?php $check = 0;?>
           @foreach($lowproducts as $lowproduct)
-            
+    
             @if($lowproduct->quantity <= $lowproduct->lowstock)
             <?php $check = $check+1;?>
             <li class="item" >
@@ -178,7 +178,7 @@
                 <tr>
                   <td colspan="7" class="text-center">There are currently no appontments</td>
                 </tr>
-            @endif
+              @endif
             </tbody>
           </table>
         </div>

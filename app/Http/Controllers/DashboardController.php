@@ -49,4 +49,7 @@ class DashboardController extends Controller
             'appointments'=> $appointments
     	]);
     }
+    public function testing(){
+        return view('dashboard.testing')->with('title','Dashboard');
+    }
 }

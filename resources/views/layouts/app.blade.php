@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style type="text/css">
@@ -320,5 +322,19 @@ function closeFullscreen() {
       }
     });
   </script>
+<!-- for mobile browsers -->
+<script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
+
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<script>
+  $(function () {
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    });
+  });
+</script>
 </body>
 </html>

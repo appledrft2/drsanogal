@@ -12,4 +12,8 @@ class Appointment extends Model
     public function patient(){
     	return $this->belongsTo(Patient::class);
     }
+
+    public function preventives(){
+    	return $this->hasMany(Preventive::class);
+    }
 }

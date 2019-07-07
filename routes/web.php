@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::group(['middleware'=>'auth'],function(){
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
+Route::get('/dashboard/testing','DashboardController@testing');
 // My profile module
 Route::get('/dashboard/profile','ProfileController@index');
 Route::patch('/dashboard/profile/{id}','ProfileController@update');
@@ -47,6 +48,8 @@ Route::get('/dashboard/patient','PatientListController@index')->middleware('deny
 Route::patch('/dashboard/patient/{patient}/appointment/{appointment}/UpdateStatus','AppointmentController@UpdateStatus')->middleware('denyStaff');
 Route::any('/dashboard/patient/{patient}/appointment/search','AppointmentController@search')->middleware('denyStaff');
 Route::resource('/dashboard/patient/{patient}/appointment','AppointmentController')->middleware('denyStaff'); // staff cant access this module
+// Preventive module
+Route::resource('/dashboard/appointment/{appointment}/preventive','PreventiveController')->middleware('denyStaff'); // staff cant access this module
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');
 Route::resource('/dashboard/supplier','SupplierController');

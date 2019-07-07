@@ -47,9 +47,9 @@
           </li>
           <li class="nav-item">
             @guest
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="{{url('/login')}}">Login</a>
             @else
-            <a class="nav-link" href="/dashboard">Dashboard</a>
+            <a class="nav-link" href="{{url('/dashboard')}}">Dashboard</a>
             @endguest
           </li>
         </ul>
