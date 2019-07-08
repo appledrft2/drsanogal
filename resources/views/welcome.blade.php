@@ -9,6 +9,8 @@
   <meta name="author" content="">
 
   <title>Dr S & J Veterinary Clinic</title>
+    <!-- icon -->
+  <link rel="icon" type="image/x-icon" href="{{asset('adminlte3/dist/img/logo.jpg')}}">
 
   <!-- Bootstrap core CSS -->
   <link href="{{asset('css/app.css')}}" rel="stylesheet">
