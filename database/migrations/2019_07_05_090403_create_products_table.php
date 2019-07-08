@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->double('price');
             $table->Integer('quantity');
             $table->Integer('lowstock');
+            $table->string('image');
             $table->timestamps();
 
             $table->foreign('supplier_id')

@@ -141,7 +141,7 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        if($announcement->cover_image != 'noimage.jpg'){
+        if($announcement->cover_image != 'uploads/noimage.png'){
             // Delete image
             Storage::disk('s3')->delete($announcement->cover_image);
         }

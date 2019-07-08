@@ -24,7 +24,7 @@
 					<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" class="img-fluid rounded" style="width: 200px;height:100px">
 				</div> 
 				<div class="form-group">
-					<input type="file" name="cover_image" class="btn">
+					<input type="file" name="cover_image" class="form-control-file mb-5">
 				</div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>

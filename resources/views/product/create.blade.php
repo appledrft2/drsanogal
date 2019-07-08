@@ -43,6 +43,9 @@
 				<div class="form-group"><input type="text" value="{{old('price')}}" name="price" class="form-control " placeholder="Selling price" ></div>
 				<div class="form-group"><input type="number" value="{{old('quantity')}}" name="quantity" class="form-control " placeholder="Quantity" ></div>
 				<div class="form-group"><input type="number" value="{{old('lowstock')}}" name="lowstock" class="form-control " placeholder="Low Stock" ></div>
+				<div class="form-group">
+					<input type="file" name="image" class="form-control-file mb-5"  accept="image/*">
+				</div> 
 				
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
