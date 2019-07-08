@@ -59,6 +59,7 @@ class PreventiveController extends Controller
     public function store($appointment,Request $request)
     {
          $data = $request->validate([
+            'type' => 'required',
             'time' => 'required',
             'kg' => 'required',
             'temp' => 'required',
@@ -106,6 +107,7 @@ class PreventiveController extends Controller
     public function update($appointment,Request $request, Preventive $preventive)
     {
        $data = $request->validate([
+                    'type' => 'required',
                     'description' => 'required',
                     'time' => 'required',
                     'kg' => 'required',

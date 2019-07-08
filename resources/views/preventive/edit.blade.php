@@ -13,7 +13,14 @@
 			<form  class="" method="POST" action="/dashboard/appointment/{{$appointment}}/preventive/{{$preventive->id}}">
 				@method('PATCH')
 				@csrf
-				<div class="form-group"></div>
+				
+				<div class="form-group">
+					<select class="select form-control" name="type">
+						<option value="">Select Type</option>
+						<option @if($preventive->type=='Preventive Program') selected @endif>Preventive Program</option>
+						<option @if($preventive->type=='Medical History') selected @endif>Medical History</option>
+					</select>
+				</div>
 
 				<div class="form-group">
 					<label>Time:</label>

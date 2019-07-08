@@ -142,8 +142,8 @@
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-block btn-default btn-sm mr-1"><i class="fa fa-hand-paper"></i> Preventive Pr.</a>
-										<a href="/dashboard/appointment/{{$appointment->id}}/medical" class="btn btn-block btn-default btn-sm mr-1"><i class="fa fa-medkit"></i> Medical History</a>
+										<a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-block btn-default btn-sm mr-1"><i class="fa fa-list"></i> More Details</a>
+									<!-- 	<a href="/dashboard/appointment/{{$appointment->id}}/medical" class="btn btn-block btn-default btn-sm mr-1"><i class="fa fa-medkit"></i> Medical History</a> -->
 										<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
 										<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
 											@method('delete')

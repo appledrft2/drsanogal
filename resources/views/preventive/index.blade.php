@@ -76,6 +76,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>Type</th>
 						<th>Time</th>
 						<th>Kg</th>
 						<th>Temp</th>
@@ -96,6 +97,7 @@
 					@if(count($preventives))
 						@foreach($preventives as $preventive)
 							<tr>
+								<td>{{$preventive->type}}</td>
 								<td>{{$preventive->time}}</td>
 								<td>{{$preventive->kg}}</td>
 								<td>{{$preventive->temp}}</td>

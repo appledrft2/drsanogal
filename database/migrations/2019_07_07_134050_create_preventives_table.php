@@ -16,6 +16,7 @@ class CreatePreventivesTable extends Migration
         Schema::create('preventives', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('appointment_id')->unsigned()->index();
+            $table->string('type');
             $table->string('time');
             $table->string('kg');
             $table->string('temp');
