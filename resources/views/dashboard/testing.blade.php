@@ -25,4 +25,8 @@
             </div>
         </div>
 </div>
+
+{{ Form::label('dogs', 'Dogs') }}
+{{ Form::select('dogs[]', ['name'=>'max','name'=>'jade'], null, ['id' => 'dogs', 'multiple' => 'multiple']) }}
+
 @endsection

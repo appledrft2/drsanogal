@@ -49,6 +49,7 @@ Route::patch('/dashboard/patient/{patient}/appointment/{appointment}/UpdateStatu
 Route::any('/dashboard/patient/{patient}/appointment/search','AppointmentController@search')->middleware('denyStaff');
 Route::resource('/dashboard/patient/{patient}/appointment','AppointmentController')->middleware('denyStaff'); // staff cant access this module
 // Preventive module
+Route::any('/dashboard/appointment/{appointment}/preventive/search','PreventiveController@search')->middleware('denyStaff');
 Route::resource('/dashboard/appointment/{appointment}/preventive','PreventiveController')->middleware('denyStaff'); // staff cant access this module
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');

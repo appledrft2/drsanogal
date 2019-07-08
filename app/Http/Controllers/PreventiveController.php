@@ -34,6 +34,22 @@ class PreventiveController extends Controller
         return view('preventive.create',compact('appointment'))->with('title',$this->title);
     }
 
+        public function search($appointment)
+    {
+        $data = request()->validate(['data'=>'required']);
+
+        $preventives = Appointment::findOrfail($appointment)->preventives()->where(function ($query) use($data) {
+            $query->where('time', 'like', '%'.$data['data'].'%')
+                  ->orWhere('description', 'like', '%'.$data['data'].'%')
+                  ->orWhere('kg', 'like', '%'.$data['data'].'%')
+                  ->orWhere('temp', 'like', '%'.$data['data'].'%')
+                  ->orWhere('status', 'like', '%'.$data['data'].'%')
+                  ->orWhere('price','like','%'.$data['data'].'%');
+        })->paginate(4);
+        $preventives =  $preventives->appends(array ('data' => $data['data']));
+        $appointment = Appointment::findOrfail($appointment);
+        return view('preventive.index',['preventives'=>$preventives,'appointment'=>$appointment])->with('title',$this->title)->with('btn',true);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -77,7 +93,7 @@ class PreventiveController extends Controller
      */
     public function edit($appointment,Preventive $preventive)
     {
-        //
+        return view('preventive.edit',['preventive'=>$preventive,'appointment'=>$appointment])->with('title',$this->title);
     }
 
     /**
@@ -89,7 +105,18 @@ class PreventiveController extends Controller
      */
     public function update($appointment,Request $request, Preventive $preventive)
     {
-        //
+       $data = $request->validate([
+                    'description' => 'required',
+                    'time' => 'required',
+                    'kg' => 'required',
+                    'temp' => 'required',
+                    'price' => 'required'
+                ]);
+
+        $preventive->update($data);
+
+        toast('Record successfully updated!','success');
+        return redirect('dashboard/appointment/'.$appointment.'/preventive');
     }
 
     /**
@@ -100,6 +127,8 @@ class PreventiveController extends Controller
      */
     public function destroy($appointment,Preventive $preventive)
     {
-        //
+        $preventive->delete();
+        toast('Record has been deleted!','error');
+        return redirect('dashboard/appointment/'.$appointment.'/preventive');
     }
 }

@@ -44,7 +44,7 @@
 							<br><br><br>
 							<div class="form-group">
 								<div style="font-size:10.5em">
-									<i class="fa fa-calendar"></i>
+									<i class="fa fa-calendar-alt"></i>
 								</div>
 							</div>
 						</div>
