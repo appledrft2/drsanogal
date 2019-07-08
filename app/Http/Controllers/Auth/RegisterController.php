@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'role' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'image' => 'image|nullable|max:1999'
         ]);
     }
 
@@ -64,7 +65,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
+            'image' =>'uploads/no-profile.jpg',
             'name' => $data['name'],
             'email' => $data['email'],
             'role' => $data['role'],

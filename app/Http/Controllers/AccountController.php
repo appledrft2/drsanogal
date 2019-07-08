@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
@@ -57,7 +58,10 @@ class AccountController extends Controller
             'email'=> ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role'=>['required', 'string', 'max:255'],
             'password'=>['required', 'string', 'min:8', 'confirmed'],
+            'image' => 'image|nullable|max:1999'
         ]);
+
+        $data['image'] = 'uploads/no-profile.jpg';
 
         $data['password'] = Hash::make($data['password']);
 
@@ -129,6 +133,11 @@ class AccountController extends Controller
     public function destroy($id)
     {
         $user = User::findOrfail($id);
+        if($user->image != 'uploads/no-profile.jpg'){
+            // Delete image
+            Storage::disk('s3')->delete($user->image);
+        }
+        
         $user->delete();
         toast('Record successfully updated!','success');
         return redirect('dashboard/account');

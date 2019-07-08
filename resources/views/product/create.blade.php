@@ -10,7 +10,7 @@
 	<div class="card">
 		<div class="card-header">New Product</div>
 		<div class="card-body">
-			<form  class="" method="POST" action="/dashboard/product">
+			<form  class="" method="POST" action="/dashboard/product" enctype="multipart/form-data">
 				@csrf
 				<div class="form-group">
 					<select  name="supplier_id" class="form-control ">
@@ -44,7 +44,7 @@
 				<div class="form-group"><input type="number" value="{{old('quantity')}}" name="quantity" class="form-control " placeholder="Quantity" ></div>
 				<div class="form-group"><input type="number" value="{{old('lowstock')}}" name="lowstock" class="form-control " placeholder="Low Stock" ></div>
 				<div class="form-group">
-					<input type="file" name="image" class="form-control-file mb-5"  accept="image/*">
+					<input type="file" name="image" class="form-control-file mb-5" accept="image/*">
 				</div> 
 				
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>

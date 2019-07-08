@@ -10,7 +10,7 @@
 	<div class="card">
 		<div class="card-header">Update Product</div>
 		<div class="card-body">
-			<form  class="" method="POST" action="/dashboard/product/{{$product->id}}">
+			<form  class="" method="POST" action="/dashboard/product/{{$product->id}}" enctype="multipart/form-data">
 				@method('PATCH')
 				@csrf
 				<div class="form-group">
@@ -44,6 +44,12 @@
 				<div class="form-group"><input type="number" value="{{$product->price}}" name="price" class="form-control " placeholder="Selling price" ></div>
 				<div class="form-group"><input type="number" value="{{$product->quantity}}" name="quantity" class="form-control " placeholder="Quantity" ></div>
 				<div class="form-group"><input type="number" value="{{$product->lowstock}}" name="lowstock" class="form-control " placeholder="Low Stock" ></div>
+				<div class="form-group">
+					<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$product->image}}" class="img-fluid rounded" style="width: 200px;height:100px">
+				</div> 
+				<div class="form-group">
+					<input type="file" name="image" class="form-control-file mb-5" accept="image/*">
+				</div> 
 
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>

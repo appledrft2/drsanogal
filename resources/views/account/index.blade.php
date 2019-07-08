@@ -26,7 +26,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Avatar</th>
+						<th>Profile</th>
 						<th>Name</th>
 						<th>Email</th>
 						<th>Role</th>
@@ -45,7 +45,7 @@
 					@if(count($users))
 						@foreach($users as $user)
 							<tr>
-								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';"><center><img src="@if($user->role == 'doctor') {{asset('adminlte3/dist/img/doctor.png')}} @else {{asset('adminlte3/dist/img/staff.png')}} @endif" class="elevation-1 img-fluid img-circle" alt="User Image" width="50px"></center></td>
+								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';"><center><img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$user->image}}" class="elevation-1 img-fluid img-circle" alt="User Image" style="width: 50px;height: 50px"></center></td>
 								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';">{{$user->name}}</td>
 								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';">{{$user->email}}</td>
 								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';">{{ucfirst($user->role)}}</td>

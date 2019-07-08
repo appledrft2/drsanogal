@@ -5,8 +5,7 @@
 <div class="card ">
   <div class="card-body box-profile">
     <div class="text-center">
-      <img src="@if(Auth::user()->role == 'doctor') {{asset('adminlte3/dist/img/doctor.png')}} @else {{asset('adminlte3/dist/img/staff.png')}} @endif " class="profile-user-img img-fluid img-circle" alt="User Image">
-     
+      <img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{Auth::user()->image}}" class="profile-user-img img-fluid img-circle" alt="User Image" style="width: 100px;height: 100px">
     </div>
 
     <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
@@ -18,9 +17,13 @@
         <div class="card">
           <div class="card-header">Update Information</div>
           <div class="card-body">
-            <form method="POST" action="/dashboard/profile/{{Auth::user()->id}}">
+            <form method="POST" action="/dashboard/profile/{{Auth::user()->id}}" enctype="multipart/form-data">
               @method("PATCH")
               @csrf
+              <div class="form-group">
+                <label>Profile Picture</label>
+                <input type="file" name="image" class="form-control-file" accept="image/*">
+              </div> 
               <div class="form-group">
                 <label>Full name</label>
                 <input type="text" class="form-control form-control-sm" name="name" value="{{Auth::user()->name}}">
