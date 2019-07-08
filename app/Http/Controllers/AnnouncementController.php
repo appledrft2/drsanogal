@@ -61,23 +61,16 @@ class AnnouncementController extends Controller
         
         //handle file uploading
         if($request->hasFile('cover_image')){
-            // Get filename w/ extension
-            $filenameExt = $request->file('cover_image')->getClientOriginalName();
-            //Get filename only
-            $filename = pathinfo($filenameExt,PATHINFO_FILENAME);
-            // Get extension
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            // Filename to store
-            $filenameToStore = $filename.'-'.time().'.'.$extension;
-            // Upload image
-            $path = $request->file('cover_image')->storeAs('public/uploads',$filenameToStore);
+           
+            $path = request()->file('cover_image');
+            $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
 
         }else{
-            $filenameToStore = 'noimage.jpg';
+            $pathToSave = 'uploads/noimage.png';
         }
 
         // Save filename to database
-        $data['cover_image'] = $filenameToStore;
+        $data['cover_image'] = $pathToSave;
         // Add the author
         $data['user_id'] = auth()->user()->id;
         Announcement::create($data);
@@ -124,22 +117,15 @@ class AnnouncementController extends Controller
 
         //handle file uploading
         if($request->hasFile('cover_image')){
+            // finds the old image and delete
+            Storage::disk('s3')->delete($announcement->cover_image);
 
-            // Delete existing image
-            Storage::delete('public/uploads/'.$announcement->cover_image);
-            
-            // Get filename w/ extension
-            $filenameExt = $request->file('cover_image')->getClientOriginalName();
-            //Get filename only
-            $filename = pathinfo($filenameExt,PATHINFO_FILENAME);
-            // Get extension
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            // Filename to store
-            $filenameToStore = $filename.'-'.time().'.'.$extension;
-            // Upload image
-            $path = $request->file('cover_image')->storeAs('public/uploads',$filenameToStore);
-            // update filename to database
-            $data['cover_image'] = $filenameToStore;
+            // upload new image
+            $path = request()->file('cover_image');
+            $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+
+            // Save filename to database
+            $data['cover_image'] = $pathToSave;
         }
 
         $announcement->update($data);
@@ -157,7 +143,7 @@ class AnnouncementController extends Controller
     {
         if($announcement->cover_image != 'noimage.jpg'){
             // Delete image
-            Storage::delete('public/uploads/'.$announcement->cover_image);
+            Storage::disk('s3')->delete($announcement->cover_image);
         }
 
         $announcement->delete();

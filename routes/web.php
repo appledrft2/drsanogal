@@ -11,18 +11,42 @@
 |
 */
 
-// Home page, yeah i still use welcome.blade.php LOL
+// Homepage module
 Route::get('/', function () {
-	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(1);
-	$products = \App\Product::orderBy('created_at','DESC')->paginate(6);
-	$products =  $products->appends(array ('data' => 'product'));
-    return view('welcome',compact('announcements','products'));
+	$announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
+    return view('welcome',compact('announcements'));
 });
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/products', function () {
+	$products = \App\Product::orderBy('created_at','DESC')->paginate(3);
+    return view('products',compact('products'));
+});
+//////////////////////////////////////////////////////////////////////////////////////
+
+// Testing module
+Route::get('/testing', function () {
+
+	$title = 'Testing';
+    return view('testing')->with('title',$title);
+
+});
+Route::post('/testing', function () {
+	$title ='Testing';
+
+	 // $path = request()->file('file');
+	 // Storage::disk('s3')->put('uploads',$path,'public');
+	$path = 'uploads/NsE2XWRC136PjZa2Y904FroOhqZ5vrAvkoonG0Sk.jpeg';
+	Storage::disk('s3')->delete($path);
+
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 // Route group for auth
 Route::group(['middleware'=>'auth'],function(){
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
-Route::get('/dashboard/testing','DashboardController@testing');
 // My profile module
 Route::get('/dashboard/profile','ProfileController@index');
 Route::patch('/dashboard/profile/{id}','ProfileController@update');
