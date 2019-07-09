@@ -148,7 +148,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="/dashboard/stockin" class="nav-link @if($title=='Stock In') active @endif">
+            <a href="/dashboard/suppliers" class="nav-link @if($title=='Stock In') active @endif">
               <i class="nav-icon fas fa-truck"></i>
               <p>
                 Stock In
