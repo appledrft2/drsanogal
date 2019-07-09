@@ -335,6 +335,8 @@ function closeFullscreen() {
 <script>
   $(function () {
     $("#productlist").DataTable();
+     $("#productlist2").DataTable();
+     
     
   });
 </script>
