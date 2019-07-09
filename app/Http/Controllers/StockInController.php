@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\StockIn;
 use App\Supplier;
+use App\StockInDetail;
 use Illuminate\Http\Request;
 
 class StockInController extends Controller
@@ -39,9 +41,52 @@ class StockInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($supplier,Request $request)
-    {
-        dd($request->all());
+    public function store($supplier_id,Request $request)
+    {   
+      $data = $request->validate([
+            'code' => 'required',
+            'delivery_date' => 'required',
+            'term' => 'required',
+            'due' => 'required',
+            'discount' => 'required',
+        ]);
+        $data['supplier_id'] = $supplier_id;
+        
+        $data['status'] = 'Unpaid';
+        $data['amount'] = 1;
+
+        $stockin_id = Stockin::create($data);
+        
+        $sum = 0;
+        $i=0;
+        foreach($request->id as $id){
+            // update the product
+            $product = Product::findOrfail($id);
+            $product->original = $request['original'][$i];
+            $product->price = $request['price'][$i];
+            $product->quantity = $request['quantity'][$i];
+            $product->update();
+            // get the total amount
+            $sum = $sum = $request['original'][$i];
+            // insert to stockindetails
+            $stockindetails = new StockInDetail();
+            $stockindetails->name = $request['name'][$i];
+            $stockindetails->stockin_id = $stockin_id->id;
+            $stockindetails->original = $request['original'][$i];
+            $stockindetails->price = $request['price'][$i];
+            $stockindetails->quantity = $request['quantity'][$i];
+            $stockindetails->save();
+
+            $i++;
+
+        }
+
+        $udpateamount = Stockin::findOrfail($stockin_id->id);
+        $udpateamount->amount = $sum;
+        $udpateamount->update();
+
+        toast('Successfully added!','success');
+        return redirect('dashboard/suppliers/'.$supplier_id.'/stockin')->with('title',$this->title);
     }
 
     /**
@@ -84,8 +129,12 @@ class StockInController extends Controller
      * @param  \App\StockIn  $stockIn
      * @return \Illuminate\Http\Response
      */
-    public function destroy($supplier,StockIn $stockIn)
+    public function destroy($supplier_id,StockIn $stockIn)
     {
-        //
+
+        $stockIn = StockIn::findOrfail(request()->sid);
+        $stockIn->delete();
+        toast('Record has been deleted!','error');
+        return redirect('dashboard/suppliers/'.$supplier_id.'/stockin');
     }
 }

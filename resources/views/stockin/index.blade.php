@@ -86,11 +86,12 @@
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/client/{{$client->id}}/stockin/{{$stockin->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form method="POST" action="/dashboard/client/{{$client->id}}/stockin/{{$stockin->id}}">
+										
+										<form method="POST" action="/dashboard/suppliers/{{$supplier->id}}/stockin/{{$stockin->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+											<input type="hidden" name="sid" value="{{$stockin->id}}">
+											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i> &nbsp; Delete Delivery</button>
 										</form>
 									</div>
 								</td>

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Supplier;
+use App\StockInDetail;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -16,4 +17,5 @@ class Product extends Model
     public function setTotal() {
     	$this->total = $this->price * $this->quantity;
 	}
+
 }

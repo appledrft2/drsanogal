@@ -6,6 +6,7 @@ use App\User;
 use App\Client;
 use App\Patient;
 use App\Product;
+use App\StockIn;
 use App\Appointment;
 use App\Announcement;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ class DashboardController extends Controller
             }
         }
 
+        $stockins = StockIn::orderBy('due','desc')->paginate(4);
+
     	return view('dashboard.index',[
     		'title'=>$this->title,
     		'announcements'=>$announcements,
@@ -46,7 +49,8 @@ class DashboardController extends Controller
             'products'=>$products,
             'patients'=>$patients,
             'lowproducts'=>$lowproducts,
-            'appointments'=> $appointments
+            'appointments'=> $appointments,
+            'stockins' => $stockins
     	]);
     }
 }

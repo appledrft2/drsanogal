@@ -55,8 +55,55 @@
 <div class="row">
   <!-- JUMBOTRON -->
   <div class="col-md-8">
-    <div class="jumbotron">
-      <h1 class="display-4 text-display">Welcome to the dashboard!</h1>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Supplier Reminders</span>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+
+          </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+           <thead>
+              <tr>
+             
+                <th>Supplier</th>
+                <th>Terms</th>
+                <th>Discount</th>
+                <th>Amount</th>
+                <th>Delivery Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+              </tr>
+           </thead>
+           <tbody>
+             @if(count($stockins))
+              @foreach($stockins as $stockin)
+              <tr>
+            
+                <td>{{$stockin->supplier->name}}</td>
+                <td>{{$stockin->term}}</td>
+                <td>{{$stockin->discount}}</td>
+                <td>{{$stockin->amount}}</td>
+                <td>{{$stockin->delivery_date}}</td>
+                <td>{{$stockin->due}}</td>
+                <td>{{$stockin->status}}</td>
+              </tr>
+              @endforeach
+             @else
+              <tr><td colspan="8">There are currently no reminders </td></tr>
+             @endif
+           </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
   <!--  -->

@@ -93,7 +93,7 @@
 								<input type="text" name="prod_price" placeholder="Selling Price" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_quantity" placeholder="quantity" class="form-control">
+								<input type="text" name="prod_quantity" placeholder="Update Quantity" class="form-control">
 							</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-block" type="button" id="addRow"><i class="fa fa-shopping-cart"></i> Add Product</button>
@@ -139,7 +139,7 @@
 
 		</div>
 
-		
+		</form>
 	</div>
 </div>
 @endsection
@@ -181,23 +181,23 @@
 var row = '<tr id="row'+i+'">'+
 			'<td>'+
 				'<div class="form-group mr-2">'+
-					'<input type="hidden" class="form-control" name="id[]" value="'+id+'">'+
-					'<input type="text" class="form-control" name="name[]" value="'+name+'">'+
+					'<input type="hidden" class="form-control" readonly name="id[]" value="'+id+'">'+
+					'<input type="text" class="form-control" readonly name="name[]" value="'+name+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
 				'<div class="form-group mr-2">'+
-					'<input type="text" class="form-control" name="original[]" value="'+original+'">'+
+					'<input type="text" class="form-control" readonly name="original[]" value="'+original+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
 				'<div class="form-group mr-2">'+
-					'<input type="text" class="form-control" name="price[]" value="'+price+'">'+
+					'<input type="text" class="form-control" readonly name="price[]" value="'+price+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
 				'<div class="form-group mr-2">'+
-					'<input type="text" class="form-control" name="quantity[]" value="'+quantity+'">'+
+					'<input type="text" class="form-control" readonly name="quantity[]" value="'+quantity+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
@@ -225,8 +225,9 @@ var row = '<tr id="row'+i+'">'+
 	});
 	$(document).on('click', '.removeRow', function(){
 		var id = $(this).attr("id"); 
+
 		$("#productlist2").DataTable().destroy();
-		var test = $('#row').find('#row'+id);
+		 $('#row').find('#row'+id).remove();
 		$("#productlist2").DataTable();
 
 	
