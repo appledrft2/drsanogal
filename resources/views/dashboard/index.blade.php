@@ -112,6 +112,7 @@
            </tbody>
           </table>
         </div>
+        <div class="float-right">{{ $stockins->appends(Request::all())->links() }}</div>
       </div>
     </div>
   </div>
@@ -133,7 +134,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <ul class="products-list product-list-in-card pl-2 pr-2" >
+        <ul class="products-list product-list-in-card pl-2 pr-2" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch;height: 265px">
           @if(count($lowproducts))
             <?php $check = 0;?>
           @foreach($lowproducts as $lowproduct)

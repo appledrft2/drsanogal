@@ -35,6 +35,7 @@
 					<select  name="unit" class="form-control ">
 					<option value="">Unit</option>
 					<option @if($product->unit=='pc') selected @endif>pc</option>
+					<option @if($product->unit=='kg') selected @endif>kg</option>
 					<option @if($product->unit=='bottle') selected @endif>bottle</option>
 					<option @if($product->unit=='tab') selected @endif>tab</option>
 					<option @if($product->unit=='Other') selected @endif>Other</option>

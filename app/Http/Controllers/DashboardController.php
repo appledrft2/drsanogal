@@ -27,7 +27,8 @@ class DashboardController extends Controller
         $patients =Patient::count('id');
 
         // Upcomming Appointments
-        $appointments = Appointment::where('date_to','=',date('Y-m-d'))->paginate(5);
+        $appointments = Appointment::where('date_to','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
+     
 
         foreach($appointments as $appointment){
 
@@ -40,7 +41,7 @@ class DashboardController extends Controller
             }
         }
 
-        $stockins = StockIn::orderBy('due','desc')->paginate(4);
+        $stockins = StockIn::orderBy('due','desc')->paginate(2);
 
     	return view('dashboard.index',[
     		'title'=>$this->title,
