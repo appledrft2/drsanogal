@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\StockIn;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class StockInController extends Controller
 {
+    public $title = "Stock In";
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($supplier)
     {
-        return 'hello';
+        $supplier = Supplier::findOrfail($supplier);
+        $stockins = Stockin::orderBy('created_at','desc')->paginate(4);
+        return view('stockin.index',compact('stockins','supplier'))->with('title',$this->title);
     }
 
     /**
@@ -22,9 +26,11 @@ class StockInController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($supplier_id)
     {
-        //
+        $products = Supplier::findOrfail($supplier_id)->products()->orderBy('created_at','desc')->get();
+        $supplier = Supplier::findOrfail($supplier_id);
+        return view('stockin.create',compact('supplier','products'))->with('title',$this->title);
     }
 
     /**
@@ -33,9 +39,9 @@ class StockInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($supplier,Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -44,7 +50,7 @@ class StockInController extends Controller
      * @param  \App\StockIn  $stockIn
      * @return \Illuminate\Http\Response
      */
-    public function show(StockIn $stockIn)
+    public function show($supplier,StockIn $stockIn)
     {
         //
     }
@@ -55,7 +61,7 @@ class StockInController extends Controller
      * @param  \App\StockIn  $stockIn
      * @return \Illuminate\Http\Response
      */
-    public function edit(StockIn $stockIn)
+    public function edit($supplier,StockIn $stockIn)
     {
         //
     }
@@ -67,7 +73,7 @@ class StockInController extends Controller
      * @param  \App\StockIn  $stockIn
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StockIn $stockIn)
+    public function update($supplier,Request $request, StockIn $stockIn)
     {
         //
     }
@@ -78,7 +84,7 @@ class StockInController extends Controller
      * @param  \App\StockIn  $stockIn
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StockIn $stockIn)
+    public function destroy($supplier,StockIn $stockIn)
     {
         //
     }

@@ -83,7 +83,7 @@ Route::any('/dashboard/product/search','ProductController@search');
 Route::resource('/dashboard/product','ProductController');
 // Stock In List module
 Route::any('/dashboard/suppliers/search','StockInListController@search');
-Route::resource('/dashboard/suppliers/','StockInListController');
+Route::get('/dashboard/suppliers/','StockInListController@index');
 // Stock In module
 Route::any('/dashboard/suppliers/{supplier}/stockin/search','StockInController@search');
 Route::resource('/dashboard/suppliers/{supplier}/stockin','StockInController');

@@ -1,0 +1,108 @@
+@extends('layouts.app')
+@section('title',$title)
+@section('content')
+
+	<div class="card">
+		<div class="card-body">
+			<div class="card card-sm">
+				<div class="card-header"><p class="lead float-left">Supplier Information</p> <span class="float-right"><a href="/dashboard/suppliers" class="btn btn-default">Go Back</a></span></div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label class="lead">Name:</label>
+								<span class="lead">{{$supplier->name}}</span>
+							</div>
+							
+							<div class="form-group">
+								<label class="lead">Contact:</label>
+								<span class="lead">{{$supplier->contact}}</span>
+							</div>
+							
+							<div class="form-group">
+								<label class="lead">Address:</label>
+								<span class="lead">{!!$supplier->address!!}</span>
+							</div>
+							
+						</div>
+						<div class="col-6">
+							<div class="">
+								
+								<div class="form-group">
+									<div style="font-size:10.5em;margin-left:200px">
+										<i class="fa fa-truck"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		
+		
+			<div class="float-right">
+				<div class="form-inline">
+					@if(isset($btn)) <a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
+					<form method="POST" action="/dashboard/suppliers/{{$supplier->id}}/stockin/search">
+						@csrf
+						<div class="input-group ">
+						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+						  <div class="input-group-append">
+						    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+						  </div>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+			<div class="pull-left">
+				<a href="/dashboard/suppliers/{{$supplier->id}}/stockin/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+			</div>	
+			<div class="table-responsive">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Delivery Date</th>
+						<th>Term</th>
+						<th>Due</th>
+						<th>Discount</th>
+						<th>Amount</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if(count($stockins))
+						@foreach($stockins as $stockin)
+							<tr>
+								<td>{{$stockin->code}}</td>
+								<td>{{ date('M d, Y', strtotime($stockin->delivery_date))}}</td>
+								<td>{{$stockin->term}}</td>
+								<td>{{ date('M d, Y', strtotime($stockin->due))}}</td>
+								<td>{{$stockin->discount}}</td>
+						
+								<td class="text-right">&#8369; {{number_format($stockin->amount,2)}}</td>
+								<td width="15%">
+									<div class="form-inline">
+										
+										<a href="/dashboard/client/{{$client->id}}/stockin/{{$stockin->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+										<form method="POST" action="/dashboard/client/{{$client->id}}/stockin/{{$stockin->id}}">
+											@method('delete')
+											@csrf
+											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+										</form>
+									</div>
+								</td>
+							</tr>
+						@endforeach
+					@else
+					<tr><td colspan="10" class="text-center">No Data</td></tr>
+					@endif
+				</tbody>
+			</table>
+			</div>
+			<div class="float-right mt-1">{{ $stockins->appends(Request::all())->links() }} </div>
+		</div>
+	</div>
+@endsection

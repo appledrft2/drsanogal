@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
+    <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.css')}}">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -325,9 +327,17 @@ function closeFullscreen() {
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
-
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('adminlte3/plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+<script>
+  $(function () {
+    $("#productlist").DataTable();
+    
+  });
+</script>
 <script>
   $(function () {
     //Timepicker
@@ -336,5 +346,6 @@ function closeFullscreen() {
     });
   });
 </script>
+@yield('script','noscript')
 </body>
 </html>

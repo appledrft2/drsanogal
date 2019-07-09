@@ -21,7 +21,7 @@ class CreateStockInsTable extends Migration
             $table->double('amount');
             $table->string('term');
             $table->date('due');
-            $table->discount('discount');
+            $table->string('discount');
             $table->timestamps();
         });
     }
