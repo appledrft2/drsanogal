@@ -47,6 +47,7 @@ Route::post('/testing', function () {
 Route::group(['middleware'=>'auth'],function(){
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
+Route::patch('/dashboard/UpdateStockin/{id}','DashboardController@UpdateStockin');
 // My profile module
 Route::get('/dashboard/profile','ProfileController@index');
 Route::patch('/dashboard/profile/{id}','ProfileController@update');

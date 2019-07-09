@@ -53,4 +53,12 @@ class DashboardController extends Controller
             'stockins' => $stockins
     	]);
     }
+
+    public function UpdateStockin($id){
+        $stockins = StockIn::findOrfail($id);
+        $stockins->status = request()->status;
+        $stockins->update();
+        toast('Updated Successfully','success');
+        return redirect('dashboard')->with('title',$this->title);
+    }
 }

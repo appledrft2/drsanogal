@@ -78,8 +78,8 @@
                 <th>Terms</th>
                 <th>Discount</th>
                 <th>Amount</th>
-                <th>Delivery Date</th>
-                <th>Due Date</th>
+                <th>Delivery</th>
+                <th>Due</th>
                 <th>Status</th>
               </tr>
            </thead>
@@ -91,10 +91,19 @@
                 <td>{{$stockin->supplier->name}}</td>
                 <td>{{$stockin->term}}</td>
                 <td>{{$stockin->discount}}</td>
-                <td>{{$stockin->amount}}</td>
-                <td>{{$stockin->delivery_date}}</td>
-                <td>{{$stockin->due}}</td>
-                <td>{{$stockin->status}}</td>
+                <td class="text-right">&#8369; {{number_format($stockin->amount,2)}}</td>
+                <td>{{date('M d, D Y', strtotime($stockin->delivery_date))}}</td>
+                <td>{{date('M d, D Y', strtotime($stockin->due))}}</td>
+                <td>
+                  <form method="POST" action="/dashboard/UpdateStockin/{{$stockin->id}}">
+                      @method('PATCH')
+                      @csrf
+                      <select onchange="this.form.submit()" class="select form-control" name="status">
+                        <option @if($stockin->status == 'Unpaid') selected  @endif)>Unpaid</option>
+                        <option @if($stockin->status == 'Paid') selected  @endif>Paid</option>
+                      </select>
+                    </form>
+                </td>
               </tr>
               @endforeach
              @else
@@ -124,7 +133,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <ul class="products-list product-list-in-card pl-2 pr-2" style=" max-height: 150px;margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch;">
+        <ul class="products-list product-list-in-card pl-2 pr-2" >
           @if(count($lowproducts))
             <?php $check = 0;?>
           @foreach($lowproducts as $lowproduct)
