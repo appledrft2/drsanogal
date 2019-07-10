@@ -17,25 +17,8 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <style type="text/css">
-    /* Paste this css to your style sheet file or under head tag */
-    /* This only works with JavaScript, 
-    if it's not present, don't show loader */
-    .no-js #loader { display: none;  }
-    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-    .se-pre-con {
-      position: fixed;
-      left: 0px;
-      top: 0px;
-      width: 100% !important;
-      height: 100% !important;
-      z-index: 9999;
-      background: url('{{asset('adminlte3/dist/img/loader.gif')}}') center no-repeat #fff ;
-      background-size: 100px 100px !important;
-    }
-  </style>
+
 </head>
-<div class="se-pre-con" ></div>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -232,6 +215,7 @@
 <script src="{{asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('adminlte3/dist/js/adminlte.min.js')}}"></script>
+
 <script>
 // This will toggle fullscreen by on or off
   var fs = false;
@@ -314,16 +298,7 @@ function closeFullscreen() {
         });
     });
   </script>
-  <!-- Loader -->
-  <script type="text/javascript">
-    $(document).ready(function(){
-       setTimeout(loader, 100);
-      
-      function loader(){
-        $(".se-pre-con").fadeOut("slow");
-      }
-    });
-  </script>
+
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
@@ -348,6 +323,15 @@ function closeFullscreen() {
     });
   });
 </script>
+
 @yield('script','')
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
+<script type="text/javascript">
+  var pjax = new Pjax({
+  elements: "a", // default is "a[href], form[action]"
+  selectors: ["body"]
+})
+</script>
 </body>
 </html>

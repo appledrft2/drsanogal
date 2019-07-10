@@ -32,6 +32,7 @@ Route::get('/testing', function () {
     return view('testing')->with('title',$title);
 
 });
+
 Route::post('/testing', function () {
 	$title ='Testing';
 
