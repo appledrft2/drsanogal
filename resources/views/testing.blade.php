@@ -20,4 +20,22 @@
 </div>
 
 
+<!-- // Testing module
+Route::get('/testing', function () {
+
+    $title = 'Testing';
+    return view('testing')->with('title',$title);
+
+});
+
+Route::post('/testing', function () {
+    $title ='Testing';
+
+     // $path = request()->file('file');
+     // Storage::disk('s3')->put('uploads',$path,'public');
+    $path = 'uploads/NsE2XWRC136PjZa2Y904FroOhqZ5vrAvkoonG0Sk.jpeg';
+    Storage::disk('s3')->delete($path);
+
+}); -->
+
 @endsection

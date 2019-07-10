@@ -12,9 +12,9 @@
 */
 
 // Homepage module
-Route::get('/', 'HomeController@welcome');
-Route::get('/about', 'HomeController@about');
-Route::get('/products','HomeController@products');
+Route::get('/', 'FrontPageController@welcome');
+Route::get('/about', 'FrontPageController@about');
+Route::get('/products','FrontPageController@products');
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Route group for auth
