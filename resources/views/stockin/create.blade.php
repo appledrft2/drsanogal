@@ -13,7 +13,7 @@
 					<input type="text" name="code" placeholder="Code" value="DC-{{rand(1000,9999)}}" readonly class="form-control">
 				</div>
 				<div class="form-group ">
-					<label>Supploer </label>
+					<label>Supplier </label>
 					<input type="text" name="supplier" placeholder="supplier" value="{{$supplier->name}}" readonly class="form-control">
 				</div>
 
@@ -130,7 +130,8 @@
 					
 					<div class="card-body ">
 						<div class="float-right">
-							<button class="btn btn-default"><i class="fa fa-truck"></i> Process Delivery</button>
+
+							<button class="btn btn-primary"><i class="fa fa-truck"></i> Process Delivery</button>
 						</div>
 					</div>
 				</div>
@@ -181,23 +182,27 @@
 var row = '<tr id="row'+i+'">'+
 			'<td>'+
 				'<div class="form-group mr-2">'+
+					name+
 					'<input type="hidden" class="form-control" readonly name="id[]" value="'+id+'">'+
-					'<input type="text" class="form-control" readonly name="name[]" value="'+name+'">'+
+					'<input type="hidden" class="form-control" readonly name="name[]" value="'+name+'">'+
+				'</div>'+
+			'</td>'+
+			'<td>'+
+				'<div class="form-group mr-2 text-right">&#8369;'+
+				original+
+					'<input type="hidden" class="form-control" readonly name="original[]" value="'+original+'">'+
+				'</div>'+
+			'</td>'+
+			'<td>'+
+				'<div class="form-group mr-2 text-right">&#8369;'+
+				price+
+					'<input type="hidden" class="form-control" readonly name="price[]" value="'+price+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
 				'<div class="form-group mr-2">'+
-					'<input type="text" class="form-control" readonly name="original[]" value="'+original+'">'+
-				'</div>'+
-			'</td>'+
-			'<td>'+
-				'<div class="form-group mr-2">'+
-					'<input type="text" class="form-control" readonly name="price[]" value="'+price+'">'+
-				'</div>'+
-			'</td>'+
-			'<td>'+
-				'<div class="form-group mr-2">'+
-					'<input type="text" class="form-control" readonly name="quantity[]" value="'+quantity+'">'+
+				quantity+
+					'<input type="hidden" class="form-control" readonly name="quantity[]" value="'+quantity+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+

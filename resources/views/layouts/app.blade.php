@@ -348,6 +348,6 @@ function closeFullscreen() {
     });
   });
 </script>
-@yield('script','noscript')
+@yield('script','')
 </body>
 </html>

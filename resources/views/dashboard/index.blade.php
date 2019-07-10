@@ -107,7 +107,7 @@
               </tr>
               @endforeach
              @else
-              <tr><td colspan="8">There are currently no reminders </td></tr>
+              <tr><td colspan="8" class="text-center">There are currently no reminders </td></tr>
              @endif
            </tbody>
           </table>
@@ -138,7 +138,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <ul class="products-list product-list-in-card pl-2 pr-2" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; @if(count($stockins) >= 2) height: 230px @else height: 150px @endif">
+        <ul class="products-list product-list-in-card pl-2 pr-2" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; @if(count($stockins) >= 2) height: 230px @else height: 130px @endif">
           @if(count($lowproducts))
             <?php $check = 0;?>
           @foreach($lowproducts as $lowproduct)
