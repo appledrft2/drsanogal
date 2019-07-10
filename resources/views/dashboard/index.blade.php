@@ -68,9 +68,9 @@
 
           </div>
       </div>
-      <div class="card-body">
+      <div class="card-body p-0">
         <div class="table-responsive">
-          <table class="table table-bordered">
+          <table class="table table-hover m-0">
            <thead>
               <tr>
              
@@ -112,7 +112,11 @@
            </tbody>
           </table>
         </div>
-        <div class="float-right">{{ $stockins->appends(Request::all())->links() }}</div>
+       
+      </div>
+      <div class="card-footer">
+        <div class="float-left mt-2"><a href="/dashboard/suppliers/" class="uppercase">View All Reminders</a></div>
+         <div class="float-right">{{ $stockins->appends(Request::all())->links() }}</div>
       </div>
     </div>
   </div>
@@ -134,7 +138,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body p-0">
-        <ul class="products-list product-list-in-card pl-2 pr-2" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; @if(count($stockins) >= 2) height: 210px @else height: 130px @endif">
+        <ul class="products-list product-list-in-card pl-2 pr-2" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; @if(count($stockins) >= 2) height: 230px @else height: 150px @endif">
           @if(count($lowproducts))
             <?php $check = 0;?>
           @foreach($lowproducts as $lowproduct)
@@ -196,7 +200,7 @@
       <!-- /.card-header -->
       <div class="card-body p-0">
         <div class="table-responsive">
-          <table class="table m-0">
+          <table class="table m-0 table-hover">
             <thead>
             <tr>
               <th>Patient ID</th>
@@ -243,7 +247,7 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix text-center">
-        <div class="float-left"><a href="/dashboard/patient" class="btn-link">View All Patient</a></div>
+        <div class="float-left"><a href="/dashboard/patient" class="btn-link">View All Patients</a></div>
         <div class="float-right">{{ $appointments->appends(Request::all())->links() }}</div>
       </div>
       <!-- /.card-footer -->
