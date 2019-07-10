@@ -34,18 +34,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active  ">
+          <li class="nav-item @if(Request::is('/')) active @endif  ">
             <a class="nav-link" href="{{url('/')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item @if(Request::is('about')) active @endif">
             <a class="nav-link" href="{{url('about')}}">About</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item @if(Request::is('products')) active @endif">
             <a class="nav-link" href="{{url('products')}}">Products</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item @if(Request::is('/login') || Request::is('/dashboard') ) active @endif">
             @guest
             <a class="nav-link" href="{{url('/login')}}">Login</a>
             @else

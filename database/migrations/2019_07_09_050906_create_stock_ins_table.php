@@ -24,6 +24,10 @@ class CreateStockInsTable extends Migration
             $table->string('discount');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('supplier_id')
+            ->references('id')->on('suppliers')
+            ->onDelete('cascade');
         });
     }
 
