@@ -63,7 +63,7 @@ class AppointmentController extends Controller
 
         $data['patient_id'] = $patient;
         $data['isNotified'] = 0;
-        $data['status'] = '';
+        $data['status'] = 'Not Completed';
 
         Appointment::create($data);
         toast('Successfully added!','success');
