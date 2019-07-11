@@ -104,10 +104,10 @@ class AppointmentController extends Controller
     public function update($patient,Request $request, Appointment $appointment)
     {
         $data = $request->validate([
-                    'description' => 'required',
+                    'date_to' => 'required',
                     'date_from' => 'required',
-                  
                 ]);
+
          $data['description'] = (request()->description) ? request()->description : ' ';
 
         $appointment->update($data);

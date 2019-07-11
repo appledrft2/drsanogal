@@ -23,7 +23,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th width="10%">Patient ID</th>
+						<th width="10%">App. ID</th>
 						<th>Name</th>
 						<th>Date Visited</th>
 						<th>Next Appointment</th>
@@ -35,7 +35,7 @@
 					@if(count($appointments))
 						@foreach($appointments as $appointment)
 							<tr>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->patient->id}}</td>
+								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->id}}</td>
 								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->patient->name}}</td>
 								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{date('M d, Y', strtotime($appointment->date_from))}}</td>
 								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{date('M d, Y', strtotime($appointment->date_to))}}</td>
