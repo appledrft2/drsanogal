@@ -67,6 +67,10 @@ Route::get('/dashboard/suppliers/','StockInListController@index');
 // Stock In module
 Route::any('/dashboard/suppliers/{supplier}/stockin/search','StockInController@search');
 Route::resource('/dashboard/suppliers/{supplier}/stockin','StockInController');
+
+// Stock Out module
+Route::get('/dashboard/stockout','StockOutController@index');
+Route::post('/dashboard/stockout','StockOutController@store');
 });
 
 // Login module provided by laravel
