@@ -13,8 +13,6 @@
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
     <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.css')}}">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -313,8 +311,6 @@ function closeFullscreen() {
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- DataTables -->
 <script src="{{asset('adminlte3/plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
@@ -328,16 +324,8 @@ function closeFullscreen() {
     
   });
 </script>
-<script>
-  $(function () {
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    });
-  });
-</script>
 
-@yield('script','')
+
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
 <script type="text/javascript">
@@ -346,5 +334,7 @@ function closeFullscreen() {
   selectors: ["body"]
 })
 </script>
+
+@yield('script','')
 </body>
 </html>

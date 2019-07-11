@@ -21,12 +21,7 @@
 				</div>
 				<div class="form-group">
 					<label>Time:</label>
-	                <div class="input-group " id="timepicker" data-target-input="nearest">
-	                    <input type="text" name="time" class="form-control datetimepicker-input" data-target="#timepicker"/>
-	                    <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-	                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                    </div>
-	                </div>
+	                <input type="text" name="time" class="form-control">
 	            </div>
 				<div class="form-group"><input type="text" name="kg" class="form-control " placeholder="Kilogram" value="{{old('kg')}}" ></div>
 				<div class="form-group"><input type="text" name="temp" class="form-control " placeholder="Temperature" value="{{old('temp')}}" ></div>
