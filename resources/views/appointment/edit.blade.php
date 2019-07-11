@@ -17,7 +17,7 @@
 
 				<div class="form-group"><label>Date visited:</label><input type="date" name="date_from" class="form-control " placeholder="Date visited" value="{{$appointment->date_from}}" ></div>
 				<div class="form-group"><label>Next appointment:</label><input type="date" name="date_to" class="form-control " placeholder="Date visited" value="{{$appointment->date_to}}" ></div>
-				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="description" placeholder="Description">{{$appointment->description}}</textarea></div>
+<!-- 				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="description" placeholder="Description">{{$appointment->description}}</textarea></div> -->
 				
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 

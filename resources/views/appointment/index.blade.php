@@ -98,7 +98,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Description</th>
+						<th>ID</th>
 						<th>Date visited</th>
 						<th>Next appointment</th>
 						<th>Status</th>
@@ -116,7 +116,7 @@
 					@if(count($appointments))
 						@foreach($appointments as $appointment)
 							<tr>
-								<td>{!!$appointment->description!!}</td>
+								<td>{{$appointment->id}}</td>
 								<td>{{ date('M d, D Y', strtotime($appointment->date_from))}}</td>
 								<td>{{date('M d, D Y', strtotime($appointment->date_to))}}</td>
 								<td>

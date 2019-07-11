@@ -23,7 +23,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Patient ID</th>
+						<th width="10%">Patient ID</th>
 						<th>Name</th>
 						<th>Date Visited</th>
 						<th>Next Appointment</th>
@@ -39,10 +39,12 @@
 								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->patient->name}}</td>
 								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{date('M d, Y', strtotime($appointment->date_from))}}</td>
 								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{date('M d, Y', strtotime($appointment->date_to))}}</td>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->status}}</td>
+								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">
+									@if($appointment->status == 'Completed')<span class="badge badge-success">{{$appointment->status}}</span> @else <span class="badge badge-secondary">{{$appointment->status}}</span> @endif
+								</td>
 			
 								<td width="15%">
-									<a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-success btn-sm mr-1"><i class="fa fa-calendar"></i> &nbsp;View Details</a>
+									<a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-default btn-sm mr-1"><i class="fa fa-list"></i> &nbsp;View Details</a>
 								</td>
 							</tr>
 						@endforeach

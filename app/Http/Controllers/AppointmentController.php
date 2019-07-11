@@ -58,8 +58,10 @@ class AppointmentController extends Controller
         $data = $request->validate([
             'date_from' => 'required',
             'date_to' => 'required',
-            'description' => 'required',
+       
         ]);
+
+         $data['description'] = (request()->description) ? request()->description : ' ';
 
         $data['patient_id'] = $patient;
         $data['isNotified'] = 0;
@@ -104,8 +106,9 @@ class AppointmentController extends Controller
         $data = $request->validate([
                     'description' => 'required',
                     'date_from' => 'required',
-                    'date_to' => 'required',
+                  
                 ]);
+         $data['description'] = (request()->description) ? request()->description : ' ';
 
         $appointment->update($data);
 
