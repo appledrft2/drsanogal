@@ -29,7 +29,7 @@
 						<th>Client ID</th>
 						<th>Name</th>
 						<th>Gender</th>
-						<th>Contact</th>
+						<th>Occupation</th>
 						<th>Address</th>
 						<th>Pets</th>
 						<th>Action</th>
@@ -49,7 +49,7 @@
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->id}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->name}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->gender}}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->contact}}</td>
+								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->occupation}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{!!$client->address!!}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';"><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
 								<td width="15%">

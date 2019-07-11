@@ -114,6 +114,17 @@
           </li>
           @endif
 
+          @if(Auth::user()->role == 'doctor')
+          <li class="nav-item">
+            <a href="/dashboard/appointmentlist" class="nav-link @if($title=='Appointment List') active @endif">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Appointments
+              </p>
+            </a>
+          </li>
+          @endif
+
           <li class="nav-item">
             <a href="/dashboard/supplier" class="nav-link @if($title=='Supplier') active @endif">
               <i class="nav-icon fas fa-user"></i>

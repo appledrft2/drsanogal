@@ -45,7 +45,9 @@ Route::any('/dashboard/client/{client}/patient/search','PatientController@search
 Route::resource('/dashboard/client/{client}/patient','PatientController');
 // Patient List module
 Route::any('/dashboard/patient/search','PatientListController@search')->middleware('denyStaff'); // staff cant access this module
-Route::get('/dashboard/patient','PatientListController@index')->middleware('denyStaff'); // staff cant access this module
+Route::get('/dashboard/patient','PatientListController@index')->middleware('denyStaff'); // staff cant access this module/ Appointment List module
+Route::any('/dashboard/appointmentlist/search','AppointmentListController@search')->middleware('denyStaff'); // staff cant access this module
+Route::get('/dashboard/appointmentlist','AppointmentListController@index')->middleware('denyStaff'); // staff cant access this module
 //Appointment module
 Route::patch('/dashboard/patient/{patient}/appointment/{appointment}/UpdateStatus','AppointmentController@UpdateStatus')->middleware('denyStaff');
 Route::any('/dashboard/patient/{patient}/appointment/search','AppointmentController@search')->middleware('denyStaff');
