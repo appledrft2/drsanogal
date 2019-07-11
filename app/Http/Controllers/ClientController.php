@@ -55,9 +55,19 @@ class ClientController extends Controller
         $data = request()->validate([
             'name'=>'required',
             'gender'=>'required',
+            'occupation'=>'required',
             'contact'=>'required',
-            'address'=>'required'
+            'work'=>'nullable',
+            'home'=>'nullable',
+            'address'=>'required',
+            'smsNotify'=>'required',
+            'email'=>'nullable'
         ]);
+
+        $data['work'] = (request()->work) ? request()->work : ' ';
+        $data['home'] =  (request()->home) ? request()->home : ' ';
+         $data['email'] =  (request()->email) ? request()->email : ' ';
+
 
         Client::create($data);
         toast('Successfully added!','success');
@@ -99,8 +109,18 @@ class ClientController extends Controller
             'name'=>'required',
             'gender'=>'required',
             'contact'=>'required',
-            'address'=>'required'
+            'address'=>'required',
+            'occupation'=>'required',
+            'smsNotify'=>'required',
+            'email'=>'nullable',
         ]);
+
+        $data['work'] = (request()->work) ? request()->work : ' ';
+        $data['home'] =  (request()->home) ? request()->home : ' ';
+        $data['email'] =  (request()->email) ? request()->email : ' ';
+
+
+
         $client->update($data);
         toast('Record successfully updated!','success');
         return redirect('dashboard/client');

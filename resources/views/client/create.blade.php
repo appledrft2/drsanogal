@@ -20,8 +20,28 @@
 					<option @if(old('gender')=='Female') selected @endif>Female</option>
 					</select>
 				</div>
-				<div class="form-group"><input type="number" value="{{old('contact')}}" name="contact" class="form-control " placeholder="Contact" ></div>
-				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="address" placeholder="Address"></textarea>{{old('address')}}</div>
+				<div class="form-group"><input type="text" name="occupation" class="form-control " placeholder="Occupation" value="{{old('occupation')}}" ></div>
+				<div class="form-group ">
+					<label>Contact Numbers</label>
+					<div class="row">
+						<div class="form-group col-4"><input type="number" value="{{old('contact')}}" name="contact" class="form-control " placeholder="Mobile" ></div>	
+						<div class="form-group col-4"><input type="number" value="{{old('work')}}" name="work" class="form-control " placeholder="Work" ></div>
+						<div class="form-group col-4"><input type="number" value="{{old('home')}}" name="home" class="form-control " placeholder="Home" ></div>	
+						<div class="form-group col-12">
+							<select name="smsNotify" class="form-control">
+								<option value="">Which number to notify</option>
+								<option @if(old('smsNotify')=='Mobile') selected @endif>Mobile</option>
+								<option @if(old('smsNotify')=='Home') selected @endif>Home</option>
+								<option @if(old('smsNotify')=='Work') selected @endif>Work</option>
+								<option @if(old('smsNotify')=='None') selected @endif>None</option>
+							</select>
+					</div>
+				</div>
+				<hr>	
+				<div class="form-group"><input type="email" value="{{old('email')}}" name="email" class="form-control " placeholder="Email Address" ></div>	
+				<div class="form-group">
+					<label>Address</label>
+					<textarea class="form-control" id="article-ckeditor" name="address" placeholder="Address">{{old('address')}}</textarea></div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
 		</div>

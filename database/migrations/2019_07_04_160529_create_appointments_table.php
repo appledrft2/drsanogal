@@ -21,6 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('date_to');
             $table->boolean('isNotified');
             $table->string('status');
+            $table->boolean('isBilled')->default(0);
             $table->timestamps();
 
             $table->foreign('patient_id')

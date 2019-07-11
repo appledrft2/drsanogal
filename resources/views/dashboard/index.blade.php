@@ -10,7 +10,7 @@
         <div class="info-box-content">
           <span class="info-box-text">Appointments</span>
           <span class="info-box-number text-center">
-            {{count($appointments)}}    
+            {{$appointmentscount}}    
           </span>
         </div>
       </div>

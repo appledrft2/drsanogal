@@ -26,6 +26,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>Client ID</th>
 						<th>Name</th>
 						<th>Gender</th>
 						<th>Contact</th>
@@ -45,6 +46,7 @@
 					@if(count($clients))
 						@foreach($clients as $client)
 							<tr>
+								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->id}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->name}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->gender}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->contact}}</td>
@@ -52,12 +54,13 @@
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';"><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
 								<td width="15%">
 									<div class="form-inline">
-										
-										<a href="/dashboard/client/{{$client->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+							
+										<!-- <a href="/dashboard/client/{{$client->id}}/billing" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-money-bill-alt"></i> Client Billing</a> -->
+										<a href="/dashboard/client/{{$client->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i> Edit Client</a>
 										<form  method="POST" action="/dashboard/client/{{$client->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm mt-2 btn-submit"><i class="fa fa-trash"></i> Remove Client &nbsp;&nbsp;&nbsp;</button>
 										</form>
 									</div>
 								</td>

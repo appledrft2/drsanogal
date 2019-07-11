@@ -17,7 +17,12 @@ class CreateClientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('gender');
+            $table->string('occupation');
+            $table->string('email');
             $table->string('contact')->unique();
+            $table->string('work')->unique()->default('');;
+            $table->string('home')->unique()->default('');;
+            $table->string('smsNotify')->default(0);
             $table->text('address');
             $table->timestamps();
         });

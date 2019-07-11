@@ -311,6 +311,8 @@ function closeFullscreen() {
   $(function () {
     $("#productlist").DataTable();
      $("#productlist2").DataTable();
+      $("#servicelist").DataTable();
+       
      
     
   });
