@@ -227,10 +227,10 @@
                   <form method="POST" action="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
                       @method('PATCH')
                       @csrf
-                      <select onchange="this.form.submit()" class="select form-control" name="status">
-                        <option @if($appointment->status == 'Not Completed') selected  @endif)>Not Completed</option>
-                        <option @if($appointment->status == 'Completed') selected  @endif>Completed</option>
-                        <option @if($appointment->status == 'Rescheduled') selected  @endif>Rescheduled</option>
+                      <select onchange="this.form.submit()" class="select form-control" name="isCompleted">
+                        <option @if($appointment->isCompleted == 'Not Completed') selected  @endif)>Not Completed</option>
+                        <option @if($appointment->isCompleted == 'Completed') selected  @endif>Completed</option>
+                        <option @if($appointment->isCompleted == 'Rescheduled') selected  @endif>Rescheduled</option>
                       </select>
                     </form>
                 </td>

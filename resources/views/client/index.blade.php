@@ -55,7 +55,7 @@
 								<td width="15%">
 									<div class="form-inline">
 							
-										<!-- <a href="/dashboard/client/{{$client->id}}/billing" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-money-bill-alt"></i> Client Billing</a> -->
+										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-paw"></i> View Pets</a>
 										<a href="/dashboard/client/{{$client->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i> Edit Client</a>
 										<form  method="POST" action="/dashboard/client/{{$client->id}}">
 											@method('delete')

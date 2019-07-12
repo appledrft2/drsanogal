@@ -96,12 +96,12 @@
 								<td>{{$patient->veterinarian}}</td>
 								<td width="15%">
 									<div class="form-inline">
-										
-										<a href="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form method="POST" action="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}">
+										<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-list"></i> Appointments</a>
+										<a href="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i> Edit Patient</a>
+										<form method="POST"  action="/dashboard/client/{{$client->id}}/patient/{{$patient->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm mt-3 btn-block btn-submit"><i class="fa fa-trash"></i> Remove Patient</button>
 										</form>
 									</div>
 								</td>

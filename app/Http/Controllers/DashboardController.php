@@ -36,7 +36,7 @@ class DashboardController extends Controller
             if($appointment->date_to == date('Y-m-d')){
                 // if appointment is not notified by sms
                 if($appointment->isNotified != 1){
-                    if($appointment->smsNotify == 'Mobile'){
+                    if($appointment->patient->client->smsNotify == 'Mobile'){
                         $app = Appointment::findOrfail($appointment->id);
                         $app->isNotified = 1;
                         $app->update();

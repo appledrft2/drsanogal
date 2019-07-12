@@ -103,6 +103,7 @@
 						<th>Next appointment</th>
 						<th>Amount</th>
 						<th>Status</th>
+						<th>Payment</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -117,15 +118,22 @@
 								<?php $test = explode(',',$appointment['price']); ?>
 								<td>&#8369; {{number_format(array_sum($test),2)}}</td>
 								<td>
-									@if($appointment->isCompleted == '') <span class="badge badge-secondary">Not Completed</span> @else <span class="badge badge-success"> Completed</span> @endif
-								</td>	
+									@if($appointment->isCompleted == 'Not Completed') <span class="badge badge-secondary">Not Completed</span> 
+									@elseif($appointment->isCompleted == 'Completed') <span class="badge badge-success"> Completed</span>
+									@elseif($appointment->isCompleted == 'Rescheduled') <span class="badge badge-primary"> Rescheduled</span> @endif
+								</td>
+								<td>
+									@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
+									@else <span class="badge badge-secondary">Unpaid</span> 
+									@endif
+								</td>
 								<td>
 									<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" class=" btn-sm btn btn-success btn-block"><i class="fa fa-eye"></i> View Details</a>
 
 									<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
 											@method('delete')
 											@csrf
-											<button class="btn btn-block btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-block btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i> Remove</button>
 										</form>
 								</td>
 							</tr>

@@ -136,7 +136,7 @@ class AppointmentController extends Controller
 
     public function UpdateStatus($patient,Request $request, Appointment $appointment){
         $data = $request->validate([
-                    'status' => 'required'
+                    'isCompleted' => 'required'
                 ]);
         $appointment->update($data);
 

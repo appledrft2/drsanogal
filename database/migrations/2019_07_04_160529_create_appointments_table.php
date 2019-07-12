@@ -26,7 +26,7 @@ class CreateAppointmentsTable extends Migration
 
             $table->boolean('isPaid')->default(false);
             $table->boolean('isNotified')->default(false);
-            $table->boolean('isCompleted')->default(false);
+            $table->string('isCompleted')->default('Not Completed');
             $table->timestamps();
 
             $table->foreign('patient_id')
