@@ -18,6 +18,8 @@ class AppointmentController extends Controller
     {
        $appointments = Patient::findOrfail($patient)->appointments()->orderBy('created_at','desc')->paginate(4);
        $patient = Patient::findOrfail($patient);
+       
+     
        return view('appointment.index',['appointments'=>$appointments,'patient'=>$patient])->with('title',$this->title);
     }
 
@@ -55,19 +57,35 @@ class AppointmentController extends Controller
      */
     public function store($patient,Request $request)
     {
-        $data = $request->validate([
-            'date_from' => 'required',
-            'date_to' => 'required',
+        // $data = $request->validate([
+        //     'date_from' => 'required',
+        //     'date_to' => 'required',
        
+        // ]);
+
+        //  $data['description'] = (request()->description) ? request()->description : ' ';
+
+        // $data['patient_id'] = $patient;
+        // $data['isNotified'] = 0;
+        // $data['status'] = 'Not Completed';
+
+        // Appointment::create($data);
+        // toast('Successfully added!','success');
+        // return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
+
+        $data = $request->validate([
+            'next_appointment' => 'required',
+            'time' => 'required',
+            'temperature' => 'required',
+            'kilogram' => 'required',
         ]);
-
-         $data['description'] = (request()->description) ? request()->description : ' ';
-
         $data['patient_id'] = $patient;
-        $data['isNotified'] = 0;
-        $data['status'] = 'Not Completed';
+        $data['appointment'] = implode(',', $request->appointment); 
+        $data['price'] = implode(',', $request->price); 
+        $data['description'] = implode(',', $request->description); 
 
         Appointment::create($data);
+
         toast('Successfully added!','success');
         return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
     }
@@ -78,9 +96,9 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function show(Appointment $appointment)
+    public function show($patient, Appointment $appointment)
     {
-        //
+         return view('appointment.edit',['patient'=>$patient,'appointment'=>$appointment])->with('title',$this->title);
     }
 
     /**

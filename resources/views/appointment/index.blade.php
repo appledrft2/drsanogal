@@ -98,59 +98,35 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Date visited</th>
+						<th>#</th>
+						<th>Appointment</th>
 						<th>Next appointment</th>
+						<th>Amount</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-	<!-- 				<tr>
-						<td><form method="POST" action="/dashboard/appointment/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by name"></form></td>
-						<td><form method="POST" action="/dashboard/appointment/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by gender"></form></td>
-						<td><form method="POST" action="/dashboard/appointment/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by contact"></form></td>
-						<td><form method="POST" action="/dashboard/appointment/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by address"></form></td>
-						<td></td>
-					</tr> -->
+					<?php $i=1; ?>
 					@if(count($appointments))
 						@foreach($appointments as $appointment)
 							<tr>
-								<td>{{$appointment->id}}</td>
-								<td>{{ date('M d, D Y', strtotime($appointment->date_from))}}</td>
-								<td>{{date('M d, D Y', strtotime($appointment->date_to))}}</td>
+								<td>{{$i++}}</td>
+								<td>{{$appointment->appointment}}</td>
+								<td>{{date('M d, D Y', strtotime($appointment->next_appointment))}}</td>
+								<?php $test = explode(',',$appointment['price']); ?>
+								<td>&#8369; {{number_format(array_sum($test),2)}}</td>
 								<td>
-								@if($appointment->status == 'Not Completed' || $appointment->status == null)
-									<span class="badge badge-secondary">Not Completed</span>
-								@endif
-								@if($appointment->status == 'Completed')
-									<span class="badge badge-success">Completed</span>
-								@endif
-								@if($appointment->status == 'Rescheduled')
-									<span class="badge badge-primary">Rescheduled</span>
-								@endif
-									<!-- <form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
-										@method('PATCH')
-										@csrf
-										<select onchange="this.form.submit()" class="select form-control" name="status">
-											<option @if($appointment->status == 'Not Completed') selected  @endif)>Not Completed</option>
-											<option @if($appointment->status == 'Completed') selected  @endif>Completed</option>
-											<option @if($appointment->status == 'Rescheduled') selected  @endif>Rescheduled</option>
-										</select>
-									</form> -->
-								</td>
-								<td width="15%">
-									<div class="form-inline">
-										
-										<a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-block btn-default btn-sm mr-1"><i class="fa fa-list"></i> More Details</a>
-									<!-- 	<a href="/dashboard/appointment/{{$appointment->id}}/medical" class="btn btn-block btn-default btn-sm mr-1"><i class="fa fa-medkit"></i> Medical History</a> -->
-										<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
+									@if($appointment->isCompleted == '') <span class="badge badge-secondary">Not Completed</span> @else <span class="badge badge-success"> Completed</span> @endif
+								</td>	
+								<td>
+									<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" class=" btn-sm btn btn-success btn-block"><i class="fa fa-eye"></i> View Details</a>
+
+									<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
 											@method('delete')
 											@csrf
 											<button class="btn btn-block btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
-									</div>
 								</td>
 							</tr>
 						@endforeach

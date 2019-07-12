@@ -336,5 +336,6 @@ function closeFullscreen() {
 </script>
 
 @yield('script','')
+
 </body>
 </html>

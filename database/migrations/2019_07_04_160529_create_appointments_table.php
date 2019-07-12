@@ -16,12 +16,17 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('patient_id')->unsigned()->index();
+            $table->date('next_appointment');
+            $table->string('time');
+            $table->integer('temperature');
+            $table->integer('kilogram');
+            $table->string('appointment');
+            $table->double('price');
             $table->text('description');
-            $table->date('date_from');
-            $table->date('date_to');
-            $table->boolean('isNotified');
-            $table->string('status');
-            $table->boolean('isBilled')->default(0);
+
+            $table->boolean('isPaid')->default(false);
+            $table->boolean('isNotified')->default(false);
+            $table->boolean('isCompleted')->default(false);
             $table->timestamps();
 
             $table->foreign('patient_id')

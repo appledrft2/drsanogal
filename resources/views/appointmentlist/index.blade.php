@@ -23,10 +23,11 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th width="10%">App. ID</th>
+						<th width="10%">Patient ID</th>
 						<th>Name</th>
-						<th>Date Visited</th>
+						<th>Appointment</th>
 						<th>Next Appointment</th>
+						<th>Amount</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -35,17 +36,22 @@
 					@if(count($appointments))
 						@foreach($appointments as $appointment)
 							<tr>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->id}}</td>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{$appointment->patient->name}}</td>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{date('M d, Y', strtotime($appointment->date_from))}}</td>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">{{date('M d, Y', strtotime($appointment->date_to))}}</td>
-								<td onclick="window.location = '/dashboard/appointment/{{$appointment->id}}/preventive';">
-									@if($appointment->status == 'Completed')<span class="badge badge-success">{{$appointment->status}}</span> @else <span class="badge badge-secondary">{{$appointment->status}}</span> @endif
+								<td>{{$appointment->patient->id}}</td>
+								<td>{{$appointment->patient->name}}</td>
+								<td>{{$appointment->appointment}}</td>
+								<td>{{date('M d, Y', strtotime($appointment->date_to))}}</td>
+								<?php $test = explode(',',$appointment['price']); ?>
+								<td>&#8369; {{number_format(array_sum($test),2)}}</td>
+								<td>
+									@if($appointment->isCompleted != '')<span class="badge badge-success">Completed</span> @else <span class="badge badge-secondary">Not Completed</span> @endif
 								</td>
-			
-								<td width="15%">
-									<a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-default btn-sm mr-1"><i class="fa fa-list"></i> &nbsp;View Details</a>
+								<td>
+									<select class="form-control">
+										<option @if($appointment->isPaid == '') selected @endif >Unpaid</option>
+										<option  @if($appointment->isPaid != '') selected @endif >Paid</option>
+									</select>
 								</td>
+								
 							</tr>
 						@endforeach
 					@else

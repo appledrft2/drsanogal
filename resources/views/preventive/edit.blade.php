@@ -5,12 +5,12 @@
 
 <div class="col-md-10 mx-auto">
 	<div class="form-group">
-		<a href="/dashboard/appointment/{{$appointment}}/preventive" class="btn btn-default">Go Back</a>
+		<a href="/dashboard/appointment/{{$appointment}}/detail" class="btn btn-default">Go Back</a>
 	</div>
 	<div class="card">
 		<div class="card-header">Update Service</div>
 		<div class="card-body">
-			<form  class="" method="POST" action="/dashboard/appointment/{{$appointment}}/preventive/{{$preventive->id}}">
+			<form  class="" method="POST" action="/dashboard/appointment/{{$appointment}}/detail/{{$preventive->id}}">
 				@method('PATCH')
 				@csrf
 				

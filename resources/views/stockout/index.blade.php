@@ -58,19 +58,19 @@
 						<div class="card-header"><label>Product Details</label></div>
 						<div class="card-body">
 							<div class="form-group">
-								<input type="hidden" name="prod_id" placeholder="id" class="form-control">
+								<input type="hidden" name="prod_id" readonly placeholder="id" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_name" placeholder="Name" class="form-control">
+								<input type="text" name="prod_name" readonly placeholder="Name" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_original" placeholder="Original Price" class="form-control">
+								<input type="text" name="prod_original" readonly placeholder="Original Price" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_price" placeholder="Selling Price" class="form-control">
+								<input type="text" name="prod_price" readonly placeholder="Selling Price" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_quantity" placeholder="Update Quantity" class="form-control">
+								<input type="text" name="prod_quantity" placeholder=" Quantity" class="form-control">
 							</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-block" type="button" id="addRow"><i class="fa fa-shopping-cart"></i> Add Product</button>
@@ -134,7 +134,7 @@
     $("input[name=prod_name]").val(product.name);
     $("input[name=prod_original]").val(product.original);
     $("input[name=prod_price]").val(product.price);
-    $("input[name=prod_quantity]").val(product.quantity);
+    $("input[name=prod_quantity]").val(1);
   });
 </script>
 

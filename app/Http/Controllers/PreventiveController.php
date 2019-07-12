@@ -72,7 +72,7 @@ class PreventiveController extends Controller
 
         Preventive::create($data);
         toast('Successfully added!','success');
-        return redirect('dashboard/appointment/'.$appointment.'/preventive')->with('title',$this->title);
+        return redirect('dashboard/appointment/'.$appointment.'/detail')->with('title',$this->title);
     }
 
     /**
@@ -92,8 +92,9 @@ class PreventiveController extends Controller
      * @param  \App\Preventive  $preventive
      * @return \Illuminate\Http\Response
      */
-    public function edit($appointment,Preventive $preventive)
+    public function edit($appointment,Preventive $preventive,$id)
     {
+        $preventive = Preventive::findOrfail($id);
         return view('preventive.edit',['preventive'=>$preventive,'appointment'=>$appointment])->with('title',$this->title);
     }
 
@@ -127,10 +128,10 @@ class PreventiveController extends Controller
      * @param  \App\Preventive  $preventive
      * @return \Illuminate\Http\Response
      */
-    public function destroy($appointment,Preventive $preventive)
-    {
+    public function destroy($appointment,Preventive $preventive,$id)
+    {   $preventive = Preventive::findOrfail($id);
         $preventive->delete();
         toast('Record has been deleted!','error');
-        return redirect('dashboard/appointment/'.$appointment.'/preventive');
+        return redirect('dashboard/appointment/'.$appointment.'/detail');
     }
 }

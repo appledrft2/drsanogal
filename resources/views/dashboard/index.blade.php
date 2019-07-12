@@ -205,10 +205,10 @@
             <tr>
               <th>Patient ID</th>
               <th>Name</th>
-              <th>Description</th>
-              <th>Date visited</th>
               <th>Appointment</th>
-              <th>isNotified</th>
+              <th>Next Appointment</th>
+              <th>Amount</th>
+              <th>SMS Notify</th>
               <th>Status</th>
             </tr>
             </thead>
@@ -216,12 +216,13 @@
             @if(count($appointments))
               @foreach($appointments as $appointment)
               <tr>
-                <td onclick="window.location = '/dashboard/patient/{{$appointment->patient->id}}/appointment';" ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
-                <td onclick="window.location = '/dashboard/patient/{{$appointment->patient->id}}/appointment';" >{{$appointment->patient->name}}</td>
-                <td onclick="window.location = '/dashboard/patient/{{$appointment->patient->id}}/appointment';">{!!$appointment->description!!}</td>
-                <td onclick="window.location = '/dashboard/patient/{{$appointment->patient->id}}/appointment';">{{date('M d, D Y', strtotime($appointment->date_from))}}</td>
-                <td onclick="window.location = '/dashboard/patient/{{$appointment->patient->id}}/appointment';">{{date('M d, D Y', strtotime($appointment->date_to))}}</td>
-                <td onclick="window.location = '/dashboard/patient/{{$appointment->patient->id}}/appointment';"> <span class="badge badge-success">SMS Sent - Client is notified</span></td>
+                <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
+                <td >{{$appointment->patient->name}}</td>
+                <td>{!!$appointment->description!!}</td>
+                <td>{{date('M d, D Y', strtotime($appointment->next_appointment))}}</td>
+                <?php $test = explode(',',$appointment['price']); ?>
+                <td>&#8369; {{number_format(array_sum($test),2)}}</td>
+                <td> <span class="badge badge-success">SMS Sent - Client is notified</span></td>
                 <td>
                   <form method="POST" action="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
                       @method('PATCH')

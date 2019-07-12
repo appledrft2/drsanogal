@@ -57,8 +57,8 @@
 		
 			<div class="float-right">
 				<div class="form-inline">
-					@if(isset($btn)) <a href="/dashboard/appointment/{{$appointment->id}}/preventive" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
-					<form method="POST" action="/dashboard/appointment/{{$appointment->id}}/preventive/search">
+					@if(isset($btn)) <a href="/dashboard/appointment/{{$appointment->id}}/detail" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
+					<form method="POST" action="/dashboard/appointment/{{$appointment->id}}/detail/search">
 						@csrf
 						<div class="input-group ">
 						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -71,7 +71,7 @@
 				
 			</div>
 			<div class="pull-left">
-				<a href="/dashboard/appointment/{{$appointment->id}}/preventive/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+				<a href="/dashboard/appointment/{{$appointment->id}}/detail/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
 			</div>	
 			<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -107,8 +107,8 @@
 								<td>@if($preventive->status == 'Paid') <span class="badge badge-success">{{$preventive->status}}</span>@else <span class="badge badge-secondary">Unpaid</span>@endif</td>
 								<td width="15%">
 									<div class="form-inline">
-										<a href="/dashboard/appointment/{{$appointment->id}}/preventive/{{$preventive->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form method="POST" action="/dashboard/appointment/{{$appointment->id}}/preventive/{{$preventive->id}}" style="width:98%">
+										<a href="/dashboard/appointment/{{$appointment->id}}/detail/{{$preventive->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+										<form method="POST" action="/dashboard/appointment/{{$appointment->id}}/detail/{{$preventive->id}}" style="width:98%">
 											@method('delete')
 											@csrf
 											<button class="btn btn-block btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>

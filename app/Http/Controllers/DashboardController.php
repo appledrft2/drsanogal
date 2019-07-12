@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $patients =Patient::count('id');
 
         // Upcomming Appointments
-        $appointments = Appointment::where('date_to','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
+        $appointments = Appointment::where('next_appointment','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
         
 
         foreach($appointments as $appointment){
