@@ -39,11 +39,14 @@
 													<input type="number" value="{{$appointment->kilogram}}" name="kilogram" class="form-control mb-1 " placeholder="Kilogram">
 												</span>
 											</div>
+										</td>
+									</tr>
 											<?php $i=1; ?>
 											<?php $appointments = explode(',',$appointment->appointment) ?>
 											<?php $prices = explode(',',$appointment->price) ?>
 											<?php $descriptions = explode(',',$appointment->description) ?>
 											@foreach($appointments as $key => $ap)
+											<tr id="data{{$key}}"><td>
 												<label>Appointment # {{$i++}}</label>
 												<select name="appointment[]" class="form-control mb-1">
 													<option value="">Select Appointment</option>
@@ -64,9 +67,10 @@
 												<input type="number" name="price[]" value="{{$prices[$key]}}" class="form-control mb-1" placeholder="Price">
 												<label>Description</label>
 												<textarea name="description[]" class="form-control" rows="5" cols="5" placeholder="Description">{{$descriptions[$key]}}</textarea>
+													</td>
+												</tr>
 											@endforeach
-										</td>
-									</tr>
+										
 								</tbody>
 								
 							</table>
@@ -78,7 +82,4 @@
 		</div>
 	</div>
 </div>
-@endsection
-@section('script')
-  
 @endsection

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
-    <!-- DataTables -->
+  <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -266,9 +266,11 @@ function closeFullscreen() {
   }
 }
 </script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
 <script>
-    CKEDITOR.replace( 'article-ckeditor' );
+    if($('#article-ckeditor').length){
+      CKEDITOR.replace( 'article-ckeditor' );
+    }
 </script>
   @include('sweetalert::alert')
   @if($errors->any())
@@ -331,7 +333,7 @@ function closeFullscreen() {
 <script type="text/javascript">
   var pjax = new Pjax({
   elements: "a", // default is "a[href], form[action]"
-  selectors: ["body"]
+  selectors: ["title","body"]
 })
 </script>
 
