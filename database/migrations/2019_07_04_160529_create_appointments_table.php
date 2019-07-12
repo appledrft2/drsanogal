@@ -21,7 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->integer('temperature');
             $table->integer('kilogram');
             $table->string('appointment');
-            $table->double('price');
+            $table->string('price');
             $table->text('description');
 
             $table->boolean('isPaid')->default(false);
