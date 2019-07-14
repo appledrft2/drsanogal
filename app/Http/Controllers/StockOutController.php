@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class StockOutController extends Controller
 {
-	public $title = "Stock Out";
+	public $title = "Point of Sale";
 
     public function index(){
     	$products = Product::orderBy('created_at','desc')->get();
@@ -55,6 +55,6 @@ class StockOutController extends Controller
     	  $udpateamount->update();
 
     	  toast('Successfully added!','success');
-    	  return redirect('dashboard/stockout')->with('title',$this->title);
+    	  return redirect('dashboard/receipt')->with('title',$this->title);
     }
 }

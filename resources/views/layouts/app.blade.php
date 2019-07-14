@@ -151,10 +151,10 @@
           </li>
 
           <li class="nav-item">
-            <a href="/dashboard/stockout" class="nav-link @if($title=='Stock Out') active @endif">
+            <a href="/dashboard/stockout" class="nav-link @if($title=='Point of Sale') active @endif">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
-                Stock Out
+                Point of Sale
               </p>
             </a>
           </li>

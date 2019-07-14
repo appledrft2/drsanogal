@@ -74,6 +74,8 @@ Route::resource('/dashboard/suppliers/{supplier}/stockin','StockInController');
 // Stock Out module
 Route::get('/dashboard/stockout','StockOutController@index');
 Route::post('/dashboard/stockout','StockOutController@store');
+//Receipt module
+Route::get('/dashboard/receipt/{rcode}','ReceiptController@index');
 });
 
 // Login module provided by laravel
