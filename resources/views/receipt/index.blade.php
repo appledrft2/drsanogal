@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
+<div onload="loadBarChart();"></div>
 <div class="form-inline mb-2">
 	<div class="form-group ml-2"><a href="/dashboard/stockout" class="btn btn-default"><i class="fa fa-shopping-cart"></i> POS</a></div>
 	<div class="form-group ml-2"><button id="printbtn" class="btn btn-default"><i class="fa fa-print"></i> Print</button></div>

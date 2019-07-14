@@ -67,8 +67,10 @@ class StockInController extends Controller
             $product->price = $request['price'][$i];
             $product->quantity = $product->quantity + $request['quantity'][$i];
             $product->update();
+
+            $subtotal = $request['original'][$i] * $request['quantity'][$i];
             // get the total amount
-            $sum = $sum = $request['original'][$i];
+            $sum = $sum + $subtotal;
             // insert to stockindetails
             $stockindetails = new StockInDetail();
             $stockindetails->name = $request['name'][$i];

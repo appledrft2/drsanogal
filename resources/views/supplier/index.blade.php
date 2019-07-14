@@ -55,7 +55,7 @@
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="6" class="text-center">No Data</td></tr>
+		<!-- 			<tr><td colspan="6" class="text-center">No Data</td></tr> -->
 					@endif
 				</tbody>
 			</table>
