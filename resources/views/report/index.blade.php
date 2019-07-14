@@ -42,7 +42,7 @@
 								<td>&#8369; {{number_format($report->amount,2)}}</td>
 								<td>{{$report->created_at->diffForhumans()}}</td>
 								<td>
-									<a href="receipt/{{$report->rcode}}" class="btn btn-default btn-sm"><i class="fa fa-list"></i> View Receipt</a>
+									<a href="receipt/{{$report->rcode}}" class="btn btn-default btn-sm"><i class="fa fa-print"></i> View Receipt</a>
 								</td>
 							</tr>
 						@endforeach

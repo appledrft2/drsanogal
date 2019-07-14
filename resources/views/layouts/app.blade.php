@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body onload="loadBarChart();" class="hold-transition sidebar-mini">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -161,7 +161,7 @@
           @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/report" class="nav-link @if($title=='Report') active @endif">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Report
               </p>
@@ -321,13 +321,13 @@ function closeFullscreen() {
       $("#table").DataTable();
   });
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
 <script type="text/javascript">
   var pjax = new Pjax({
   elements: "a", // default is "a[href], form[action]"
   selectors: ["title","body"]
 })
-</script>
+</script> -->
 @yield('script','')
 </body>
 </html>
