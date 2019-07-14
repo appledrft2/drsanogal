@@ -15,6 +15,8 @@ class CreateStockOutsTable extends Migration
     {
         Schema::create('stock_outs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('rcode');
+            $table->double('amount');
             $table->timestamps();
         });
     }

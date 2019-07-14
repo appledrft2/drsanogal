@@ -10,7 +10,7 @@
 			<div class="col-6">
 				<div class="form-group ">
 					<label>Receipt Code</label>
-					<input type="text" name="code" placeholder="Code" value="RS-{{rand(1000,9999)}}" readonly class="form-control">
+					<input type="text" name="rcode" placeholder="Code" value="RS-{{rand(1000,9999)}}" readonly class="form-control">
 				</div>
 				
 			</div>
