@@ -8,10 +8,11 @@
 		<a href="/dashboard/patient/{{$patient}}/appointment" class="btn btn-default">Go Back</a>
 	</div>
 	<div class="card">
-		<div class="card-header">View Appointment</div>
+		<div class="card-header">Update Appointment</div>
 		<div class="card-body">
 			    <div class="form-group">
-				    <form method="post" action="/dashboard/patient/{{$patient}}/appointment">
+				    <form method="post" action="/dashboard/patient/{{$patient}}/appointment/{{$appointment->id}}">
+				    	@method('PATCH')
 				    	@csrf
 						<div class="form-group col-12 mx-auto mt-2">
 							<table class="col-12">
@@ -72,8 +73,17 @@
 											@endforeach
 										
 								</tbody>
+								<tfoot>
+									<tr>
+										<td>
+											<button type="button" class="btn btn-info" id="add">Add</button>
+											<button type="button" class="btn btn-danger" id="remove">Remove</button>
+										</td>
+									</tr>
+								</tfoot>
 								
 							</table>
+							<button type="submit" class="btn btn-secondary mt-5 btn-block">Update</button>
 							
 						</div>
 				    </form>
@@ -82,4 +92,43 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('script')
+    <script type="text/javascript">
+    	var i = {{$i}};
+		$('#add').click(function(){
+			
+			$('#row').append('<tr id="data'+i+'"><td>'+
+				'<label>Appointment #'+i+'</label>'+
+				'<select required name="appointment[]" class="form-control mb-1">'+
+				'<option value="">Select Appointment</option>'+
+				'<option>5in1 Vaccination</option>'+
+				'<option>Deworming</option>'+
+				'<option>Rabies Vaccination</option>'+
+				'<option>Bordetella</option>'+
+				'<option>Leptospirosis</option>'+
+				'<option>Heartworm Prevention</option>'+
+				'<option>Tick and Flea Prevention</option>'+
+				'<option>Manage Treatment</option>'+
+				'<option>Laboratory</option>'+
+				'<option>Check-up</option>'+
+				'<option>Others</option>'+
+				'</select>'+
+				'<label>Price</label>'+
+				'<input required type="number" name="price[]" class="form-control mb-1" placeholder="Price">'+
+				'<label>Description</label>'+
+				'<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
+				'</td></tr>');
+			i++;
+		});
+
+		$('#remove').click(function(){
+			
+			if(i >= 0){
+				i--;
+				$('#row').find('#data'+i).remove();
+
+			}
+		});
+	</script>
 @endsection

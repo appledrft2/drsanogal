@@ -115,8 +115,8 @@
 								<td>{{$i++}}</td>
 								<td>{{$appointment->appointment}}</td>
 								<td>{{date('M d, D Y', strtotime($appointment->next_appointment))}}</td>
-								<?php $test = explode(',',$appointment['price']); ?>
-								<td>&#8369; {{number_format(array_sum($test),2)}}</td>
+							
+								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
 								<td>
 									@if($appointment->isCompleted == 'Not Completed') <span class="badge badge-secondary">Not Completed</span> 
 									@elseif($appointment->isCompleted == 'Completed') <span class="badge badge-success"> Completed</span>
@@ -128,7 +128,7 @@
 									@endif
 								</td>
 								<td>
-									<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" class=" btn-sm btn btn-success btn-block"><i class="fa fa-eye"></i> View Details</a>
+									<a href="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}/edit" class=" btn-sm btn btn-info btn-block"><i class="fa fa-edit"></i> Edit</a>
 
 									<form method="POST" action="/dashboard/patient/{{$patient->id}}/appointment/{{$appointment->id}}" style="width:98%">
 											@method('delete')

@@ -41,8 +41,7 @@
 								<td>{{$appointment->patient->name}}</td>
 								<td>{{$appointment->appointment}}</td>
 								<td>{{date('M d, Y', strtotime($appointment->date_to))}}</td>
-								<?php $test = explode(',',$appointment['price']); ?>
-								<td>&#8369; {{number_format(array_sum($test),2)}}</td>
+								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
 								<td>
 									@if($appointment->isCompleted == 'Completed')<span class="badge badge-success">Completed</span> 
 									@elseif($appointment->isCompleted == 'Not Completed') <span class="badge badge-secondary">Not Completed</span> 

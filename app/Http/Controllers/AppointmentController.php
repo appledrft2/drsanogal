@@ -78,7 +78,18 @@ class AppointmentController extends Controller
             'time' => 'required',
             'temperature' => 'required',
             'kilogram' => 'required',
+            'appointment.*' => 'nullable',
+            'appointment.0' => 'required',
+            'price.*' => 'nullable',
+            'price.0' => 'required',
+            'description.*' => 'nullable',
+            'description.0' => 'required',
         ]);
+        $amount = 0;
+        foreach($request->price as $value){
+            $amount = $amount + $value;
+        }
+        $data['amount'] = $amount;
         $data['patient_id'] = $patient;
         $data['appointment'] = implode(',', $request->appointment); 
         $data['price'] = implode(',', $request->price); 
@@ -119,19 +130,43 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update($patient,Request $request, Appointment $appointment)
+    public function update($patient,Request $request,$appointment_id)
     {
+        // $data = $request->validate([
+        //             'date_to' => 'required',
+        //             'date_from' => 'required',
+        //         ]);
+
+        //  $data['description'] = (request()->description) ? request()->description : ' ';
+
+        // $appointment->update($data);
+
+        // toast('Record successfully updated!','success');
+        // return redirect('dashboard/patient/'.$patient.'/appointment');
+
         $data = $request->validate([
-                    'date_to' => 'required',
-                    'date_from' => 'required',
-                ]);
+            'next_appointment' => 'required',
+            'time' => 'required',
+            'temperature' => 'required',
+            'kilogram' => 'required',
 
-         $data['description'] = (request()->description) ? request()->description : ' ';
+        ]);
 
+        $amount = 0;
+        foreach($request->price as $value){
+            $amount = $amount + $value;
+        }
+        $data['amount'] = $amount;
+        $data['patient_id'] = $patient;
+        $data['appointment'] = implode(',', $request->appointment); 
+        $data['price'] = implode(',', $request->price); 
+        $data['description'] = implode(',', $request->description); 
+        $appointment =Appointment::findOrfail($appointment_id);
         $appointment->update($data);
 
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/patient/'.$patient.'/appointment');
+        toast('Successfully Updated!','success');
+        return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
+
     }
 
     public function UpdateStatus($patient,Request $request, Appointment $appointment){

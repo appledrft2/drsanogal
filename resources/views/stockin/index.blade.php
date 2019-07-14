@@ -80,7 +80,13 @@
 								<td>{{ date('M d, Y', strtotime($stockin->delivery_date))}}</td>
 								<td>{{$stockin->term}}</td>
 								<td>{{ date('M d, Y', strtotime($stockin->due))}}</td>
-								<td>{{$stockin->discount}}</td>
+								<td>
+									@if($stockin->discount == 0)
+									No Discount
+									@else
+									{{$stockin->discount * 100}} %
+									@endif
+								</td>
 						
 								<td class="text-right">&#8369; {{number_format($stockin->amount,2)}}</td>
 								<td width="15%">

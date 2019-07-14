@@ -23,19 +23,31 @@
 				<div class="row">
 					<div class="form-group col-6">
 						<label>Delivery Date</label>
-						<input type="date" name="delivery_date" placeholder="Delivery Date" class="form-control">
+						<input required type="date" value="{{old('delivery_date')}}" name="delivery_date" placeholder="Delivery Date" class="form-control">
 					</div>
 					<div class="form-group col-6">
 						<label>Due Date</label>
-						<input type="date" name="due" placeholder="Due" class="form-control">
+						<input required type="date" value="{{old('due')}}" name="due" placeholder="Due" class="form-control">
 					</div>
 					<div class="form-group col-6">
 						<label>Terms</label>
-						<input type="text" name="term" placeholder="Terms" class="form-control">
+						<input type="text" name="term" value="{{old('term')}}" class="form-control" placeholder="No. of days">
 					</div>
 					<div class="form-group col-6">
 						<label>Discount</label>
-						<input type="text" name="discount" placeholder="Discount" class="form-control">
+						<select required class="form-control" name="discount">
+							<option value="">Select Discount</option>
+							<option @if(old('discount') == "0.10") selected @endif  value="0.10">10%</option>
+							<option @if(old('discount') == "0.20") selected @endif  value="0.20">20%</option>
+							<option @if(old('discount') == "0.30") selected @endif  value="0.30">30%</option>
+							<option @if(old('discount') == "0.40") selected @endif  value="0.40">40%</option>
+							<option @if(old('discount') == "0.50") selected @endif  value="0.50">50%</option>
+							<option @if(old('discount') == "0.60") selected @endif  value="0.60">60%</option>
+							<option @if(old('discount') == "0.70") selected @endif  value="0.70">70%</option>
+							<option @if(old('discount') == "0.80") selected @endif  value="0.80">80%</option>
+							<option @if(old('discount') == "0.90") selected @endif  value="0.90">90%</option>
+							<option @if(old('discount') == "0") selected @endif  value="0">No Discount</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -93,7 +105,7 @@
 								<input type="text" name="prod_price" placeholder="Selling Price" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_quantity" placeholder="Update Quantity" class="form-control">
+								<input type="text" name="prod_quantity" placeholder="Quantity" class="form-control">
 							</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-block" type="button" id="addRow"><i class="fa fa-shopping-cart"></i> Add Product</button>
@@ -157,7 +169,7 @@
     $("input[name=prod_name]").val(product.name);
     $("input[name=prod_original]").val(product.original);
     $("input[name=prod_price]").val(product.price);
-    $("input[name=prod_quantity]").val(product.quantity);
+    $("input[name=prod_quantity]").val(1);
   });
 </script>
 
@@ -237,6 +249,8 @@ var row = '<tr id="row'+i+'">'+
 
 	
 	});
+
+
 </script>
 
 @endsection

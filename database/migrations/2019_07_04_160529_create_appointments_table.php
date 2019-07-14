@@ -23,6 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('appointment');
             $table->string('price');
             $table->text('description');
+            $table->double('amount');
 
             $table->boolean('isPaid')->default(false);
             $table->boolean('isNotified')->default(false);

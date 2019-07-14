@@ -40,7 +40,7 @@
 												</span>
 											</div>
 											<label>Appointment</label>
-											<select name="appointment[]" class="form-control mb-1">
+											<select required name="appointment[]" class="form-control mb-1">
 												<option value="">Select Appointment</option>
 												<option>5in1 Vaccination</option>
 												<option>Deworming</option>
@@ -56,9 +56,9 @@
 
 											</select>
 											<label>Price</label>
-											<input type="number" name="price[]" class="form-control mb-1" placeholder="Price">
+											<input required type="number" name="price[]" class="form-control mb-1" placeholder="Price">
 											<label>Description</label>
-											<textarea name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>
+											<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>
 										</td>
 									</tr>
 								</tbody>
@@ -87,7 +87,7 @@
 			
 			$('#row').append('<tr id="data'+i+'"><td>'+
 				'<label>Appointment #'+i+'</label>'+
-				'<select name="appointment[]" class="form-control mb-1">'+
+				'<select required name="appointment[]" class="form-control mb-1">'+
 				'<option value="">Select Appointment</option>'+
 				'<option>5in1 Vaccination</option>'+
 				'<option>Deworming</option>'+
@@ -102,9 +102,9 @@
 				'<option>Others</option>'+
 				'</select>'+
 				'<label>Price</label>'+
-				'<input type="number" name="price[]" class="form-control mb-1" placeholder="Price">'+
+				'<input required type="number" name="price[]" class="form-control mb-1" placeholder="Price">'+
 				'<label>Description</label>'+
-				'<textarea name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
+				'<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
 				'</td></tr>');
 			i++;
 		});

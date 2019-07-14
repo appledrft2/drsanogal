@@ -90,7 +90,15 @@
             
                 <td>{{$stockin->supplier->name}}</td>
                 <td>{{$stockin->term}}</td>
-                <td>{{$stockin->discount}}</td>
+                <td>
+
+                  @if($stockin->discount == 0)
+                  No Discount
+                  @else
+                  {{$stockin->discount * 100}} %
+                  @endif
+
+                </td>
                 <td class="text-right">&#8369; {{number_format($stockin->amount,2)}}</td>
                 <td>{{date('M d, D Y', strtotime($stockin->delivery_date))}}</td>
                 <td>{{date('M d, D Y', strtotime($stockin->due))}}</td>
@@ -220,8 +228,7 @@
                 <td >{{$appointment->patient->name}}</td>
                 <td>{!!$appointment->description!!}</td>
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment))}}</td>
-                <?php $test = explode(',',$appointment['price']); ?>
-                <td>&#8369; {{number_format(array_sum($test),2)}}</td>
+                <td>&#8369; {{number_format($appointment->amount,2)}}</td>
                 <td> <span class="badge badge-success">SMS Sent - Client is notified</span></td>
                 <td>
                   <form method="POST" action="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">

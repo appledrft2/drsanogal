@@ -49,6 +49,7 @@ class StockInController extends Controller
             'term' => 'required',
             'due' => 'required',
             'discount' => 'required',
+          
         ]);
         $data['supplier_id'] = $supplier_id;
         
@@ -64,7 +65,7 @@ class StockInController extends Controller
             $product = Product::findOrfail($id);
             $product->original = $request['original'][$i];
             $product->price = $request['price'][$i];
-            $product->quantity = $request['quantity'][$i];
+            $product->quantity = $product->quantity + $request['quantity'][$i];
             $product->update();
             // get the total amount
             $sum = $sum = $request['original'][$i];
@@ -81,8 +82,10 @@ class StockInController extends Controller
 
         }
 
+        $discount = $sum * $request->discount;
+
         $udpateamount = Stockin::findOrfail($stockin_id->id);
-        $udpateamount->amount = $sum;
+        $udpateamount->amount = $sum - $discount;
         $udpateamount->update();
 
         toast('Successfully added!','success');
