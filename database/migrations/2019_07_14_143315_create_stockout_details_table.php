@@ -13,20 +13,19 @@ class CreateStockoutDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stockout_details', function (Blueprint $table) {
+        Schema::create('stock_out_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->bigInteger('stockout_id')->unsigned()->nullable();;
-            $table->double('original');
+            $table->bigInteger('stock_out_id')->unsigned();
+            $table->string('category');
+            $table->string('unit');
             $table->double('price');
             $table->integer('quantity');
             $table->integer('amount');
             $table->timestamps();
 
 
-                  $table->foreign('stockout_id')
-                              ->references('id')->on('stock_outs')
-                              ->onDelete('cascade');
+            $table->foreign('stock_out_id')->references('id')->on('stock_outs')->onDelete('cascade');
         });
     }
 

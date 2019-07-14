@@ -4,7 +4,7 @@
 <div class="form-inline mb-2">
 	<div class="form-group ml-2"><a href="/dashboard/stockout" class="btn btn-default"><i class="fa fa-shopping-cart"></i> POS</a></div>
 	<div class="form-group ml-2"><button id="printbtn" class="btn btn-default"><i class="fa fa-print"></i> Print</button></div>
-	<div class="form-group ml-2"><a href="/dashboard/stockout" class="btn btn-default"><i class="fa fa-list"></i> Report</a></div>
+	<div class="form-group ml-2"><a href="/dashboard/report" class="btn btn-default"><i class="fa fa-list"></i> Report</a></div>
 </div>
 
 <div class="row">
@@ -46,7 +46,9 @@
 			                                  <thead>
 			                                    <tr>
 			                                    <th class="text-center">#</th>
-			                                      <th class="text-center">Product Name:</th>
+			                                      <th class="text-center">Name:</th>
+			                                      <th class="text-center">Category:</th>
+			                                      <th class="text-center">Unit:</th>
 			                                      <th class="text-center">Price:</th>
 			                                      <th class="text-center">Quantity: </th>
 			                                      <th class="text-center">Total Price:</th>
@@ -58,6 +60,8 @@
 			                             			<tr class="text-center">
 			                             				<td>{{$i++}}</td>
 			                             				<td>{{$details->name}}</td>
+			                             				<td>{{$details->category}}</td>
+			                             				<td>{{$details->unit}}</td>
 			                             				<td>&#8369 {{ number_format($details->price,2) }}</td>
 			                             				<td>{{$details->quantity}}</td>
 			                             				<td>&#8369 {{number_format($details->amount,2)}}</td>
@@ -69,7 +73,7 @@
 			                                    <td><br><br><br><br><br><br></td>
 			                                  </tr>
 			                                  <tr>
-			                                    <td colspan="4" class="text-right"><b>Overall Amount:</b> </td>
+			                                    <td colspan="6" class="text-right"><b>Overall Amount:</b> </td>
 			                                    <td class="text-center">&#8369 {{number_format($receipt->amount,2)}}</td>
 			                                  </tr>
 			                                  
@@ -86,15 +90,15 @@
 			                              <br>
 			                              <i >Thank you for buying!<br> DR. S & J VETERENARY CLINIC & GROOMING CENTER<br>
 			www.DRSANDJVETERENARYCLINIC.shop</i></p></td>
-			                          </tr>
-			                        </tfoot>
-			                      </table>
-			                    </div>
-			                </div>
-			              </div>
+	                      </tr>
+	                    </tfoot>
+	                  </table>
+	                </div>
+	            </div>
+	          </div>
 		</div>
 	</div>
-	</div>
+
 </div>
 @endsection
 @section('script')

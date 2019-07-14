@@ -27,8 +27,9 @@
 								<thead>
 									<tr>
 										<th>Name</th>
-										<th>Original</th>
-										<th>Selling</th>
+										<th>Category</th>
+										<th>Unit</th>
+										<th>Price</th>
 										<th>Quantity</th>
 										<th>Action</th>
 									</tr>
@@ -38,7 +39,8 @@
 										@foreach($products as $product)
 										<tr>
 											<td>{{$product->name}}</td>
-											<td>{{$product->original}}</td>
+											<td>{{$product->category}}</td>
+											<td>{{$product->unit}}</td>
 											<td>{{$product->price}}</td>
 											<td>{{$product->quantity}}</td>
 											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
@@ -64,13 +66,16 @@
 								<input type="text" name="prod_name" readonly placeholder="Name" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_original" readonly placeholder="Original Price" class="form-control">
+								<input type="text" name="prod_category" readonly placeholder="Category" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_price" readonly placeholder="Selling Price" class="form-control">
+								<input type="text" name="prod_unit" readonly placeholder="Unit" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_quantity" placeholder=" Quantity" class="form-control">
+								<input type="text" name="prod_price" readonly placeholder="Price" class="form-control">
+							</div>
+							<div class="form-group">
+								<input type="text" name="prod_quantity" placeholder="Quantity" class="form-control">
 							</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-block" type="button" id="addRow"><i class="fa fa-shopping-cart"></i> Add Product</button>
@@ -87,8 +92,9 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Original</th>
-									<th>Selling</th>
+									<th>Category</th>
+									<th>Unit</th>
+									<th>Price</th>
 									<th>Quantity</th>
 									<th>Action</th>
 								</tr>
@@ -96,16 +102,10 @@
 							<tbody id="row">
 								
 							</tbody>
-
+							
 						</table>
 					</div>
-				</div>
-			</div>
-
-			<div class="col-12">
-				<div class="card">
-					
-					<div class="card-body ">
+					<div class="card-footer">
 						<div class="float-right">
 
 							<button class="btn btn-primary"><i class="fa fa-check"></i> Process Order</button>
@@ -132,7 +132,8 @@
 
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
-    $("input[name=prod_original]").val(product.original);
+    $("input[name=prod_category]").val(product.category);
+    $("input[name=prod_unit]").val(product.unit);
     $("input[name=prod_price]").val(product.price);
     $("input[name=prod_quantity]").val(1);
   });
@@ -140,15 +141,18 @@
 
 <script type="text/javascript">
 	var i = 0;
+	var overall = 0;
 
 	$('#addRow').click(function(e){
 		e.preventDefault();
 		$("#productlist2").DataTable().destroy();
 		var id = $("input[name=prod_id]").val();
 		var name = $("input[name=prod_name]").val();
-		var original = $("input[name=prod_original]").val();
+		var category = $("input[name=prod_category]").val();
+		var unit = $("input[name=prod_unit]").val();
 		var price = $("input[name=prod_price]").val();
 		var quantity = $("input[name=prod_quantity]").val();
+
 
 		if(id == ''){
 			$("#productlist2").DataTable();
@@ -165,9 +169,15 @@ var row = '<tr id="row'+i+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
-				'<div class="form-group mr-2 text-right">&#8369;'+
-				original+
-					'<input type="hidden" class="form-control" readonly name="original[]" value="'+original+'">'+
+				'<div class="form-group mr-2 text-right">'+
+				category+
+					'<input type="hidden" class="form-control" readonly name="category[]" value="'+category+'">'+
+				'</div>'+
+			'</td>'+
+			'<td>'+
+				'<div class="form-group mr-2 text-right">'+
+				unit+
+					'<input type="hidden" class="form-control" readonly name="unit[]" value="'+unit+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+

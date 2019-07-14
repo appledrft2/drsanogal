@@ -133,21 +133,15 @@
 							</tbody>
 
 						</table>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-12">
-				<div class="card">
-					
-					<div class="card-body ">
-						<div class="float-right">
+						<div class="mt-5 float-right">
 
 							<button class="btn btn-primary"><i class="fa fa-truck"></i> Process Delivery</button>
 						</div>
 					</div>
 				</div>
 			</div>
+
+		
 
 
 		</div>

@@ -38,8 +38,9 @@ class StockOutController extends Controller
     	      // insert to stockoutdetails
     	      $stockoutdetails = new StockOutDetail();
     	      $stockoutdetails->name = $request['name'][$i];
-    	      $stockoutdetails->stockout_id = $stockout_id->id;
-    	      $stockoutdetails->original = $request['original'][$i];
+    	      $stockoutdetails->stock_out_id = $stockout_id->id;
+    	      $stockoutdetails->category = $request['category'][$i];
+              $stockoutdetails->unit = $request['unit'][$i];
     	      $stockoutdetails->price = $request['price'][$i];
     	      $stockoutdetails->quantity = $request['quantity'][$i];
     	      $stockoutdetails->amount = $request['price'][$i] * $request['quantity'][$i];
@@ -55,6 +56,6 @@ class StockOutController extends Controller
     	  $udpateamount->update();
 
     	  toast('Successfully added!','success');
-    	  return redirect('dashboard/receipt')->with('title',$this->title);
+    	  return redirect('dashboard/receipt/'.$data['rcode'])->with('title',$this->title);
     }
 }
