@@ -41,7 +41,9 @@ class StockOutController extends Controller
     	      $stockoutdetails->stock_out_id = $stockout_id->id;
     	      $stockoutdetails->category = $request['category'][$i];
               $stockoutdetails->unit = $request['unit'][$i];
-    	      $stockoutdetails->price = $request['price'][$i];
+              $netamnt = $request['price'][$i] - $request['original'][$i];
+    	      $stockoutdetails->netamount = $netamnt * $request['quantity'][$i];
+              $stockoutdetails->price = $request['price'][$i];
     	      $stockoutdetails->quantity = $request['quantity'][$i];
     	      $stockoutdetails->amount = $request['price'][$i] * $request['quantity'][$i];
     	      $stockoutdetails->save();

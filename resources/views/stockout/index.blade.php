@@ -61,6 +61,7 @@
 						<div class="card-body">
 							<div class="form-group">
 								<input type="hidden" name="prod_id" readonly placeholder="id" class="form-control">
+								<input type="hidden" name="prod_original" readonly placeholder="id" class="form-control">
 							</div>
 							<div class="form-group">
 								<input type="text" name="prod_name" readonly placeholder="Name" class="form-control">
@@ -133,6 +134,7 @@
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
     $("input[name=prod_category]").val(product.category);
+    $("input[name=prod_original").val(product.original);
     $("input[name=prod_unit]").val(product.unit);
     $("input[name=prod_price]").val(product.price);
     $("input[name=prod_quantity]").val(1);
@@ -150,6 +152,7 @@
 		var name = $("input[name=prod_name]").val();
 		var category = $("input[name=prod_category]").val();
 		var unit = $("input[name=prod_unit]").val();
+		var original = $("input[name=prod_original]").val();
 		var price = $("input[name=prod_price]").val();
 		var quantity = $("input[name=prod_quantity]").val();
 
@@ -165,6 +168,7 @@ var row = '<tr id="row'+i+'">'+
 				'<div class="form-group mr-2">'+
 					name+
 					'<input type="hidden" class="form-control" readonly name="id[]" value="'+id+'">'+
+					'<input type="hidden" class="form-control" readonly name="original[]" value="'+original+'">'+
 					'<input type="hidden" class="form-control" readonly name="name[]" value="'+name+'">'+
 				'</div>'+
 			'</td>'+
@@ -205,6 +209,8 @@ var row = '<tr id="row'+i+'">'+
 
 		$("input[name=prod_id]").val('');
 		$("input[name=prod_name]").val('');
+		$("input[name=prod_category]").val('');
+		$("input[name=prod_unit]").val('');
 		$("input[name=prod_original]").val('');
 		$("input[name=prod_price]").val('');
 		$("input[name=prod_quantity]").val('');

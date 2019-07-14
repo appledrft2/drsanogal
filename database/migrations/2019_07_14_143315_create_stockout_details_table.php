@@ -20,6 +20,7 @@ class CreateStockoutDetailsTable extends Migration
             $table->string('category');
             $table->string('unit');
             $table->double('price');
+            $table->double('netamount');
             $table->integer('quantity');
             $table->integer('amount');
             $table->timestamps();
@@ -36,6 +37,6 @@ class CreateStockoutDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stockout_details');
+        Schema::dropIfExists('stock_out_details');
     }
 }
