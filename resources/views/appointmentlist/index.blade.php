@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 
-			<div class="float-right">
+<!-- 			<div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/appointment" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
 					<form method="POST" action="/dashboard/appointment/search">
@@ -18,9 +18,9 @@
 					</form>
 				</div>
 				
-			</div>
+			</div> -->
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th width="10%">Patient ID</th>
@@ -72,7 +72,7 @@
 				</tbody>
 			</table>
 			</div>
-			<div class="float-right mt-1">{{ $appointments->appends(Request::all())->links() }} </div>
+		<!-- 	<div class="float-right mt-1">{{ $appointments->appends(Request::all())->links() }} </div> -->
 		</div>
 	</div>
 @endsection

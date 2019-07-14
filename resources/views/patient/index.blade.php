@@ -41,7 +41,7 @@
 				</div>
 			</div>
 		
-		
+		<!-- 
 			<div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
@@ -56,12 +56,12 @@
 					</form>
 				</div>
 				
-			</div>
-			<div class="pull-left">
-				<a href="/dashboard/client/{{$client->id}}/patient/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+			</div> -->
+			<div class="pull-left mb-3">
+				<a href="/dashboard/client/{{$client->id}}/patient/create" class="btn btn-default"><i class="fa fa-plus-circle"></i> New Patient</a>
 			</div>	
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -108,12 +108,12 @@
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="10" class="text-center">No Data</td></tr>
+
 					@endif
 				</tbody>
 			</table>
 			</div>
-			<div class="float-right mt-1">{{ $patients->appends(Request::all())->links() }} </div>
+<!-- 			<div class="float-right mt-1">{{ $patients->appends(Request::all())->links() }} </div> -->
 		</div>
 	</div>
 @endsection

@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 
-			<div class="float-right">
+			<!-- <div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/suppliers" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
 					<form method="POST" action="/dashboard/suppliers/search">
@@ -18,9 +18,9 @@
 					</form>
 				</div>
 				
-			</div>
+			</div> -->
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -38,17 +38,17 @@
 								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{!!$supplier->address!!}</td>
 								
 								<td width="20%">
-									<a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-success btn-sm mr-1"><i class="fa fa-truck"></i> &nbsp;Select Supplier</a>
+									<a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default"><i class="fa fa-check"></i> &nbsp;Select Supplier</a>
 								</td>
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="8" class="text-center">No Data</td></tr>
+					<!-- <tr><td colspan="8" class="text-center">No Data</td></tr> -->
 					@endif
 				</tbody>
 			</table>
 			</div>
-			<div class="float-right mt-1">{{ $suppliers->appends(Request::all())->links() }} </div>
+		<!-- 	<div class="float-right mt-1">{{ $suppliers->appends(Request::all())->links() }} </div> -->
 		</div>
 	</div>
 @endsection

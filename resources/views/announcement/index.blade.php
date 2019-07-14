@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 
-			<div class="float-right">
+<!-- 			<div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/announcement" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
 					<form method="POST" action="/dashboard/announcement/search">
@@ -18,12 +18,12 @@
 					</form>
 				</div>
 				
-			</div>
-			<div class="pull-left">
-				<a href="/dashboard/announcement/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+			</div> -->
+			<div class="pull-left mb-3">
+				<a href="/dashboard/announcement/create" class="btn btn-default"><i class="fa fa-plus-circle"></i> New Announcement</a>
 			</div>
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Title</th>
@@ -49,23 +49,23 @@
 								
 								<td width="15%">
 									<div class="form-inline">
-										<a href="/dashboard/announcement/{{$announcement->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
+										<a href="/dashboard/announcement/{{$announcement->id}}/edit" class="btn btn-info  mr-1"><i class="fa fa-edit"></i></a>
 										<form method="POST" action="/dashboard/announcement/{{$announcement->id}}">
 											@method('delete')
 											@csrf
-											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger  mt-3 btn-submit"><i class="fa fa-trash"></i></button>
 										</form>
 									</div>
 								</td>
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="5" class="text-center">No Data</td></tr>
+					
 					@endif
 				</tbody>
 			</table>
 		</div>
-			<div class="float-right mt-1">{{ $announcements->appends(Request::all())->links() }} </div>
+<!-- 			<div class="float-right mt-1">{{ $announcements->appends(Request::all())->links() }} </div> -->
 		</div>
 	</div>
 @endsection

@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 
-			<div class="float-right">
+<!-- 			<div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/account" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
 					<form method="POST" action="/dashboard/account/search">
@@ -18,12 +18,12 @@
 					</form>
 				</div>
 				
-			</div>
-			<div class="pull-left">
-				<a href="/dashboard/account/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+			</div> -->
+			<div class=" mb-3">
+				<a href="/dashboard/account/create" class="btn btn-default"><i class="fa fa-plus-circle"></i> New Account</a>
 			</div>
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Profile</th>

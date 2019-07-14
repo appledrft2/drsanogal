@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 
-			<div class="float-right">
+<!-- 			<div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/product" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
 					<form method="POST" action="/dashboard/product/search">
@@ -18,14 +18,15 @@
 					</form>
 				</div>
 				
-			</div>
-			<div class="pull-left">
-				<a href="/dashboard/product/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+			</div> -->
+			<div class="pull-left mb-3">
+				<a href="/dashboard/product/create" class="btn btn-default "><i class="fa fa-plus-circle"></i>New Product</a>
 			</div>
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>Supplier</th>
 						<th>Name</th>
 						<th>Category</th>
@@ -33,14 +34,16 @@
 						<th>Original Price</th>
 						<th>Selling Price</th>
 						<th>Quantity</th>
-						<th>Sub Total</th>
+						<th width="20%">Sub Total</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@if(count($products))
+					<?php $i=1; ?>
 						@foreach($products as $product)
 							<tr>
+								<td>{{$i++}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';"><a href="/dashboard/supplier/{{$product->supplier->id}}/edit">{{$product->supplier->name}}</a></td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->name}}</td>
 								<td onclick="window.location = '/dashboard/product/{{$product->id}}/edit';">{{$product->category}}</td>
@@ -62,25 +65,23 @@
 								</td>
 							</tr>
 						@endforeach
-						<tr>
-							<td colspan="6"></td>
-							<td class="text-center"><label>Total</label></td>
-							<td class="text-right"><?php $sum=0; ?>
-								@foreach($products as $product)
-									<?php $sum = $sum + $product->quantity * $product->price ?>
-								@endforeach
-								&#8369; <?php echo number_format($sum,2); ?>
-							</td>
-							<td></td>
-						</tr>
-						<tbody></tbody>
+						
 					@else
-					<tr><td colspan="9" class="text-center">No Data</td></tr>
+				<!-- 	<tr><td colspan="9" class="text-center">No Data</td></tr> -->
 					@endif
 				</tbody>
+				
 			</table>
+<!-- 			<div class="col-md-12">
+				<h4>Overall Total: </h4>
+				<?php $sum=0; ?>
+				@foreach($products as $product)
+					<?php $sum = $sum + $product->quantity * $product->price ?>
+				@endforeach
+				&#8369; <?php echo number_format($sum,2); ?>
+			</div> -->
 			</div>
-			<div class="float-right mt-1">{{ $products->appends(Request::all())->links() }} </div>
+<!-- 			<div class="float-right mt-1">{{ $products->appends(Request::all())->links() }} </div> -->
 		</div>
 	</div>
 @endsection

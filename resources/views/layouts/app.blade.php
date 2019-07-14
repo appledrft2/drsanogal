@@ -70,7 +70,7 @@
         </div>
       </div>
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-1 mb-5">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -167,7 +167,6 @@
               </p>
             </a>
           </li>
-
           <li class="nav-item">
             <a href="/dashboard/account" class="nav-link @if($title=='Account') active @endif">
               <i class="nav-icon fas fa-key"></i>
@@ -177,8 +176,8 @@
             </a>
           </li>
           @endif
-
         </ul>
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -319,6 +318,7 @@ function closeFullscreen() {
     $("#productlist").DataTable();
      $("#productlist2").DataTable();
       $("#servicelist").DataTable();
+      $("#table").DataTable();
   });
 </script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>

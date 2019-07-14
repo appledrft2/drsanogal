@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 
-			<div class="float-right">
+		<!-- 	<div class="float-right">
 				<div class="form-inline">
 					@if(isset($btn)) <a href="/dashboard/client" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
 					<form method="POST" action="/dashboard/client/search">
@@ -18,15 +18,15 @@
 					</form>
 				</div>
 				
-			</div>
-			<div class="pull-left">
-				<a href="/dashboard/client/create" class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i></a>
+			</div> -->
+			<div class="pull-left mb-3">
+				<a href="/dashboard/client/create" class="btn btn-default"><i class="fa fa-plus-circle"></i> New Client</a>
 			</div>
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Client ID</th>
+						<th>#</th>
 						<th>Name</th>
 						<th>Gender</th>
 						<th>Occupation</th>
@@ -44,9 +44,10 @@
 						<td></td>
 					</tr> -->
 					@if(count($clients))
+					<?php $i=1; ?>
 						@foreach($clients as $client)
 							<tr>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->id}}</td>
+								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$i++}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->name}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->gender}}</td>
 								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->occupation}}</td>
@@ -67,12 +68,12 @@
 							</tr>
 						@endforeach
 					@else
-					<tr><td colspan="6" class="text-center">No Data</td></tr>
+<!-- 					<tr><td colspan="6" class="text-center">No Data</td></tr> -->
 					@endif
 				</tbody>
 			</table>
 			</div>
-			<div class="float-right mt-1">{{ $clients->appends(Request::all())->links() }} </div>
+	<!-- 		<div class="float-right mt-1">{{ $clients->appends(Request::all())->links() }} </div> -->
 		</div>
 	</div>
 @endsection
