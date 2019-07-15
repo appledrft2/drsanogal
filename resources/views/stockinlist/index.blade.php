@@ -48,7 +48,7 @@
 				</tbody>
 			</table>
 			</div>
-		<!-- 	<div class="float-right mt-1">{{ $suppliers->appends(Request::all())->links() }} </div> -->
+
 		</div>
 	</div>
 @endsection

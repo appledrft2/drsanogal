@@ -72,16 +72,9 @@
 				</tbody>
 				
 			</table>
-<!-- 			<div class="col-md-12">
-				<h4>Overall Total: </h4>
-				<?php $sum=0; ?>
-				@foreach($products as $product)
-					<?php $sum = $sum + $product->quantity * $product->price ?>
-				@endforeach
-				&#8369; <?php echo number_format($sum,2); ?>
-			</div> -->
+
 			</div>
-<!-- 			<div class="float-right mt-1">{{ $products->appends(Request::all())->links() }} </div> -->
+
 		</div>
 	</div>
 @endsection

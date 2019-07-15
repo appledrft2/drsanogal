@@ -16,7 +16,7 @@ class PatientController extends Controller
      */
     public function index($client)
     {
-        $patients = Client::findOrfail($client)->patients()->paginate(4);
+        $patients = Client::findOrfail($client)->patients()->get();
         $client = Client::findOrfail($client);
         return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title);
     }

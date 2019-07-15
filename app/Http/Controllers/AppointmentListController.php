@@ -9,7 +9,7 @@ class AppointmentListController extends Controller
 {	
 	public $title = "Appointment List";
     public function index(){
-    	$appointments = Appointment::orderBy('created_at','desc')->paginate(4);
+    	$appointments = Appointment::orderBy('created_at','desc')->get();
     	return view('appointmentlist.index',compact('appointments'))->with('title',$this->title);
     }
 

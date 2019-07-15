@@ -11,10 +11,6 @@
 |
 */
 
-if(config('app.env') == 'production'){
-	\URL::forceScheme('https');
-}
-
 // Homepage module
 Route::get('/', 'FrontPageController@welcome');
 Route::get('/about', 'FrontPageController@about');

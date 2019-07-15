@@ -69,7 +69,7 @@
 				</tbody>
 			</table>
 			</div>
-			<div class="float-right mt-1">{{ $users->appends(Request::all())->links() }} </div>
+
 		</div>
 	</div>
 @endsection

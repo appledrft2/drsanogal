@@ -45,7 +45,7 @@ class DashboardController extends Controller
             }
         }
 
-        $stockins = StockIn::orderBy('due','desc')->paginate(2);
+        $stockins = StockIn::orderBy('due','desc')->paginate(4);
 
     	return view('dashboard.index',[
     		'title'=>$this->title,

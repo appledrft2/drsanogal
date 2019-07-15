@@ -34,10 +34,10 @@
 											<div class="row">
 												<span class="col-6">
 												<label>Temp</label>
-												<input type="number" value="{{$appointment->temperature}}" name="temperature" class="form-control mb-1 " placeholder="Temperature"></span>
+												<input type="text" value="{{$appointment->temperature}}" name="temperature" class="form-control mb-1 " placeholder="Temperature"></span>
 												<span class="col-6">
 													<label>Kilogram</label>
-													<input type="number" value="{{$appointment->kilogram}}" name="kilogram" class="form-control mb-1 " placeholder="Kilogram">
+													<input type="text" value="{{$appointment->kilogram}}" name="kilogram" class="form-control mb-1 " placeholder="Kilogram">
 												</span>
 											</div>
 										</td>
@@ -46,6 +46,7 @@
 											<?php $appointments = explode(',',$appointment->appointment) ?>
 											<?php $prices = explode(',',$appointment->price) ?>
 											<?php $descriptions = explode(',',$appointment->description) ?>
+										
 											@foreach($appointments as $key => $ap)
 											<tr id="data{{$key}}"><td>
 												<label>Appointment # {{$i++}}</label>
@@ -64,8 +65,12 @@
 													<option @if($ap == 'Others') selected @endif >Others</option>
 
 												</select>
+												@if($key==1)
+												<label>Next Appointment</label>
+												<input type="date" name="next_appointment2[]" value="{{$na[$key]}}" class="form-control mb-1" placeholder="Price">
+												@endif
 												<label>Price</label>
-												<input type="number" name="price[]" value="{{$prices[$key]}}" class="form-control mb-1" placeholder="Price">
+												<input type="text" name="price[]" value="{{$prices[$key]}}" class="form-control mb-1" placeholder="Price">
 												<label>Description</label>
 												<textarea name="description[]" class="form-control" rows="5" cols="5" placeholder="Description">{{$descriptions[$key]}}</textarea>
 													</td>
@@ -114,8 +119,11 @@
 				'<option>Check-up</option>'+
 				'<option>Others</option>'+
 				'</select>'+
+				'<label>Next Appointment</label>'+
+				'<input type="date" name="next_appointment2[]" class="form-control mb-1" placeholder="Next Appointment">'+
 				'<label>Price</label>'+
-				'<input required type="number" name="price[]" class="form-control mb-1" placeholder="Price">'+
+				'<label>Price</label>'+
+				'<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">'+
 				'<label>Description</label>'+
 				'<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
 				'</td></tr>');

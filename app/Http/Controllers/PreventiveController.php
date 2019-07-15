@@ -16,7 +16,7 @@ class PreventiveController extends Controller
      */
     public function index($appointment_id)
     {
-        $preventives = Preventive::orderBy('created_at','desc')->paginate(5);
+        $preventives = Preventive::orderBy('created_at','desc')->get();
         $appointment = Appointment::findOrfail($appointment_id);
         return view('preventive.index',
             ['preventives' => $preventives,

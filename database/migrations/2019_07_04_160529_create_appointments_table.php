@@ -17,9 +17,10 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('patient_id')->unsigned()->index();
             $table->date('next_appointment');
+            $table->string('next_appointment2');
             $table->string('time');
-            $table->integer('temperature');
-            $table->integer('kilogram');
+            $table->double('temperature');
+            $table->double('kilogram');
             $table->string('appointment');
             $table->string('price');
             $table->text('description');

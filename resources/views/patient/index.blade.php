@@ -113,7 +113,7 @@
 				</tbody>
 			</table>
 			</div>
-<!-- 			<div class="float-right mt-1">{{ $patients->appends(Request::all())->links() }} </div> -->
+
 		</div>
 	</div>
 @endsection

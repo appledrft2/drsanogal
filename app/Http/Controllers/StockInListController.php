@@ -10,7 +10,7 @@ class StockInListController extends Controller
 	public $title = 'Stock In';
 
     public function index(){
-    	$suppliers = Supplier::orderBy('created_at','desc')->paginate(4);
+    	$suppliers = Supplier::orderBy('created_at','desc')->get();
 
     	return view('stockinlist.index',compact('suppliers'))->with('title',$this->title);
     }

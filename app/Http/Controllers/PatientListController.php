@@ -11,7 +11,7 @@ class PatientListController extends Controller
 
     public function index(){
 
-    	$patients = Patient::orderBy('created_at','DESC')->paginate(4);
+    	$patients = Patient::orderBy('created_at','DESC')->get();
     	
     	return view('patientlist.index',compact('patients'))->with('title',$this->title);
     }

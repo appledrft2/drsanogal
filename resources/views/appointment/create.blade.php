@@ -33,10 +33,10 @@
 											<div class="row">
 												<span class="col-6">
 												<label>Temp</label>
-												<input type="number" name="temperature" class="form-control mb-1 " placeholder="Temperature"></span>
+												<input type="text" name="temperature" class="form-control mb-1 " placeholder="Temp"></span>
 												<span class="col-6">
-													<label>Kilogram</label>
-													<input type="number" name="kilogram" class="form-control mb-1 " placeholder="Kilogram">
+													<label>Body weight</label>
+													<input type="text" name="kilogram" class="form-control mb-1 " placeholder="Body weight">
 												</span>
 											</div>
 											<label>Appointment</label>
@@ -55,8 +55,9 @@
 												<option>Others</option>
 
 											</select>
+											
 											<label>Price</label>
-											<input required type="number" name="price[]" class="form-control mb-1" placeholder="Price">
+											<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">
 											<label>Description</label>
 											<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>
 										</td>
@@ -76,6 +77,7 @@
 				    </form>
 			    </div>
 			   
+													
 		</div>
 	</div>
 </div>
@@ -101,8 +103,10 @@
 				'<option>Check-up</option>'+
 				'<option>Others</option>'+
 				'</select>'+
+				'<label>Next Appointment</label>'+
+				'<input type="date" name="next_appointment2[]" class="form-control mb-1" placeholder="Next Appointment">'+
 				'<label>Price</label>'+
-				'<input required type="number" name="price[]" class="form-control mb-1" placeholder="Price">'+
+				'<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">'+
 				'<label>Description</label>'+
 				'<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
 				'</td></tr>');

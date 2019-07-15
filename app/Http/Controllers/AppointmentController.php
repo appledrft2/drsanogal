@@ -16,7 +16,7 @@ class AppointmentController extends Controller
      */
     public function index($patient)
     {
-       $appointments = Patient::findOrfail($patient)->appointments()->orderBy('created_at','desc')->paginate(4);
+       $appointments = Patient::findOrfail($patient)->appointments()->orderBy('created_at','desc')->get();
        $patient = Patient::findOrfail($patient);
        
      
@@ -57,6 +57,7 @@ class AppointmentController extends Controller
      */
     public function store($patient,Request $request)
     {
+
         // $data = $request->validate([
         //     'date_from' => 'required',
         //     'date_to' => 'required',
@@ -94,6 +95,7 @@ class AppointmentController extends Controller
         $data['appointment'] = implode(',', $request->appointment); 
         $data['price'] = implode(',', $request->price); 
         $data['description'] = implode(',', $request->description); 
+        $data['next_appointment2'] = implode(',', $request->next_appointment2); 
 
         Appointment::create($data);
 
@@ -120,7 +122,9 @@ class AppointmentController extends Controller
      */
     public function edit($patient,Appointment $appointment)
     {
-         return view('appointment.edit',['patient'=>$patient,'appointment'=>$appointment])->with('title',$this->title);
+        $na = explode(',',$appointment->next_appointment2);
+         
+         return view('appointment.edit',['patient'=>$patient,'appointment'=>$appointment,'na'=>$na])->with('title',$this->title);
     }
 
     /**
@@ -161,6 +165,7 @@ class AppointmentController extends Controller
         $data['appointment'] = implode(',', $request->appointment); 
         $data['price'] = implode(',', $request->price); 
         $data['description'] = implode(',', $request->description); 
+        $data['next_appointment2'] = implode(',', $request->next_appointment2); 
         $appointment =Appointment::findOrfail($appointment_id);
         $appointment->update($data);
 

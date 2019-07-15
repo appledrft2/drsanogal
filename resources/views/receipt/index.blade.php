@@ -23,7 +23,7 @@
 			                            Contact No.: 09086958978
 			                            <br>
 			                            ************************************************************************
-			                            <br><i class="text-center" style="font-size: 1.5em">Temporary Receipt</i>
+			                            <br><i class="text-center" style="font-size: 1.5em">Receipt</i>
 			                            </p>                          
 			                              
 			                          </tr>
@@ -89,7 +89,7 @@
 			                            <td colspan="2"><p class="text-center">
 			                              ************************************************************************
 			                              <br>
-			                              <i >Thank you for buying!<br> DR. S & J VETERENARY CLINIC & GROOMING CENTER<br>
+			                              <i >Thank you for choosing us!<br> DR. S & J VETERENARY CLINIC & GROOMING CENTER<br>
 			www.DRSANDJVETERENARYCLINIC.shop</i></p></td>
 	                      </tr>
 	                    </tfoot>

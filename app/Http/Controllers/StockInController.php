@@ -19,7 +19,7 @@ class StockInController extends Controller
     public function index($supplier)
     {
         $supplier = Supplier::findOrfail($supplier);
-        $stockins = Stockin::orderBy('created_at','desc')->paginate(4);
+        $stockins = Stockin::orderBy('created_at','desc')->get();
         return view('stockin.index',compact('stockins','supplier'))->with('title',$this->title);
     }
 

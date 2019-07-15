@@ -17,7 +17,7 @@
 				<div class="form-group"><input type="date" name="date_of_birth" class="form-control " placeholder="birthday" value="{{old('date_of_birth')}}" ></div>
 				<div class="form-group">
 					<select  name="specie" class="form-control ">
-					<option value="">Specie</option>
+					<option value="">Species</option>
 					<option @if(old('specie')=='Canine') selected @endif>Canine</option>
 					<option @if(old('specie')=='Feline') selected @endif>Feline</option>
 					<option @if(old('specie')=='Other') selected @endif>Other</option>
@@ -33,7 +33,7 @@
 					</select>
 				</div>
 				<div class="form-group"><input type="text" name="markings" class="form-control " placeholder="markings" value="{{old('markings')}}" ></div>
-				<div class="form-group"><input type="text" name="special_considerations" class="form-control " placeholder="Special Considerations (Allergues,Surgeries,etc.)" value="{{old('special_considerations')}}" ></div>
+				<div class="form-group"><input type="text" name="special_considerations" class="form-control " placeholder="Special Considerations (Allergies,Surgeries,etc.)" value="{{old('special_considerations')}}" ></div>
 				<div class="form-group"><input type="text" name="veterinarian" class="form-control " placeholder="Attending Veterinarian" value="{{old('veterinarian')}}" ></div>
 
 				

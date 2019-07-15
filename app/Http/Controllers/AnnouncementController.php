@@ -19,7 +19,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {   
-        $announcements = Announcement::orderBy('created_at','DESC')->paginate(4);
+        $announcements = Announcement::orderBy('created_at','DESC')->get();
         return view('announcement.index',compact('announcements'))->with('title',$this->title);
     }
 
