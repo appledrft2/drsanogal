@@ -161,8 +161,8 @@
 
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
-    $("input[name=prod_original]").val(product.original.toFixed(2));
-    $("input[name=prod_price]").val(product.price.toFixed(2));
+    $("input[name=prod_original]").val(product.original);
+    $("input[name=prod_price]").val(product.price);
     $("input[name=prod_quantity]").val(1);
   });
 </script>
