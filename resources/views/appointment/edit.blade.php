@@ -65,9 +65,11 @@
 													<option @if($ap == 'Others') selected @endif >Others</option>
 
 												</select>
+												<?php $t =0; ?>
 												@if($key==1)
 												<label>Next Appointment</label>
-												<input type="date" name="next_appointment2[]" value="{{$na[$key]}}" class="form-control mb-1" placeholder="Price">
+												<input type="date" name="next_appointment2[]" value="{{$na[$t]}}" class="form-control mb-1" placeholder="Price">
+												<?php $t = $t + 1; ?>
 												@endif
 												<label>Price</label>
 												<input type="text" name="price[]" value="{{$prices[$key]}}" class="form-control mb-1" placeholder="Price">
