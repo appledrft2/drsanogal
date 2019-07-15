@@ -73,8 +73,8 @@
 										@foreach($products as $product)
 										<tr>
 											<td>{{$product->name}}</td>
-											<td>{{$product->original}}</td>
-											<td>{{$product->price}}</td>
+											<td>{{number_format($product->original,2)}}</td>
+											<td>{{number_format($product->price,2)}}</td>
 											<td>{{$product->quantity}}</td>
 											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
 										</tr>
