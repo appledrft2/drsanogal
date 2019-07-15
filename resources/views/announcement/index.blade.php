@@ -26,6 +26,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>Title</th>
 						<th>Author</th>
 						<th>Created</th>
@@ -41,8 +42,10 @@
 						<td></td>
 					</tr> -->
 					@if(count($announcements))
+					<?php $i=1; ?>
 						@foreach($announcements as $announcement)
 							<tr>
+								<td>{{$i++}}</td>
 								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->title}}</td>
 								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->user->name}}</td>
 								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->created_at->diffForhumans()}}</td>
