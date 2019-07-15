@@ -109,7 +109,7 @@
 				</tbody>
 			</table>
 			</div>
-<!-- 			<div class="float-right mt-1">{{ $stockins->appends(Request::all())->links() }} </div> -->
+
 		</div>
 	</div>
 @endsection
