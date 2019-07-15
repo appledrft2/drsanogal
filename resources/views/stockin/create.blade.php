@@ -73,8 +73,8 @@
 										@foreach($products as $product)
 										<tr>
 											<td>{{$product->name}}</td>
-											<td>{{number_format($product->original,2)}}</td>
-											<td>{{number_format($product->price,2)}}</td>
+											<td>{{number_format($product->original,4)}}</td>
+											<td>{{number_format($product->price,4)}}</td>
 											<td>{{$product->quantity}}</td>
 											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
 										</tr>
@@ -105,7 +105,7 @@
 								<input type="text" name="prod_price" placeholder="Selling Price" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_quantity" placeholder="Quantity" class="form-control">
+								<input type="text" name="prod_quantity" placeholder="Quantity to add" class="form-control">
 							</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-block" type="button" id="addRow"><i class="fa fa-shopping-cart"></i> Add Product</button>
@@ -157,12 +157,13 @@
 <script type="text/javascript">
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
-    product = JSON.parse(product)
-
+    product = JSON.parse(product);
+    var orig = product.original.toFixed(4);
+    var price = product.price.toFixed(4);
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
-    $("input[name=prod_original]").val(product.original);
-    $("input[name=prod_price]").val(product.price);
+    $("input[name=prod_original]").val(orig);
+    $("input[name=prod_price]").val(price);
     $("input[name=prod_quantity]").val(1);
   });
 </script>

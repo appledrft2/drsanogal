@@ -76,7 +76,7 @@
 								<input type="text" name="prod_price" readonly placeholder="Price" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="text" name="prod_quantity" placeholder="Quantity" class="form-control">
+								<input type="text" name="prod_quantity" placeholder="Quantity to buy" class="form-control">
 							</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-block" type="button" id="addRow"><i class="fa fa-shopping-cart"></i> Add Product</button>
@@ -129,14 +129,16 @@
 <script type="text/javascript">
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
-    product = JSON.parse(product)
+    product = JSON.parse(product);
+
+    var price = product.price.toFixed(2);
 
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
     $("input[name=prod_category]").val(product.category);
     $("input[name=prod_original").val(product.original);
     $("input[name=prod_unit]").val(product.unit);
-    $("input[name=prod_price]").val(product.price);
+    $("input[name=prod_price]").val(price);
     $("input[name=prod_quantity]").val(1);
   });
 </script>
