@@ -23,6 +23,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>Name</th>
 						<th>Contact</th>
 						<th>Address</th>
@@ -31,8 +32,10 @@
 				</thead>
 				<tbody>
 					@if(count($suppliers))
+					<?php $i=1; ?>
 						@foreach($suppliers as $supplier)
 							<tr>
+								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{{$i++}}</td>
 								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{{$supplier->name}}</td>
 								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{{$supplier->contact}}</td>
 								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{!!$supplier->address!!}</td>

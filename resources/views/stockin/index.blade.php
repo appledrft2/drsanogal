@@ -63,6 +63,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>Code</th>
 						<th>Delivery Date</th>
 						<th>Term</th>
@@ -74,8 +75,10 @@
 				</thead>
 				<tbody>
 					@if(count($stockins))
+					<?php $i=1; ?>
 						@foreach($stockins as $stockin)
 							<tr>
+								<td>{{$i++}}</td>
 								<td>{{$stockin->code}}</td>
 								<td>{{ date('M d, Y', strtotime($stockin->delivery_date))}}</td>
 								<td>{{$stockin->term}}</td>

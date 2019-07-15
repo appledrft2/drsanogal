@@ -41,8 +41,8 @@
 					<option @if($product->unit=='Other') selected @endif>Other</option>
 					</select>
 				</div>
-				<div class="form-group"><input type="number" value="{{$product->original}}" name="original" class="form-control " placeholder="Original price" ></div>
-				<div class="form-group"><input type="number" value="{{$product->price}}" name="price" class="form-control " placeholder="Selling price" ></div>
+				<div class="form-group"><input type="text" value="{{$product->original}}" name="original" class="form-control " placeholder="Original price" ></div>
+				<div class="form-group"><input type="text" value="{{$product->price}}" name="price" class="form-control " placeholder="Selling price" ></div>
 				<div class="form-group"><input type="number" value="{{$product->quantity}}" name="quantity" class="form-control " placeholder="Quantity" ></div>
 				<div class="form-group"><input type="number" value="{{$product->lowstock}}" name="lowstock" class="form-control " placeholder="Low Stock" ></div>
 				<div class="form-group">

@@ -41,7 +41,7 @@
 											<td>{{$product->name}}</td>
 											<td>{{$product->category}}</td>
 											<td>{{$product->unit}}</td>
-											<td>{{$product->price}}</td>
+											<td>{{number_format($product->price,2)}}</td>
 											<td>{{$product->quantity}}</td>
 											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
 										</tr>
@@ -134,9 +134,9 @@
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
     $("input[name=prod_category]").val(product.category);
-    $("input[name=prod_original").val(product.original);
+    $("input[name=prod_original").val(product.original.toFixed(2));
     $("input[name=prod_unit]").val(product.unit);
-    $("input[name=prod_price]").val(product.price);
+    $("input[name=prod_price]").val(product.price.toFixed(2));
     $("input[name=prod_quantity]").val(1);
   });
 </script>
