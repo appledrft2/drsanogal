@@ -9,9 +9,10 @@
   <meta name="author" content="">
 
   <title>Dr S & J Veterinary Clinic - @yield('title','')</title>
-    <!-- icon -->
+  <!-- icon -->
   <link rel="icon" type="image/x-icon" href="{{asset('adminlte3/dist/img/logo.jpg')}}">
-
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Bootstrap core CSS -->
   <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
@@ -39,8 +40,8 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item @if(Request::is('about')) active @endif">
-            <a class="nav-link" href="{{url('about')}}">About</a>
+          <li class="nav-item @if(Request::is('announcement')) active @endif">
+            <a class="nav-link" href="{{url('/announcement')}}">Announcments</a>
           </li>
           <li class="nav-item @if(Request::is('products')) active @endif">
             <a class="nav-link" href="{{url('products')}}">Products</a>
@@ -64,6 +65,7 @@
         <div class="col-lg-12 text-">
           <h1 class="display-4 text-dark mt-5 mb-2">Welcome to our website!</h1>
           <p class="lead mb-5 text-dark-50">We offer excellent products and services for your lovely pets.</p>
+          <p><a class="btn btn-lg btn-outline-primary" href="https://www.facebook.com/DrSandJVetClinic/" role="button"><i class="fab fa-facebook"></i> Visit us on facebook!</a></p>
         </div>
       </div>
     </div>

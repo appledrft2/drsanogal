@@ -13,7 +13,7 @@
 
 // Homepage module
 Route::get('/', 'FrontPageController@welcome');
-Route::get('/about', 'FrontPageController@about');
+Route::get('/announcement', 'FrontPageController@announcement');
 Route::get('/products','FrontPageController@products');
 
 

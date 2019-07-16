@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 class FrontPageController extends Controller
 {
      public function welcome(){
-        $announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
-        return view('welcome',compact('announcements'));
+        
+        return view('welcome');
     }
-    public function about(){
-         return view('about');
+    public function announcement(){
+        $announcements = \App\Announcement::orderBy('created_at','DESC')->paginate(4);
+         return view('about',compact('announcements'));
     }
     public function products(){
         $products = \App\Product::orderBy('created_at','DESC')->paginate(3);

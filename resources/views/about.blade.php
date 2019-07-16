@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title','About')
+@section('title','Announcements')
 @section('content')
   <!-- Page Content -->
   <div class="container">
@@ -7,9 +7,25 @@
     <div class="row">
       
       <div id="about" class="col-md-8 mb-5">
-        <h2>What We Do</h2>
-        <hr>
-        <p class="text-justify">We have come together as a staff to decide why and how we do what we do. When taking care of our clients and patients we are guided by this vision which is further defined by our clinic’s core values, our mission and our philosophies. We then use these as a guide to help us better in our daily interactions.</p>
+        <h2>Announcements</h2><hr>
+            @if(count($announcements))
+              @foreach($announcements as $announcement)
+                  <div class="card">
+                      <img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" width="100%" height="300px">
+                    <div class="card-body">
+                      <h4 class="card-title">{{$announcement->title}}</h4>
+                      <span><strong>Author:</strong> {{$announcement->user->email}}</span><br>
+                       <span><strong>Posted at: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
+                      <p class="card-text">{!!$announcement->body!!}</p>
+                    </div>
+                    
+                  </div>  
+            @endforeach
+            @else
+              <div class="mx-auto mb-5 mt-5 lead text-center"> There are no announcements. </div>
+            @endif
+              <div class="mb-5 mt-5"><div class="float-right">{{$announcements->links()}}</div></div>
+  
 
       </div>
 

@@ -327,6 +327,8 @@ function closeFullscreen() {
   elements: "a", // default is "a[href], form[action]"
   selectors: ["title","body"]
 })
+document.addEventListener('pjax:send', $('.content').fadeOut(200));
+document.addEventListener('pjax:complete', $('.content').fadeIn(300));
 </script> -->
 @yield('script','')
 </body>
