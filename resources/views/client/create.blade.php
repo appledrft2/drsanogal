@@ -41,7 +41,7 @@
 				<div class="form-group"><input type="email" value="{{old('email')}}" name="email" class="form-control " placeholder="Email Address" ></div>	
 				<div class="form-group">
 					<label>Address</label>
-					<textarea class="form-control" id="article-ckeditor" name="address" placeholder="Address">{{old('address')}}</textarea></div>
+					<textarea class="form-control textarea" name="address" placeholder="Address">{{old('address')}}</textarea></div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
 		</div>

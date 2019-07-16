@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/summernote/summernote-bs4.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -223,6 +225,18 @@
 <script src="{{asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('adminlte3/dist/js/adminlte.min.js')}}"></script>
+<!-- for mobile browsers -->
+<script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
+
+
+
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
 
 <script>
 // This will toggle fullscreen by on or off
@@ -265,12 +279,7 @@ function closeFullscreen() {
   }
 }
 </script>
-<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
-<script>
-    if($('#article-ckeditor').length){
-      CKEDITOR.replace( 'article-ckeditor' );
-    }
-</script>
+
   @include('sweetalert::alert')
   @if($errors->any())
     @foreach($errors->all() as $error)
@@ -307,12 +316,13 @@ function closeFullscreen() {
         });
     });
   </script>
-<!-- for mobile browsers -->
-<script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
-<script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
+
 <!-- DataTables -->
 <script src="{{asset('adminlte3/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+<!-- Summernote -->
+<script src="{{asset('adminlte3/plugins/summernote/summernote-bs4.min.js')}}"></script>
+  
 <script>
   $(function () {
     $("#productlist").DataTable();
@@ -330,6 +340,9 @@ function closeFullscreen() {
 document.addEventListener('pjax:send', $('.content').fadeOut(200));
 document.addEventListener('pjax:complete', $('.content').fadeIn(300));
 </script> -->
+
+<script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+
 @yield('script','')
 </body>
 </html>

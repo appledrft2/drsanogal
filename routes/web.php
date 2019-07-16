@@ -64,13 +64,15 @@ Route::resource('/dashboard/supplier','SupplierController');
 // Product module
 Route::any('/dashboard/product/search','ProductController@search');
 Route::resource('/dashboard/product','ProductController');
+// Product Category module
+Route::resource('/dashboard/productcategory','ProductCategoryController');
+Route::get('/dashboard/productcategorydata','ProductCategoryController@getData');
 // Stock In List module
 Route::any('/dashboard/suppliers/search','StockInListController@search');
 Route::get('/dashboard/suppliers/','StockInListController@index');
 // Stock In module
 Route::any('/dashboard/suppliers/{supplier}/stockin/search','StockInController@search');
 Route::resource('/dashboard/suppliers/{supplier}/stockin','StockInController');
-
 // Stock Out module
 Route::get('/dashboard/stockout','StockOutController@index');
 Route::post('/dashboard/stockout','StockOutController@store');

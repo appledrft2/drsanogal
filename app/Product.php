@@ -4,6 +4,7 @@ namespace App;
 
 use App\Supplier;
 use App\StockInDetail;
+use App\ProductCategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -18,4 +19,7 @@ class Product extends Model
     	$this->total = $this->price * $this->quantity;
 	}
 
+	public function productCategories(){
+		return $this->hasMany(ProductCategory::class);
+	}
 }

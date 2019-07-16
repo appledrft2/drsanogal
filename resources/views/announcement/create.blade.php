@@ -14,7 +14,7 @@
 			<form  class="" method="POST" enctype="multipart/form-data" action="/dashboard/announcement">
 				@csrf
 				<div class="form-group"><input type="text" name="title" class="form-control " placeholder="Title" value="{{old('title')}}" ></div>
-				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="body" placeholder="Body"></textarea>{{old('body')}}</div>
+				<div class="form-group"><textarea class="form-control textarea" name="body" placeholder="Body"></textarea>{{old('body')}}</div>
 				<div class="form-group">
 					<input type="file" name="cover_image" class="form-control-file mb-5"  accept="image/*">
 				</div> 

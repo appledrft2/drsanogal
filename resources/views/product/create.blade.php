@@ -24,10 +24,10 @@
 				<div class="form-group">
 					<select  name="category" class="form-control ">
 					<option value="">Category</option>
-					<option @if(old('category')=='Dog Food') selected @endif>Dog Food</option>
-					<option @if(old('category')=='Cat Food') selected @endif>Cat Food</option>
-					<option @if(old('category')=='Medicine') selected @endif>Medicine</option>
-					<option @if(old('category')=='Other') selected @endif>Other</option>
+					@foreach($category as $cat)
+						<option @if(old('category')=='{{$cat->title}}') selected @endif>{{$cat->title}}</option>
+
+					@endforeach
 					</select>
 				</div>
 				<div class="form-group">

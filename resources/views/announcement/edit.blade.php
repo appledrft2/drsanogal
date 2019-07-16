@@ -19,7 +19,7 @@
 				@method('PUT')
 				@csrf
 				<div class="form-group"><input type="text" name="title" class="form-control " placeholder="Name" value="{{$announcement->title}}" ></div>
-				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="body" placeholder="Address">{{$announcement->body}}</textarea></div>
+				<div class="form-group"><textarea class="form-control textarea" name="body" placeholder="Address">{{$announcement->body}}</textarea></div>
 				<div class="form-group">
 					<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" class="img-fluid rounded" style="width: 200px;height:100px">
 				</div> 

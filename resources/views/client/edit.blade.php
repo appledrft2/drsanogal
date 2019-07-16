@@ -40,7 +40,7 @@
 				</div>
 				<hr>
 				<div class="form-group"><input type="email" value="{{$client->email}}" name="email" class="form-control " placeholder="Email Address" ></div>		
-				<div class="form-group"><textarea class="form-control" id="article-ckeditor" name="address" placeholder="Address">{{$client->address}}</textarea></div>
+				<div class="form-group"><textarea class="form-control textarea"  name="address" placeholder="Address">{{$client->address}}</textarea></div>
 				<button type="submit" class="btn btn-default btn-md"><i class="fa fa-save"></i> Save</button>
 			</form>
 		</div>
