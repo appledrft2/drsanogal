@@ -73,8 +73,8 @@
 										@foreach($products as $product)
 										<tr>
 											<td>{{$product->name}}</td>
-											<td>{{number_format($product->original,4)}}</td>
-											<td>{{number_format($product->price,4)}}</td>
+											<td>{{number_format($product->original,2)}}</td>
+											<td>{{number_format($product->price,2)}}</td>
 											<td>{{$product->quantity}}</td>
 											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
 										</tr>
@@ -163,8 +163,8 @@
 
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
-    $("input[name=prod_original]").val(orig);
-    $("input[name=prod_price]").val(price);
+    $("input[name=prod_original]").val(orig.toFixed(2));
+    $("input[name=prod_price]").val(price.toFixed(2));
     $("input[name=prod_quantity]").val(1);
   });
 </script>

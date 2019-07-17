@@ -138,7 +138,7 @@
     $("input[name=prod_category]").val(product.category);
     $("input[name=prod_original").val(product.original);
     $("input[name=prod_unit]").val(product.unit);
-    $("input[name=prod_price]").val(price);
+    $("input[name=prod_price]").val(price.toFixed(2));
     $("input[name=prod_quantity]").val(1);
   });
 </script>
