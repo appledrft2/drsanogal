@@ -67,6 +67,8 @@ Route::resource('/dashboard/product','ProductController');
 // Product Category module
 Route::resource('/dashboard/productcategory','ProductCategoryController');
 Route::get('/dashboard/productcategorydata','ProductCategoryController@getData');
+// Product Unit module
+Route::resource('/dashboard/productunit','ProductUnitController');
 // Stock In List module
 Route::any('/dashboard/suppliers/search','StockInListController@search');
 Route::get('/dashboard/suppliers/','StockInListController@index');

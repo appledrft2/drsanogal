@@ -23,6 +23,7 @@
 				<a href="/dashboard/product/create" class="btn btn-default "><i class="fa fa-plus-circle"></i>New Product</a>
 			</div>
 			<div class="float-right mb-3">
+				<a href="/dashboard/productunit" class="btn btn-default "><i class="fa fa-balance-scale"></i> Unit</a>
 				<a href="/dashboard/productcategory" class="btn btn-default "><i class="fa fa-tags"></i> Categories</a>
 			</div>
 			<div class="table-responsive">

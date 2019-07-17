@@ -33,11 +33,9 @@
 				<div class="form-group">
 					<select  name="unit" class="form-control ">
 					<option value="">Unit</option>
-					<option @if(old('unit')=='pc') selected @endif>pc</option>
-					<option @if(old('unit')=='kg') selected @endif>kg</option>
-					<option @if(old('unit')=='bottle') selected @endif>bottle</option>
-					<option @if(old('unit')=='tab') selected @endif>tab</option>
-					<option @if(old('unit')=='Other') selected @endif>Other</option>
+					@foreach($units as $unit)
+					<option @if(old('unit')=='{{$unit->title}}') selected @endif>{{$unit->title}}</option>
+					@endforeach
 					</select>
 				</div>
 				<div class="form-group"><input type="text" value="{{old('original')}}" name="original" class="form-control " placeholder="Original price" ></div>

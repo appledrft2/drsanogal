@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Supplier;
+use App\ProductUnit;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,8 +32,9 @@ class ProductController extends Controller
     public function create()
     {
         $suppliers = Supplier::all();
+        $units = ProductUnit::orderBy('created_at','asc')->get();
         $category = ProductCategory::orderBy('created_at','asc')->get();
-        return view('product.create',compact('suppliers','category'))->with('title',$this->title);
+        return view('product.create',compact('suppliers','category','units'))->with('title',$this->title);
     }
 
     public function search()
