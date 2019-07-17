@@ -9,19 +9,20 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<div class="form-group">
-								<label class="lead">Name:</label>
-								<span class="lead">{{$supplier->name}}</span>
+							<div class="">
+								<label class="lead text-sm">Name:</label>
+								<span class="lead text-sm">{{$supplier->name}}</span>
 							</div>
 							
-							<div class="form-group">
-								<label class="lead">Contact:</label>
-								<span class="lead">{{$supplier->contact}}</span>
+							<div class="">
+								<label class="lead text-sm">Contact:</label>
+								<span class="lead text-sm">{{$supplier->contact}}</span>
 							</div>
-							
-							<div class="form-group">
-								<label class="lead">Address:</label>
-								<span class="lead">{!!$supplier->address!!}</span>
+							<div class="">
+								<span class="form-inline">
+									<label class="lead text-sm">Address:</label>
+									<span class="lead text-sm mt-3 ml-2">{!!$supplier->address!!}</span>	
+								</span>
 							</div>
 							
 						</div>
@@ -29,7 +30,7 @@
 							<div class="">
 								
 								<div class="form-group">
-									<div style="font-size:10.5em;margin-left:200px">
+									<div style="font-size:5.5em;margin-left:200px">
 										<i class="fa fa-truck"></i>
 									</div>
 								</div>

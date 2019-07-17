@@ -127,6 +127,15 @@
           @endif
 
           <li class="nav-item">
+            <a href="/dashboard/billing" class="nav-link @if($title=='Billing') active @endif">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Billing
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="/dashboard/supplier" class="nav-link @if($title=='Supplier') active @endif">
               <i class="nav-icon fas fa-user"></i>
               <p>

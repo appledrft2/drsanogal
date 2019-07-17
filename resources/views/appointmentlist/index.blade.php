@@ -54,7 +54,9 @@
 									@endif
 								</td>
 								<td>
-								<form method="POST" action="/dashboard/appointmentlist/{{$appointment->id}}">
+
+									<a href="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-list"></i> View Details</a>
+								<!-- <form method="POST" action="/dashboard/appointmentlist/{{$appointment->id}}">
 			                      @method('PATCH')
 			                      @csrf
 			                      <select  onchange="this.form.submit()" class="form-control" name="isPaid">
@@ -62,7 +64,7 @@
 										<option @if($appointment->isPaid == 0) selected @endif value="0" >Unpaid</option>
 										<option  @if($appointment->isPaid == 1) selected @endif value="1" >Paid</option>
 									</select>
-			                    </form>
+			                    </form> -->
 								</td>
 							</tr>
 						@endforeach

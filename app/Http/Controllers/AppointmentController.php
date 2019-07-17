@@ -95,7 +95,11 @@ class AppointmentController extends Controller
         $data['appointment'] = implode(',', $request->appointment); 
         $data['price'] = implode(',', $request->price); 
         $data['description'] = implode(',', $request->description); 
-        $data['next_appointment2'] = implode(',', $request->next_appointment2); 
+        if(request()->next_appointment2){
+            $data['next_appointment2'] = implode(',', $request->next_appointment2); 
+        }else{
+            $data['next_appointment2'] = '';
+        }
 
         Appointment::create($data);
 

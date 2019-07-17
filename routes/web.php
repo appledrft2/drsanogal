@@ -38,9 +38,7 @@ Route::resource('/dashboard/announcement','AnnouncementController');
 // Client module
 Route::any('/dashboard/client/search','ClientController@search');
 Route::resource('/dashboard/client','ClientController');
-// Client Billing module
-Route::any('/dashboard/client/{client}/billing/search','ClientBillingController@search');
-Route::resource('/dashboard/client/{client}/billing','ClientBillingController');
+
 // Patient module
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');
 Route::resource('/dashboard/client/{client}/patient','PatientController');
@@ -58,6 +56,12 @@ Route::resource('/dashboard/patient/{patient}/appointment','AppointmentControlle
 // Preventive module
 Route::any('/dashboard/appointment/{appointment}/detail/search','PreventiveController@search')->middleware('denyStaff');
 Route::resource('/dashboard/appointment/{appointment}/detail','PreventiveController')->middleware('denyStaff'); // staff cant access this module
+
+// Billing module
+Route::get('/dashboard/billing','BillingController@list')->middleware('denyStaff'); // staff cant access this module
+Route::get('/dashboard/billing/{code}/receipt','BillingController@receipt')->middleware('denyStaff'); // staff cant access this module
+Route::resource('/dashboard/billing/{id}/client','BillingController');
+
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');
 Route::resource('/dashboard/supplier','SupplierController');

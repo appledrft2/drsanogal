@@ -24,9 +24,9 @@
 						@foreach($announcements as $announcement)
 							<tr>
 								<td>{{$i++}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->title}}</td><td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{!!$announcement->body!!}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->user->name}}</td>
-								<td onclick="window.location = '/dashboard/announcement/{{$announcement->id}}/edit';">{{$announcement->created_at->diffForhumans()}}</td>
+								<td >{{$announcement->title}}</td><td >{!!str_limit($announcement->body, 25)!!}</td>
+								<td >{{$announcement->user->name}}</td>
+								<td >{{$announcement->created_at->diffForhumans()}}</td>
 								
 								<td>
 									<div class="form-inline">

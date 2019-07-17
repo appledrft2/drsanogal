@@ -16,10 +16,10 @@ class StockInController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($supplier)
+    public function index($supplier_id)
     {
-        $supplier = Supplier::findOrfail($supplier);
-        $stockins = Stockin::orderBy('created_at','desc')->get();
+        $supplier = Supplier::findOrfail($supplier_id);
+        $stockins = Stockin::where('supplier_id',$supplier_id)->get();
         return view('stockin.index',compact('stockins','supplier'))->with('title',$this->title);
     }
 
