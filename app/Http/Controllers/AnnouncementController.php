@@ -73,9 +73,20 @@ class AnnouncementController extends Controller
         $data['cover_image'] = $pathToSave;
         // Add the author
         $data['user_id'] = auth()->user()->id;
-        Announcement::create($data);
-        toast('Successfully added!','success');
-        return redirect('dashboard/announcement');
+        $status = Announcement::create($data);
+
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     /**
@@ -95,9 +106,23 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit($id)
     {
-        return view('announcement.edit',compact('announcement'))->with('title',$this->title);
+        $status = Announcement::findOrfail($id);
+
+        if ($status){
+            return response()->json([
+                'status' => 'success',
+                'title' => $status->title,
+                'body' => $status->body,
+                'cover_image' => $status->cover_image
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     /**
@@ -107,8 +132,9 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(Request $request,$id)
     {
+        $announcement = Announcement::findOrfail($id);
         $data = request()->validate([
             'title'=>'required',
             'body'=>'required',
@@ -127,10 +153,21 @@ class AnnouncementController extends Controller
             // Save filename to database
             $data['cover_image'] = $pathToSave;
         }
+        
+        $status = $announcement->update($data);
 
-        $announcement->update($data);
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/announcement');
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record s'
+            ]);
+        }
     }
 
     /**
@@ -139,15 +176,26 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy($id)
     {
+        $announcement = Announcement::findOrfail($id);
         if($announcement->cover_image != 'uploads/noimage.png'){
             // Delete image
             Storage::disk('s3')->delete($announcement->cover_image);
         }
 
-        $announcement->delete();
-        toast('Record has been deleted!','error');
-        return redirect('dashboard/announcement');
+        $status = $announcement->delete();
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record deleted successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 }
