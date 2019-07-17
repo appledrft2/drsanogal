@@ -5,60 +5,64 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="card card-sm">
-				<div class="card-header"><p class="lead float-left">Patient Information</p> <span class="float-right"><a href="/dashboard/patient" class="btn btn-default">Go Back</a></span></div>
+				<div class="card-header"><p class="lead float-left">Patient Information</p> 
+				<span class="float-right"><a href="/dashboard/patient" class="btn btn-default">Patient List</a></span>
+				<span class="float-right"><a href="/dashboard/client/{{$patient->client->id}}/patient" class=" mr-3 btn btn-default">Owner</a></span>
+				</div>
+				
 				<div class="card-body">
 					<div class="row">
 						<div class="col-4">
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Owner:</label>
-								<span class="lead">{{$patient->client->name}}</span>
+							<div class="">
+								<label class="lead text-sm">Owner:</label>
+								<span class="lead text-sm">{{$patient->client->name}}</span>
 							</div>
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Name:</label>
-								<span class="lead">{{$patient->name}}</span>
-							</div>
-
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Breed:</label>
-								<span class="lead">{{$patient->breed}}</span>
+							<div class="">
+								<label class="lead text-sm">Name:</label>
+								<span class="lead text-sm">{{$patient->name}}</span>
 							</div>
 
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Gender:</label>
-								<span class="lead">{{$patient->gender}}</span>
+							<div class="">
+								<label class="lead text-sm">Breed:</label>
+								<span class="lead text-sm">{{$patient->breed}}</span>
+							</div>
+
+							<div class="">
+								<label class="lead text-sm">Gender:</label>
+								<span class="lead text-sm">{{$patient->gender}}</span>
 							</div>
 							
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Specie:</label>
-								<span class="lead">{{$patient->specie}}</span>
+							<div class="">
+								<label class="lead text-sm">Specie:</label>
+								<span class="lead text-sm">{{$patient->specie}}</span>
 							</div>
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Date of Birth:</label>
-								<span class="lead">{{date('M d, Y', strtotime($patient->date_of_birth))}}</span>
+							<div class="">
+								<label class="lead text-sm">Date of Birth:</label>
+								<span class="lead text-sm">{{date('M d, Y', strtotime($patient->date_of_birth))}}</span>
 							</div>
 							
 							
 						</div>
 						<div class="col-4">
-							<div class="form-group">
-								<label style="font-size:18" class=" lead">Markings:</label>
-								<div class="form-group">
-									<span class="lead">{{$patient->markings}}</span>
+							<div class="">
+								<label class=" lead text-sm">Markings:</label>
+								<div class="">
+									<span class="lead text-sm">{{$patient->markings}}</span>
 								</div>
 							</div>
 							
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Special <br>Considerations:</label>
-								<div class="form-group">
-									<span class="lead">{{$patient->special_considerations}}</span>
+							<div class="">
+								<label class="lead text-sm">Special <br>Considerations:</label>
+								<div class="">
+									<span class="lead text-sm">{{$patient->special_considerations}}</span>
 								</div>
 							</div>
 							
-							<div class="form-group">
-								<label style="font-size:18" class="lead">Attending <br>Veterinarian:</label>
-								<div class="form-group">
+							<div class="">
+								<label class="lead text-sm">Attending <br>Veterinarian:</label>
+								<div class="">
 									
-									<span class="lead">{{$patient->veterinarian}}</span>
+									<span class="lead text-sm">{{$patient->veterinarian}}</span>
 								</div>
 							</div>
 							
@@ -66,8 +70,8 @@
 						</div>
 						<div class="col-4">
 							<br><br><br>
-							<div class="form-group">
-								<img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 50%">
+							<div class="">
+								<img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 30%">
 							</div>
 						</div>
 					</div>
