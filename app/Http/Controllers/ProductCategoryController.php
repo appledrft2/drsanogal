@@ -15,23 +15,10 @@ class ProductCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('productcategory.index')->with('title',$this->title);
+    {   $categories = ProductCategory::latest()->get();
+        return view('productcategory.index',compact('categories'))->with('title',$this->title);
     }
-    // server side rendering
-    function getData(){
 
-        $categories = ProductCategory::latest()->get();
-        return Datatables::of($categories)->addColumn('action', function($data){
-                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="btn_edit btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</button>';
-                        $button .= '&nbsp;&nbsp;';
-                        $button .= '<button type="button" name="delete" id="'.$data->id.'" class="btn_delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</button>';
-                        return $button;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-
-    }
     /**
      * Show the form for creating a new resource.
      *

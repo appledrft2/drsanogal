@@ -9,8 +9,8 @@
 				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Category</button>
 			</div>
 		
-				<div class="table-container">
-				  <table id="data" class="table table-hover" width="100%">
+				<div id="mytable" class="table-container">
+				  <table id="table" class="table table-hover" width="100%">
 				  	<thead>
 				  		<tr>
 				  			<th>#</th>
@@ -20,6 +20,17 @@
 				  		</tr>
 				  	</thead>
 				  	<tbody>
+				  		@foreach($categories as $key => $category)
+				  		<tr>
+				  			<td>{{$key + 1}}</td>
+				  			<td>{{$category->title}}</td>
+				  			<td>{{$category->description}}</td>
+				  			<td>
+				  				<button id="{{$category->id}}" class="btn_edit btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</button>
+				  				<button id="{{$category->id}}"  class="btn_delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+				  			</td>
+				  		</tr>
+				  		@endforeach
 				  		
 				  	</tbody>
 				  </table>
@@ -64,7 +75,7 @@
 
 @endsection
 
-@section('script')
+@section('script')<!-- 
 <script type="text/javascript">
 	// Server side rendering datatable
 	$(document).ready(function(){
@@ -95,7 +106,7 @@
 
 		});
 	});
-</script>
+</script> -->
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 <script type="text/javascript">
 	const Toast = Swal.mixin({
@@ -221,7 +232,9 @@
 	});
 	// Refresh the table
 	function refreshTable() {  
-	   $('#data').DataTable().ajax.reload();
+	   	$( "#mytable" ).load( "/dashboard/productcategory #mytable", function(){
+		   $("#table").DataTable();
+		});
 	}
 </script>
 @endsection

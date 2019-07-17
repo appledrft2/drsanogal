@@ -39,7 +39,7 @@
 						<th>Selling Price</th>
 						<th>Quantity</th>
 						<th width="20%">Sub Total</th>
-						<th>Action</th>
+						<th >Action</th>
 					</tr>
 				</thead>
 				<tbody>
