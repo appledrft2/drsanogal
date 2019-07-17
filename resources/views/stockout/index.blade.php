@@ -131,7 +131,7 @@
     var product = $(this).attr("id");
     product = JSON.parse(product);
 
-    var price = product.price.toFixed(2);
+    var price = parseFloat(product.price);
 
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);

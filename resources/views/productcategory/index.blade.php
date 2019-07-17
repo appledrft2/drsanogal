@@ -219,7 +219,7 @@
 
 	    });
 	});
-
+	// Refresh the table
 	function refreshTable() {  
 	   $('#data').DataTable().ajax.reload();
 	}

@@ -158,8 +158,9 @@
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
     product = JSON.parse(product);
-    var orig = product.original.toFixed(4);
-    var price = product.price.toFixed(4);
+    var orig = parseFloat(product.original);
+    var price = parseFloat(product.price);
+
     $("input[name=prod_id]").val(product.id);
     $("input[name=prod_name]").val(product.name);
     $("input[name=prod_original]").val(orig);
