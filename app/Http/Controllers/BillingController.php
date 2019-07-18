@@ -28,7 +28,26 @@ class BillingController extends Controller
     public function create($id){
     	$client = Client::findOrfail($id);
     	$products = Product::latest()->get();
-    	return view('billing.create',compact('client','products'))->with('title',$this->title);
+    	$i=0;
+    	if($client->patients){
+    		foreach($client->patients as $patient){
+    			if($patient->appointments){
+    				foreach ($patient->appointments as $appointment) {
+    					if($appointment->isPaid == 0){
+    						$i++;
+    					}
+    				}
+    			}
+    		}
+    	}
+
+    	if($i == 1){
+    		return view('billing.create',compact('client','products'))->with('title',$this->title);
+    	}else{
+    		toast('There are no patients that has unpaid appointment.','error');
+        	return redirect('dashboard/billing/'.$id.'/client');
+    	}
+	
     	
     }
 
