@@ -3,7 +3,7 @@
 @section('content')
 	<div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title text-center">Monthly Sales of {{date('Y')}} (Net Income)</h3>
+                <h3 class="card-title text-center">Monthly Net Sales of {{date('Y')}} (Point of Sales)</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
