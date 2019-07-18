@@ -42,7 +42,7 @@
 			                            <td colspan="2">
 			                              <div class="table-responsive">
 
-			                               @if(!$billing->services->isEmpty())
+			                               @if(!$billing->products->isEmpty())
 			                               	<table border="0" height="300px" width="100%" align="center">
 			                               	  <thead>
 			                               	  	<tr>
@@ -55,11 +55,21 @@
 			                               	      <th class="text-center">Unit:</th>
 			                               	      <th class="text-center">Price:</th>
 			                               	      <th class="text-center">Quantity: </th>
-			                               	      <th class="text-center">Total Price:</th>
+			                               	      <th class="text-center">Amount:</th>
 			                               	    </tr>
 			                               	  </thead>
 			                               	  <tbody>
-			                               	  
+			                               	  	@foreach($billing->products as $key => $product)
+			                               	  		<tr>
+			                               	  			<td>{{$key+1}}</td>
+			                               	  			<td>{{$product->name}}</td>
+			                               	  			<td>{{$product->category}}</td>
+			                               	  			<td>{{$product->unit}}</td>
+			                               	  			<td>{{$product->price}}</td>
+			                               	  			<td>{{$product->quantity}}</td>
+			                               	  			<td>&#8369 {{number_format($product->quantity * $product->price,2)}}</td>
+			                               	  		</tr>
+			                               	  	@endforeach
 			                               	  </tbody>
 			                               	  
 			                               	  <tr >
@@ -85,7 +95,7 @@
 			                               	  	<tr class="text-center">
 			                               	  		<td>{{$key + 1}}</td>
 			                               	  		<td>{{str_limit($service->appointment,25)}}</td>
-			                               	  		<td>{{$service->amount}}</td>
+			                               	  		<td>&#8369 {{$service->amount}}</td>
 			                               	  	</tr>
 			                               	  	@endforeach
 			                               	  </tbody> 

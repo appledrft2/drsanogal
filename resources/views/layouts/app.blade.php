@@ -134,7 +134,7 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-header">INVENTORY</li>
           <li class="nav-item">
             <a href="/dashboard/supplier" class="nav-link @if($title=='Supplier') active @endif">
               <i class="nav-icon fas fa-user"></i>

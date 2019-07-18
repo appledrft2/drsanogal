@@ -15,7 +15,19 @@ class CreateBillingProductsTable extends Migration
     {
         Schema::create('billing_products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('billing_id')->unsigned()->index();
+            $table->string('name');
+            $table->string('category');
+            $table->string('unit');
+            $table->double('price');
+            $table->integer('quantity');
+            $table->double('netamount');
+
             $table->timestamps();
+
+             $table->foreign('billing_id')
+            ->references('id')->on('billings')
+            ->onDelete('cascade');
         });
     }
 

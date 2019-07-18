@@ -60,10 +60,7 @@
 											
 
 										</tr>
-										@else
-										<tr>
-											<td colspan="5" class="text-center">No Unpaid Appointments</td>
-										</tr>
+										
 										@endif
 									
 								@endforeach
@@ -133,6 +130,7 @@
 		$('#table').DataTable().destroy();
 		$('#row').append('<tr id="data'+i+'">'+
 			'<td>'+
+			'<input type="hidden" id="prodid'+i+'" name="hidden_id[]" value="">'+
 			'<input type="hidden" id="prodnme'+i+'" name="hidden_prodname[]" value="">'+
 			'<select id="'+i+'" required  name="product_name[]" class="prodname form-control">'+
 			'<option value="">Select Product</option>'+
@@ -180,6 +178,7 @@
 		let data = this.value;
 		data = JSON.parse(data);
 
+		$('#row').find('#prodid'+id).val(data.id);
 		$('#row').find('#prodnme'+id).val(data.name);
 		$('#row').find('#prodcat'+id).val(data.category);
 		$('#row').find('#produnit'+id).val(data.unit);

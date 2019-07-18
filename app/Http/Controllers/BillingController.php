@@ -6,6 +6,7 @@ use App\Client;
 use App\Billing;
 use App\Product;
 use App\Appointment;
+use App\BillingProduct;
 use App\BillingService;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class BillingController extends Controller
     	$data['client_id'] = $id;
 
     	$billing_id = Billing::create($data);
-    	$sum = 0;
+    	$sum = $sum1 = $sum2 = 0;
     	// updating for appointment
     	foreach(request()->appointment as $key => $value){
     		// update the appointment
@@ -56,15 +57,34 @@ class BillingController extends Controller
     	      	$billingservice->save();
 
     	      	// get the total amount
-    	      	$sum = $sum + request()->amount[$key];
+    	      	$sum1 = $sum1 + request()->amount[$key];
     	      }
 
     	}
+    	// if product exists
+		if (request()->product_name) {
 
+			foreach (request()->hidden_id as $key => $value) {
+				$product = Product::findOrfail(request()->hidden_id[$key]);
+				$billingproduct = new BillingProduct();
+				$billingproduct->billing_id = $billing_id->id;
+				$billingproduct->name = request()->hidden_prodname[$key];
+				$billingproduct->category = request()->product_category[$key];
+				$billingproduct->unit = request()->product_unit[$key];
+				$billingproduct->price = request()->product_price[$key];
+				$billingproduct->quantity = request()->product_quantity[$key];
+				$billingproduct->netamount = request()->product_price[$key] - $product->original;
+				$amount = request()->product_price[$key] * request()->product_quantity[$key];
+				$billingproduct->save();
+				// get total amount of products
+				$sum2 = $sum2 + $amount;
+			}
+		}
+		$sum = $sum1 + $sum2;
     	$udpateamount = Billing::findOrfail($billing_id->id);
 		$udpateamount->amount = $sum;
 		$udpateamount->update();
-
+		return redirect('dashboard/billing/'.$id.'/client');
     }
 
     public function destroy($client_id,$billing_id){
