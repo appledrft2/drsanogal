@@ -226,7 +226,7 @@
               <tr>
                 <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
                 <td >{{$appointment->patient->name}}</td>
-                <td>{!!$appointment->description!!}</td>
+                <td>{{$appointment->appointment}}</td>
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment))}}</td>
                 <td>&#8369; {{number_format($appointment->amount,2)}}</td>
                 <td> <span class="badge badge-success">SMS Sent - Client is notified</span></td>
