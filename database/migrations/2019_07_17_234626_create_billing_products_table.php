@@ -21,7 +21,7 @@ class CreateBillingProductsTable extends Migration
             $table->string('unit');
             $table->double('price');
             $table->integer('quantity');
-            $table->double('netamount');
+
 
             $table->timestamps();
 

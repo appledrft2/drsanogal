@@ -18,6 +18,7 @@ class CreateBillingsTable extends Migration
             $table->bigInteger('client_id')->unsigned()->index();
             $table->string('rcode');
             $table->double('amount');
+            $table->double('netamount');
             $table->timestamps();
 
              $table->foreign('client_id')

@@ -41,7 +41,7 @@ class BillingController extends Controller
     		}
     	}
 
-    	if($i == 1){
+    	if($i >= 1){
     		return view('billing.create',compact('client','products'))->with('title',$this->title);
     	}else{
     		toast('There are no patients that has unpaid appointment.','error');
@@ -57,10 +57,11 @@ class BillingController extends Controller
     	  ]);
 
     	$data['amount'] = 0;
+        $data['netamount'] = 0;
     	$data['client_id'] = $id;
 
     	$billing_id = Billing::create($data);
-    	$sum = $sum1 = $sum2 = 0;
+    	$sum = $sum1 = $sum2 = $netamount = 0;
     	// updating for appointment
     	foreach(request()->appointment as $key => $value){
     		// update the appointment
@@ -94,7 +95,7 @@ class BillingController extends Controller
 				$billingproduct->unit = request()->product_unit[$key];
 				$billingproduct->price = request()->product_price[$key];
 				$billingproduct->quantity = request()->product_quantity[$key];
-				$billingproduct->netamount = (request()->product_price[$key] - $product->original) * request()->product_quantity[$key] + $sum1;
+				$netamount = (request()->product_price[$key] - $product->original) * request()->product_quantity[$key];
 				$amount = request()->product_price[$key] * request()->product_quantity[$key];
 				$billingproduct->save();
 				// get total amount of products
@@ -104,6 +105,7 @@ class BillingController extends Controller
 		$sum = $sum1 + $sum2;
     	$udpateamount = Billing::findOrfail($billing_id->id);
 		$udpateamount->amount = $sum;
+        $udpateamount->netamount = $sum1 + $netamount;
 		$udpateamount->update();
 		return redirect('dashboard/billing/'.$id.'/client');
     }
