@@ -27,7 +27,7 @@
 			                          </tr>
 			                          <tr>
 			                          
-			                            <td colspan="2" class="text-right"><b>Date:</b> {{$billing->created_at}}&nbsp; </td>
+			                            <td colspan="2" class="text-right"><b>Date:</b> {{$billing->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}&nbsp; </td>
 			                          </tr>
 
 			                          <tr>

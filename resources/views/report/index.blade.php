@@ -40,7 +40,7 @@
 								<td>{{$i++}}</td>
 								<td>{{$report->rcode}}</td>
 								<td>&#8369; {{number_format($report->amount,2)}}</td>
-								<td>{{$report->created_at->diffForhumans()}}</td>
+								<td>{{$report->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								<td>
 									<a href="receipt/{{$report->rcode}}" class="btn btn-default btn-sm"><i class="fa fa-print"></i> View Receipt</a>
 								</td>

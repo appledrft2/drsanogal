@@ -59,7 +59,7 @@
 								<td>{{$key + 1}}</td>
 								<td>{{$billing->rcode}}</td>
 								<td>{{$billing->amount}}</td>
-								<td>{{$billing->created_at->diffForhumans()}}</td>
+								<td>{{$billing->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								<td width="25%">
 									<div class="form-inline">
 										<a href="/dashboard/billing/{{$billing->rcode}}/receipt" class="btn btn-info btn-sm"><i class="fa fa-print"></i> View Receipt</a>
