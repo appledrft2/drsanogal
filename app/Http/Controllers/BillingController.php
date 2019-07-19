@@ -107,7 +107,8 @@ class BillingController extends Controller
 		$udpateamount->amount = $sum;
         $udpateamount->netamount = $sum1 + $netamount;
 		$udpateamount->update();
-		return redirect('dashboard/billing/'.$id.'/client');
+		return redirect('dashboard/billing/'.$udpateamount->rcode.'/receipt');
+
     }
 
     public function destroy($client_id,$billing_id){
