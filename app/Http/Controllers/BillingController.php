@@ -85,6 +85,7 @@ class BillingController extends Controller
 
 			foreach (request()->hidden_id as $key => $value) {
 				$product = Product::findOrfail(request()->hidden_id[$key]);
+                $product->quantity = $product->quantity - request()->product_quantity[$key];
 				$billingproduct = new BillingProduct();
 				$billingproduct->billing_id = $billing_id->id;
 				$billingproduct->name = request()->hidden_prodname[$key];
