@@ -3,26 +3,10 @@
 @section('content')
 	<div class="card">
 		<div class="card-body">
-
-			<!-- <div class="float-right">
-				<div class="form-inline">
-					@if(isset($btn)) <a href="/dashboard/supplier" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
-					<form method="POST" action="/dashboard/supplier/search">
-						@csrf
-						<div class="input-group ">
-						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
-						  <div class="input-group-append">
-						    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-						  </div>
-						</div>
-					</form>
-				</div>
-				
-			</div> -->
 			<div class="pull-left mb-3">
-				<a href="/dashboard/supplier/create" class="btn btn-default "><i class="fa fa-plus-circle"></i>New Supplier</a>
+				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i>New Supplier</button>
 			</div>
-			<div class="table-responsive">
+			<div id="mytable" class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -39,26 +23,18 @@
 					<?php $i=1; ?>
 						@foreach($suppliers as $supplier)
 							<tr>
-								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$i++}}</td>
-								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$supplier->name}}</td>
-								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{{$supplier->contact}}</td>
-								<td onclick="window.location = '/dashboard/supplier/{{$supplier->id}}/edit';">{!!$supplier->address!!}</td>
+								<td>{{$i++}}</td>
+								<td>{{$supplier->name}}</td>
+								<td>{{$supplier->contact}}</td>
+								<td>{!!$supplier->address!!}</td>
 								<th><form method="post" action="/dashboard/product/search">@csrf<input type="hidden" name="data" value="{{$supplier->id}}"><button class="btn btn-link">{{$supplier->products->count()}}</button></form></th>
-								<td width="15%">
-									<div class="form-inline">
-										
-										<a href="/dashboard/supplier/{{$supplier->id}}/edit" class="btn btn-info  mr-1"><i class="fa fa-edit"></i></a>
-										<form  method="POST" action="/dashboard/supplier/{{$supplier->id}}">
-											@method('delete')
-											@csrf
-											<button class="btn btn-danger  mt-3 btn-submit"><i class="fa fa-trash"></i></button>
-										</form>
-									</div>
+								<td width="15%">	
+									<button id="{{$supplier}}" class="btn btn-info btn-sm btn-block btn_edit"><i class="fa fa-edit"></i> Edit</button>
+									<button id="{{$supplier->id}}" class="btn btn-danger btn_block btn-sm btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
 								</td>
 							</tr>
 						@endforeach
 					@else
-		<!-- 			<tr><td colspan="6" class="text-center">No Data</td></tr> -->
 					@endif
 				</tbody>
 			</table>
@@ -66,4 +42,162 @@
 
 		</div>
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="form">
+	        	@csrf
+	        	<input type="hidden" name="id" value="">
+	        	<input type="hidden" name="_method" value="">
+	        	<div class="form-group"><label>Name</label><input type="text" name="name" class="form-control " placeholder="Name" value="" ></div>
+				<div class="form-group"><label>Contact</label><input type="number" value="" name="contact" class="form-control " placeholder="Contact" ></div>
+
+				<div class="form-group"><label>Address</label><textarea class="form-control" cols="5" rows="5"  name="address" placeholder="Address"></textarea></div>
+	        	
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-info btn_save">Save changes</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--  -->
+@endsection
+
+@section('script')
+<script type="text/javascript">
+	const Toast = Swal.mixin({
+	  toast: true,
+	  position: 'top-end',
+	  showConfirmButton: false,
+	  timer: 3000
+	});
+</script>
+<script type="text/javascript">
+	$(document).on('click','.btn_add',function(){
+		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
+		$('input[name=_method]').val('POST');
+		$('.modal-title').text('New');
+		$('#Modal').modal('show');
+	});
+	// btn for editing data
+	$(document).on('click','.btn_edit',function(){
+		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
+		let data = $(this).attr('id');
+		data = JSON.parse(data);
+		console.log(data);
+		let id = data.id;
+
+		$('input[name=id]').val(id);
+		$('input[name=_method]').val('PATCH');
+		$('.modal-title').text('Update');
+		
+        $('input[name=name]').val(data.name);
+        $('input[name=contact]').val(data.contact);
+        $('textarea[name=address]').val(data.address);
+        $('#Modal').modal('show');
+	    });
+
+	// btn for inserting/updating data
+	$(document).on('click','.btn_save',function(e){
+		e.preventDefault();
+		$('#form').find('.error_flash').remove();
+		let method = $('input[name=_method]').val();
+		let id = $('input[name=id]').val();
+		let post = '/dashboard/supplier';
+		let patch = '/dashboard/supplier/'+id;
+		let url = '';
+
+		if(method == "POST"){
+			url = post;
+		}else if(method == "PATCH"){
+			url = patch;
+		}
+			
+		$.ajax({
+	        type: "POST",
+	        url: url,
+	        dataType: "json",
+	        data: $('#form').serialize(),
+	        success: function(data){
+	        	$('#Modal').modal('hide');
+	        	Toast.fire({
+	        	  type: 'success',
+	        	  title: data.message
+	        	});
+	        	refreshTable();
+	        	console.log(data);
+	        },
+	        error: function(data){
+
+	        	console.log(data);
+	            // display errors on each form field
+	            $.each(data.responseJSON.errors, function (i, error) {
+	                var el = $(document).find('[name="'+i+'"]');
+	                el.after($('<span class="error_flash" style="color: red;">'+error[0]+'</span>'));
+	            });
+
+	        }
+	    });
+	});
+	   	// btn for deleting data
+	    $(document).on('click', '.btn_delete', function(){
+	    	    let id = $(this).attr('id');
+
+	    	    Swal.fire({
+	    	      title: 'Are you sure?',
+	    	      text: "You won't be able to revert this!",
+	    	      type: 'warning',
+	    	      showCancelButton: true,
+	    	      confirmButtonColor: '#3085d6',
+	    	      cancelButtonColor: '#d33',
+	    	      confirmButtonText: 'Yes, delete it!'
+	    	    }).then((result) => {
+
+	    	      if (result.value) {
+
+	            	$.ajax({
+	                    type: "DELETE",
+	                    url: '/dashboard/supplier/'+id,
+	                    dataType: "json",
+	                    data: $('#form').serialize(),
+	                    success: function(data){
+	                    	Toast.fire({
+	                    	  type: 'success',
+	                    	  title: data.message
+	                    	});
+	                    	refreshTable();
+	                    },
+	                    error: function(data){
+	                    	Toast.fire({
+	                    	  type: 'error',
+	                    	  title: 'there was a problem with this record.'
+	                    	});
+	                    }
+	                });
+
+	    	      }
+
+	    	    });
+	    });
+
+		// Refresh the table
+		function refreshTable() {  
+		   	$( "#mytable" ).load( "/dashboard/supplier #mytable", function(){
+			   $("#table").DataTable();
+			});
+		}
+</script>
 @endsection

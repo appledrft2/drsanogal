@@ -120,6 +120,7 @@
 	// btn for adding data
 	$(document).on('click','.btn_add',function(){
 		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
 		
@@ -128,6 +129,7 @@
 	// btn for editing data
 	$(document).on('click','.btn_edit',function(){
 		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
 		let id = $(this).attr('id');
 		$('input[name=id]').val(id);
 		$('input[name=_method]').val('PATCH');
@@ -153,6 +155,7 @@
 	// btn for inserting/updating data
 	$(document).on('click','.btn_save',function(e){
 		e.preventDefault();
+		$('#form').find('.error_flash').remove();
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();
 		let post = '/dashboard/productcategory';
@@ -179,9 +182,10 @@
 		        	refreshTable();
 		        },
 		        error: function(data){
-		        	Toast.fire({
-		        	  type: 'error',
-		        	  title: 'there was a problem with this record.'
+		        	// display errors on each form field
+		        	$.each(data.responseJSON.errors, function (i, error) {
+		        	    var el = $(document).find('[name="'+i+'"]');
+		        	    el.after($('<span class="error_flash" style="color: red;">'+error[0]+'</span>'));
 		        	});
 		        }
 		    });

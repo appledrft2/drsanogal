@@ -62,8 +62,10 @@ class AnnouncementController extends Controller
         //handle file uploading
         if($request->hasFile('cover_image')){
            
-            $path = request()->file('cover_image');
-            $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+           if($request->file('cover_image') != 'uploads/noimage.png'){
+                $path = request()->file('cover_image');
+                $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+           }
 
         }else{
             $pathToSave = 'uploads/noimage.png';
@@ -143,8 +145,10 @@ class AnnouncementController extends Controller
 
         //handle file uploading
         if($request->hasFile('cover_image')){
-            // finds the old image and delete
-            Storage::disk('s3')->delete($announcement->cover_image);
+            if($request->file('cover_image') != 'uploads/noimage.png'){
+                // finds the old image and delete
+                Storage::disk('s3')->delete($announcement->cover_image);
+            }
 
             // upload new image
             $path = request()->file('cover_image');

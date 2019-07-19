@@ -10,13 +10,13 @@
         <h2>Announcements</h2><hr>
             @if(count($announcements))
               @foreach($announcements as $announcement)
-                  <div class="card">
+                  <div class="card mt-2">
                       <img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" width="100%" height="300px">
                     <div class="card-body">
                       <h4 class="card-title">{{$announcement->title}}</h4>
                       <span><strong>Author:</strong> {{$announcement->user->email}}</span><br>
                        <span><strong>Posted at: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
-                      <p class="card-text">{!!$announcement->body!!}</p>
+                      <p class="card-text">{!!str_limit($announcement->body, 50)!!}</p>
                     </div>
                     
                   </div>  

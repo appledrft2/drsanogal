@@ -7,30 +7,30 @@
 				<div class="card-header"><p class="lead float-left">Owner Information</p> <span class="float-right"><a href="/dashboard/billing" class="btn btn-default">Go Back</a></span></div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-6 " >
+						<div class="col-7 " >
 							<div class=" ">
-								<label class="lead text-sm ">Name:</label>
-								<span class="lead text-sm">{{$client->name}}</span>
+								<label style="font-size:1em" class="lead  ">Name:</label>
+								<span style="font-size:1em" class="lead ">{{$client->name}}</span>
 							</div>
 							
 							<div class="">
-								<label class="lead text-sm">Gender:</label>
-								<span class="lead text-sm">{{$client->gender}}</span>
+								<label style="font-size:1em" class="lead ">Gender:</label>
+								<span style="font-size:1em" class="lead ">{{$client->gender}}</span>
 							</div>
 							
 							<div class="">
-								<label class="lead text-sm">Contact:</label>
-								<span class="lead text-sm">{{$client->contact}}</span>
+								<label style="font-size:1em" class="lead ">Contact:</label>
+								<span style="font-size:1em" class="lead ">{{$client->contact}}</span>
 							</div>
 							
 							<div class="">
 								<div class="form-inline">
-									<label class="mb-3 lead text-sm">Address:</label>&nbsp;
-									<span class="lead text-sm">{!!$client->address!!}</span>
+									<label style="font-size:1em" class="lead ">Address:</label>&nbsp;
+									<span style="font-size:1em" class="lead ">{!!$client->address!!}</span>
 								</div>
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-5">
 							<div class="float-right">
 								<img src="@if($client->gender == 'Male') {{asset('adminlte3/dist/img/male.png')}} @else {{asset('adminlte3/dist/img/female.png')}} @endif" class="img-fluid" style="border-radius: 90%;width: 30%">
 							</div>

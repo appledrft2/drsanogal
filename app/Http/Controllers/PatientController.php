@@ -63,18 +63,27 @@ class PatientController extends Controller
             'date_of_birth' => 'required',
             'gender' => 'required',
             'veterinarian' => 'required',
-            
         ]);
-        
+
         $markings = (request('markings')) ? request('markings') : "none";
         $special_considerations = (request('special_considerations')) ? request('special_considerations') : "none";
         $data['client_id'] = $client;
         $data['markings'] = $markings;
         $data['special_considerations'] = $special_considerations;
 
-        Patient::create($data);
-        toast('Successfully added!','success');
-        return redirect('dashboard/client/'.$client.'/patient')->with('title',$this->title);
+        $status = Patient::create($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 
     /**
@@ -119,10 +128,21 @@ class PatientController extends Controller
             'special_considerations' => 'required'
         ]);
 
-        $patient->update($data);
 
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/client/'.$client.'/patient');
+        $status = $patient->update($data);
+
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record updated successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 
     /**
@@ -133,8 +153,18 @@ class PatientController extends Controller
      */
     public function destroy($client,Patient $patient)
     {
-        $patient->delete();
-        toast('Record has been deleted!','error');
-        return redirect('dashboard/client/'.$client.'/patient');
+        $status = $patient->delete();
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record deleted successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 }

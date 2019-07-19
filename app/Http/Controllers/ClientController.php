@@ -57,8 +57,6 @@ class ClientController extends Controller
             'gender'=>'required',
             'occupation'=>'required',
             'contact'=>'required',
-            'work'=>'nullable',
-            'home'=>'nullable',
             'address'=>'required',
             'smsNotify'=>'required',
             'email'=>'nullable'
@@ -69,9 +67,19 @@ class ClientController extends Controller
          $data['email'] =  (request()->email) ? request()->email : ' ';
 
 
-        Client::create($data);
-        toast('Successfully added!','success');
-        return redirect('dashboard/client');
+        $status = Client::create($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 
     /**
@@ -121,9 +129,19 @@ class ClientController extends Controller
 
 
 
-        $client->update($data);
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/client');
+        $status = $client->update($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record Updated successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     /**
@@ -134,8 +152,18 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        $client->delete();
-        toast('Record successfully deleted!','error');
-        return redirect('dashboard/client');
+        $status = $client->delete();
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record Deleted successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 }

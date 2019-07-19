@@ -10,12 +10,16 @@
   <link rel="icon" type="image/x-icon" href="{{asset('adminlte3/dist/img/logo.jpg')}}">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/summernote/summernote-bs4.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/select2/css/select2.min.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.min.css')}}">
+    <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+   <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -240,13 +244,16 @@
 
 <!-- jQuery -->
 <script src="{{asset('adminlte3/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('adminlte3/dist/js/adminlte.min.js')}}"></script>
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
-<script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
+
 
 
 
@@ -361,7 +368,12 @@ document.addEventListener('pjax:complete', $('.content').fadeIn(300));
 </script> -->
 
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-
+<!-- Select2 -->
+<script src="{{asset('adminlte3/plugins/select2/js/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+  //Initialize Select2 Elements
+  $('.select2').select2()
+</script>
 @yield('script','')
 </body>
 </html>

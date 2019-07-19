@@ -18,10 +18,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
+    {   
+        $suppliers = Supplier::orderBy('created_at','DESc')->get();
+        $units = ProductUnit::orderBy('created_at','DESc')->get();
+        $category = ProductCategory::orderBy('created_at','DESc')->get();
         $products = Product::orderBy('created_at','DESC')->get();
-        return view('product.index',compact('products'))->with('title',$this->title);
+        return view('product.index',compact('products','suppliers','category','units'))->with('title',$this->title);
     }
 
     /**
@@ -81,9 +83,19 @@ class ProductController extends Controller
         // Save filename to database
         $data['image'] = $pathToSave;
 
-        Product::create($data);
-        toast('Successfully added!','success');
-        return redirect('dashboard/product');
+        $status = Product::create($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     /**
@@ -143,9 +155,19 @@ class ProductController extends Controller
         }
 
 
-        $product->update($data);
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/product');
+        $status = $product->update($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     /**
@@ -161,8 +183,18 @@ class ProductController extends Controller
             Storage::disk('s3')->delete($product->image);
         }
 
-        $product->delete();
-        toast('Record successfully deleted!','error');
-        return redirect('dashboard/product');
+        $status = $product->delete();
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 }

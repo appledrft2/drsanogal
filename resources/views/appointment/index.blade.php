@@ -14,30 +14,30 @@
 					<div class="row">
 						<div class="col-4">
 							<div class="">
-								<label class="lead text-sm">Owner:</label>
+								<label style="font-size:1em" class="lead">Owner:</label>
 								<span class="lead " style="font-size:1em">{{$patient->client->name}}</span>
 							</div>
 							<div class="">
-								<label class="lead text-sm">Name:</label>
+								<label style="font-size:1em" class="lead">Name:</label>
 								<span class="lead " style="font-size:1em">{{$patient->name}}</span>
 							</div>
 
 							<div class="">
-								<label class="lead text-sm">Breed:</label>
+								<label style="font-size:1em" class="lead">Breed:</label>
 								<span class="lead " style="font-size:1em">{{$patient->breed}}</span>
 							</div>
 
 							<div class="">
-								<label class="lead text-sm">Gender:</label>
+								<label style="font-size:1em" class="lead">Gender:</label>
 								<span class="lead " style="font-size:1em">{{$patient->gender}}</span>
 							</div>
 							
 							<div class="">
-								<label class="lead text-sm">Specie:</label>
+								<label style="font-size:1em" class="lead">Specie:</label>
 								<span class="lead " style="font-size:1em">{{$patient->specie}}</span>
 							</div>
 							<div class="">
-								<label class="lead text-sm">Date of Birth:</label>
+								<label style="font-size:1em" class="lead">Date of Birth:</label>
 								<span class="lead " style="font-size:1em">{{date('M d, Y', strtotime($patient->date_of_birth))}}</span>
 							</div>
 							
@@ -45,24 +45,24 @@
 						</div>
 						<div class="col-4">
 							<div class="">
-								<label class=" lead text-sm">Markings:</label>
+								<label style="font-size:1em" class=" lead">Markings:</label>
 								<div class="">
 									<span class="lead " style="font-size:1em">{{$patient->markings}}</span>
 								</div>
 							</div>
 							
 							<div class="">
-								<label class="lead text-sm">Special <br>Considerations:</label>
+								<label style="font-size:1em" class="lead">Special <br>Considerations:</label>
 								<div class="">
 									<span class="lead " style="font-size:1em">{{$patient->special_considerations}}</span>
 								</div>
 							</div>
 							
 							<div class="">
-								<label class="lead text-sm">Attending <br>Veterinarian:</label>
 								<div class="">
-									
-									<span class="lead " style="font-size:1em">{{$patient->veterinarian}}</span>
+								<label style="font-size:1em" class="lead">Veterinarian: </label>
+										<br>
+									<span class="lead " style="font-size:1em"> {{$patient->veterinarian}}</span>
 								</div>
 							</div>
 							

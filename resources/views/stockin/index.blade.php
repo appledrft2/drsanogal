@@ -8,25 +8,25 @@
 				<div class="card-header"><p class="lead float-left">Supplier Information</p> <span class="float-right"><a href="/dashboard/suppliers" class="btn btn-default">Go Back</a></span></div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-7">
 							<div class="">
-								<label class="lead text-sm">Name:</label>
-								<span class="lead text-sm">{{$supplier->name}}</span>
+								<label style="font-size:1em" class="lead">Name:</label>
+								<span style="font-size:1em" class="lead">{{$supplier->name}}</span>
 							</div>
 							
 							<div class="">
-								<label class="lead text-sm">Contact:</label>
-								<span class="lead text-sm">{{$supplier->contact}}</span>
+								<label style="font-size:1em" class="lead">Contact:</label>
+								<span style="font-size:1em" class="lead">{{$supplier->contact}}</span>
 							</div>
 							<div class="">
 								<span class="form-inline">
-									<label class="lead text-sm">Address:</label>
-									<span class="lead text-sm mt-3 ml-2">{!!$supplier->address!!}</span>	
+									<label style="font-size:1em" class="lead">Address:</label>
+									<span style="font-size:1em" class="lead mt-3 ml-2">{!!$supplier->address!!}</span>	
 								</span>
 							</div>
 							
 						</div>
-						<div class="col-6">
+						<div class="col-5">
 							<div class="">
 								
 								<div class="form-group">

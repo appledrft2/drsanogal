@@ -57,9 +57,19 @@ class SupplierController extends Controller
             'address'=>'required'
         ]);
 
-        Supplier::create($data);
-        toast('Successfully added!','success');
-        return redirect('dashboard/supplier');
+        $status = Supplier::create($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 
     /**
@@ -98,9 +108,19 @@ class SupplierController extends Controller
             'contact'=>'required',
             'address'=>'required'
         ]);
-        $supplier->update($data);
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/supplier');
+        $status = $supplier->update($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 
     /**
@@ -111,8 +131,18 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        $supplier->delete();
-        toast('Record successfully deleted!','error');
-        return redirect('dashboard/supplier');
+        $status = $supplier->delete();
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record',
+            ]);
+        }
     }
 }

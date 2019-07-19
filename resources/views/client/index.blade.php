@@ -3,26 +3,10 @@
 @section('content')
 	<div class="card">
 		<div class="card-body">
-
-		<!-- 	<div class="float-right">
-				<div class="form-inline">
-					@if(isset($btn)) <a href="/dashboard/client" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
-					<form method="POST" action="/dashboard/client/search">
-						@csrf
-						<div class="input-group ">
-						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
-						  <div class="input-group-append">
-						    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-						  </div>
-						</div>
-					</form>
-				</div>
-				
-			</div> -->
 			<div class="pull-left mb-3">
-				<a href="/dashboard/client/create" class="btn btn-default"><i class="fa fa-plus-circle"></i> New Client</a>
+				<button class="btn btn_add btn-default"><i class="fa fa-plus-circle"></i> New Client</button>
 			</div>
-			<div class="table-responsive">
+			<div id="mytable" class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -36,39 +20,28 @@
 					</tr>
 				</thead>
 				<tbody>
-	<!-- 				<tr>
-						<td><form method="POST" action="/dashboard/client/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by name"></form></td>
-						<td><form method="POST" action="/dashboard/client/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by gender"></form></td>
-						<td><form method="POST" action="/dashboard/client/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by contact"></form></td>
-						<td><form method="POST" action="/dashboard/client/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by address"></form></td>
-						<td></td>
-					</tr> -->
 					@if(count($clients))
 					<?php $i=1; ?>
 						@foreach($clients as $client)
 							<tr>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$i++}}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->name}}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->gender}}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{{$client->occupation}}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';">{!!$client->address!!}</td>
-								<td onclick="window.location = '/dashboard/client/{{$client->id}}/patient';"><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
+								<td >{{$i++}}</td>
+								<td >{{$client->name}}</td>
+								<td >{{$client->gender}}</td>
+								<td >{{$client->occupation}}</td>
+								<td >{!!$client->address!!}</td>
+								<td ><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
 								<td width="15%">
 									<div class="form-inline">
 							
-										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-block btn-success btn-sm mr-1"><i class="fa fa-paw"></i> View Pets</a>
-										<a href="/dashboard/client/{{$client->id}}/edit" class="btn btn-block btn-info btn-sm mr-1"><i class="fa fa-edit"></i> Edit Client</a>
-										<form  method="POST" action="/dashboard/client/{{$client->id}}">
-											@method('delete')
-											@csrf
-											<button class="btn btn-danger btn-sm mt-2 btn-submit"><i class="fa fa-trash"></i> Remove Client &nbsp;&nbsp;&nbsp;</button>
-										</form>
+										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-block btn-success btn-sm btn-block"><i class="fa fa-paw"></i> View Pets</a>
+										<button id="{{$client}}" class="btn btn_edit btn-block btn-info btn-sm "><i class="fa fa-edit"></i> Edit </button>
+									
+										<button id="{{$client->id}}" class="btn btn-danger btn-block btn-sm btn_delete"><i class="fa fa-trash"></i> Delete</button>
 									</div>
 								</td>
 							</tr>
 						@endforeach
 					@else
-<!-- 					<tr><td colspan="6" class="text-center">No Data</td></tr> -->
 					@endif
 				</tbody>
 			</table>
@@ -76,4 +49,203 @@
 
 		</div>
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="form">
+	        	@csrf
+	        	<input type="hidden" name="id" value="">
+	        	<input type="hidden" name="_method" value="">
+	        	<div class="form-group">
+	        		<input type="text" name="name" class="form-control " placeholder="Name" value="" >
+	        	</div>
+				<div class="form-group">
+					<select name="gender" class="form-control ">
+					<option value="">Gender</option>
+					<option>Male</option>
+					<option>Female</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" name="occupation" class="form-control " placeholder="Occupation" value="" >
+				</div>
+				<div class="form-group">
+					<label>Contact Numbers</label>
+					
+						<div class="form-group "><input type="number" value="" name="contact" class="form-control " placeholder="Mobile" ></div>	
+						<div class="form-group "><input type="number" value="" name="work" class="form-control " placeholder="Work" ></div>
+						<div class="form-group "><input type="number" value="" name="home" class="form-control " placeholder="Home" ></div>	
+						<div class="form-group ">
+							<select name="smsNotify" class="form-control">
+								<option value="">Which number to notify</option>
+								<option>Mobile</option>
+								<option>Home</option>
+								<option>Work</option>
+								<option>None</option>
+							</select>
+						</div>
+
+				</div>
+				<hr>	
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" value="" name="email" class="form-control " placeholder="Email Address" ></div>	
+				<div class="form-group">
+					<label>Address</label>
+					<textarea class="form-control" id="address" name="address" cols="5" rows="5" placeholder="Address"></textarea>
+				</div>
+				<div class="form-group">
+					<div id="form-errors"></div>
+				</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-info btn_save">Save changes</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--  -->
+@endsection
+@section('script')
+<script type="text/javascript">
+	const Toast = Swal.mixin({
+	  toast: true,
+	  position: 'top-end',
+	  showConfirmButton: false,
+	  timer: 3000
+	});
+</script>
+<script type="text/javascript">
+	$(document).on('click','.btn_add',function(){
+		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
+		$('input[name=_method]').val('POST');
+		$('.modal-title').text('New');
+		$('#Modal').modal('show');
+	});
+	// btn for editing data
+	$(document).on('click','.btn_edit',function(){
+		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
+		let data = $(this).attr('id');
+		data = JSON.parse(data);
+		console.log(data);
+		let id = data.id;
+
+		$('input[name=id]').val(id);
+		$('input[name=_method]').val('PATCH');
+		$('.modal-title').text('Update');
+		
+        $('input[name=name]').val(data.name);
+        $('select[name=gender]').val(data.gender);
+        $('input[name=occupation]').val(data.occupation);
+        $('input[name=contact]').val(data.contact);
+        $('input[name=work]').val(data.work);
+        $('input[name=home]').val(data.home);
+        $('select[name=smsNotify]').val(data.smsNotify);
+        $('input[name=email]').val(data.email);
+        $('#address').val(data.address);
+        $('#Modal').modal('show');
+	    });
+
+	// btn for inserting/updating data
+	$(document).on('click','.btn_save',function(e){
+		e.preventDefault();
+		$('#form').find('.error_flash').remove();
+		let method = $('input[name=_method]').val();
+		let id = $('input[name=id]').val();
+		let post = '/dashboard/client';
+		let patch = '/dashboard/client/'+id;
+		let url = '';
+
+		if(method == "POST"){
+			url = post;
+		}else if(method == "PATCH"){
+			url = patch;
+		}
+			
+		$.ajax({
+	        type: "POST",
+	        url: url,
+	        dataType: "json",
+	        data: $('#form').serialize(),
+	        success: function(data){
+	        	$('#Modal').modal('hide');
+	        	Toast.fire({
+	        	  type: 'success',
+	        	  title: data.message
+	        	});
+	        	refreshTable();
+	        },
+	        error: function(data){
+
+	        	console.log(data);
+	            // display errors on each form field
+	            $.each(data.responseJSON.errors, function (i, error) {
+	                var el = $(document).find('[name="'+i+'"]');
+	                el.after($('<span class="error_flash" style="color: red;">'+error[0]+'</span>'));
+	            });
+
+	        }
+	    });
+	});
+	   	// btn for deleting data
+	    $(document).on('click', '.btn_delete', function(){
+	    	    let id = $(this).attr('id');
+
+	    	    Swal.fire({
+	    	      title: 'Are you sure?',
+	    	      text: "You won't be able to revert this!",
+	    	      type: 'warning',
+	    	      showCancelButton: true,
+	    	      confirmButtonColor: '#3085d6',
+	    	      cancelButtonColor: '#d33',
+	    	      confirmButtonText: 'Yes, delete it!'
+	    	    }).then((result) => {
+
+	    	      if (result.value) {
+
+	            	$.ajax({
+	                    type: "DELETE",
+	                    url: '/dashboard/client/'+id,
+	                    dataType: "json",
+	                    data: $('#form').serialize(),
+	                    success: function(data){
+	                    	Toast.fire({
+	                    	  type: 'success',
+	                    	  title: data.message
+	                    	});
+	                    	refreshTable();
+	                    },
+	                    error: function(data){
+	                    	Toast.fire({
+	                    	  type: 'error',
+	                    	  title: 'there was a problem with this record.'
+	                    	});
+	                    }
+	                });
+
+	    	      }
+
+	    	    });
+	    });
+
+		// Refresh the table
+		function refreshTable() {  
+		   	$( "#mytable" ).load( "/dashboard/client #mytable", function(){
+			   $("#table").DataTable();
+			});
+		}
+</script>
 @endsection

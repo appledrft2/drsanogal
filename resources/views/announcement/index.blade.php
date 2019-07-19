@@ -26,7 +26,7 @@
 								<td>{{$i++}}</td>
 								<td >{{$announcement->title}}</td><td >{!!str_limit($announcement->body, 25)!!}</td>
 								<td >{{$announcement->user->name}}</td>
-								<td >{{$announcement->created_at->diffForhumans()}}</td>
+								<td >{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								
 								<td>
 									<div class="form-inline">
@@ -99,6 +99,7 @@
 	// btn for adding data
 	$(document).on('click','.btn_add',function(){
 		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
 		$('#img').find('img').remove();
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
@@ -108,6 +109,7 @@
 	$(document).on('click','.btn_edit',function(){
 		$('#img').find('img').remove();
 		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
 		let id = $(this).attr('id');
 		$('input[name=id]').val(id);
 		$('input[name=_method]').val('PATCH');
@@ -134,6 +136,7 @@
 	// btn for inserting/updating data
 	$('#form').on('submit',function(e){
 		e.preventDefault();
+		
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();
 		let post = '/dashboard/announcement';
@@ -171,6 +174,12 @@
 	        	  title: 'there was a problem with this record.'
 	        	});
 	        	console.log(data);
+	        	// display errors on each form field
+	            $.each(data.responseJSON.errors, function (i, error) {
+	                var el = $(document).find('[name="'+i+'"]');
+	                el.after($('<span class="error_flash" style="color: red;">'+error[0]+'</span>'));
+	            });
+
 	        }
 	    });
 
