@@ -61,6 +61,8 @@ Route::resource('/dashboard/appointment/{appointment}/detail','PreventiveControl
 Route::get('/dashboard/billing','BillingController@list')->middleware('denyStaff'); // staff cant access this module
 Route::get('/dashboard/billing/{code}/receipt','BillingController@receipt')->middleware('denyStaff'); // staff cant access this module
 Route::resource('/dashboard/billing/{id}/client','BillingController');
+// Billing report
+Route::get('/dashboard/billingreport','BillingReportController@index');
 
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');

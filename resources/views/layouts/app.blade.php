@@ -128,12 +128,21 @@
 
           <li class="nav-item">
             <a href="/dashboard/billing" class="nav-link @if($title=='Billing') active @endif">
-              <i class="nav-icon fas fa-book"></i>
+              <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
                 Billing
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/dashboard/billingreport" class="nav-link @if($title=='Billing Report') active @endif">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Billing Report
+              </p>
+            </a>
+          </li>
+
           <li class="nav-header">INVENTORY</li>
           <li class="nav-item">
             <a href="/dashboard/supplier" class="nav-link @if($title=='Supplier') active @endif">
@@ -175,7 +184,7 @@
             <a href="/dashboard/report" class="nav-link @if($title=='Report') active @endif">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Report
+                Sales Report
               </p>
             </a>
           </li>

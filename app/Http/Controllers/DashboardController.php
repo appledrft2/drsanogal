@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Client;
+use App\Billing;
 use App\Patient;
 use App\Product;
 use App\StockIn;
@@ -11,6 +12,7 @@ use App\StockOut;
 use Carbon\Carbon;
 use App\Appointment;
 use App\Announcement;
+use App\BillingProduct;
 use App\StockOutDetail;
 use Illuminate\Http\Request;
 
@@ -24,8 +26,6 @@ class DashboardController extends Controller
         $lowproducts = Product::orderBy('quantity','ASC')->limit(5)->get(); 
 
     	// Boxes
-    	$appointmentscount = Appointment::count('id');
-     	
      	//one day (today)
      	$sales_today =Carbon::now()->subDays(1);
      	// week
@@ -33,13 +33,21 @@ class DashboardController extends Controller
      	//one month / 30 days
      	$sales_month = Carbon::now()->subDays(30);
      	// query
-     	$today = StockOutDetail::where('created_at', '>=',$sales_today)->sum('netamount');
-     	$week = StockOutDetail::where('created_at', '>=', $sales_week)->sum('netamount');
+     	$today1 = StockOutDetail::where('created_at', '>=',$sales_today)->sum('netamount');
+     	$today2 = BillingProduct::where('created_at', '>=',$sales_today)->sum('netamount');
 
-     	$gross = StockOut::sum('amount');
-     	$net = StockOutDetail::sum('netamount');
+     	$today = $today1 + $today2;
+     	$week1 = StockOutDetail::where('created_at', '>=', $sales_week)->sum('netamount');
+     	$week2 = BillingProduct::where('created_at', '>=', $sales_week)->sum('netamount');
+     	$week = $week1 + $week2;
 
-        $products =Product::count('id');
+     	$gross1 = StockOut::sum('amount');
+     	$gross2 = Billing::sum('amount');
+     	$gross = $gross1 + $gross2;
+     	$net1 = StockOutDetail::sum('netamount');
+     	$net2 = BillingProduct::sum('netamount');
+     	$net = $net1 + $net2;
+
 
 
 
@@ -65,8 +73,6 @@ class DashboardController extends Controller
 
     	return view('dashboard.index',[
     		'title'=>$this->title,
-    		'appointmentscount'=>$appointmentscount,
-            'products'=>$products,
             'gross'=>$gross,
             'net'=>$net,
             'today'=>$today,
