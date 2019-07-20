@@ -96,7 +96,7 @@
 			                               	  	<tr class="text-center">
 			                               	  		<td>{{$key + 1}}</td>
 			                               	  		<td>{{str_limit($service->appointment,25)}}</td>
-			                               	  		<td>&#8369 {{$service->amount}}</td>
+			                               	  		<td>&#8369 {{number_format($service->amount,2)}}</td>
 			                               	  	</tr>
 			                               	  	@endforeach
 			                               	  </tbody> 
