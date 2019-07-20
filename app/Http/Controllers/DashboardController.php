@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function index(){
 
         // Low product notification
-        $lowproducts = Product::orderBy('quantity','ASC')->limit(5)->get(); 
+        $lowproducts = Product::orderBy('quantity','ASC')->limit(4)->get(); 
 
     	// Boxes
      	//one day (today)
@@ -69,7 +69,7 @@ class DashboardController extends Controller
             }
         }
 
-        $stockins = StockIn::orderBy('due','desc')->paginate(4);
+        $stockins = StockIn::orderBy('due','desc')->paginate(2);
 
     	return view('dashboard.index',[
     		'title'=>$this->title,
