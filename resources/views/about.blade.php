@@ -40,15 +40,26 @@
           <br>
         </address>
         <address>
-          <abbr title="Phone">P:</abbr>
-          0908 695 8978
+          <div>
+            <abbr title="Phone">Globe:</abbr>
+            0927-152-8926
+          </div>
+         <div>
+           <abbr title="Phone">Smart:</abbr>
+           0908-695-8978
+         </div>
+         <div>
+           <abbr title="Phone">PLDT Landline:</abbr>
+           (034) 474-3023
+         </div>
+          
           <br>
-          <abbr title="Email">E:</abbr>
-          <a href="mailto:drsanogal@gmail.com">drsanogal@gmail.com</a>
+          <abbr title="Email">Email:</abbr>
+          <a href="mailto:rocelcantilasanoga.d­vml@gmail.com">rocelcantilasanoga.d­vml@gmail.com</a>
         </address>
-          <h3>Google Map Location</h3>
-          <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=dr%20s%20and%20j%20veterinary%20clinic&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
-      </div>
+            <h3>Google Map Location</h3>
+            <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=dr%20s%20and%20j%20veterinary%20clinic&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
+          </div>
     </div>
    
 
