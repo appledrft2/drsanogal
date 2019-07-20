@@ -20,14 +20,18 @@
 									<tr>
 										<td>
 											<div class="row">
-												<div class="col-6">
-													<label>Next Appointment</label>
-													<input type="date" name="next_appointment" class="form-control mb-1" placeholder="Next Appointment">
-													
-												</div>
-												<div class="col-6">
+												
+												<div class="col-12">
 													<label>Time</label>
-													<input type="time" name="time" class="form-control mb-1" placeholder="Time">	
+
+								                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+								                      <input type="text" class="form-control datetimepicker-input" name="time" data-target="#timepicker"/>
+								                      <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+								                          <div class="input-group-text"><i class="far fa-clock"></i></div>
+								                      </div>
+								                      </div>
+								                    <!-- /.input group -->
+													      
 												</div>
 											</div>							
 											<div class="row">
@@ -55,6 +59,10 @@
 												<option>Others</option>
 
 											</select>
+										
+													<label>Next Appointment</label>
+													<input type="date" name="next_appointment" class="form-control mb-1 placeholder="Next Appointment">
+											
 											
 											<label>Price</label>
 											<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">
@@ -120,4 +128,5 @@
 			}	
 		});
 	</script>
+
 @endsection

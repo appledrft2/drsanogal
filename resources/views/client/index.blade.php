@@ -66,10 +66,10 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 	        	<div class="form-group">
-	        		<input type="text" name="name" class="form-control " placeholder="Name" value="" >
+	        		<input type="text" name="name" class="form-control " placeholder="Client name" value="" >
 	        	</div>
 				<div class="form-group">
-					<select name="gender" class="form-control ">
+					<select name="gender" class="form-control select2" style="width:100%">
 					<option value="">Gender</option>
 					<option>Male</option>
 					<option>Female</option>
@@ -81,11 +81,29 @@
 				<div class="form-group">
 					<label>Contact Numbers</label>
 					
-						<div class="form-group "><input type="number" value="" name="contact" class="form-control " placeholder="Mobile" ></div>	
-						<div class="form-group "><input type="number" value="" name="work" class="form-control " placeholder="Work" ></div>
-						<div class="form-group "><input type="number" value="" name="home" class="form-control " placeholder="Home" ></div>	
+						<!-- <div class="form-group "><input type="number" value="" name="contact" class="form-control " placeholder="Mobile" ></div> -->	
+						<div class="input-group mb-3">
+		                  <div class="input-group-prepend">
+		                    <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+		                  </div>
+		                  <input type="number" name="contact" class="form-control" placeholder="Mobile number">
+		                </div>
+						<!-- <div class="form-group "><input type="number" value="" name="work" class="form-control " placeholder="Work" ></div> -->
+						<div class="input-group mb-3">
+		                  <div class="input-group-prepend">
+		                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+		                  </div>
+		                  <input type="number" name="work" class="form-control" placeholder="Work">
+		                </div>
+						<!-- <div class="form-group "><input type="number" value="" name="home" class="form-control " placeholder="Home" ></div>	 -->
+						<div class="input-group mb-3">
+		                  <div class="input-group-prepend">
+		                    <span class="input-group-text"><i class="fas fa-home"></i></span>
+		                  </div>
+		                  <input type="number" name="home" class="form-control" placeholder="Home">
+		                </div>
 						<div class="form-group ">
-							<select name="smsNotify" class="form-control">
+							<select name="smsNotify" class="form-control select2" style="width:100%">
 								<option value="">Which number to notify</option>
 								<option>Mobile</option>
 								<option>Home</option>
@@ -98,7 +116,13 @@
 				<hr>	
 				<div class="form-group">
 					<label>Email</label>
-					<input type="email" value="" name="email" class="form-control " placeholder="Email Address" ></div>	
+					<!-- <input type="email" value="" name="email" class="form-control " placeholder="Email Address" ></div>	 -->
+					<div class="input-group mb-3">
+	                  <div class="input-group-prepend">
+	                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+	                  </div>
+	                  <input type="email" name="email" class="form-control" placeholder="Email Address">
+	                </div>
 				<div class="form-group">
 					<label>Address</label>
 					<textarea class="form-control" id="address" name="address" cols="5" rows="5" placeholder="Address"></textarea>
@@ -129,6 +153,7 @@
 <script type="text/javascript">
 	$(document).on('click','.btn_add',function(){
 		$('#form').trigger("reset");
+		$('.select2').trigger('change');
 		$('#form').find('.error_flash').remove();
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
@@ -137,6 +162,7 @@
 	// btn for editing data
 	$(document).on('click','.btn_edit',function(){
 		$('#form').trigger("reset");
+
 		$('#form').find('.error_flash').remove();
 		let data = $(this).attr('id');
 		data = JSON.parse(data);
@@ -156,12 +182,14 @@
         $('select[name=smsNotify]').val(data.smsNotify);
         $('input[name=email]').val(data.email);
         $('#address').val(data.address);
+        $('.select2').trigger('change');
         $('#Modal').modal('show');
 	    });
 
 	// btn for inserting/updating data
 	$(document).on('click','.btn_save',function(e){
 		e.preventDefault();
+		$('.select2').trigger('change');
 		$('#form').find('.error_flash').remove();
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();

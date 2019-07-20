@@ -65,9 +65,19 @@ class AccountController extends Controller
 
         $data['password'] = Hash::make($data['password']);
 
-        User::create($data);
-        toast('Successfully added!','success');
-        return redirect('dashboard/account');
+        $status = User::create($data);
+         if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     /**
@@ -107,17 +117,32 @@ class AccountController extends Controller
             'email'=>'required',
             'role'=>'required',
         ]);
+
+        if($request->password){
+            $data = request()->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $data['password'] = Hash::make($data['password']);
+        }
+
         $user = User::findOrfail($id);
-        $user->update($data);
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/account');
+        $status = $user->update($data);
+         if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record updated successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 
     public function UpdatePassword($id){
-        $data = request()->validate([
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        $data['password'] = Hash::make($data['password']);
+        
         $user = User::findOrfail($id);
         $user->update($data);
         toast('Record successfully updated!','success');
@@ -138,8 +163,18 @@ class AccountController extends Controller
             Storage::disk('s3')->delete($user->image);
         }
         
-        $user->delete();
-        toast('Record successfully updated!','success');
-        return redirect('dashboard/account');
+        $status = $user->delete();
+         if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Record deleted successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 }

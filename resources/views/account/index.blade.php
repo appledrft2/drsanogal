@@ -3,26 +3,10 @@
 @section('content')
 	<div class="card">
 		<div class="card-body">
-
-<!-- 			<div class="float-right">
-				<div class="form-inline">
-					@if(isset($btn)) <a href="/dashboard/account" class="btn btn-default mb-3 mr-2"><i class="fa fa-arrow-left"></i></a> @endif
-					<form method="POST" action="/dashboard/account/search">
-						@csrf
-						<div class="input-group ">
-						  <input type="text" class="form-control form-control-sm" name="data" placeholder="Search" aria-label="Recipient's accountname" aria-describedby="basic-addon2">
-						  <div class="input-group-append">
-						    <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-						  </div>
-						</div>
-					</form>
-				</div>
-				
-			</div> -->
 			<div class=" mb-3">
-				<a href="/dashboard/account/create" class="btn btn-default"><i class="fa fa-plus-circle"></i> New Account</a>
+				<button class="btn btn_add btn-default"><i class="fa fa-plus-circle"></i> New Account</button >
 			</div>
-			<div class="table-responsive">
+			<div id="mytable" class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -35,30 +19,22 @@
 					</tr>
 				</thead>
 				<tbody>
-	<!-- 				<tr>
-						<td><form method="POST" action="/dashboard/user/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by name"></form></td>
-						<td><form method="POST" action="/dashboard/user/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by gender"></form></td>
-						<td><form method="POST" action="/dashboard/user/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by contact"></form></td>
-						<td><form method="POST" action="/dashboard/user/search">@csrf<input type="text" name="data" class="form-control form-control-sm" placeholder="Search by address"></form></td>
-						<td></td>
-					</tr> -->
+
 					@if(count($users))
 						@foreach($users as $user)
 							<tr>
-								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';"><center><img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$user->image}}" class="elevation-1 img-fluid img-circle" alt="User Image" style="width: 50px;height: 50px"></center></td>
-								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';">{{$user->name}}</td>
-								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';">{{$user->email}}</td>
-								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';">{{ucfirst($user->role)}}</td>
-								<td onclick="window.location = '/dashboard/account/{{$user->id}}/edit';"><a href="/dashboard/announcement" class="text-bold">{{$user->announcements->count()}}</a></td>
+								<td><center><img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$user->image}}" class="elevation-1 img-fluid img-circle" alt="User Image" style="width: 50px;height: 50px"></center></td>
+								<td>{{$user->name}}</td>
+								<td>{{$user->email}}</td>
+								<td>{{ucfirst($user->role)}}</td>
+								<td><a href="/dashboard/announcement" class="text-bold">{{$user->announcements->count()}}</a></td>
 								<td width="15%">
 									<div class="form-inline">
 										
-										<a href="/dashboard/account/{{$user->id}}/edit" class="btn btn-info btn-sm mr-1"><i class="fa fa-edit"></i></a>
-										<form  method="POST" action="/dashboard/account/{{$user->id}}">
-											@method('delete')
-											@csrf
-											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i></button>
-										</form>
+										<button id="{{$user}}" class="btn btn-info btn-sm btn_edit btn-block"><i class="fa fa-edit"></i> Edit</button>
+								
+										<button id="{{$user->id}}" class="btn btn-danger btn-sm btn_delete btn-block"><i class="fa fa-trash"></i> Delete</button>
+								
 									</div>
 								</td>
 							</tr>
@@ -72,4 +48,181 @@
 
 		</div>
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="form">
+	        	@csrf
+	        	<input type="hidden" name="id" value="">
+	        	<input type="hidden" name="_method" value="">
+	        	<div class="form-group"><input type="text" name="name" class="form-control " placeholder="Account name" value="" ></div>
+				<!-- <div class="form-group"><input type="email" name="email" class="form-control " placeholder="Email" value="" ></div> -->
+				<div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input type="email" name="email" class="form-control" placeholder="Email">
+                </div>
+				<div class="form-group">
+					<select name="role" class="form-control select2" style="width: 100%">
+					<option value="">Role</option>
+					<option value="doctor">Doctor</option>
+					<option value="staff">Staff</option>
+					</select>
+				</div>
+				<div class="form-group"><input type="password" value="" name="password" class="form-control " placeholder="Password" ></div>
+				<div class="form-group"><input type="password" value="" name="password_confirmation" class="form-control " placeholder="Retype Password" ></div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-info btn_save">Save changes</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--  -->
+@endsection
+
+@section('script')
+<script type="text/javascript">
+	const Toast = Swal.mixin({
+	  toast: true,
+	  position: 'top-end',
+	  showConfirmButton: false,
+	  timer: 3000
+	});
+</script>
+<script type="text/javascript">
+	// btn for adding data
+	$(document).on('click','.btn_add',function(){
+		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
+		$('input[name=_method]').val('POST');
+		$('.modal-title').text('New');
+		
+		$('#Modal').modal('show');
+	});
+	// btn for editing data
+	$(document).on('click','.btn_edit',function(){
+		$('#form').trigger("reset");
+		$('#form').find('.error_flash').remove();
+		let data = $(this).attr('id');
+		data = JSON.parse(data);
+		var id = data.id;
+		$('input[name=id]').val(id);
+		$('input[name=_method]').val('PATCH');
+		$('.modal-title').text('Update');
+		
+
+        $('input[name=name]').val(data.name);
+        $('input[name=email]').val(data.email);
+        $('select[name=role]').val(data.role)
+        $('input[name=password]').val('').before($('<div class="alert alert-info error_flash" style="color: red;"><i class="fa fa-key"></i> Leave the password field empty if you dont want to change.</div>'));
+        $('input[name=password_confirmation]').val('');
+        $('.select2').trigger('change');
+        
+        $('#Modal').modal('show');
+	      
+
+		
+	});
+	// btn for inserting/updating data
+	$(document).on('click','.btn_save',function(e){
+		e.preventDefault();
+		$('#form').find('.error_flash').remove();
+		let method = $('input[name=_method]').val();
+		let id = $('input[name=id]').val();
+		let post = '/dashboard/account';
+		let patch = '/dashboard/account/'+id;
+		let url = '';
+
+		if(method == "POST"){
+			url = post;
+		}else if(method == "PATCH"){
+			url = patch;
+		}
+			
+			$.ajax({
+		        type: method,
+		        url: url,
+		        dataType: "json",
+		        data: $('#form').serialize(),
+		        success: function(data){
+		        	$('#Modal').modal('hide');
+		        	Toast.fire({
+		        	  type: 'success',
+		        	  title: data.message
+		        	});
+		        	refreshTable();
+		        },
+		        error: function(data){
+		        	
+		        	// display errors on each form field
+		        	$.each(data.responseJSON.errors, function (i, error) {
+		        	    var el = $(document).find('[name="'+i+'"]');
+		        	    el.after($('<span class="error_flash" style="color: red;">'+error[0]+'</span>'));
+		        	});
+		        }
+		    });
+
+		
+	});
+
+	// btn for deleting data
+	$(document).on('click', '.btn_delete', function(){
+
+	    let id = $(this).attr('id');
+
+	    Swal.fire({
+	      title: 'Are you sure?',
+	      text: "You won't be able to revert this!",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Yes, delete it!'
+	    }).then((result) => {
+
+	      if (result.value) {
+
+        	$.ajax({
+                type: "DELETE",
+                url: '/dashboard/account/'+id,
+                dataType: "json",
+                data: $('#form').serialize(),
+                success: function(data){
+                	Toast.fire({
+                	  type: 'success',
+                	  title: data.message
+                	});
+                	refreshTable();
+                },
+                error: function(data){
+                	Toast.fire({
+                	  type: 'error',
+                	  title: 'there was a problem with this record.'
+                	});
+                }
+            });
+
+	      }
+
+	    });
+	});
+	// Refresh the table
+	function refreshTable() {  
+	   	$( "#mytable" ).load( "/dashboard/account #mytable", function(){
+		   $("#table").DataTable();
+		});
+	}
+</script>
 @endsection

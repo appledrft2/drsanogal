@@ -75,7 +75,7 @@ class AppointmentController extends Controller
         // return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
 
         $data = $request->validate([
-            'next_appointment' => 'required',
+            
             'time' => 'required',
             'temperature' => 'required',
             'kilogram' => 'required',
@@ -90,6 +90,7 @@ class AppointmentController extends Controller
         foreach($request->price as $value){
             $amount = $amount + $value;
         }
+        $data['next_appointment'] = date('Y-m-d');
         $data['amount'] = $amount;
         $data['patient_id'] = $patient;
         $data['appointment'] = implode(',', $request->appointment); 

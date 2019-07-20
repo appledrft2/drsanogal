@@ -253,17 +253,21 @@
 <script src="{{asset('adminlte3/dist/js/adminlte.min.js')}}"></script>
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
-
-
-
-
+<script type="text/javascript">
+  //Timepicker
+  $('#timepicker').datetimepicker({
+    format: 'LT'
+  })
+  $('#datepicker').datetimepicker({
+    format: 'L'
+  })
+</script>
 <script>
   $(function () {
     // Summernote
     $('.textarea').summernote()
   })
 </script>
-
 <script>
 // This will toggle fullscreen by on or off
   var fs = false;
@@ -305,7 +309,6 @@ function closeFullscreen() {
   }
 }
 </script>
-
   @include('sweetalert::alert')
   @if($errors->any())
     @foreach($errors->all() as $error)
@@ -323,25 +326,25 @@ function closeFullscreen() {
       </script>
     @endforeach
   @endif
-  <script type="text/javascript">
-    $(document).on('click', '.btn-submit', function(e){
-      e.preventDefault();
-        var form = $(this).parents('form');
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.value) {
-            form.submit();
-          }
-        });
-    });
-  </script>
+<script type="text/javascript">
+  $(document).on('click', '.btn-submit', function(e){
+    e.preventDefault();
+      var form = $(this).parents('form');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          form.submit();
+        }
+      });
+  });
+</script>
 
 <!-- DataTables -->
 <script src="{{asset('adminlte3/plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -372,7 +375,8 @@ document.addEventListener('pjax:complete', $('.content').fadeIn(300));
 <script src="{{asset('adminlte3/plugins/select2/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
   //Initialize Select2 Elements
-  $('.select2').select2()
+  $('.select2').select2();
+
 </script>
 @yield('script','')
 </body>
