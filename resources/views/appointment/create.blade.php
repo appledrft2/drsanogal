@@ -21,7 +21,12 @@
 										<td>
 											<div class="row">
 												
-												<div class="col-12">
+												
+												<div class="col-6">
+													<label>Next Appointment</label>
+													<input type="date" name="next_appointment" class="form-control mb-1" placeholder="Next Appointment">
+												</div>
+												<div class="col-6">
 													<label>Time</label>
 
 								                    <div class="input-group date" id="timepicker" data-target-input="nearest">
@@ -33,6 +38,7 @@
 								                    <!-- /.input group -->
 													      
 												</div>
+
 											</div>							
 											<div class="row">
 												<span class="col-6">
@@ -60,8 +66,7 @@
 
 											</select>
 										
-													<label>Next Appointment</label>
-													<input type="date" name="next_appointment" class="form-control mb-1 placeholder="Next Appointment">
+													
 											
 											
 											<label>Price</label>

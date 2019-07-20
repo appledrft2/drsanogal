@@ -52,7 +52,7 @@
 											</td>
 											<td>
 												<select required name="isPaid[]" class="form-control">
-													<option value="">Select</option>
+													
 													<option value="0">Unpaid</option>
 													<option value="1">Paid</option>
 												</select>

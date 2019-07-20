@@ -23,12 +23,19 @@
 											<div class="row">
 												<div class="col-6">
 													<label>Next Appointment</label>
-													<input type="date" name="next_appointment" class="form-control mb-1" placeholder="Next Appointment" value="{{$appointment->next_appointment}}">
-													
+													<input type="date" name="next_appointment" class="form-control mb-1" value="{{$appointment->next_appointment}}" placeholder="Next Appointment">
 												</div>
 												<div class="col-6">
 													<label>Time</label>
-													<input type="time" value="{{$appointment->time}}" name="time" class="form-control mb-1" placeholder="Time">	
+
+								                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+								                      <input type="text" value="{{$appointment->time}}" class="form-control datetimepicker-input" name="time" data-target="#timepicker"/>
+								                      <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+								                          <div class="input-group-text"><i class="far fa-clock"></i></div>
+								                      </div>
+								                      </div>
+								                    <!-- /.input group -->
+													      
 												</div>
 											</div>							
 											<div class="row">
