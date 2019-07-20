@@ -110,7 +110,7 @@
 			                                	</tr>
 			                                	<tr>
 			                                	  <td  colspan="7" class="text-right"><b></b> </td>
-			                                	  <td class="text-right" style="border-top:1px solid black;"" ><label>Overall Amount:</label> &#8369 {{number_format($billing->amount,2)}}</td>
+			                                	  <td class="text-right" style="border-top:1px solid black;" ><label>Overall Amount:</label> &#8369 {{number_format($billing->amount,2)}}</td>
 			                                	</tr>
 			                                </table>
 
