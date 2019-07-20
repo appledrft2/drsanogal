@@ -123,6 +123,7 @@
 	                  </div>
 	                  <input type="email" name="email" class="form-control" placeholder="Email Address">
 	                </div>
+	            </div>
 				<div class="form-group">
 					<label>Address</label>
 					<textarea class="form-control" id="address" name="address" cols="5" rows="5" placeholder="Address"></textarea>
