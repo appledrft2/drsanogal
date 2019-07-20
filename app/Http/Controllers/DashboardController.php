@@ -15,6 +15,7 @@ use App\Announcement;
 use App\BillingProduct;
 use App\StockOutDetail;
 use Illuminate\Http\Request;
+use App\Custom\SmsGateway;
 
 class DashboardController extends Controller
 {
@@ -57,13 +58,26 @@ class DashboardController extends Controller
 
         foreach($appointments as $appointment){
             // if appointment is today
-            if($appointment->date_to == date('Y-m-d')){
+            if($appointment->next_appointment == date('Y-m-d')){
                 // if appointment is not notified by sms
                 if($appointment->isNotified != 1){
                     if($appointment->patient->client->smsNotify == 'Mobile'){
-                        $app = Appointment::findOrfail($appointment->id);
-                        $app->isNotified = 1;
-                        $app->update();
+
+                        $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU2MzY0MTA2OSwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjcxODc4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.1L8SvVoKmlDqpEqa-_4R90-AwxzLqsIf2C1kaMgkqis";
+
+                        $phone_number = "09151535150";
+                        $message = "Appointment Reminder from Dr. S & J Veterinary Clinic,\nGood day! Mr/Mrs.".$appointment->patient->client->name.", \nWe would like to inform you that your appointment with ".$appointment->patient->name." is today! \nyour pet will be having the following procedures:\n".$appointment->appointment."\nWe appreciate your time and look forward to seeing you later today!";
+                        $deviceID = 112412;
+                        $options = [];
+
+                        $smsGateway = new SmsGateway($token);
+                        $result = $smsGateway->sendMessageToNumber($phone_number, $message, $deviceID, $options);
+                     
+                        
+                            $app = Appointment::findOrfail($appointment->id);
+                            $app->isNotified = 1;
+                            $app->update();
+                        
                     }
                 }
             }
