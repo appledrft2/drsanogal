@@ -5,47 +5,47 @@
 	<div class="row">
       <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-calendar"></i></span>
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dollar-sign"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Appointments</span>
+          <span class="info-box-text">Total Gross</span>
           <span class="info-box-number text-center">
-            {{$appointmentscount}}    
+             &#8369; {{number_format($gross,2)}}  
           </span>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-archive"></i></span>
+        <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-dollar-sign"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Products</span>
+          <span class="info-box-text">Net Profit</span>
           <span class="info-box-number text-center">
-            {{$products}}    
+             &#8369; {{number_format($net,2)}}    
           </span>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-dollar-sign"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Clients</span>
+          <span class="info-box-text">Today's Income</span>
           <span class="info-box-number text-center">
-            {{$clients}}    
+            &#8369; {{number_format($today,2)}}    
           </span>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-paw"></i></span>
+        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-dollar-sign"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Patients</span>
+          <span class="info-box-text">Last week's Income</span>
           <span class="info-box-number text-center">
-            {{$patients}}    
+            &#8369; {{number_format($week,2)}}    
           </span>
         </div>
       </div>

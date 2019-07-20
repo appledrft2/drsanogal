@@ -7,8 +7,11 @@ use App\Client;
 use App\Patient;
 use App\Product;
 use App\StockIn;
+use App\StockOut;
+use Carbon\Carbon;
 use App\Appointment;
 use App\Announcement;
+use App\StockOutDetail;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -22,10 +25,23 @@ class DashboardController extends Controller
 
     	// Boxes
     	$appointmentscount = Appointment::count('id');
-     
-    	$clients = Client::count('id');
+     	
+     	//one day (today)
+     	$sales_today =Carbon::now()->subDays(1);
+     	// week
+     	$sales_week = Carbon::now()->subDays(7);
+     	//one month / 30 days
+     	$sales_month = Carbon::now()->subDays(30);
+     	// query
+     	$today = StockOutDetail::where('created_at', '>=',$sales_today)->sum('netamount');
+     	$week = StockOutDetail::where('created_at', '>=', $sales_week)->sum('netamount');
+
+     	$gross = StockOut::sum('amount');
+     	$net = StockOutDetail::sum('netamount');
+
         $products =Product::count('id');
-        $patients =Patient::count('id');
+
+
 
         // Upcomming Appointments
         $appointments = Appointment::where('next_appointment','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
@@ -50,9 +66,11 @@ class DashboardController extends Controller
     	return view('dashboard.index',[
     		'title'=>$this->title,
     		'appointmentscount'=>$appointmentscount,
-    		'clients'=>$clients,
             'products'=>$products,
-            'patients'=>$patients,
+            'gross'=>$gross,
+            'net'=>$net,
+            'today'=>$today,
+            'week'=>$week,
             'lowproducts'=>$lowproducts,
             'appointments'=> $appointments,
             'stockins' => $stockins

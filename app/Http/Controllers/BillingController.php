@@ -92,7 +92,7 @@ class BillingController extends Controller
 				$billingproduct->unit = request()->product_unit[$key];
 				$billingproduct->price = request()->product_price[$key];
 				$billingproduct->quantity = request()->product_quantity[$key];
-				$billingproduct->netamount = request()->product_price[$key] - $product->original;
+				$billingproduct->netamount = (request()->product_price[$key] - $product->original) + $sum1;
 				$amount = request()->product_price[$key] * request()->product_quantity[$key];
 				$billingproduct->save();
 				// get total amount of products
