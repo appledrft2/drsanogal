@@ -87,10 +87,10 @@
 					<tr>
 						<th>#</th>
 						<th>Appointment</th>
-						<th>Date Admitted</th>
+						
 						<th>Next appointment</th>
 						<th>Amount</th>
-						<th>Status</th>
+			
 						<th>Payment</th>
 						<th>Action</th>
 					</tr>
@@ -102,15 +102,11 @@
 							<tr>
 								<td>{{$i++}}</td>
 								<td>{{$appointment->appointment}}</td>
-								<td>{{date('M d, D Y', strtotime($appointment->visited))}}</td>
+						
 								<td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
 							
 								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
-								<td>
-									@if($appointment->isCompleted == 'Not Completed') <span class="badge badge-secondary">Not Completed</span> 
-									@elseif($appointment->isCompleted == 'Completed') <span class="badge badge-success"> Completed</span>
-									@elseif($appointment->isCompleted == 'Rescheduled') <span class="badge badge-primary"> Rescheduled</span> @endif
-								</td>
+								
 								<td>
 									@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
 									@else <span class="badge badge-secondary">Unpaid</span> 
@@ -148,12 +144,11 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 				<div class="row">
-					<div class="col-6 form-group">
-						<label>Date Admitted</label>
-						<input  type="date" name="visited"  value="{{date('Y-m-d')}}" class="form-control" placeholder="Next Appointment">
-					</div>
+			
+						<input  hidden type="date" name="visited"  value="{{date('Y-m-d')}}" class="form-control" placeholder="Next Appointment">
 					
-					<div class="col-6 form-group">
+					
+					<div class="col-12 form-group">
 						<label>Time</label>
 	                    <div class="input-group date" id="timepicker" data-target-input="nearest">
 	                      <input type="text" value="{{date('h:m A')}}" class="form-control datetimepicker-input" name="time" data-target="#timepicker"/>
@@ -213,8 +208,23 @@
 
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-info btn_save">Save changes</button>
+	      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <div class="float-right">
+	        	
+
+	        	<div class="input-group">
+	        	  <div class="input-group-append">
+	        	    <button class="btn btn-info dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Save Changes</button>
+	        	    <div name="savechoice" class="dropdown-menu">
+	        	      <button class="dropdown-item btn_save" value="0" >Save Changes</button>
+	        	      <button class="dropdown-item btn_save" value="1" >Save Changes proceed to billing</button>
+	        	   
+	        	    </div>
+	        	  </div>
+	        	</div>
+	        </div>
+
+	        
 	        </form>
 	      </div>
 	    </div>
@@ -238,12 +248,11 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 				<div class="row">
-					<div class="col-6 form-group">
-						<label>Date Admitted</label>
-						<input  type="date" name="visited"  value="" class="visited form-control" placeholder="Next Appointment">
-					</div>
+				
+						<input hidden  type="date" name="visited"  value="" class="visited form-control" placeholder="Next Appointment">
+				
 					
-					<div class="col-6 form-group">
+					<div class="col-12 form-group">
 						<label>Time</label>
 	                    <div class="input-group date" id="timepicker" data-target-input="nearest">
 	                      <input type="text" value="" class="form-control time datetimepicker-input" name="time" data-target="#timepicker"/>
@@ -398,6 +407,7 @@
 	// btn for inserting/updating data
 	$(document).on('click','.btn_save',function(e){
 		e.preventDefault();
+		let choice = $(this).val();
 		$('.select2').trigger("change");
 		$('#form').find('.error_flash').remove();
 		let method = $('input[name=_method]').val();
@@ -423,7 +433,13 @@
 		        success: function(data){
 		        	console.log(data);
 		        	if(method=='POST'){
-		        		$('#Modal').modal('hide');
+		        		if(choice == 1){
+		        		
+		        			window.location.href="/dashboard/billing/{{$patient->client->id}}/client/create";
+		        		}else{
+		        			$('#Modal').modal('hide');
+		        		}
+		        		
 		        	}else{
 		        		$('#ModalEdit').modal('hide');
 		        	}

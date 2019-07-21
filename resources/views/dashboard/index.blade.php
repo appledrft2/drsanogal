@@ -216,8 +216,8 @@
               <th>Appointment</th>
               <th>Date of appointment</th>
               <th>Amount</th>
-              <th>SMS Notify</th>
-              <th width="15%">Status</th>
+              <th>SMS Notification</th>
+      
             </tr>
             </thead>
             <tbody>
@@ -230,17 +230,7 @@
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
                 <td>&#8369; {{number_format($appointment->amount,2)}}</td>
                 <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
-                <td>
-                  <form method="POST" action="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
-                      @method('PATCH')
-                      @csrf
-                      <select onchange="this.form.submit()" class="select form-control" name="isCompleted">
-                        <option @if($appointment->isCompleted == 'Not Completed') selected  @endif)>Not Completed</option>
-                        <option @if($appointment->isCompleted == 'Completed') selected  @endif>Completed</option>
-                        <option @if($appointment->isCompleted == 'Rescheduled') selected  @endif>Rescheduled</option>
-                      </select>
-                    </form>
-                </td>
+               
               </tr>
               @endforeach
               @else

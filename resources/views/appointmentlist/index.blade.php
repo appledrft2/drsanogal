@@ -13,7 +13,7 @@
 						<th>Appointment</th>
 						<th>Date of Appointment</th>
 						<th>Amount</th>
-						<th>Status</th>
+						
 						<th>Payment</th>
 						<th width="15%">Action</th>
 					</tr>
@@ -27,12 +27,7 @@
 								<td>{{$appointment->appointment}}</td>
 								<td>{{date('M d, Y', strtotime($appointment->next_appointment))}}</td>
 								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
-								<td>
-									@if($appointment->isCompleted == 'Completed')<span class="badge badge-success">Completed</span> 
-									@elseif($appointment->isCompleted == 'Not Completed') <span class="badge badge-secondary">Not Completed</span> 
-									@elseif($appointment->isCompleted == 'Rescheduled') <span class="badge badge-primary">Rescheduled</span> 
-									@endif
-								</td>
+				
 								<td>
 									@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
 									@else <span class="badge badge-secondary">Unpaid</span> 
@@ -71,12 +66,12 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 				<div class="row">
-					<div class="col-6 form-group">
-						<label>Date Admitted</label>
-						<input  type="date" name="visited"  value="" class="visited form-control" placeholder="Next Appointment">
+					<div class="">
+			
+						<input  hidden type="date" name="visited"  value="" class="visited form-control" placeholder="Next Appointment">
 					</div>
 					
-					<div class="col-6 form-group">
+					<div class="col-12 form-group">
 						<label>Time</label>
 	                    <div class="input-group date" id="timepicker" data-target-input="nearest">
 	                      <input type="text" value="" class="form-control time datetimepicker-input" name="time" data-target="#timepicker"/>
