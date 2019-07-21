@@ -12,7 +12,7 @@
 					<tr>
 						<th>#</th>
 						<th>Title</th>
-						<th>Description</th>
+					
 						<th>Author</th>
 						<th>Created</th>
 						<th width="20%">Action</th>
@@ -25,7 +25,7 @@
 							<tr>
 								<td>{{$i++}}</td>
 								<td >{{$announcement->title}}</td>
-								<td >{{str_limit($announcement->body, 25)}}</td>
+				
 								<td >{{$announcement->user->name}}</td>
 								<td >{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								
