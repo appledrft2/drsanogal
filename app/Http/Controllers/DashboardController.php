@@ -66,7 +66,7 @@ class DashboardController extends Controller
                         $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU2MzY0MTA2OSwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjcxODc4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.1L8SvVoKmlDqpEqa-_4R90-AwxzLqsIf2C1kaMgkqis";
 
                         $phone_number = $appointment->patient->client->contact;
-                        $message = "Appointment Reminder from Dr. S & J Veterinary Clinic,\nGood day! Mr/Mrs.".$appointment->patient->client->name.", \nWe would like to inform you that your appointment with ".$appointment->patient->name." is today! \nyour pet will be having the following procedures:\n".$appointment->appointment."\nWe appreciate your time and look forward to seeing you later today!";
+                        $message = "Appointment Reminder from Dr. S & J Veterinary Clinic,\nGood day! Mr/Mrs.".$appointment->patient->client->name.", \nWe would like to inform you that your appointment with ".$appointment->patient->name." is today! \nyour pet will be having the following procedures:\n".$appointment->appointment."\nWe appreciate your time and look forward to seeing you later today!\nThis is a system generated message.";
                         $deviceID = 112412;
                         $options = [];
 
