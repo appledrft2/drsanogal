@@ -74,8 +74,10 @@ class ProductController extends Controller
         //handle file uploading
         if($request->hasFile('image')){
            
-            $path = request()->file('image');
-            $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+            if($request->file('image') != 'uploads/noimage.png'){
+                $path = request()->file('image');
+                $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+           }
 
         }else{
             $pathToSave = 'uploads/noimage.png';
@@ -143,8 +145,10 @@ class ProductController extends Controller
 
         //handle file uploading
         if($request->hasFile('image')){
-            // finds the old image and delete
-            Storage::disk('s3')->delete($product->image);
+             if($request->file('image') != 'uploads/noimage.png'){
+            	// finds the old image and delete
+            	Storage::disk('s3')->delete($product->image);
+        	}
 
             // upload new image
             $path = request()->file('image');
