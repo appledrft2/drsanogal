@@ -79,7 +79,7 @@
 												<?php $t = $t + 1; ?>
 												@endif
 												<label>Price</label>
-												<input type="text" name="price[]" value="{{$prices[$key]}}" class="form-control mb-1" placeholder="Price">
+												<input required type="text" name="price[]" value="{{$prices[$key]}}" class="form-control mb-1" placeholder="Price">
 												<label>Description</label>
 												<textarea name="description[]" class="form-control" rows="5" cols="5" placeholder="Description">{{$descriptions[$key]}}</textarea>
 													</td>

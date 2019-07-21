@@ -72,7 +72,7 @@
 											<label>Price</label>
 											<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">
 											<label>Description</label>
-											<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>
+											<textarea  name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>
 										</td>
 									</tr>
 								</tbody>
@@ -121,7 +121,7 @@
 				'<label>Price</label>'+
 				'<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">'+
 				'<label>Description</label>'+
-				'<textarea required name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
+				'<textarea  name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
 				'</td></tr>');
 			i++;
 		});

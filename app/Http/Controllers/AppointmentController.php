@@ -83,8 +83,7 @@ class AppointmentController extends Controller
             'appointment.0' => 'required',
             'price.*' => 'nullable',
             'price.0' => 'required',
-            'description.*' => 'nullable',
-            'description.0' => 'required',
+
         ]);
         $amount = 0;
         foreach($request->price as $value){
