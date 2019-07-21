@@ -20,8 +20,8 @@ class CreatePatientsTable extends Migration
             $table->string('breed');
             $table->string('gender');
             $table->string('specie');
-            $table->string('markings');
-            $table->string('special_considerations');                    
+            $table->string('markings')->nullable();
+            $table->string('special_considerations')->nullable();                   
             $table->string('veterinarian');                    
             $table->date('date_of_birth');
             $table->timestamps();

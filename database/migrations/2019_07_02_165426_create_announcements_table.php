@@ -17,7 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->string('title');
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->text('cover_image');
             $table->timestamps();
 

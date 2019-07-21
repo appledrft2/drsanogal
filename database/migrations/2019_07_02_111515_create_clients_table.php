@@ -17,11 +17,11 @@ class CreateClientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('gender');
-            $table->string('occupation');
+            $table->string('occupation')->nullable();
             $table->string('email');
             $table->string('contact');
-            $table->string('work')->default('');
-            $table->string('home')->default('');
+            $table->string('work')->nullable();
+            $table->string('home')->nullable();
             $table->string('smsNotify')->default(0);
             $table->text('address');
             $table->timestamps();

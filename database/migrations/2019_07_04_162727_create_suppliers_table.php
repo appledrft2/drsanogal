@@ -17,7 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('contact');
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

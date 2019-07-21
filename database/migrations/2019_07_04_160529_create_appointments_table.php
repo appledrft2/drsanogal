@@ -23,7 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->double('kilogram');
             $table->string('appointment');
             $table->string('price');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->double('amount');
 
             $table->boolean('isPaid')->default(false);

@@ -20,7 +20,7 @@ class CreatePreventivesTable extends Migration
             $table->string('time');
             $table->string('kg');
             $table->string('temp');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->double('price');
             $table->string('status');
             $table->timestamps();
