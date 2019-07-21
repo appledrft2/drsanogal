@@ -24,7 +24,8 @@
 						@foreach($announcements as $announcement)
 							<tr>
 								<td>{{$i++}}</td>
-								<td >{{$announcement->title}}</td><td >{!!str_limit($announcement->body, 25)!!}</td>
+								<td >{{$announcement->title}}</td>
+								<td >{{str_limit($announcement->body, 25)}}</td>
 								<td >{{$announcement->user->name}}</td>
 								<td >{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								
