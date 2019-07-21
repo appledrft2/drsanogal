@@ -53,7 +53,7 @@ class DashboardController extends Controller
 
 
         // Upcomming Appointments
-        $appointments = Appointment::where('next_appointment','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
+        $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
         
 
         foreach($appointments as $appointment){
@@ -84,7 +84,7 @@ class DashboardController extends Controller
         }
 
         $stockins = StockIn::orderBy('due','desc')->paginate(2);
-
+        $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
     	return view('dashboard.index',[
     		'title'=>$this->title,
             'gross'=>$gross,

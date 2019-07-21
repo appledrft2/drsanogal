@@ -108,7 +108,7 @@
 	        	<div class="form-group"><input type="text" name="breed" class="form-control " placeholder="Breed" value="" ></div>
 	        	<div class="form-group"><input type="date" name="date_of_birth" class="form-control " placeholder="birthday" value="" ></div>
 	        	<div class="form-group">
-	        		<select name="specie" class="form-control ">
+	        		<select name="specie" class="form-control select2" style="width:100%">
 	        		<option value="">Species</option>
 	        		<option>Canine</option>
 	        		<option>Feline</option>
@@ -116,7 +116,7 @@
 	        		</select>
 	        	</div>
 	        	<div class="form-group">
-	        		<select  name="gender" class="form-control ">
+	        		<select  name="gender" class="form-control select2" style="width:100%">
 	        		<option value="">Gender</option>
 	        		<option >Male</option>
 	        		<option >Female</option>
@@ -124,8 +124,14 @@
 	        		<option >Spayed (Female)</option>
 	        		</select>
 	        	</div>
-	        	<div class="form-group"><input type="text" name="markings" class="form-control " placeholder="markings" value="" ></div>
-	        	<div class="form-group"><input type="text" name="special_considerations" class="form-control " placeholder="Special Considerations (Allergies,Surgeries,etc.)" value="" ></div>
+	        	<!-- <div class="form-group"><input type="text" name="markings" class="form-control " placeholder="markings" value="" ></div> -->
+	        	<div class="form-group">
+	        		<textarea name="markings" class="form-control" rows="2" placeholder="Markings.."></textarea>
+	        	</div>
+	        	<!-- <div class="form-group"><input type="text" name="special_considerations" class="form-control " placeholder="Special Considerations (Allergies,Surgeries,etc.)" value="" ></div> -->
+	        	<div class="form-group">
+	        		<textarea name="special_considerations" class="form-control" rows="2" placeholder="Special Considerations (Allergies,Surgeries,etc.)"></textarea>
+	        	</div>
 	        	<div class="form-group">
 	        	<input type="text" name="veterinarian" class="form-control " placeholder="Attending Veterinarian" value="" >
              <!--      <label>Veterinarian</label>
@@ -160,14 +166,17 @@
 <script type="text/javascript">
 	$(document).on('click','.btn_add',function(){
 		$('#form').trigger("reset");
+	
 		$('#form').find('.error_flash').remove();
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
+		$('.select2').trigger('change');
 		$('#Modal').modal('show');
 	});
 	// btn for editing data
 	$(document).on('click','.btn_edit',function(){
 		$('#form').trigger("reset");
+		
 		$('#form').find('.error_flash').remove();
 		let data = $(this).attr('id');
 		data = JSON.parse(data);
@@ -182,21 +191,23 @@
         $('input[name=breed]').val(data.breed);
         $('select[name=gender]').val(data.gender);
         $('select[name=specie]').val(data.specie);
-        $('input[name=markings]').val(data.markings);
+        $('textarea[name=markings]').val(data.markings);
         $('input[name=date_of_birth]').val(data.date_of_birth);
         $('input[name=veterinarian]').val(data.veterinarian);
-        $('input[name=special_considerations]').val(data.special_considerations);
+        $('textarea[name=special_considerations]').val(data.special_considerations);
+        $('.select2').trigger('change');
         $('#Modal').modal('show');
 	    });
 
 	// btn for inserting/updating data
 	$(document).on('click','.btn_save',function(e){
 		e.preventDefault();
+		$('.select2').trigger("change");
 		$('#form').find('.error_flash').remove();
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();
-		let post = '/dashboard/client/'+{{$client->id}}+'/patient';
-		let patch = '/dashboard/client/'+{{$client->id}}+'/patient/'+id;
+		let post = '/dashboard/client/{{$client->id}}/patient';
+		let patch = '/dashboard/client/{{$client->id}}/patient/'+id;
 		let url = '';
 
 		if(method == "POST"){

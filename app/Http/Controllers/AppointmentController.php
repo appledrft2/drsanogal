@@ -57,6 +57,7 @@ class AppointmentController extends Controller
      */
     public function store($patient,Request $request)
     {
+        // return $request->all();
 
         // $data = $request->validate([
         //     'date_from' => 'required',
@@ -75,7 +76,7 @@ class AppointmentController extends Controller
         // return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
 
         $data = $request->validate([
-            
+            'visited' => 'required',
             'time' => 'required',
             'temperature' => 'required',
             'kilogram' => 'required',
@@ -85,26 +86,50 @@ class AppointmentController extends Controller
             'price.0' => 'required',
 
         ]);
-        $amount = 0;
-        foreach($request->price as $value){
-            $amount = $amount + $value;
-        }
-        $data['next_appointment'] = date('Y-m-d');
-        $data['amount'] = $amount;
-        $data['patient_id'] = $patient;
-        $data['appointment'] = implode(',', $request->appointment); 
-        $data['price'] = implode(',', $request->price); 
-        $data['description'] = implode(',', $request->description); 
-        if(request()->next_appointment2){
-            $data['next_appointment2'] = implode(',', $request->next_appointment2); 
-        }else{
-            $data['next_appointment2'] = '';
+        // $amount = 0;
+        // foreach($request->price as $value){
+        //     $amount = $amount + $value;
+        // }
+        // $data['next_appointment'] = date('Y-m-d');
+        // $data['amount'] = $amount;
+        // $data['patient_id'] = $patient;
+        // $data['appointment'] = implode(',', $request->appointment); 
+        // $data['price'] = implode(',', $request->price); 
+        // $data['description'] = implode(',', $request->description); 
+        // if(request()->next_appointment2){
+        //     $data['next_appointment2'] = implode(',', $request->next_appointment2); 
+        // }else{
+        //     $data['next_appointment2'] = '';
+        // }
+
+        foreach($request->appointment as $key => $value){
+            $data['next_appointment'] = date('Y-m-d');
+            $data['patient_id'] = $patient;
+            $data['price'] = $request->price[$key];
+            $data['amount'] = $request->price[$key];
+            $data['appointment'] = $request->appointment[$key];
+            $data['next_appointment2'] = $request->next_appointment2[$key];
+            $data['appointment'] = $request->appointment[$key];
+            $data['description'] = $request->description[$key];
+        
+        
+            $status = Appointment::create($data);
+
         }
 
-        Appointment::create($data);
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Records added successfully'
 
-        toast('Successfully added!','success');
-        return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
+        
     }
 
     /**
@@ -153,28 +178,34 @@ class AppointmentController extends Controller
         // return redirect('dashboard/patient/'.$patient.'/appointment');
 
         $data = $request->validate([
-            'next_appointment' => 'required',
+            'visited' => 'required',
             'time' => 'required',
+            'next_appointment2' => 'required',
+            'appointment' => 'required',
+            'price' => 'required',
             'temperature' => 'required',
             'kilogram' => 'required',
+            'description' => 'nullable'
 
         ]);
 
-        $amount = 0;
-        foreach($request->price as $value){
-            $amount = $amount + $value;
-        }
-        $data['amount'] = $amount;
-        $data['patient_id'] = $patient;
-        $data['appointment'] = implode(',', $request->appointment); 
-        $data['price'] = implode(',', $request->price); 
-        $data['description'] = implode(',', $request->description); 
-        $data['next_appointment2'] = implode(',', $request->next_appointment2); 
-        $appointment =Appointment::findOrfail($appointment_id);
-        $appointment->update($data);
+        $data['amount'] = $request->price;
 
-        toast('Successfully Updated!','success');
-        return redirect('dashboard/patient/'.$patient.'/appointment')->with('title',$this->title);
+        $appointment =Appointment::findOrfail($appointment_id);
+        $status = $appointment->update($data);
+
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Records added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
 
     }
 
@@ -196,8 +227,18 @@ class AppointmentController extends Controller
      */
     public function destroy($patient,Appointment $appointment)
     {
-        $appointment->delete();
-        toast('Record has been deleted!','error');
-        return redirect('dashboard/patient/'.$patient.'/appointment');
+        $status = $appointment->delete();
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Records added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
     }
 }

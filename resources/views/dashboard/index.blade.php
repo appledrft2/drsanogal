@@ -214,10 +214,10 @@
               <th>Patient ID</th>
               <th>Name</th>
               <th>Appointment</th>
-              <th>Next Appointment</th>
+              <th>Date of appointment</th>
               <th>Amount</th>
               <th>SMS Notify</th>
-              <th>Status</th>
+              <th width="15%">Status</th>
             </tr>
             </thead>
             <tbody>
@@ -227,9 +227,9 @@
                 <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
                 <td >{{$appointment->patient->name}}</td>
                 <td>{{$appointment->appointment}}</td>
-                <td>{{date('M d, D Y', strtotime($appointment->next_appointment))}}</td>
+                <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
                 <td>&#8369; {{number_format($appointment->amount,2)}}</td>
-                <td> <span class="badge badge-success">SMS Sent - Client is notified</span></td>
+                <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
                 <td>
                   <form method="POST" action="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
                       @method('PATCH')

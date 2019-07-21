@@ -20,8 +20,9 @@
 							<td>{{$key + 1}}</td>
 							<td>{{$client->name}}</td>
 							<td>{{$client->gender}}</td>
-							<td>{!!$client->address!!}</td>
-							<td><a href="/dashboard/billing/{{$client->id}}/client" class="btn btn-default"><i class="fa fa-check"></i> Select Client</a></td>
+							<td>{{str_limit($client->address, 15)}}</td>
+							
+							<td><center><a href="/dashboard/billing/{{$client->id}}/client" class="btn  btn-default"><i class="fa fa-check"></i> Select Client</a></center></td>
 						</tr>
 					@endforeach
 				</tbody>

@@ -28,7 +28,7 @@
 								<td >{{$client->name}}</td>
 								<td >{{$client->gender}}</td>
 								<td >{{$client->occupation}}</td>
-								<td >{!!$client->address!!}</td>
+								<td>{{str_limit($client->address, 15)}}</td>
 								<td ><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
 								<td width="15%">
 									<div class="form-inline">

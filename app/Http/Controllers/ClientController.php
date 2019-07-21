@@ -56,12 +56,13 @@ class ClientController extends Controller
             'name'=>'required',
             'gender'=>'required',
             'occupation'=>'required',
-            'contact'=>'required',
+           
             'address'=>'required',
             'smsNotify'=>'required',
             'email'=>'nullable'
         ]);
 
+        $data['contact'] = (request()->contact) ? request()->contact : ' ';
         $data['work'] = (request()->work) ? request()->work : ' ';
         $data['home'] =  (request()->home) ? request()->home : ' ';
          $data['email'] =  (request()->email) ? request()->email : ' ';
@@ -77,7 +78,7 @@ class ClientController extends Controller
         } else {
             return response()->json([
                 'status' => 'error',
-                'message' => 'there was a problem updating the record',
+                'message' => 'there was a problem with the record',
             ]);
         }
     }
@@ -116,13 +117,14 @@ class ClientController extends Controller
         $data = $request->validate([
             'name'=>'required',
             'gender'=>'required',
-            'contact'=>'required',
+           
             'address'=>'required',
             'occupation'=>'required',
             'smsNotify'=>'required',
             'email'=>'nullable',
         ]);
 
+        $data['contact'] = (request()->contact) ? request()->contact : ' ';
         $data['work'] = (request()->work) ? request()->work : ' ';
         $data['home'] =  (request()->home) ? request()->home : ' ';
         $data['email'] =  (request()->email) ? request()->email : ' ';

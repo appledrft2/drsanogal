@@ -66,7 +66,7 @@
 	        	</div>
 	        	<div class="form-group">
 	        		<label>Description</label>
-	        			<textarea  class="form-control" cols="5" rows="5" name="body" placeholder="Description"></textarea>
+	        			<textarea  class="form-control textarea " cols="5" rows="5" name="body" placeholder="Description"></textarea>
 	        	</div>
 	        	<div class="form-group">
 	        		<label>Attach an image</label>
@@ -99,6 +99,7 @@
 	// btn for adding data
 	$(document).on('click','.btn_add',function(){
 		$('#form').trigger("reset");
+		$('textarea[name=body]').summernote('code','');
 		$('#form').find('.error_flash').remove();
 		$('#img').find('img').remove();
 		$('input[name=_method]').val('POST');
@@ -122,7 +123,7 @@
 	        dataType: "json",
 	        success: function(data){
 	            $('input[name=title]').val(data.title);
-	            $('textarea[name=body]').val(data.body);
+	            $('textarea[name=body]').summernote('code',data.body);
 	            $('#img').append('<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/'+data.cover_image+'" width="20%">');
 	            $('#Modal').modal('show');
 	        },

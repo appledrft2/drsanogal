@@ -93,7 +93,7 @@
 
           <li class="nav-item">
             <a href="/dashboard/announcement" class="nav-link @if($title=='Announcement') active @endif">
-              <i class="nav-icon fas fa-bullhorn"></i>
+              <i class="nav-icon fas fa-scroll"></i>
               <p>
                 Announcement
               </p>
@@ -122,7 +122,7 @@
           @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/appointmentlist" class="nav-link @if($title=='Appointment List') active @endif">
-              <i class="nav-icon fas fa-calendar"></i>
+              <i class="nav-icon fas fa-calendar-check"></i>
               <p>
                 Appointments
               </p>
@@ -265,7 +265,7 @@
 <script>
   $(function () {
     // Summernote
-    $('.textarea').summernote()
+    $('.textarea').summernote({height:200})
   })
 </script>
 <script>

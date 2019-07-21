@@ -19,6 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('next_appointment');
             $table->string('next_appointment2');
             $table->string('time');
+            $table->date('visited');
             $table->double('temperature');
             $table->double('kilogram');
             $table->string('appointment');

@@ -40,4 +40,38 @@ class AppointmentListController extends Controller
     	toast('Payment Successfully Updated!','success');
         return redirect('dashboard/appointmentlist')->with('title',$this->title);
     }
+    public function update($appointment_id, Request $request){
+
+        $data = $request->validate([
+            'visited' => 'required',
+            'time' => 'required',
+            'next_appointment2' => 'required',
+            'appointment' => 'required',
+            'price' => 'required',
+            'temperature' => 'required',
+            'kilogram' => 'required',
+            'description' => 'nullable'
+
+        ]);
+
+        $data['amount'] = $request->price;
+
+        $appointment =Appointment::findOrfail($appointment_id);
+        $status = $appointment->update($data);
+
+        if ($status) {
+            return response()->json([
+                'status'     => 'success',
+                'message' => 'Records added successfully'
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'there was a problem updating the record'
+            ]);
+        }
+
+        
+    }
 }

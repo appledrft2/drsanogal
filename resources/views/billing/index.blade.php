@@ -58,7 +58,7 @@
 							<tr>
 								<td>{{$key + 1}}</td>
 								<td>{{$billing->rcode}}</td>
-								<td>{{$billing->amount}}</td>
+								<td>&#8369; {{number_format($billing->amount,2)}}</td>
 								<td>{{$billing->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								<td width="25%">
 									<div class="form-inline">

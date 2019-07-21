@@ -45,8 +45,8 @@
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->gender}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->veterinarian}}</td>
 								<td  onclick="window.location = '/dashboard/client/{{$patient->client->id}}/patient';"><span class="text-primary">{{$patient->client->name}}</span></td>
-								<td width="15%">
-									<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-default "><i class="fa fa-calendar"></i> &nbsp;View Details</a>
+								<td width="20%">
+									<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-default btn-block btn-sm"><i class="fa fa-calendar-check"></i>&nbsp;&nbsp;View Appointments</a>
 								</td>
 							</tr>
 						@endforeach
