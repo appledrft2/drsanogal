@@ -25,7 +25,7 @@
 								<td>{{$appointment->patient->id}}</td>
 								<td>{{$appointment->patient->name}}</td>
 								<td>{{$appointment->appointment}}</td>
-								<td>{{date('M d, Y', strtotime($appointment->next_appointment))}}</td>
+								<td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
 								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
 				
 								<td>
