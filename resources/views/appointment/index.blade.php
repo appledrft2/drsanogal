@@ -103,7 +103,7 @@
 								<td>{{$i++}}</td>
 								<td>{{$appointment->appointment}}</td>
 						
-								<td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
+								<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
 							
 								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
 								
