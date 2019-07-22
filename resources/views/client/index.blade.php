@@ -215,10 +215,10 @@
 	        dataType: "json",
 	        data: $('#form').serialize(),
 	        beforeSend:function(){
-	        	$('#loading').removeAttr('hidden');
+	        	$('#loading').prop('hidden',false);
 	        },
 	        success: function(data){
-	        	$('#loading').html('hidden');
+	        	$('#loading').prop('hidden',true);
 	        	$('#Modal').modal('hide');
 	        	Toast.fire({
 	        	  type: 'success',
@@ -227,7 +227,7 @@
 	        	refreshTable();
 	        },
 	        error: function(data){
-	        	$('#loading').html('hidden');
+	        	$('#loading').prop('hidden',true);
 	        	console.log(data);
 	            // display errors on each form field
 	            $.each(data.responseJSON.errors, function (i, error) {

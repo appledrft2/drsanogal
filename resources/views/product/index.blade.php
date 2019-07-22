@@ -251,10 +251,10 @@
             processData: false,
             cache:false,
             beforeSend:function(){
-            	$('#loading').removeAttr('hidden');
+            	$('#loading').prop('hidden',false);
             },
 	        success: function(data){
-	        	$('#loading').html('hidden');
+	        	$('#loading').prop('hidden',true);
 	        	$('#Modal').modal('hide');
 	        	Toast.fire({
 	        	  type: 'success',
@@ -264,7 +264,7 @@
 	        	console.log(data);
 	        },
 	        error: function(data){
-	        	$('#loading').html('hidden');
+	        	$('#loading').prop('hidden',true);
 	        	Toast.fire({
 	        	  type: 'error',
 	        	  title: 'there was a problem with this record.'

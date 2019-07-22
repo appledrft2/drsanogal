@@ -162,10 +162,10 @@
 		        dataType: "json",
 		        data: $('#form').serialize(),
 		        beforeSend:function(){
-		        	$('#loading').removeAttr('hidden');
+		        	$('#loading').prop('hidden',false);
 		        },
 		        success: function(data){
-		        	$('#loading').html('hidden');
+		        	$('#loading').prop('hidden',true);
 		        	$('#Modal').modal('hide');
 		        	Toast.fire({
 		        	  type: 'success',

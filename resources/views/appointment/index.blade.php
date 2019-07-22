@@ -440,10 +440,10 @@
 		        dataType: "json",
 		        data: form,
 		        beforeSend:function(){
-		        	$('#loading').removeAttr('hidden');
+		        	$('#loading').prop('hidden',false);
 		        },
 		        success: function(data){
-		        	$('#loading').html('hidden');
+		        	$('#loading').prop('hidden',true);
 		        	console.log(data);
 		        	if(method=='POST'){
 		        		if(choice == 1){
@@ -464,7 +464,7 @@
 		        	refreshTable();
 		        },
 		        error: function(data){
-		        	$('#loading').html('hidden');
+		        	$('#loading').prop('hidden',true);
 		        	console.log(data);
 		        	// display errors on each form field
 		        	$.each(data.responseJSON.errors, function (i, error) {
