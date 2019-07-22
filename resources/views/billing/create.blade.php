@@ -45,7 +45,7 @@
 												<input readonly type="text" class="form-control" name="appointment[]" value="{{$appointment->appointment}}"></td>
 											<td><input readonly type="text" class="form-control" name="amount[]" value="{{$appointment->amount}}"></td>
 											<td>
-												@if($appointment->isPaid == 0) <span class="badge badge-secondary"> Not Completed</span> @else <span class="badge badge-success"> Completed</span>@endif
+												@if($appointment->isPaid == 0) <span class="badge badge-secondary"> Unpaid</span> @else <span class="badge badge-success"> Paid</span>@endif
 											</td>
 											
 											<td>
