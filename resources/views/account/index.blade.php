@@ -174,7 +174,7 @@
 		        	refreshTable();
 		        },
 		        error: function(data){
-		        	
+		        	$('#loading').html('hidden');
 		        	// display errors on each form field
 		        	$.each(data.responseJSON.errors, function (i, error) {
 		        	    var el = $(document).find('[name="'+i+'"]');

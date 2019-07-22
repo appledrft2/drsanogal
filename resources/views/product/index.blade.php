@@ -264,6 +264,7 @@
 	        	console.log(data);
 	        },
 	        error: function(data){
+	        	$('#loading').html('hidden');
 	        	Toast.fire({
 	        	  type: 'error',
 	        	  title: 'there was a problem with this record.'

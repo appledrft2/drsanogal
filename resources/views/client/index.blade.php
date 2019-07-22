@@ -227,7 +227,7 @@
 	        	refreshTable();
 	        },
 	        error: function(data){
-
+	        	$('#loading').html('hidden');
 	        	console.log(data);
 	            // display errors on each form field
 	            $.each(data.responseJSON.errors, function (i, error) {
