@@ -139,6 +139,11 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
+	      	<div hidden id="loading">
+	      		<div id="overlay" class="overlay d-flex justify-content-center align-items-center">
+	      		    <i class="fas fa-2x fa-sync fa-spin"></i>
+	      		</div>
+	      	</div>
 	        <form id="form">
 	        	@csrf
 	        	<input type="hidden" name="id" value="">
@@ -374,6 +379,10 @@
 		$('#form').trigger("reset");
 		$('.select2').trigger("change");
 		$('#form').find('.error_flash').remove();
+		while(i != 0 ){
+			$('#rows').find('.data'+i).remove();
+			i--;
+		}
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
 		
@@ -430,7 +439,11 @@
 		        url: url,
 		        dataType: "json",
 		        data: form,
+		        beforeSend:function(){
+		        	$('#loading').removeAttr('hidden');
+		        },
 		        success: function(data){
+		        	$('#loading').html('hidden');
 		        	console.log(data);
 		        	if(method=='POST'){
 		        		if(choice == 1){

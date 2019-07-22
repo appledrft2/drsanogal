@@ -57,6 +57,11 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
+	      	<div hidden id="loading">
+	      		<div id="overlay" class="overlay d-flex justify-content-center align-items-center">
+	      		    <i class="fas fa-2x fa-sync fa-spin"></i>
+	      		</div>
+	      	</div>
 	        <form id="form" enctype="multipart/form-data">
 	        
 	        	<input type="hidden" name="id" value="">
@@ -122,7 +127,11 @@
 	        type: "get",
 	        url: "/dashboard/announcement/"+id+"/edit",
 	        dataType: "json",
+	        beforeSend:function(){
+	        	$('#loading').removeAttr('hidden');
+	        },
 	        success: function(data){
+	        	$('#loading').html('hidden');
 	            $('input[name=title]').val(data.title);
 	            $('textarea[name=body]').summernote('code',data.body);
 	            $('#img').append('<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/'+data.cover_image+'" width="20%">');
@@ -159,9 +168,13 @@
 	        contentType: false,
             processData: false,
             cache:false,
-	        
-            
+            beforeSend:function(){
+            	$('#loading').removeAttr('hidden');
+            },
 	        success: function(data){
+	  
+	        	$('#loading').html('hidden');
+	        
 	        	$('#Modal').modal('hide');
 	        	Toast.fire({
 	        	  type: 'success',

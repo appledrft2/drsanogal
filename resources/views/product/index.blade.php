@@ -73,6 +73,11 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
+	      	<div hidden id="loading">
+	      		<div id="overlay" class="overlay d-flex justify-content-center align-items-center">
+	      		    <i class="fas fa-2x fa-sync fa-spin"></i>
+	      		</div>
+	      	</div>
 	        <form id="form" enctype="multipart/form-data">
 	        
 	        	<input type="hidden" name="id" value="">
@@ -245,9 +250,11 @@
 	        contentType: false,
             processData: false,
             cache:false,
-	        
-            
+            beforeSend:function(){
+            	$('#loading').removeAttr('hidden');
+            },
 	        success: function(data){
+	        	$('#loading').html('hidden');
 	        	$('#Modal').modal('hide');
 	        	Toast.fire({
 	        	  type: 'success',

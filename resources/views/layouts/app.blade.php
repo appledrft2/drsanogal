@@ -10,6 +10,8 @@
   <link rel="icon" type="image/x-icon" href="{{asset('adminlte3/dist/img/logo.jpg')}}">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/summernote/summernote-bs4.css')}}">
   <!-- Select2 -->
@@ -44,7 +46,7 @@
       <li class="nav-item">
         <form id="logout-form" style="margin:0px" action="{{ route('logout') }}" method="POST" >
             @csrf
-            <button type="submit" class="btn"><i class="fa fa-sign-out-alt"></i> Logout</button>
+            <button type="submit" class="btn"><i class="icon ion-log-out"></i> Logout</button>
         </form>
       </li>
       

@@ -59,6 +59,11 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
+	      	<div hidden id="loading">
+	      		<div id="overlay" class="overlay d-flex justify-content-center align-items-center">
+	      		    <i class="fas fa-2x fa-sync fa-spin"></i>
+	      		</div>
+	      	</div>
 	        <form id="form">
 	        	@csrf
 	        	<input type="hidden" name="id" value="">
@@ -156,7 +161,11 @@
 		        url: url,
 		        dataType: "json",
 		        data: $('#form').serialize(),
+		        beforeSend:function(){
+		        	$('#loading').removeAttr('hidden');
+		        },
 		        success: function(data){
+		        	$('#loading').html('hidden');
 		        	$('#Modal').modal('hide');
 		        	Toast.fire({
 		        	  type: 'success',
