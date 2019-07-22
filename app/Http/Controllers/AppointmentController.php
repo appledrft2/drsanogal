@@ -180,7 +180,7 @@ class AppointmentController extends Controller
         $data = $request->validate([
             'visited' => 'required',
             'time' => 'required',
-            'next_appointment2' => 'required',
+            'next_appointment2' => 'nullable',
             'appointment' => 'required',
             'price' => 'required',
             'temperature' => 'required',
