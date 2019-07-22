@@ -29,7 +29,7 @@
 								<tr>
 									<td>Appointment</td>
 									<td>Amount</td>
-									<td>Status</td>
+							
 									<td>Payment</td>
 									<td>Action</td>
 								</tr>
@@ -47,9 +47,7 @@
 											<td>
 												@if($appointment->isPaid == 0) <span class="badge badge-secondary"> Not Completed</span> @else <span class="badge badge-success"> Completed</span>@endif
 											</td>
-											<td>
-												@if($appointment->isPaid == 0) <span class="badge badge-secondary"> Unpaid</span> @else <span class="badge badge-success"> Paid</span>@endif
-											</td>
+											
 											<td>
 												<select required name="isPaid[]" class="form-control">
 													
