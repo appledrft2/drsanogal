@@ -36,9 +36,11 @@
 							</thead>
 							<tbody>
 
-
+								<?php $check = 0;?>
 								@foreach($patient->appointments as $appointment)
+									<?php $check = $check+1;?>
 										@if($appointment->isPaid == 0)
+										
 										<tr>
 											<td>
 												<input type="hidden" name="hidden_appointment_id[]" value="{{$appointment->id}}">
@@ -58,8 +60,14 @@
 											
 
 										</tr>
-										
+										@else
+											@if($check == 1) 
+											<tr>
+												<td colspan="4" class="text-center">No unpaid appointments to this patient yet.</td>
+											</tr>
+											@endif
 										@endif
+
 									
 								@endforeach
 
