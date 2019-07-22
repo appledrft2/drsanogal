@@ -211,6 +211,7 @@
           <table class="table m-0 table-hover">
             <thead>
             <tr>
+              <th>Owner</th>
               <th>Patient ID</th>
               <th>Name</th>
               <th>Appointment</th>
@@ -224,6 +225,7 @@
             @if(count($appointments))
               @foreach($appointments as $appointment)
               <tr>
+                <td>{{$appointment->patient->client->name}}</td>
                 <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
                 <td >{{$appointment->patient->name}}</td>
                 <td>{{$appointment->appointment}}</td>
