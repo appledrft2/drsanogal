@@ -5,7 +5,7 @@
 		<div class="card-body">
 			
 			<div id="mytable" class="table-responsive">
-			<table id="table" class="table table-bordered table-hover">
+			<table id="tableapplist" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th width="10%">Patient ID</th>
@@ -21,13 +21,14 @@
 				<tbody>
 					@if(count($appointments))
 						@foreach($appointments as $appointment)
+							@if($appointment->next_appointment2)
 							<tr>
 								<td>{{$appointment->patient->id}}</td>
 								<td>{{$appointment->patient->name}}</td>
 								<td>{{$appointment->appointment}}</td>
 								<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
 								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
-				
+							
 								<td>
 									@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
 									@else <span class="badge badge-secondary">Unpaid</span> 
@@ -39,6 +40,7 @@
 							
 								</td>
 							</tr>
+							@endif
 						@endforeach
 					@else
 				<!-- 	<tr><td colspan="8" class="text-center">No Data</td></tr> -->
@@ -138,6 +140,9 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+	$('#tableapplist').DataTable({
+		"aaSorting": [[3,'desc']]
+	});
 	const Toast = Swal.mixin({
 	  toast: true,
 	  position: 'top-end',
