@@ -48,8 +48,12 @@ class ProductController extends Controller
                   ->orWhere('category', 'like', '%'.$data['data'].'%')
                   ->orWhere('supplier_id', 'like', '%'.$data['data'].'%');        
         })->paginate(4);
+        $suppliers = Supplier::orderBy('created_at','DESc')->get();
+        $units = ProductUnit::orderBy('created_at','DESc')->get();
+        $category = ProductCategory::orderBy('created_at','DESc')->get();
         $products =  $products->appends(array ('data' => $data['data']));
-        return view('product.index',compact('products'))->with('title',$this->title)->with('btn',true);
+        $btn = Supplier::findOrfail($data['data']);
+        return view('product.index',compact('products','suppliers','category','units','btn'))->with('title',$this->title);
     }
     /**
      * Store a newly created resource in storage.

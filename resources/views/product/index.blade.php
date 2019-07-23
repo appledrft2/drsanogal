@@ -8,6 +8,9 @@
 				<buttond class="btn btn_add btn-default "><i class="fa fa-plus-circle"></i>New Product</button>
 			</div>
 			<div class="float-right mb-3">
+				@isset($btn)
+				<a href="/dashboard/product" class="btn btn-secondary ">{{$btn->name}} <i class="fa fa-times"></i> </a>
+				@endisset
 				<a href="/dashboard/productunit" class="btn btn-default "><i class="fa fa-balance-scale"></i> Unit</a>
 				<a href="/dashboard/productcategory" class="btn btn-default "><i class="fa fa-tags"></i> Categories</a>
 			</div>
