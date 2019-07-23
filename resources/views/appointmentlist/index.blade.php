@@ -221,7 +221,7 @@
 	// Refresh the table
 	function refreshTable() {  
 	   	$( "#mytable" ).load( "/dashboard/appointmentlist #mytable", function(){
-		   $("#table").DataTable();
+		   $("#tableapplist").DataTable();
 		});
 	}
 </script>
