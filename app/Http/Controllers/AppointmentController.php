@@ -19,7 +19,7 @@ class AppointmentController extends Controller
     {
        $appointments = Patient::findOrfail($patient)->appointments()->orderBy('created_at','desc')->get();
        $patient = Patient::findOrfail($patient);
-       $services = ManageAppointment::latest()->get();
+       $services = ManageAppointment::orderBy('created_at','asc')->get();
        
      
        return view('appointment.index',['appointments'=>$appointments,'patient'=>$patient,'services'=>$services])->with('title',$this->title);
