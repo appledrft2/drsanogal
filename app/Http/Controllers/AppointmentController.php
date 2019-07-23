@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use App\Appointment;
+use App\ManageAppointment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -18,9 +19,10 @@ class AppointmentController extends Controller
     {
        $appointments = Patient::findOrfail($patient)->appointments()->orderBy('created_at','desc')->get();
        $patient = Patient::findOrfail($patient);
+       $services = ManageAppointment::latest()->get();
        
      
-       return view('appointment.index',['appointments'=>$appointments,'patient'=>$patient])->with('title',$this->title);
+       return view('appointment.index',['appointments'=>$appointments,'patient'=>$patient,'services'=>$services])->with('title',$this->title);
     }
 
     /**

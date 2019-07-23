@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-	<div class="form-group"><a href="/dashboard/product" class="btn btn-default">Go Back</a></div>
+	<div class="form-group"><button onclick="history.back()" class="btn btn-default">Go Back</button></div>
 	<div class="card">
 		
 		<div class="card-body">
 			<div class="form-group mb-3">
-				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Unit</button>
+				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Services</button>
 			</div>
 		
 				<div id="mytable" class="table-container">
@@ -20,17 +20,18 @@
 				  		</tr>
 				  	</thead>
 				  	<tbody>
-				  		@foreach($units as $key => $unit)
+				  		@foreach($mas as $key => $manageappointment)
 				  		<tr>
 				  			<td>{{$key + 1}}</td>
-				  			<td>{{$unit->title}}</td>
-				  			<td>{{$unit->description}}</td>
+				  			<td>{{$manageappointment->title}}</td>
+				  			<td>{{$manageappointment->description}}</td>
 				  			<td>
-				  				<button id="{{$unit->id}}" class="btn_edit btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</button>
-				  				<button id="{{$unit->id}}"  class="btn_delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+				  				<button id="{{$manageappointment->id}}" class="btn_edit btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</button>
+				  				<button id="{{$manageappointment->id}}"  class="btn_delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
 				  			</td>
 				  		</tr>
 				  		@endforeach
+				  		
 				  	</tbody>
 				  </table>
 				</div>
@@ -79,7 +80,39 @@
 
 @endsection
 
-@section('script')
+@section('script')<!-- 
+<script type="text/javascript">
+	// Server side rendering datatable
+	$(document).ready(function(){
+		$('#data').DataTable({
+			'processing': true,
+			'serverSide':true,
+			'ajax':'/dashboard/productcategorydata',
+			columns:[
+			   {
+			    data: 'id',
+			    name: 'id',
+			    orderable: false
+			   },
+			   {
+			    data: 'title',
+			    name: 'title'
+			   },
+			   {
+			    data: 'description',
+			    name: 'description'
+			   },
+			   {
+			    data: 'action',
+			    name: 'action',
+			    orderable: false
+			   }
+			  ]
+
+		});
+	});
+</script> -->
+<script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 <script type="text/javascript">
 	const Toast = Swal.mixin({
 	  toast: true,
@@ -110,7 +143,7 @@
 
 		$.ajax({
 	        type: "get",
-	        url: "/dashboard/productunit/"+id+"/edit",
+	        url: "/dashboard/services/"+id+"/edit",
 	        dataType: "json",
 	        beforeSend:function(){
             	$('#loading').prop('hidden',false);
@@ -135,8 +168,8 @@
 		$('#form').find('.error_flash').remove();
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();
-		let post = '/dashboard/productunit';
-		let patch = '/dashboard/productunit/'+id;
+		let post = '/dashboard/services';
+		let patch = '/dashboard/services/'+id;
 		let url = '';
 
 		if(method == "POST"){
@@ -194,7 +227,7 @@
 
         	$.ajax({
                 type: "DELETE",
-                url: '/dashboard/productunit/'+id,
+                url: '/dashboard/services/'+id,
                 dataType: "json",
                 data: $('#form').serialize(),
                 success: function(data){
@@ -218,7 +251,7 @@
 	});
 	// Refresh the table
 	function refreshTable() {  
-	   	$( "#mytable" ).load( "/dashboard/productunit #mytable", function(){
+	   	$( "#mytable" ).load( "/dashboard/services #mytable", function(){
 		   $("#table").DataTable();
 		});
 	}

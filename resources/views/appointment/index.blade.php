@@ -78,8 +78,11 @@
 
 				</div>
 			</div>
-			<div class="pull-left mb-3">
+			<div class="float-left mb-3">
 				<button class="btn btn_add btn-default "><i class="fa fa-plus-circle"></i> New Appointment</button>
+			</div>	
+			<div class="float-right mb-3">
+				<a href="/dashboard/services" class="btn  btn-default "><i class="fa fa-cogs"></i> Services</a>
 			</div>	
 			<div id="mytable" class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">
@@ -175,16 +178,12 @@
 						<label>Appointment</label>
 						<select required name="appointment[]" class="form-control select2" style="width:100%">
 							<option value="">Select Appointment</option>
-							<option>5in1 Vaccination</option>
-							<option>Deworming</option>
-							<option>Rabies Vaccination</option>
-							<option>Bordetella</option>
-							<option>Leptospirosis</option>
-							<option>Heartworm Prevention</option>
-							<option>Tick and Flea Prevention</option>
-							<option>Manage Treatment</option>
-							<option>Laboratory</option>
-							<option>Check-up</option>
+					
+							@if($services)
+								@foreach($services as $service)
+									<option>{{$service->title}}</option>
+								@endforeach
+							@endif
 							<option>Others</option>
 						</select>
 					</div>
@@ -279,16 +278,12 @@
 						<label>Appointment</label>
 						<select required name="appointment" class="form-control select2 appointment" style="width:100%">
 							<option value="">Select Appointment</option>
-							<option>5in1 Vaccination</option>
-							<option>Deworming</option>
-							<option>Rabies Vaccination</option>
-							<option>Bordetella</option>
-							<option>Leptospirosis</option>
-							<option>Heartworm Prevention</option>
-							<option>Tick and Flea Prevention</option>
-							<option>Manage Treatment</option>
-							<option>Laboratory</option>
-							<option>Check-up</option>
+
+							@if($services)
+								@foreach($services as $service)
+									<option>{{$service->title}}</option>
+								@endforeach
+							@endif
 							<option>Others</option>
 						</select>
 					</div>
@@ -330,18 +325,14 @@
 		i++;
 		$('#rows').append('<div class="data'+i+'"><hr>'+
 			'<label>Appointment</label>'+
-			'<select required name="appointment[]" class="form-control mb-1">'+
+			'<select required name="appointment[]" class="form-control mb-1 select3" style="width:100%">'+
 			'<option value="">Select Appointment</option>'+
-			'<option>5in1 Vaccination</option>'+
-			'<option>Deworming</option>'+
-			'<option>Rabies Vaccination</option>'+
-			'<option>Bordetella</option>'+
-			'<option>Leptospirosis</option>'+
-			'<option>Heartworm Prevention</option>'+
-			'<option>Tick and Flea Prevention</option>'+
-			'<option>Manage Treatment</option>'+
-			'<option>Laboratory</option>'+
-			'<option>Check-up</option>'+
+			
+			'@if($services)'+
+				'@foreach($services as $service)'+
+					'<option>{{$service->title}}</option>'+
+				'@endforeach'+
+			'@endif'+
 			'<option>Others</option>'+
 			'</select>'+
 			'</div>'+
@@ -353,6 +344,7 @@
 			'<label>Description</label>'+
 			'<textarea  name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
 			'</div>');
+		$('.select3').select2();
 		
 	});
 

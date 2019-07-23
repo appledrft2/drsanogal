@@ -50,6 +50,11 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
+	      	<div hidden id="loading">
+	      		<div id="overlay" class="overlay d-flex justify-content-center align-items-center">
+	      		    <i class="fas fa-2x fa-sync fa-spin"></i>
+	      		</div>
+	      	</div>
 	        <form id="form">
 	        	@csrf
 	        	<input type="hidden" name="id" value="">
@@ -140,12 +145,17 @@
 	        type: "get",
 	        url: "/dashboard/productcategory/"+id+"/edit",
 	        dataType: "json",
+	        beforeSend:function(){
+            	$('#loading').prop('hidden',false);
+            },
 	        success: function(data){
+	        	$('#loading').prop('hidden',true);
 	            $('input[name=title]').val(data.title);
 	            $('textarea[name=description]').val(data.description);
 	            $('#Modal').modal('show');
 	        },
 	        error: function(data){
+	        	$('#loading').prop('hidden',true);
 	            console.log(data);
 	        }
 	    });
@@ -173,7 +183,11 @@
 		        url: url,
 		        dataType: "json",
 		        data: $('#form').serialize(),
+    	        beforeSend:function(){
+                	$('#loading').prop('hidden',false);
+                },
 		        success: function(data){
+		        	$('#loading').prop('hidden',true);
 		        	$('#Modal').modal('hide');
 		        	Toast.fire({
 		        	  type: 'success',
@@ -182,6 +196,7 @@
 		        	refreshTable();
 		        },
 		        error: function(data){
+		        	$('#loading').prop('hidden',true);
 		        	// display errors on each form field
 		        	$.each(data.responseJSON.errors, function (i, error) {
 		        	    var el = $(document).find('[name="'+i+'"]');
