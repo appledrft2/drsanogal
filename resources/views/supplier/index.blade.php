@@ -29,7 +29,7 @@
 								<td>{!!$supplier->address!!}</td>
 								<th><form method="post" action="/dashboard/product/search">@csrf<input type="hidden" name="data" value="{{$supplier->id}}"><button class="btn btn-link">{{$supplier->products->count()}}</button></form></th>
 								<td width="15%">	
-									<a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default btn-sm btn-block"><i class="fa fa-truck"></i> &nbsp;Stock In</a>
+									<!-- <a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default btn-sm btn-block"><i class="fa fa-truck"></i> &nbsp;Stock In</a> -->
 									<button id="{{$supplier}}" class="btn btn-info btn-sm btn-block btn_edit"><i class="fa fa-edit"></i> Edit</button>
 									<button id="{{$supplier->id}}" class="btn btn-danger btn_block btn-sm btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
 								</td>
