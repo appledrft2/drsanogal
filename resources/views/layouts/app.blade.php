@@ -152,9 +152,9 @@
           <li class="nav-header">INVENTORY</li>
           <li class="nav-item">
             <a href="/dashboard/supplier" class="nav-link @if($title=='Supplier') active @endif">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fa fa-truck"></i>
               <p>
-                Supplier
+                Suppliers
               </p>
             </a>
           </li>
@@ -168,14 +168,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="/dashboard/suppliers" class="nav-link @if($title=='Stock In') active @endif">
-              <i class="nav-icon fas fa-truck"></i>
-              <p>
-                Stock In
-              </p>
-            </a>
-          </li>
+         
 
           <li class="nav-item">
             <a href="/dashboard/stockout" class="nav-link @if($title=='Point of Sale') active @endif">

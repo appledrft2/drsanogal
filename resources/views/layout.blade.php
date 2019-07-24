@@ -24,33 +24,36 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #54C4CF">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="logo" width="5%" style="border-radius:90%">
-        Dr S & J Veterinary Clinic and Grooming Centre
+        <img src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="logo" width="5%" style="border-radius:90%;border:2px solid white">
+       <span class="text-white"> Dr S & J Veterinary Clinic and Grooming Centre</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse navbar-collapse " id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item @if(Request::is('/')) active @endif  ">
-            <a class="nav-link" href="{{url('/')}}">Home
+          <li class="nav-item   ">
+            <a class="nav-link @if(Request::is('/')) text-secondary @else text-white @endif" href="{{url('/')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item @if(Request::is('announcement')) active @endif">
-            <a class="nav-link" href="{{url('/announcement')}}">Announcments</a>
+          <li class="nav-item ">
+            <a class="nav-link @if(Request::is('announcement')) text-secondary @else text-white @endif" href="{{url('/announcement')}}">Announcements</a>
           </li>
-          <li class="nav-item @if(Request::is('products')) active @endif">
-            <a class="nav-link" href="{{url('products')}}">Products</a>
+          <li class="nav-item ">
+            <a class="nav-link  @if(Request::is('products')) text-secondary @else text-white @endif" href="{{url('products')}}">Products</a>
           </li>
-          <li class="nav-item @if(Request::is('/login') || Request::is('/dashboard') ) active @endif">
+          <li class="nav-item ">
+            <a class="nav-link  @if(Request::is('services')) text-secondary @else text-white @endif" href="{{url('services')}}">Services</a>
+          </li>
+          <li class="nav-item @if(Request::is('/login') || Request::is('/dashboard') ) text-secondary @else text-white @endif">
             @guest
-            <a class="nav-link" href="{{url('/login')}}">Login</a>
+            <a class="nav-link text-white" href="{{url('/login')}}">Login</a>
             @else
-            <a class="nav-link" href="{{url('/dashboard')}}">Dashboard</a>
+            <a class="nav-link text-white" href="{{url('/dashboard')}}">Dashboard</a>
             @endguest
           </li>
         </ul>
@@ -65,7 +68,7 @@
         <div class="col-lg-12 text-">
           <h1 class="display-4 text-dark mt-5 mb-2">Welcome to our website!</h1>
           <p class="lead mb-5 text-dark-50">We offer excellent products and services for your lovely pets.</p>
-          <p><a class="btn btn-lg btn-outline-primary" href="https://www.facebook.com/DrSandJVetClinic/" role="button"><i class="fab fa-facebook"></i> Visit us on facebook!</a></p>
+          <p><a class="btn btn-lg btn-outline-info" href="https://www.facebook.com/DrSandJVetClinic/" role="button"><i class="fab fa-facebook"></i> Visit us on facebook</a></p>
         </div>
       </div>
     </div>
@@ -74,10 +77,11 @@
 
     @yield('content')
 
+
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 " style="background-color: #54C4CF">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Dr S & J Veterinary Clinic 2019</p>
     </div>

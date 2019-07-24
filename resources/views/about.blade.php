@@ -15,7 +15,7 @@
                     <div class="card-body">
                       <h4 class="card-title">{{$announcement->title}}</h4>
                       <span><strong>Author:</strong> {{$announcement->user->email}}</span><br>
-                       <span><strong>Posted at: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
+                       <span><strong>Date Posted: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
                       <p class="card-text">{!!$announcement->body!!}</p>
                     </div>
                     

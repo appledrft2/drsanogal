@@ -16,7 +16,7 @@
 			                        <thead>
 			                          <br>
 			                          <tr>
-			                            <td colspan="2"><p class="text-center"><img src="{{asset('adminlte3/dist/img/logo.jpg')}}" width="5%" class="img-circle elevation-1"><b> DR. S & J VETERENARY CLINIC & GROOMING CENTER </b><br>Door 2, Garces Bldg, Alijis Road,<br> Brgy Alijis, Bacolod City 6100
+			                            <td colspan="2"><p class="text-center"><img src="{{asset('adminlte3/dist/img/logo.jpg')}}" width="5%" class="img-circle elevation-1"><b> DR. S & J VETERINARY CLINIC & GROOMING CENTER </b><br>Door 2, Garces Bldg, Alijis Road,<br> Brgy Alijis, Bacolod City 6100
 			                            <br>
 			                            Contact No.: 09086958978
 			                            <br>
@@ -124,7 +124,7 @@
 			                            <td colspan="2"><p class="text-center">
 			                              ************************************************************************
 			                              <br>
-			                              <i >Thank you for choosing us!<br> DR. S & J VETERENARY CLINIC & GROOMING CENTER<br>
+			                              <i >Thank you for choosing us!<br> DR. S & J VETERINARY CLINIC & GROOMING CENTER<br>
 			www.DRSANDJVETERENARYCLINIC.shop</i></p></td>
 	                      </tr>
 	                    </tfoot>

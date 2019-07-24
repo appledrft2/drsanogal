@@ -18,9 +18,16 @@ class StockInController extends Controller
      */
     public function index($supplier_id)
     {
+        $getprod = Product::where('supplier_id',$supplier_id)->get();
+        if(count($getprod)){
         $supplier = Supplier::findOrfail($supplier_id);
         $stockins = Stockin::where('supplier_id',$supplier_id)->get();
         return view('stockin.index',compact('stockins','supplier'))->with('title',$this->title);
+        }else{
+            toast('There are no products with this supplier yet','error');
+            $suppliers = Supplier::latest()->get();
+            return view('supplier.index',compact('suppliers'))->with('title',$this->title);
+        }
     }
 
     /**

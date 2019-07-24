@@ -15,6 +15,7 @@
 Route::get('/', 'FrontPageController@welcome');
 Route::get('/announcement', 'FrontPageController@announcement');
 Route::get('/products','FrontPageController@products');
+Route::get('/services','FrontPageController@services');
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////

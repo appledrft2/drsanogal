@@ -18,4 +18,8 @@ class FrontPageController extends Controller
         $products = \App\Product::orderBy('created_at','DESC')->paginate(3);
         return view('products',compact('products'));
     }
+    public function services(){
+        $services = \App\ManageAppointment::orderBy('created_at','DESC')->paginate(6);
+        return view('services',compact('services'));
+    }
 }
