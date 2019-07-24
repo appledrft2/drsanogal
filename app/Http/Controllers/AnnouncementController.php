@@ -63,8 +63,14 @@ class AnnouncementController extends Controller
         if($request->hasFile('cover_image')){
            
            if($request->file('cover_image') != 'uploads/noimage.png'){
-                $path = request()->file('cover_image');
-                $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+
+           		$file = $request->file('cover_image');
+
+           		$imageName = 'uploads/' . time() .'_'. $file->getClientOriginalName();
+         
+                Storage::disk('s3')->put($imageName,file_get_contents($file),'public');
+          
+                $pathToSave = $imageName;
            }
 
         }else{
