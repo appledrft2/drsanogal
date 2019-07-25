@@ -16,7 +16,7 @@ class ClientFormController extends Controller
      */
     public function index($client_id)
     {
-        $forms = ClientForm::latest()->get();
+        $forms = ClientForm::findOrfail($client_id);
         return view('clientform.index',compact('forms','client_id'))->with('title',$this->title);
     }
 
