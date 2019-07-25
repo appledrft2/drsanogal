@@ -16,7 +16,7 @@ class ClientFormController extends Controller
      */
     public function index($client_id)
     {
-        $forms = ClientForm::findOrfail($client_id);
+        $forms = ClientForm::where('client_id',$client_id)->get();
         return view('clientform.index',compact('forms','client_id'))->with('title',$this->title);
     }
 
