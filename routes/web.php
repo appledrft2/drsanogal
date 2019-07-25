@@ -39,6 +39,8 @@ Route::resource('/dashboard/announcement','AnnouncementController');
 // Client module
 Route::any('/dashboard/client/search','ClientController@search');
 Route::resource('/dashboard/client','ClientController');
+//Client Forms module
+Route::resource('/dashboard/client/{client}/forms','ClientFormController');
 
 // Patient module
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');

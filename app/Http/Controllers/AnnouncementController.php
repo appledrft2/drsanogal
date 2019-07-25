@@ -169,7 +169,7 @@ class AnnouncementController extends Controller
         if ($status) {
             return response()->json([
                 'status'     => 'success',
-                'message' => 'Record added successfully'
+                'message' => 'Record updated successfully'
 
             ]);
         } else {

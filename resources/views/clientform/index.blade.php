@@ -1,38 +1,38 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
+	<div class="form-group "><a href="/dashboard/client" class="btn btn-default">Go Back</a></div>
 	<div class="card">
 		<div class="card-body">
 			<div class="pull-left mb-3">
-				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Announcement</button>
+				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Form</button>
 			</div>
 			<div id="mytable" class="table-responsive">
 			<table id="table" width="100%" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Title</th>
-					
-						<th>Author</th>
-						<th>Created</th>
+						<th>Filename</th>
+						<th>Category</th>
+						<th>Created at</th>
 						<th width="20%">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					@if(count($announcements))
-					<?php $i=1; ?>
-						@foreach($announcements as $announcement)
+					@if(count($forms))	
+						@foreach($forms as $key => $form)
 							<tr>
-								<td>{{$i++}}</td>
-								<td >{{$announcement->title}}</td>
-				
-								<td >{{$announcement->user->name}}</td>
-								<td >{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
+								<td>{{$key+1}}</td>
+								<td >{{substr($form->file,6)}}</td>
+								<td >{{$form->category}}</td>
+								<td >{{$form->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								
 								<td>
-									<div class="form-inline">
-										<button id="{{$announcement->id}}" class="btn btn-sm btn-info btn_edit mr-1"><i class="fa fa-edit"></i> Edit</button>
-										<button id="{{$announcement->id}}" class="btn btn-sm btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</button>
+									<div class="form-group">
+
+										<a href="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$form->file}}" class="btn btn-sm btn-default btn_edit btn-block"><i class="fa fa-download"></i> Download</a>
+										<button id="{{$form}}" class="btn btn-sm btn-info btn_edit btn-block"><i class="fa fa-edit"></i> Edit</button>
+										<button id="{{$form->id}}" class="btn btn-block btn-sm btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</button>
 									</div>
 								</td>
 							</tr>
@@ -67,18 +67,22 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 	        	<div class="form-group">
-	        		<label>Title</label>
-	        		<input type="text" name="title" required class="form-control" placeholder="Title">
-	        	</div>
+	        		<label>Category</label>
+	        		<select name="category" class="form-control select2" style="width: 100%">
+	        			<option value="">Select</option>
+	        			<option>Confinement/Hospitalization Consent</option>
+	        			<option>Boarding Consent</option>
+	        			<option>Anesthesia & Surgical consent</option>
+	        			<option>Laboratories</option>
+	        			<option>Others</option>
+	        		</select>
+	        	</div>	
 	        	<div class="form-group">
-	        		<label>Description</label>
-	        			<textarea  class="form-control textarea " cols="5" rows="5" name="body" placeholder="Description"></textarea>
-	        	</div>
-	        	<div class="form-group">
-	        		<label>Attach an image</label>
+	        		<label>Attach a form</label>
 	        		<div class="form-group" ><span id="img"></span></div>
-	        		<input type="file" id="cover_image" name="cover_image" class="form-control-file mb-5"  accept="image/*">
+	        		<input type="file" id="file" name="file" class="form-control-file mb-5">
 	        	</div> 
+	        	
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -105,43 +109,31 @@
 	// btn for adding data
 	$(document).on('click','.btn_add',function(){
 		$('#form').trigger("reset");
-		$('textarea[name=body]').summernote('code','');
+		$('.select2').trigger('change');
+	
 		$('#form').find('.error_flash').remove();
-		$('#img').find('img').remove();
+		$('#img').find('#file').remove();
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
 		$('#Modal').modal('show');
 	});
 	// btn for editing data
 	$(document).on('click','.btn_edit',function(){
-		$('#img').find('img').remove();
+		$('#img').find('#file').remove();
 		$('#form').trigger("reset");
 		$('#form').find('.error_flash').remove();
-		let id = $(this).attr('id');
+		let data = $(this).attr('id');
+		data = JSON.parse(data);
+		let id = data.id;
 		$('input[name=id]').val(id);
 		$('input[name=_method]').val('PATCH');
 		$('.modal-title').text('Update');
-		
 
-		$.ajax({
-	        type: "get",
-	        url: "/dashboard/announcement/"+id+"/edit",
-	        dataType: "json",
-	        beforeSend:function(){
-	        	$('#loading').prop('hidden',false);
-	        },
-	        success: function(data){
-	        	$('#loading').prop('hidden',true);
-	            $('input[name=title]').val(data.title);
-	            $('textarea[name=body]').summernote('code',data.body);
-	            $('#img').append('<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/'+data.cover_image+'" width="20%">');
-	            $('#Modal').modal('show');
-	        },
-	        error: function(data){
-	        	$('#loading').prop('hidden',true);
-	            console.log(data);
-	        }
-	    });
+        $('select[name=category]').val(data.category);
+        $('#img').append('<a id="file" href="https://vetassist.s3.ap-southeast-1.amazonaws.com/'+data.file+'" width="20%">'+data.file.substr(6)+'</a>');
+        $('.select2').trigger('change');
+        $('#Modal').modal('show');
+	      
 
 		
 	});
@@ -151,9 +143,10 @@
 		
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();
-		let post = '/dashboard/announcement';
-		let patch = '/dashboard/announcement/'+id;
+		let post = '/dashboard/client/{{$client_id}}/forms';
+		let patch = '/dashboard/client/{{$client_id}}/forms/'+id;
 		let url = '';
+
 
 		if(method == "POST"){
 			url = post;
@@ -222,7 +215,7 @@
 
         	$.ajax({
                 type: "DELETE",
-                url: '/dashboard/announcement/'+id,
+                url: '/dashboard/client/{{$client_id}}/forms/'+id,
                 dataType: "json",
        			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 success: function(data){
@@ -246,7 +239,7 @@
 	});
 	// Refresh the table
 	function refreshTable() {  
-	   	$( "#mytable" ).load( "/dashboard/announcement #mytable", function(){
+	   	$( "#mytable" ).load( "/dashboard/client/{{$client_id}}/forms #mytable", function(){
 		   $("#table").DataTable();
 		});
 	}

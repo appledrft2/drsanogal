@@ -17,4 +17,8 @@ class Client extends Model
     public function billings(){
     	return $this->hasMany(Billing::class);
     }
+
+    public function forms(){
+    	return $this->hasMany(Forms::class);
+    }
 }
