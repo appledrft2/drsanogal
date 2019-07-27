@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
+<script type="text/javascript">
+	$('#tableapplist').DataTable({
+		"aaSorting": [[3,'desc']]
+	});
+</script>
 	<div class="card">
 		<div class="card-body">
 			

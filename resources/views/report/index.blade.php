@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
+<script type="text/javascript">
+   loadBarChart();
+</script>
 	<div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title text-center">Monthly Net Sales of {{date('Y')}} (Point of Sales)</h3>
