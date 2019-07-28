@@ -363,14 +363,14 @@ function closeFullscreen() {
       $("#table").DataTable();
   });
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
 <script type="text/javascript">
   var pjax = new Pjax({
   elements: "a", // default is "a[href], form[action]"
   selectors: ["title","body"]
 })
 
-</script>
+</script> -->
 
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 <!-- Select2 -->
