@@ -20,6 +20,7 @@
 						<th>Amount</th>
 						
 						<th>Payment</th>
+						<th>Created at</th>
 						<th width="15%">Action</th>
 					</tr>
 				</thead>
@@ -39,6 +40,7 @@
 									@else <span class="badge badge-secondary">Unpaid</span> 
 									@endif
 								</td>
+								<td>{{date('M d, D Y', strtotime($appointment->created_at))}}</td>
 								<td>
 
 									<button id="{{$appointment}}" class="btn btn-default btn_edit btn-sm btn-block"><i class="fa fa-info"></i>&nbsp;&nbsp;More Details</button>
