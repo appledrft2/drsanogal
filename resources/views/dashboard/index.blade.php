@@ -8,7 +8,7 @@
         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dollar-sign"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Gross</span>
+          <span class="info-box-text">Monthly Gross</span>
           <span class="info-box-number text-center">
              &#8369; {{number_format($gross,2)}}  
           </span>
@@ -19,7 +19,7 @@
       <div class="info-box">
         <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-dollar-sign"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Net Profit</span>
+          <span class="info-box-text">Monthly Profit</span>
           <span class="info-box-number text-center">
              &#8369; {{number_format($net,2)}}    
           </span>

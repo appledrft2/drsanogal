@@ -8,7 +8,7 @@
       <div id="about" class="col-md-12 mb-5">
         <h2 class="">Why are we here?</h2>
         <hr>
-        <p class="text-justify " style="font-size:1.4em" >It is our mission to provide hollistic approach to animal health care with quality products, advance technology and continuous education to our staff, veterinarians and pet owners.</p>
+        <p class="text-justify" style="font-size:1.5em" >It is our mission to provide hollistic approach to animal health care with quality products, advance technology and continuous education to our staff, veterinarians and pet owners.</p>
       </div>
       
         <div id="contact" class="col-md-12 mb-5">

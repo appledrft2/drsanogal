@@ -42,11 +42,11 @@ class DashboardController extends Controller
      	$week2 = Billing::where('created_at', '>=', $sales_week)->sum('netamount');
      	$week = $week1 + $week2;
 
-     	$gross1 = StockOut::sum('amount');
-     	$gross2 = Billing::sum('amount');
+     	$gross1 = StockOut::where('created_at','like','%'.date('Y-m').'%')->sum('amount');
+     	$gross2 = Billing::where('created_at','like','%'.date('Y-m').'%')->sum('amount');
      	$gross = $gross1 + $gross2;
-     	$net1 = StockOutDetail::sum('netamount');
-     	$net2 = Billing::sum('netamount');
+     	$net1 = StockOutDetail::where('created_at','like','%'.date('Y-m').'%')->sum('netamount');
+     	$net2 = Billing::where('created_at','like','%'.date('Y-m').'%')->sum('netamount');
      	$net = $net1 + $net2;
 
 

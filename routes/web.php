@@ -39,11 +39,13 @@ Route::delete('/dashboard/account/{id}/destroy','AccountController@destroy')->mi
 //Announcement module
 Route::any('/dashboard/announcement/search','AnnouncementController@search');
 Route::resource('/dashboard/announcement','AnnouncementController');
+
 // Client module
 Route::any('/dashboard/client/search','ClientController@search');
 Route::resource('/dashboard/client','ClientController');
 //Client Forms module
 Route::resource('/dashboard/client/{client}/forms','ClientFormController');
+Route::resource('/dashboard/formcategory','FormCategoryController');
 
 // Patient module
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');

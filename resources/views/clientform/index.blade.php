@@ -4,8 +4,12 @@
 	<div class="form-group "><a href="/dashboard/client" class="btn btn-default">Go Back</a></div>
 	<div class="card">
 		<div class="card-body">
-			<div class="pull-left mb-3">
-				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Form</button>
+			<div class="float-left ">
+				<button class="btn btn-default btn_add" ><i class="fa fa-plus-circle"></i> New Form</button>
+			</div>
+			<div class="float-right mb-5">
+				
+				<a href="/dashboard/formcategory" class="btn btn-default" ><i class="fa fa-tags"></i> Category</a>
 			</div>
 			<div id="mytable" class="table-responsive">
 			<table id="table" width="100%" class="table table-bordered table-hover">
@@ -69,11 +73,12 @@
 	        	<div class="form-group">
 	        		<label>Category</label>
 	        		<select name="category" class="form-control select2" style="width: 100%">
-	        			<option value="">Select</option>
-	        			<option>Confinement/Hospitalization Consent</option>
-	        			<option>Boarding Consent</option>
-	        			<option>Anesthesia & Surgical consent</option>
-	        			<option>Laboratories</option>
+	        			<option value="">Select Category</option>
+	        			@if($formcategorys)
+	        				@foreach($formcategorys as $formcategory)
+	        					<option>{{$formcategory->name}}</option>
+	        				@endforeach
+	        			@endif
 	        			<option>Others</option>
 	        		</select>
 	        	</div>	

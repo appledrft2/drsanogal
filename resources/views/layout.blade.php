@@ -18,7 +18,12 @@
 
   <!-- Custom styles for this template -->
   <link href="{{asset('css/business-frontpage.css')}}" rel="stylesheet">
+  <style type="text/css">
+    .selected-tab{
+      border-bottom: 1px white solid;
 
+    }
+  </style>
 </head>
 
 <body>
@@ -36,20 +41,20 @@
       <div class="collapse navbar-collapse " id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item   ">
-            <a class="nav-link @if(Request::is('/')) text-secondary @else text-white @endif" href="{{url('/')}}">Home
+            <a class="nav-link @if(Request::is('/')) selected-tab text-white @else text-white @endif" href="{{url('/')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link @if(Request::is('announcement')) text-secondary @else text-white @endif" href="{{url('/announcement')}}">Announcements</a>
+            <a class="nav-link @if(Request::is('announcement')) selected-tab text-white @else text-white @endif" href="{{url('/announcement')}}">Announcements</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link  @if(Request::is('products')) text-secondary @else text-white @endif" href="{{url('products')}}">Products</a>
+            <a class="nav-link  @if(Request::is('products')) selected-tab text-white @else text-white @endif" href="{{url('products')}}">Products</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link  @if(Request::is('services')) text-secondary @else text-white @endif" href="{{url('services')}}">Services</a>
+            <a class="nav-link  @if(Request::is('services')) selected-tab text-white @else text-white @endif" href="{{url('services')}}">Services</a>
           </li>
-          <li class="nav-item @if(Request::is('/login') || Request::is('/dashboard') ) text-secondary @else text-white @endif">
+          <li class="nav-item @if(Request::is('/login') || Request::is('/dashboard') ) selected-tab text-white @else text-white @endif">
             @guest
             <a class="nav-link text-white" href="{{url('/login')}}">Login</a>
             @else

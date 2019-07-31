@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClientForm;
+use App\FormCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,8 @@ class ClientFormController extends Controller
     public function index($client_id)
     {
         $forms = ClientForm::where('client_id',$client_id)->get();
-        return view('clientform.index',compact('forms','client_id'))->with('title',$this->title);
+        $formcategorys = FormCategory::orderBy('created_at','desc')->get();
+        return view('clientform.index',compact('forms','client_id','formcategorys'))->with('title',$this->title);
     }
 
     /**
