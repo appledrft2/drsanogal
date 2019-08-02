@@ -72,8 +72,8 @@ Route::any('/dashboard/appointment/{appointment}/detail/search','PreventiveContr
 Route::resource('/dashboard/appointment/{appointment}/detail','PreventiveController')->middleware('denyStaff'); 
 
 // Billing module
-Route::get('/dashboard/billing','BillingController@list')->middleware('denyStaff'); 
-Route::get('/dashboard/billing/{code}/receipt','BillingController@receipt')->middleware('denyStaff'); 
+Route::get('/dashboard/billing','BillingController@list'); 
+Route::get('/dashboard/billing/{code}/receipt','BillingController@receipt'); 
 Route::resource('/dashboard/billing/{id}/client','BillingController');
 // Billing report
 Route::get('/dashboard/billingreport','BillingReportController@index');

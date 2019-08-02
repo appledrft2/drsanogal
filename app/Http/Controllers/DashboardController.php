@@ -33,6 +33,8 @@ class DashboardController extends Controller
      	$sales_week = Carbon::now()->subDays(7);
      	//one month / 30 days
      	$sales_month = Carbon::now()->subDays(30);
+
+     	
      	// query
      	$today1 = StockOutDetail::where('created_at', '>=',$sales_today)->sum('netamount');
      	$today2 = Billing::where('created_at', '>=',$sales_today)->sum('netamount');
