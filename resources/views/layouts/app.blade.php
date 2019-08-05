@@ -111,6 +111,7 @@
               </p>
             </a>
           </li>
+
           @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/patient" class="nav-link @if($title=='Patient') active @endif">
@@ -141,6 +142,7 @@
               </p>
             </a>
           </li>
+
           <li class="nav-item">
             <a href="/dashboard/billingreport" class="nav-link @if($title=='Billing Report') active @endif">
               <i class="nav-icon fas fa-book"></i>
@@ -196,7 +198,8 @@
               </p>
             </a>
           </li>
-      @if(Auth::user()->role == 'doctor')
+
+      	@if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/account" class="nav-link @if($title=='Account') active @endif">
               <i class="nav-icon fas fa-key"></i>
@@ -205,7 +208,7 @@
               </p>
             </a>
           </li>
-      @endif
+      	@endif
         </ul>
 
       </nav>
