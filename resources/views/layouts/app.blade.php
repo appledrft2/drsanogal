@@ -359,14 +359,14 @@ function closeFullscreen() {
 <script src="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('adminlte3/plugins/summernote/summernote-bs4.min.js')}}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
 <script type="text/javascript">
   var pjax = new Pjax({
   elements: "a", // default is "a[href], form[action]"
   selectors: ["title","body"]
 })
 
-</script>
+</script> -->
 
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 <!-- Select2 -->
