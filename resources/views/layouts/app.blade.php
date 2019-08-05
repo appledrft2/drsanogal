@@ -389,20 +389,12 @@ function closeFullscreen() {
     $("#productlist").DataTable();
      $("#productlist2").DataTable();
       $("#servicelist").DataTable();
-      $("#table").DataTable({
-      	dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-      });
+      $("#table").DataTable();
   });
 </script>
 <script type="text/javascript">
 	$('#tableapplist').DataTable({
-			dom: 'Bfrtip',
-		  buttons: [
-		      'copy', 'csv', 'excel', 'pdf', 'print'
-		  ],
+		
 		"aaSorting": [[3,'desc']]
 	});
 </script>
