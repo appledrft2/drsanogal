@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -355,15 +356,6 @@ function closeFullscreen() {
 <script src="{{asset('adminlte3/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('adminlte3/plugins/summernote/summernote-bs4.min.js')}}"></script>
-  
-<script>
-  $(function () {
-    $("#productlist").DataTable();
-     $("#productlist2").DataTable();
-      $("#servicelist").DataTable();
-      $("#table").DataTable();
-  });
-</script>
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
 <script type="text/javascript">
   var pjax = new Pjax({
@@ -380,6 +372,36 @@ function closeFullscreen() {
   //Initialize Select2 Elements
   $('.select2').select2();
 
+</script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<script>
+  $(function () {
+    $("#productlist").DataTable();
+     $("#productlist2").DataTable();
+      $("#servicelist").DataTable();
+      $("#table").DataTable({
+      	dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+      });
+  });
+</script>
+<script type="text/javascript">
+	$('#tableapplist').DataTable({
+			dom: 'Bfrtip',
+		  buttons: [
+		      'copy', 'csv', 'excel', 'pdf', 'print'
+		  ],
+		"aaSorting": [[3,'desc']]
+	});
 </script>
 @yield('script','')
 </body>

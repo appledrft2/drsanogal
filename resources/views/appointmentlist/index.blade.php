@@ -1,11 +1,7 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-<script type="text/javascript">
-	$('#tableapplist').DataTable({
-		"aaSorting": [[3,'desc']]
-	});
-</script>
+
 	<div class="card">
 		<div class="card-body">
 			
@@ -147,9 +143,7 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-	$('#tableapplist').DataTable({
-		"aaSorting": [[3,'desc']]
-	});
+
 	const Toast = Swal.mixin({
 	  toast: true,
 	  position: 'top-end',
