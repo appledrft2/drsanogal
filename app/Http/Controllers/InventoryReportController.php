@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\StockOutDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class InventoryReportController extends Controller
@@ -21,7 +22,7 @@ class InventoryReportController extends Controller
         	$stockouts[$i] = StockOutDetail::where('created_at','like','%'.$date->date.'%')
         	->groupBy('name')
         	->get(array(
-        		DB::raw('DATE(created_at) as date'),
+        		DB::raw('created_at as date'),
         		DB::raw('name'),
         		DB::raw('price'),
         		DB::raw('sum(quantity) as quantity'),
@@ -34,7 +35,7 @@ class InventoryReportController extends Controller
 
     	
 
-    	return view('inventoryreport.index',compact('stockouts'))->with('title',$this->title);
+    	return view('inventoryreport.index',compact('stockouts','dates'))->with('title',$this->title);
     }
 
     public function generateReport(){
@@ -42,11 +43,13 @@ class InventoryReportController extends Controller
     		'from'=>'required',
     		'to'=>'required',
     	]);
-
-    	if($data['from'] > $data['to']){
+    		$carbfrom = new Carbon($data['from']);
+    		$carbto = new Carbon($data['to']);
+    	
+    	if($carbfrom > $carbto){
     		return 'from cannot be greater than to';
     	}
-    	else if($data['from'] == $data['to']){
+    	else if($carbfrom == $carbto){
     			$dates = StockOutDetail::where('created_at', 'like','%'.$data['from'].'%')
     			->groupBy('date')
     		    ->orderBy('date', 'DESC')
@@ -54,7 +57,17 @@ class InventoryReportController extends Controller
     		        DB::raw('DATE(created_at) as date'),
     		    ));
     	}
-		else if($data['from'] <= $data['to']){
+    	else if($carbfrom->addDays(1) == $carbto){
+    			$dates = StockOutDetail::where(function ($query) use($data) {
+    			    $query->where('created_at', 'like', '%'.$data['from'].'%')
+    			          ->orWhere('created_at', 'like', '%'.$data['to'].'%');    
+    			})
+    			->groupBy('date')
+    			->get(array(
+        		DB::raw('DATE(created_at) as date')));
+    	}
+    
+		else if($carbfrom < $carbto){
     			$dates = StockOutDetail::whereBetween('created_at', [$data['from'],$data['to']])
     			->groupBy('date')
     		    ->orderBy('date', 'DESC')
@@ -62,17 +75,16 @@ class InventoryReportController extends Controller
     		        DB::raw('DATE(created_at) as date'),
     		    ));
     	}
-
     	
 
-  
         $stockouts = [];
         $i=0;
         foreach($dates as $date){
+
         	$stockouts[$i] = StockOutDetail::where('created_at','like','%'.$date->date.'%')
         	->groupBy('name')
         	->get(array(
-        		DB::raw('DATE(created_at) as date'),
+        		DB::raw('created_at as date'),
         		DB::raw('name'),
         		DB::raw('price'),
         		DB::raw('sum(quantity) as quantity'),
@@ -86,6 +98,6 @@ class InventoryReportController extends Controller
       
     	
 
-    	return view('inventoryreport.index',compact('stockouts'))->with('title',$this->title);
+    	return view('inventoryreport.index',compact('stockouts','dates'))->with('title',$this->title);
     }
 }

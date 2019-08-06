@@ -32,7 +32,7 @@
 	<div class="card">
     
 		<div class="card-body">
-     	
+     		
 			<div class="table-responsive">
 				<table id="table" class="table table-bordered table-hover">
 					<thead>
@@ -47,24 +47,26 @@
 						</tr>
 					</thead>
 					<tbody>
+
+						@if($stockouts)
 						<?php $i=1; ?>
-						@foreach($stockouts as $key1 => $stock)
+							@foreach($stockouts as $key => $test)
 							
-							@foreach($stockouts as $key2 => $st)
+							 @foreach($test as $key2 => $ts)
 							<tr>
-
-								<td>{{$i++}}</td>
-								<td>{{$stockouts[$key1][$key2]['name']}}</td>
-								<td>{{$stockouts[$key1][$key2]['price']}}</td>
-								<td>{{$stockouts[$key1][$key2]['quantity']}}</td>
-								<td>{{$stockouts[$key1][$key2]['netamount']}}</td>
-								<td>{{date('M d, D Y', strtotime($stockouts[$key1][$key2]['date']))}}</td>
-							
+							<td>{{$i++}}</td>
+							 <td>{{$ts->name}}</td>
+							 <td>{{$ts->price}}</td>
+							 <td>{{$ts->quantity}}</td>
+							 <td>{{$ts->netamount}}</td>
+							 <td>{{date('M d, D Y', strtotime($ts->date))}}</td>
 							</tr>
-						
-							@endforeach
+							 @endforeach
+							
 
-						@endforeach
+							@endforeach
+						@endif
+						
 					</tbody>
 				</table>
 			</div>
