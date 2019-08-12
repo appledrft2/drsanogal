@@ -69,7 +69,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" style="width: 40px;height: 40px">
+          <img src="https://vetassist.s3-ap-southeast-1.amazonaws.com/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" style="width: 40px;height: 40px">
         </div>
         <div class="info">
             <a href="#" class="d-block">{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}</a>
@@ -398,9 +398,12 @@ function closeFullscreen() {
     $("#productlist").DataTable();
      $("#productlist2").DataTable();
       $("#servicelist").DataTable();
-      $("#table").DataTable({
-      	dom: 'lBfrtip'
-      });
+   
+      
+        $("#table").DataTable({
+          dom: 'lBfrtip'
+        });
+   
   });
 </script>
 <script type="text/javascript">

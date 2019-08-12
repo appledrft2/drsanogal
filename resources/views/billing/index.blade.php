@@ -61,13 +61,13 @@
 								<td>&#8369; {{number_format($billing->amount,2)}}</td>
 								<td>{{$billing->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								<td width="25%">
-									<div class="form-inline">
-										<a href="/dashboard/billing/{{$billing->rcode}}/receipt" class="btn btn-info btn-sm"><i class="fa fa-print"></i> View Receipt</a>
-										<form  method="POST" action="/dashboard/billing/{{$client->id}}/client/{{$billing->id}}">
+									<div class="text-center">
+										<a href="/dashboard/billing/{{$billing->rcode}}/receipt" class="btn btn-default btn-sm"><i class="fa fa-print"></i> View Receipt</a>
+										<!-- <form  method="POST" action="/dashboard/billing/{{$client->id}}/client/{{$billing->id}}">
 												@method('delete')
 												@csrf
 												<button class="btn btn-danger btn-sm  ml-3 mt-3 btn-submit"><i class="fa fa-trash"></i> Delete Bill</button>
-											</form></td>
+											</form></td> -->
 									</div>
 							</tr>
 						@endforeach

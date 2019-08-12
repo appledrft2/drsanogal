@@ -245,7 +245,9 @@
 	// Refresh the table
 	function refreshTable() {  
 	   	$( "#mytable" ).load( "/dashboard/client/{{$client_id}}/forms #mytable", function(){
-		   $("#table").DataTable();
+		   $("#table").DataTable({
+		   			            dom: 'lBfrtip'
+		   			          });
 		});
 	}
 </script>

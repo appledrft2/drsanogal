@@ -5,7 +5,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="card card-sm">
-				<div class="card-header"><p class="lead float-left">Supplier Information</p> <span class="float-right"><a href="/dashboard/supplier" class="btn btn-default">Go Back</a></span></div>
+				<div class="card-header"><p class="lead float-left">Supplier Information</p> <span class="float-right"><button onclick="history.back()" class="btn btn-default">Go Back</button></span></div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-7">

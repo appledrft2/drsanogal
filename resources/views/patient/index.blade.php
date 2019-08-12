@@ -295,7 +295,9 @@
 		// Refresh the table
 		function refreshTable() {  
 		   	$( "#mytable" ).load( "/dashboard/client/"+{{$client->id}}+"/patient #mytable", function(){
-			   $("#table").DataTable();
+			   $("#table").DataTable({
+			   			            dom: 'lBfrtip'
+			   			          });
 			});
 		}
 </script>

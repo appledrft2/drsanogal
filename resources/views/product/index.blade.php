@@ -114,6 +114,7 @@
                     @foreach($category as $cat)
 	        		<option>{{$cat->title}}</option>
 	        		@endforeach
+	        		<option>Other</option>
                   </select>
 	        	</div>
 	        	<div class="form-group">
@@ -130,6 +131,7 @@
                     @foreach($units as $unit)
 	        		<option>{{$unit->title}}</option>
 	        		@endforeach
+	        		<option>Other</option>
                   </select>
 	        	</div>
 	        	<!-- <div class="form-group"><input type="text" value="" name="original" class="form-control " placeholder="Original price" ></div>
@@ -328,7 +330,9 @@
 	// Refresh the table
 	function refreshTable() {  
 	   	$( "#mytable" ).load( "/dashboard/product #mytable", function(){
-		   $("#table").DataTable();
+		   $("#table").DataTable({
+		   			            dom: 'lBfrtip'
+		   			          });
 		});
 	}
 </script>

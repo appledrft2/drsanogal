@@ -206,7 +206,9 @@
 		// Refresh the table
 		function refreshTable() {  
 		   	$( "#mytable" ).load( "/dashboard/supplier #mytable", function(){
-			   $("#table").DataTable();
+			   $("#table").DataTable({
+			   			            dom: 'lBfrtip'
+			   			          });
 			});
 		}
 </script>
