@@ -56,7 +56,11 @@
           </li>
           <li class="nav-item @if(Request::is('/login') || Request::is('/dashboard') ) selected-tab text-white @else text-white @endif">
             @guest
-            <a class="nav-link text-white" href="{{url('/login')}}">Login</a>
+              @if($initialInstall == 0)
+              <a class="nav-link text-white" href="{{url('/register')}}">Register</a>
+              @else
+              <a class="nav-link text-white" href="{{url('/login')}}">Login</a>
+              @endif
             @else
             <a class="nav-link text-white" href="{{url('/dashboard')}}">Dashboard</a>
             @endguest
