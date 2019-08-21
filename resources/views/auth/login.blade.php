@@ -46,11 +46,7 @@
       <p class="mb-1 mt-5">
         <a href="{{ route('password.request') }}">I forgot my password</a>
       </p>
-      @if($verify == 0)
-      <p class="mb-0">
-        <a href="/register" class="text-center">Register a new membership</a>
-      </p>
-      @endif
+
     </div>
     <!-- /.login-card-body -->
   </div>
