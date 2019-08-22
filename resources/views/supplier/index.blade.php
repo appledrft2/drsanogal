@@ -14,7 +14,7 @@
 						<th>Name</th>
 						<th>Contact</th>
 						<th>Address</th>
-						<th width="20%">Products in stock</th>
+						<!-- <th width="20%">Products in stock</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -26,8 +26,8 @@
 								<td>{{$i++}}</td>
 								<td>{{$supplier->name}}</td>
 								<td>{{$supplier->contact}}</td>
-								<td>{!!$supplier->address!!}</td>
-								<th><form method="post" action="/dashboard/product/search">@csrf<input type="hidden" name="data" value="{{$supplier->id}}"><button class="btn btn-link">{{$supplier->products->count()}}</button></form></th>
+								<td>{{str_limit($supplier->address, 15)}}</td>
+								<!-- <th><form method="post" action="/dashboard/product/search">@csrf<input type="hidden" name="data" value="{{$supplier->id}}"><button class="btn btn-link">{{$supplier->products->count()}}</button></form></th> -->
 								<td width="15%">	
 									<!-- <a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default btn-sm btn-block"><i class="fa fa-truck"></i> &nbsp;Stock In</a> -->
 									<button id="{{$supplier}}" class="btn btn-info btn-sm btn-block btn_edit"><i class="fa fa-edit"></i> Edit</button>

@@ -4,13 +4,12 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-			<table id="table" class="table table-bordered table-hover">
+			<table id="servicelist" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Name</th>
+						<th>Client Name</th>
 						<th>Gender</th>
-						<th>Address</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -20,9 +19,9 @@
 							<td>{{$key + 1}}</td>
 							<td>{{$client->name}}</td>
 							<td>{{$client->gender}}</td>
-							<td>{{str_limit($client->address, 15)}}</td>
 							
-							<td><center><a href="/dashboard/billing/{{$client->id}}/client" class="btn  btn-default"><i class="fa fa-check"></i> Select Client</a></center></td>
+							
+							<td><center><a href="/dashboard/billing/{{$client->id}}/client" class="btn  btn-default btn-sm"><i class="fa fa-credit-card"></i>&nbsp; Manage billing</a></center></td>
 						</tr>
 					@endforeach
 				</tbody>

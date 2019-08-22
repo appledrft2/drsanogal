@@ -54,6 +54,7 @@
 
 <div class="row">
   <!-- JUMBOTRON -->
+  @if(Auth::user()->role == 'doctor')
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
@@ -129,6 +130,7 @@
     </div>
   </div>
   <!--  -->
+  @endif
   <div class="col-md-4">
     <!-- PRODUCT LIST -->
     <div class="card">
@@ -190,8 +192,7 @@
     </div>
     <!-- /.card -->
   </div>
-  <div class="col-md-12">
-    <!-- TABLE: LATEST ORDERS -->
+  <div class="@if(Auth::user()->role == 'doctor') col-md-12 @else col-md-8 @endif">
     <div class="card">
       <div class="card-header border-transparent">
         <h3 class="card-title">Today's Appointments</h3>

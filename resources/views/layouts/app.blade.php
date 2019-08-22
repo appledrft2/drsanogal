@@ -136,13 +136,13 @@
 
           <li class="nav-item">
             <a href="/dashboard/billing" class="nav-link @if($title=='Billing') active @endif">
-              <i class="nav-icon fas fa-dollar-sign"></i>
+              <i class="fa fa-credit-card"></i>
               <p>
-                Billing
+                &nbsp; Billing
               </p>
             </a>
           </li>
-
+          @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/billingreport" class="nav-link @if($title=='Billing Report') active @endif">
               <i class="nav-icon fas fa-book"></i>
@@ -151,6 +151,7 @@
               </p>
             </a>
           </li>
+          @endif
 
           <li class="nav-header">INVENTORY</li>
           <li class="nav-item">
@@ -189,7 +190,7 @@
               </p>
             </a>
           </li>
-   
+          @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/report" class="nav-link @if($title=='Report') active @endif">
               <i class="nav-icon fas fa-book"></i>
@@ -199,6 +200,7 @@
             </a>
           </li>
 
+
           <li class="nav-item">
             <a href="/dashboard/inventoryreport" class="nav-link @if($title=='Inventory Report') active @endif">
               <i class="nav-icon fas fa-book"></i>
@@ -207,6 +209,7 @@
               </p>
             </a>
           </li>
+            @endif
 
       	@if(Auth::user()->role == 'doctor')
           <li class="nav-item">

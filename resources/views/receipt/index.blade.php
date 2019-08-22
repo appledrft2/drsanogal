@@ -4,7 +4,9 @@
 <div class="form-inline mb-2">
 	<div class="form-group ml-2"><a href="/dashboard/stockout" class="btn btn-default"><i class="fa fa-shopping-cart"></i> POS</a></div>
 	<div class="form-group ml-2"><button id="printbtn" class="btn btn-default"><i class="fa fa-print"></i> Print</button></div>
+	 @if(Auth::user()->role == 'doctor')
 	<div class="form-group ml-2"><a href="/dashboard/report" class="btn btn-default"><i class="fa fa-book"></i> Report</a></div>
+	@endif
 </div>
 
 <div class="row">

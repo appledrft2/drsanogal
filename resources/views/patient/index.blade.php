@@ -71,7 +71,9 @@
 								<td>{{$patient->veterinarian}}</td>
 								<td width="15%">
 									<div class="form-inline">
+										@if(Auth::user()->role == 'doctor')
 										<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-block btn-success btn-sm"><i class="fa fa-list"></i> Appointments</a>
+										@endif
 										<button id="{{$patient}}" class="btn btn_add btn-block btn-info btn-sm btn_edit"><i class="fa fa-edit"></i> Edit</button>
 										
 										<button id="{{$patient->id}}" class="btn btn-danger btn-sm mt-3 btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>

@@ -20,7 +20,7 @@
 				
 			</div> -->
 			<div class="table-responsive">
-			<table id="table" class="table table-bordered table-hover">
+			<table id="servicelist" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -35,13 +35,13 @@
 					<?php $i=1; ?>
 						@foreach($suppliers as $supplier)
 							<tr>
-								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{{$i++}}</td>
-								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{{$supplier->name}}</td>
-								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{{$supplier->contact}}</td>
-								<td onclick="window.location = '/dashboard/suppliers/{{$supplier->id}}/stockin';">{!!$supplier->address!!}</td>
+								<td >{{$i++}}</td>
+								<td >{{$supplier->name}}</td>
+								<td >{{$supplier->contact}}</td>
+								<td >{{str_limit($supplier->address, 15)}}</td>
 								
 								<td width="20%">
-									<a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default"><i class="fa fa-check"></i> &nbsp;Select Supplier</a>
+									<a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default btn-sm"><i class="fa fa-truck"></i> &nbsp;Manage Delivery</a>
 								</td>
 							</tr>
 						@endforeach

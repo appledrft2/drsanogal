@@ -25,14 +25,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
+          <!-- <div class="col-12">
             <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember">
               <label for="remember">
                 Remember Me
               </label>
             </div>
-          </div>
+          </div> -->
           <!-- /.col -->
           <div class="col-12">
             <button type="submit" class="btn btn-info btn-block btn-flat">Sign In</button>
@@ -43,9 +43,9 @@
 
 
 
-      <p class="mb-1 mt-5">
+     <!--  <p class="mb-1 mt-5">
         <a href="{{ route('password.request') }}">I forgot my password</a>
-      </p>
+      </p> -->
 
     </div>
     <!-- /.login-card-body -->

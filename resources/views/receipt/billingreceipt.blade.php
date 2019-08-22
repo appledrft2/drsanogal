@@ -3,8 +3,10 @@
 @section('content')
 <div class="form-inline mb-3">
 	<span class="form-group"><a href="/dashboard/billing/{{$billing->client->id}}/client" class="btn btn-default">Go Back</a></span>
-	<div class="form-group ml-2"><button id="printbtn" class="btn btn-default"><i class="fa fa-print"></i> Print</button></div>	
+	<div class="form-group ml-2"><button id="printbtn" class="btn btn-default"><i class="fa fa-print"></i> Print</button></div>
+	@if(Auth::user()->role == 'doctor')	
 	<div class="form-group ml-2"><a href="/dashboard/billingreport" class="btn btn-default"><i class="fa fa-book"></i> Billing Report</a></div>	
+	@endif
 </div>
 <div class="row">
 	<div class="col-md-6 mx-auto">
