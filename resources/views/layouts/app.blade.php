@@ -252,7 +252,7 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Made with 💕 Laravel Framework
+      Made with 💕 Laravel 5.8 Framework
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2019-2020 <a href="{{url('/')}}" class="text-info">Vet Assistant</a>.</strong> All rights reserved.

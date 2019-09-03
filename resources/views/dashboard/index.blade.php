@@ -76,7 +76,7 @@
               <tr>
              
                 <th>Supplier</th>
-                <th>Terms</th>
+                <th>Mode of Payment</th>
                 <th>Discount</th>
                 <th>Amount</th>
                 <th>Delivery</th>
@@ -90,7 +90,7 @@
               <tr>
             
                 <td>{{$stockin->supplier->name}}</td>
-                <td>{{$stockin->term}}</td>
+                <td>{{$stockin->mop}}</td>
                 <td>
 
                   @if($stockin->discount == 0)

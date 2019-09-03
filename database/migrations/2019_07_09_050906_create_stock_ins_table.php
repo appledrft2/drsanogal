@@ -19,7 +19,9 @@ class CreateStockInsTable extends Migration
             $table->string('code');
             $table->date('delivery_date');
             $table->double('amount');
-            $table->string('term');
+            $table->string('term')->nullable()->default('');
+            $table->string('mop')->nullable()->default('');
+            $table->double('partial')->nullable()->default(0);
             $table->date('due');
             $table->string('discount');
             $table->string('status');

@@ -67,7 +67,7 @@
 						<th>#</th>
 						<th>Code</th>
 						<th>Delivery Date</th>
-						<th>Term</th>
+						<th>Mode of Payment</th>
 						<th>Due</th>
 						<th>Discount</th>
 						<th>Amount</th>
@@ -82,7 +82,7 @@
 								<td>{{$i++}}</td>
 								<td>{{$stockin->code}}</td>
 								<td>{{ date('M d, Y', strtotime($stockin->delivery_date))}}</td>
-								<td>{{$stockin->term}}</td>
+								<td>{{$stockin->mop}}</td>
 								<td>{{ date('M d, Y', strtotime($stockin->due))}}</td>
 								<td>
 									@if($stockin->discount == 0)

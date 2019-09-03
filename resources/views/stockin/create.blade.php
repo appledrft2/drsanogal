@@ -8,13 +8,30 @@
 		@csrf
 		<div class="row mb-5">
 			<div class="col-6">
-				<div class="form-group ">
-					<label>Delivery Code</label>
-					<input type="text" name="code" placeholder="Code" value="DC-{{rand(1000,9999)}}" readonly class="form-control">
+				<div class="col-12">
+					<div class="form-group ">
+						<label>Delivery Code</label>
+						<input type="text" name="code" placeholder="Code" value="DC-{{rand(1000,9999)}}" readonly class="form-control">
+					</div>
 				</div>
-				<div class="form-group ">
-					<label>Supplier </label>
-					<input type="text" name="supplier" placeholder="supplier" value="{{$supplier->name}}" readonly class="form-control">
+				<div class="row">
+					<div class="col-6">
+						<div class="form-group ">
+							<label>Supplier </label>
+							<input type="text" name="supplier" placeholder="supplier" value="{{$supplier->name}}" readonly class="form-control">
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="form-group ">
+							<label>Mode of payment </label>
+							<select class="form-control select_mop" name="mop">
+								<option selected disabled>Select</option>
+								<option>Credit</option>
+								<option>Partial</option>
+								<option>Cash</option>
+							</select>
+						</div>
+					</div>
 				</div>
 
 			</div>
@@ -30,8 +47,8 @@
 						<input required type="date" value="{{old('due')}}" name="due" placeholder="Due" class="form-control">
 					</div>
 					<div class="form-group col-6">
-						<label>Terms</label>
-						<input type="text" name="term" value="{{old('term')}}" class="form-control" placeholder="No. of days">
+						<label>Partial</label>
+						<input type="text" id="partial" name="partial" disabled value="" class="form-control" placeholder="Enter partial payment">
 					</div>
 					<div class="form-group col-6">
 						<label>Discount</label>
@@ -125,6 +142,7 @@
 									<th>Original</th>
 									<th>Selling</th>
 									<th>Quantity</th>
+									<th>Subtotal</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -153,6 +171,16 @@
 
 
 @section('script')
+<script type="text/javascript">
+	$(document).on('change','.select_mop',function(){
+		var choice = $(this).val();
+		if(choice == 'Partial'){
+			$('#partial').prop('disabled',false);
+		}else{
+			$('#partial').prop('disabled',true);
+		}
+	})
+</script>
 
 <script type="text/javascript">
 	$(document).on('click', '.select_prod', function(){
@@ -180,6 +208,7 @@
 		var original = $("input[name=prod_original]").val();
 		var price = $("input[name=prod_price]").val();
 		var quantity = $("input[name=prod_quantity]").val();
+		var subtotal = original * quantity;
 
 		if(id == ''){
 			$("#productlist2").DataTable();
@@ -213,7 +242,15 @@ var row = '<tr id="row'+i+'">'+
 					'<input type="hidden" class="form-control" readonly name="quantity[]" value="'+quantity+'">'+
 				'</div>'+
 			'</td>'+
+		
 			'<td>'+
+				'<div class="form-group mr-2">'+
+				subtotal+
+					'<input type="hidden" class="form-control" readonly name="subtotal[]" value="'+subtotal+'">'+
+				'</div>'+
+			'</td>'+
+			'<td>'+
+
 				'<div class="form-group mr-2">'+
 					'<button type="button" class="btn btn-danger btn-block btn-sm removeRow" id="'+i+'">Cancel</button>'+
 				'</div>'+

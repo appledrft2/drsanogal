@@ -80,7 +80,7 @@ class DashboardController extends Controller
                 
         }
 
-        $stockins = StockIn::orderBy('due','desc')->paginate(2);
+        $stockins = StockIn::where('mop','!=','Cash')->orderBy('due','desc')->paginate(2);
         $app = Appointment::where('next_appointment2','=',date('Y-m-d'))->where('isNotified','=',1)->paginate(4, ['*'], 'appointments');
     	return view('dashboard.index',[
     		'title'=>$this->title,

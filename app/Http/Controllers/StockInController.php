@@ -53,7 +53,9 @@ class StockInController extends Controller
       $data = $request->validate([
             'code' => 'required',
             'delivery_date' => 'required',
-            'term' => 'required',
+            'term' => 'nullable',
+            'mop' => 'required',
+            'partial' => 'nullable',
             'due' => 'required',
             'discount' => 'required',
           
@@ -76,6 +78,7 @@ class StockInController extends Controller
             $product->update();
 
             $subtotal = $request['original'][$i] * $request['quantity'][$i];
+
             // get the total amount
             $sum = $sum + $subtotal;
             // insert to stockindetails
@@ -89,6 +92,11 @@ class StockInController extends Controller
 
             $i++;
 
+        }
+
+        if($request['mop'] == 'Partial'){
+            $partial = $request['partial'];
+            $sum = $sum - $partial;
         }
 
         $discount = $sum * $request->discount;
