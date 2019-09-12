@@ -25,16 +25,9 @@
           </div>
         </div>
 
-        <div class="input-group mb-3">
-          <select class="form-control" name="role">
-              <option value="">Select Role</option>
-              <option @if(old('role') == 'doctor') selected @endif value="doctor">Doctor</option>
-              <option @if(old('role') == 'staff') selected @endif value="staff">Staff</option>
-          </select>
-          <div class="input-group-append input-group-text">
-              <span class="fas fa-cog"></span>
-          </div>
-        </div>
+        
+        <input type="hidden" name="role" value="doctor">
+     
 
 
         <div class="input-group mb-3">
