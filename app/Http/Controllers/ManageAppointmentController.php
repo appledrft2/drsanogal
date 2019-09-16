@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ManageAppointmentController extends Controller
 {
    
-    public $title = 'Patient';
+    public $title = 'Services';
     
     /**
      * Display a listing of the resource.
