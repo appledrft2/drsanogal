@@ -117,7 +117,7 @@
             <a href="/dashboard/patient" class="nav-link @if($title=='Patient') active @endif">
               <i class="nav-icon fas fa-paw"></i>
               <p>
-                Patient
+                Patient List
               </p>
             </a>
           </li>
@@ -139,7 +139,7 @@
             <a href="/dashboard/appointmentlist" class="nav-link @if($title=='Appointment List') active @endif">
               <i class="nav-icon fas fa-calendar-check"></i>
               <p>
-                Appointments
+                Appointment List
               </p>
             </a>
           </li>
