@@ -69,7 +69,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="https://vetassist.s3-ap-southeast-1.amazonaws.com/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" style="width: 40px;height: 40px">
+          <img src="https://vetassist.s3-ap-southeast-1.amazonaws.com/uploads/no-profile.jpg" class="img-circle elevation-2" alt="User Image" style="width: 40px;height: 40px">
         </div>
         <div class="info">
             <a href="#" class="d-block">{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}</a>
@@ -118,6 +118,17 @@
               <i class="nav-icon fas fa-paw"></i>
               <p>
                 Patient
+              </p>
+            </a>
+          </li>
+          @endif
+
+          @if(Auth::user()->role == 'doctor')
+          <li class="nav-item">
+            <a href="/dashboard/services" class="nav-link @if($title=='Services') active @endif">
+              <i class="nav-icon fas fa-heart"></i>
+              <p>
+                Services
               </p>
             </a>
           </li>
@@ -401,6 +412,7 @@ function closeFullscreen() {
     $("#productlist").DataTable();
      $("#productlist2").DataTable();
       $("#servicelist").DataTable();
+      $("#table2").DataTable();
    
       
         $("#table").DataTable({

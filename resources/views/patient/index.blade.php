@@ -66,7 +66,6 @@
 								<td>{{$patient->breed}}</td>
 								<td>{{$patient->gender}}</td>
 								<td>{{$patient->specie}}</td>
-						
 								<td>{{ date('M d, Y', strtotime($patient->date_of_birth))}}</td>
 								<td>{{$patient->veterinarian}}</td>
 								<td width="15%">

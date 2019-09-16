@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PreventiveController extends Controller
 {
-    public $title = "Patient";
+    public $title = "Services";
     /**
      * Display a listing of the resource.
      *

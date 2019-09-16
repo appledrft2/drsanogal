@@ -24,6 +24,8 @@ Route::get('/services','FrontPageController@services');
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Route group for auth
 Route::group(['middleware'=>'auth'],function(){
+// test module
+Route::get('/dashboard/test','TestingController@index')->middleware('denyStaff');
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
 Route::patch('/dashboard/UpdateStockin/{id}','DashboardController@UpdateStockin');
