@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-	<div class="form-group"><button onclick="history.back()" class="btn btn-default">Go Back</button></div>
+	
 	<div class="card">
 		
 		<div class="card-body">
