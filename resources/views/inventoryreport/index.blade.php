@@ -40,7 +40,7 @@
 							<th>#</th>
 							<th>Product Name</th>
 							<th>Selling Price</th>
-              				<th>Quantity</th>
+              				<th>Quantity bought</th>
 							<th>Profit</th>
 							<th>Date</th>
               			
@@ -56,9 +56,9 @@
 							<tr>
 							<td>{{$i++}}</td>
 							 <td>{{$ts->name}}</td>
-							 <td>{{$ts->price}}</td>
+							 <td class="float-right">&#8369; {{number_format($ts->price,2)}}</td>
 							 <td>{{$ts->quantity}}</td>
-							 <td>{{$ts->netamount}}</td>
+							 <td class="float-right">&#8369; {{number_format($ts->netamount,2)}}</td>
 							 <td>{{date('M d, D Y', strtotime($ts->date))}}</td>
 							</tr>
 							 @endforeach
