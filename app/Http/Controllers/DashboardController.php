@@ -24,7 +24,7 @@ class DashboardController extends Controller
     public function index(){
 
         // Low product notification
-        $lowproducts = Product::where('lowstock','>','quantity')->limit(4)->get(); 
+        $lowproducts = Product::where('lowstock','>','quantity')->get(); 
 
     	// Boxes
      	//one day (today)
