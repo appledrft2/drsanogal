@@ -78,7 +78,7 @@
                 <th>Supplier</th>
                 <th>Mode of Payment</th>
                 <th>Discount</th>
-                <th>Amount</th>
+                <th  width="10%">Amount</th>
                 <th>Delivery</th>
                 <th>Due</th>
                 <th>Status</th>
@@ -100,7 +100,7 @@
                   @endif
 
                 </td>
-                <td class="text-right" width="25%">&#8369; {{number_format($stockin->amount,2)}}</td>
+                <td class="text-right">&#8369; {{number_format($stockin->amount,2)}}</td>
                 <td>{{date('M d, D Y', strtotime($stockin->delivery_date))}}</td>
                 <td>{{date('M d, D Y', strtotime($stockin->due))}}</td>
                 <td>
