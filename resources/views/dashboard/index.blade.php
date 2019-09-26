@@ -78,7 +78,7 @@
                 <th>Supplier</th>
                 <th>Mode of Payment</th>
                 <th>Discount</th>
-                <th  width="10%">Amount</th>
+                <th  width="15%">Amount</th>
                 <th>Delivery</th>
                 <th>Due</th>
                 <th>Status</th>
