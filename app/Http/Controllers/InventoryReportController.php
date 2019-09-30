@@ -45,6 +45,9 @@ class InventoryReportController extends Controller
     	]);
     		$carbfrom = new Carbon($data['from']);
     		$carbto = new Carbon($data['to']);
+            $carbto->addDays(1);
+
+
     	
     	if($carbfrom > $carbto){
     		return 'from cannot be greater than to';
@@ -60,7 +63,7 @@ class InventoryReportController extends Controller
     	else if($carbfrom->addDays(1) == $carbto){
     			$dates = StockOutDetail::where(function ($query) use($data) {
     			    $query->where('created_at', 'like', '%'.$data['from'].'%')
-    			          ->orWhere('created_at', 'like', '%'.$data['to'].'%');    
+    			          ->orWhere('created_at', 'like', '%'.$carbto.'%');    
     			})
     			->groupBy('date')
     			->get(array(
@@ -68,7 +71,7 @@ class InventoryReportController extends Controller
     	}
     
 		else if($carbfrom < $carbto){
-    			$dates = StockOutDetail::whereBetween('created_at', [$data['from'],$data['to']])
+    			$dates = StockOutDetail::whereBetween('created_at', [$data['from'],$carbto])
     			->groupBy('date')
     		    ->orderBy('date', 'DESC')
     		    ->get(array(
