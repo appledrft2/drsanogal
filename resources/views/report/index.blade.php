@@ -23,6 +23,36 @@
                </div>
 		</div>
 	</div>
+
+  <div class="card">
+    <h4 class="card-header">Generate Report</h4>
+    <div class="card-body">
+      
+      <div class="col-md-6 mx-auto">
+        <form action="/dashboard/report/generateReport" method="POST">
+          @csrf
+        <div class="form-group">
+          <label>Date From</label>
+          <input type="date" class="form-control" name="from">
+          @if ($errors->has('from'))
+              <div class="text-danger">{{ $errors->first('from') }}</div>
+          @endif
+        </div>
+        <div class="form-group">
+          <label>Date To</label>
+          <input type="date" class="form-control" name="to">
+          @if ($errors->has('to'))
+              <div class="text-danger">{{ $errors->first('to') }}</div>
+          @endif
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="float-right"><button class="btn btn-primary"> Generate</button></span>
+      </form>
+    </div>
+  </div>
+
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">

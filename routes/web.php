@@ -75,10 +75,12 @@ Route::resource('/dashboard/appointment/{appointment}/detail','PreventiveControl
 
 // Billing module
 Route::get('/dashboard/billing','BillingController@list'); 
+
 Route::get('/dashboard/billing/{code}/receipt','BillingController@receipt'); 
 Route::resource('/dashboard/billing/{id}/client','BillingController');
 // Billing report
 Route::get('/dashboard/billingreport','BillingReportController@index');
+Route::post('/dashboard/billing/generateReport','BillingReportController@generateReport'); 
 
 //Supplier module
 Route::any('/dashboard/supplier/search','SupplierController@search');
@@ -102,6 +104,7 @@ Route::post('/dashboard/stockout','StockOutController@store');
 //Receipt module
 Route::get('/dashboard/receipt/{rcode}','ReceiptController@index');
 Route::get('/dashboard/report/','ReportController@index');
+Route::post('/dashboard/report/generateReport','ReportController@generateReport');
 
 Route::get('/dashboard/inventoryreport/','InventoryReportController@index');
 Route::post('/dashboard/inventoryreport/generateReport','InventoryReportController@generateReport');

@@ -2,7 +2,7 @@
 @section('title',$title)
 @section('content')
 	<div class="card">
-		<h4 class="card-header">Product Sold</h4>
+		<h4 class="card-header">Generate Report</h4>
 		<div class="card-body">
 			
 			<div class="col-md-6 mx-auto">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Billing;
+use Carbon\Carbon;
 use App\BillingProduct;
 use Illuminate\Http\Request;
 
@@ -39,5 +40,53 @@ class BillingReportController extends Controller
     		'oct',
     		'nov',
     		'dec'))->with('title',$this->title);
+    }
+
+    public function generateReport(){
+
+        $data = request()->validate([
+                    'from'=>'required',
+                    'to'=>'required',
+                ]);
+                    $carbfrom = new Carbon($data['from']);
+                    $carbto = new Carbon($data['to']);
+
+                    $carbto->addDays(1);
+
+                    $reports = Billing::where('created_at', '>', $carbfrom)
+                           ->where('created_at', '<', $carbto)
+                           ->get();
+
+
+        $jan = Billing::where('created_at','like','%'.date('Y').'-01'.'%')->sum('netamount');
+        $feb = Billing::where('created_at','like','%'.date('Y').'-02'.'%')->sum('netamount');
+        $march = Billing::where('created_at','like','%'.date('Y').'-03'.'%')->sum('netamount');
+        $april = Billing::where('created_at','like','%'.date('Y').'-04'.'%')->sum('netamount');
+        $may = Billing::where('created_at','like','%'.date('Y').'-05'.'%')->sum('netamount');
+        $june = Billing::where('created_at','like','%'.date('Y').'-06'.'%')->sum('netamount');
+        $july = Billing::where('created_at','like','%'.date('Y').'-07'.'%')->sum('netamount');
+        $aug = Billing::where('created_at','like','%'.date('Y').'-08'.'%')->sum('netamount');
+        $sept = Billing::where('created_at','like','%'.date('Y').'-09'.'%')->sum('netamount');
+        $oct = Billing::where('created_at','like','%'.date('Y').'-10'.'%')->sum('netamount');
+        $nov = Billing::where('created_at','like','%'.date('Y').'-11'.'%')->sum('netamount');
+        $dec = Billing::where('created_at','like','%'.date('Y').'-12'.'%')->sum('netamount');
+
+
+        return view('billingreport.index',compact(
+            'reports',
+            'jan',
+            'feb',
+            'march',
+            'april',
+            'may',
+            'june',
+            'july',
+            'aug',
+            'sept',
+            'oct',
+            'nov',
+            'dec'))->with('title',$this->title);
+
+               
     }
 }
