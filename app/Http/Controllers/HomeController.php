@@ -23,8 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        toast('Welcome to the dashboard!','info');
-        return redirect('/dashboard')->with('title','Dashboard');
+        toast('Successfully Logged In','success');
+        return redirect('/dashboard');
     }
 
    

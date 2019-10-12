@@ -1,6 +1,18 @@
 @extends('layout')
 @section('title','Home')
 @section('content')
+  <!-- Header -->
+  <header class="bg-light py-5 mb-5" style="background-image: url('{{asset('adminlte3/dist/img/meow.png')}}');background-size:cover;height: 40em">
+    <div class="container h-100" >
+      <div class="row h-100 align-items-center" >
+        <div class="col-lg-12 text-">
+          <h1 class="display-4 text-dark mt-5 mb-2">Welcome to our website!</h1>
+          <p class="lead mb-5 text-dark-50">We offer excellent products and services for your lovely pets.</p>
+          <p><a class="btn btn-lg btn-outline-info" href="https://www.facebook.com/DrSandJVetClinic/" role="button"><i class="fab fa-facebook"></i> Visit us on facebook</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
   <!-- Page Content -->
   <div class="container">
 
@@ -41,7 +53,7 @@
                   <abbr title="Email"><i class="fa fa-envelope"></i> Email:</abbr>
                   <a href="mailto:rocelcantilasanoga.d­vml@gmail.com">rocelcantilasanoga.d­vml@gmail.com</a><br>
                   <abbr title="Email"><i class="fab fa-facebook"></i> Facebook:</abbr>
-                  <a href="https://www.facebook.com/DrSandJVetClinic">https://www.facebook.com/DrSandJVetClinic</a>
+                  <a href="https://www.facebook.com/DrSandJVetClinic">DrSandJVetClinic</a>
                 </address>
               </div>
               <div class="col-6">

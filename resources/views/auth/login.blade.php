@@ -2,8 +2,9 @@
 @section('title','Login')
 @section('content')
 <div class="login-box" style="opacity: 0.9">
-  <div class="login-logo">
-    <a href="#"><img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 50%"></a>
+  <div class="login-logo animated pulse">
+    <a href="#"><img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 40%"></a>
+    <h4 class="text-white ">Veterinary Assistant</h4>
   </div>
   <!-- /.login-logo -->
   <div class="card">

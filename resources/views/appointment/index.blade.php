@@ -5,9 +5,9 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="card card-sm">
-				<div class="card-header"><p class="lead float-left">Patient Information</p> 
-				<span class="float-right"><a href="/dashboard/patient" class="btn btn-default">Patient List</a></span>
-				<span class="float-right"><a href="/dashboard/client/{{$patient->client->id}}/patient" class=" mr-3 btn btn-default">Owner</a></span>
+				<div class="card-header"><p class="lead float-left">Pet Information</p> 
+				<!-- <span class="float-right"><a href="/dashboard/patient" class="btn btn-default">Patient List</a></span> -->
+				<span class="float-right"><a href="/dashboard/client/{{$patient->client->id}}/patient" class=" mr-3 btn btn-default">Go Back</a></span>
 				</div>
 				
 				<div class="card-body">
@@ -78,53 +78,68 @@
 
 				</div>
 			</div>
-			<div class="float-left mb-3">
-				<button class="btn btn_add btn-default "><i class="fa fa-plus-circle"></i> New Appointment</button>
-			</div>	
-		
-			<div id="mytable" class="table-responsive">
-			<table id="table" class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Appointment</th>
-						
-						<th>Next appointment</th>
-						<th>Amount</th>
-						<th>Created at</th>
-						<th>Payment</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $i=1; ?>
-					@if(count($appointments))
-						@foreach($appointments as $appointment)
-							<tr>
-								<td>{{$i++}}</td>
-								<td>{{$appointment->appointment}}</td>
-						
-								<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
-							
-								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
-								<td>{{date('M d, D Y', strtotime($appointment->created_at))}}</td>
-								<td>
-									@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
-									@else <span class="badge badge-secondary">Unpaid</span> 
-									@endif
-								</td>
-								<td>
-									<button id="{{$appointment}}" class=" btn-sm btn btn-info btn_edit btn-block"><i class="fa fa-edit"></i> Edit</button>
+			<div class="card">
+				<div class="card-header">
+					<p class="lead">List of Appointments</p>
+					<div class="card-tools " >
+					    <button type="button" class="btn btn-tool" data-widget="collapse">
+					      <i class="fas fa-minus"></i>
+					    </button>
+				
 
-									<button id="{{$appointment->id}}" class="btn btn-block btn-danger btn-sm mt-3 btn_delete"><i class="fa fa-trash"></i> Delete</button>
-								</td>
-							</tr>
-						@endforeach
-					@else
+
+					 </div>
+				</div>
+				<div class="card-body">
+					<div class="float-left mb-3">
+						<button class="btn btn_add btn-default "><i class="fa fa-plus-circle"></i> New Appointment</button>
+					</div>	
 					
-					@endif
-				</tbody>
-			</table>
+					<div id="mytable" class="table-responsive">
+					<table id="table" class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Appointment</th>
+								
+								<th>Next appointment</th>
+								<th>Amount</th>
+								<th>Created at</th>
+								<th>Payment</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php $i=1; ?>
+							@if(count($appointments))
+								@foreach($appointments as $appointment)
+									<tr>
+										<td>{{$i++}}</td>
+										<td>{{$appointment->appointment}}</td>
+								
+										<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
+									
+										<td>&#8369; {{number_format($appointment->amount,2)}}</td>
+										<td>{{date('M d, D Y', strtotime($appointment->created_at))}}</td>
+										<td>
+											@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
+											@else <span class="badge badge-secondary">Unpaid</span> 
+											@endif
+										</td>
+										<td>
+											<button id="{{$appointment}}" class=" btn-sm btn btn-info btn_edit btn-block"><i class="fa fa-edit"></i> Edit</button>
+
+											<button id="{{$appointment->id}}" class="btn btn-block btn-danger btn-sm mt-3 btn_delete"><i class="fa fa-trash"></i> Delete</button>
+										</td>
+									</tr>
+								@endforeach
+							@else
+							
+							@endif
+						</tbody>
+					</table>
+					</div>
+				</div>
 			</div>
 
 		</div>

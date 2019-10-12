@@ -6,7 +6,7 @@
 		
 		<div class="card-body">
 			<div class="form-group mb-3">
-				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Services</button>
+				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Service</button>
 			</div>
 		
 				<div id="mytable" class="table-container">

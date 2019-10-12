@@ -5,7 +5,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="float-left ">
-				<button class="btn btn-default btn_add" ><i class="fa fa-plus-circle"></i> New Form</button>
+				<button class="btn btn-default btn_add" ><i class="fa fa-plus-circle"></i> New Attachment</button>
 			</div>
 			<div class="float-right mb-5">
 				
@@ -83,7 +83,7 @@
 	        		</select>
 	        	</div>	
 	        	<div class="form-group">
-	        		<label>Attach a form</label>
+	        		<label>Upload Attachments</label>
 	        		<div class="form-group" ><span id="img"></span></div>
 	        		<input type="file" id="file" name="file" class="form-control-file mb-5">
 	        	</div> 

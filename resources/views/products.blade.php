@@ -2,7 +2,7 @@
 @section('title','Products')
 @section('content')
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mt-5 " style="margin-bottom: 30%">
 
     <div class="row">
       <div class="col-md-12"><h2>Available Products</h2><hr></div>

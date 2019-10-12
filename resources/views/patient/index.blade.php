@@ -40,51 +40,66 @@
 				</div>
 			</div>
 		
-			<div class="pull-left mb-3">
-				<buttton  class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Patient</buttton>
-			</div>	
-			<div id="mytable" class="table-responsive">
-			<table id="table" class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Breed</th>
-						<th>Gender</th>
-						<th>Specie</th>
-						<th>Birthday</th>
-						<th>Veterinarian</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					@if(count($patients))
-						@foreach($patients as $key => $patient)
-							<tr>
-								<td>{{$key + 1}}</td>
-								<td>{{$patient->name}}</td>
-								<td>{{$patient->breed}}</td>
-								<td>{{$patient->gender}}</td>
-								<td>{{$patient->specie}}</td>
-								<td>{{ date('M d, Y', strtotime($patient->date_of_birth))}}</td>
-								<td>{{$patient->veterinarian}}</td>
-								<td width="15%">
-									<div class="form-inline">
-										@if(Auth::user()->role == 'doctor')
-										<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-block btn-success btn-sm"><i class="fa fa-list"></i> Appointments</a>
-										@endif
-										<button id="{{$patient}}" class="btn btn_add btn-block btn-info btn-sm btn_edit"><i class="fa fa-edit"></i> Edit</button>
-										
-										<button id="{{$patient->id}}" class="btn btn-danger btn-sm mt-3 btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
-									</div>
-								</td>
-							</tr>
-						@endforeach
-					@else
+			<div class="card">
+				<div class="card-header">
+					<p class="lead">List of Pets</p>
+					<div class="card-tools " >
+					    <button type="button" class="btn btn-tool" data-widget="collapse">
+					      <i class="fas fa-minus"></i>
+					    </button>
+				
 
-					@endif
-				</tbody>
-			</table>
+
+					 </div>
+				</div>
+				<div class="card-body">
+					<div class="pull-left mb-3">
+						<buttton  class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Pet</buttton>
+					</div>	
+					<div id="mytable" class="table-responsive">
+					<table id="table" class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Breed</th>
+								<th>Gender</th>
+								<th>Specie</th>
+								<th>Birthday</th>
+								<th>Veterinarian</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							@if(count($patients))
+								@foreach($patients as $key => $patient)
+									<tr>
+										<td>{{$key + 1}}</td>
+										<td>{{$patient->name}}</td>
+										<td>{{$patient->breed}}</td>
+										<td>{{$patient->gender}}</td>
+										<td>{{$patient->specie}}</td>
+										<td>{{ date('M d, Y', strtotime($patient->date_of_birth))}}</td>
+										<td>{{$patient->veterinarian}}</td>
+										<td width="15%">
+											<div class="form-inline">
+												@if(Auth::user()->role == 'doctor')
+												<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-block btn-success btn-sm"><i class="fa fa-list"></i> Appointments</a>
+												@endif
+												<button id="{{$patient}}" class="btn btn_add btn-block btn-info btn-sm btn_edit"><i class="fa fa-edit"></i> Edit</button>
+												
+												<button id="{{$patient->id}}" class="btn btn-danger btn-sm mt-3 btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
+											</div>
+										</td>
+									</tr>
+								@endforeach
+							@else
+
+							@endif
+						</tbody>
+					</table>
+					</div>
+				</div>
 			</div>
 
 		</div>

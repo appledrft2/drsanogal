@@ -33,7 +33,7 @@
 								<td width="15%">
 									<div class="form-inline">
 										@if(Auth::user()->role == 'doctor')
-										<a href="/dashboard/client/{{$client->id}}/forms" class="btn btn-block btn-default btn-sm btn-block"><i class="fa fa-list"></i> Forms</a>
+										<a href="/dashboard/client/{{$client->id}}/forms" class="btn btn-block btn-default btn-sm btn-block"><i class="fa fa-folder"></i> Attachments</a>
 										@endif
 										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-block btn-success btn-sm btn-block"><i class="fa fa-paw"></i> Manage Pets</a>
 										<button id="{{$client}}" class="btn btn_edit btn-block btn-info btn-sm "><i class="fa fa-edit"></i> Edit </button>

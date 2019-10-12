@@ -2,23 +2,26 @@
 @section('title','Announcements')
 @section('content')
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mt-5" style="margin-bottom: 30%">
 
-    <div class="row">
-      
-      <div id="about" class=" col-md-12 mb-5">
-        <h2 class="col-md-12">Announcements</h2><hr>
+    <div class="row" >
+
+      <div id="about" class=" col-md-12 mb-5" >
+        <h2 class="col-md-12">Announcements</h2>
         <div class="">
           @if(count($announcements))
            <div class="col-md-8 mx-auto">
                @foreach($announcements as $announcement)
                    <div class="card mt-2">
-                       <img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" width="100%" height="300px">
                      <div class="card-body">
-                       <h4 class="card-title">{{$announcement->title}}</h4>
-                       <span><strong>Author:</strong> {{$announcement->user->email}}</span><br>
-                        <span><strong>Date Posted: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
-                       <p class="card-text">{!!$announcement->body!!}</p>
+                       <h4 class="card-title" style="margin-bottom: 0px">{{$announcement->title}}</h4>
+                       <small><strong>Author:</strong> {{$announcement->user->email}}</small><br>
+                        <small><strong>Date Posted: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</small>
+                        <center><img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" width="400px" height="200px"></center>
+              
+                        <div class="mt-2">
+                          <p class="card-text" style="text-align: justify">{!!$announcement->body!!}</p>
+                        </div>
                      </div>
                      
                    </div>  

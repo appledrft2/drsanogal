@@ -58,7 +58,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
+    <a href="/dashboard" class="brand-link">
       <img src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Vet Assistant</span>
@@ -112,21 +112,12 @@
             </a>
           </li>
 
-          @if(Auth::user()->role == 'doctor')
-          <li class="nav-item">
-            <a href="/dashboard/patient" class="nav-link @if($title=='Patient') active @endif">
-              <i class="nav-icon fas fa-paw"></i>
-              <p>
-                Patient List
-              </p>
-            </a>
-          </li>
-          @endif
+       
 
           @if(Auth::user()->role == 'doctor')
           <li class="nav-item">
             <a href="/dashboard/services" class="nav-link @if($title=='Services') active @endif">
-              <i class="nav-icon fas fa-heart"></i>
+              <i class="nav-icon fas fa-cogs"></i>
               <p>
                 Services
               </p>
@@ -134,16 +125,6 @@
           </li>
           @endif
 
-          @if(Auth::user()->role == 'doctor')
-          <li class="nav-item">
-            <a href="/dashboard/appointmentlist" class="nav-link @if($title=='Appointment List') active @endif">
-              <i class="nav-icon fas fa-calendar-check"></i>
-              <p>
-                Appointment List
-              </p>
-            </a>
-          </li>
-          @endif
 
           <li class="nav-item">
             <a href="/dashboard/billing" class="nav-link @if($title=='Billing') active @endif">
@@ -169,19 +150,44 @@
             <a href="/dashboard/supplier" class="nav-link @if($title=='Supplier') active @endif">
               <i class="nav-icon fa fa-users"></i>
               <p>
-                Suppliers
+                Supplier
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="/dashboard/product" class="nav-link @if($title=='Product') active @endif">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link @if($title=='Product') active @endif">
               <i class="nav-icon fas fa-archive"></i>
               <p>
                 Product
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/product" class="nav-link @if($title=='Product') active @endif">
+                  <i class="nav-icon fa fa-list"></i>
+                  <p>
+                    Product List
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="/dashboard/productcategory" class="nav-link @if($title=='category') active @endif">
+                  <i class="nav-icon fa fa-tags"></i>
+                  <p>Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="/dashboard/productunit" class="nav-link @if($title=='unit') active @endif">
+                  <i class="nav-icon fa  fa-balance-scale"></i>
+                  <p>Unit</p>
+                </a>
+              </li>
+            </ul>
           </li>
+
+         
 
            <li class="nav-item">
             <a href="/dashboard/suppliers" class="nav-link @if($title=='Stock In') active @endif">

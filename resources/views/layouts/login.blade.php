@@ -17,10 +17,12 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte3/dist/css/animate.css')}}">
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page" style="background-image: url('{{asset('adminlte3/dist/img/pets.png')}}');background-size: contain">
+<body class="hold-transition login-page" style="background-color: #2c3e50">
 @yield('content')
 
 <!-- jQuery -->

@@ -2,7 +2,7 @@
 @section('title','services')
 @section('content')
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mt-5" style="margin-bottom: 30%">
 
     <div class="row">
       <div class="col-md-12"><h2>Services Offered</h2><hr></div>
@@ -15,6 +15,7 @@
           
           <div class="card-body">
             <h4 class="card-title">{{$service->title}}</h4>
+            <p>{{$service->description}}</p>
             
           </div>
         </div>

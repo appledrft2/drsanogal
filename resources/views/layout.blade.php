@@ -27,11 +27,10 @@
 </head>
 
 <body>
-
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #54C4CF">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #54C4CF;">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="logo" width="5%" style="border-radius:90%;border:2px solid white">
        <span class="text-white"> Dr S & J Veterinary Clinic and Grooming Centre</span>
       </a>
@@ -70,18 +69,7 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="bg-light py-5 mb-5" style="background-image: url('{{asset('adminlte3/dist/img/meow.png')}}');background-size:cover;height: 40em">
-    <div class="container h-100" >
-      <div class="row h-100 align-items-center" >
-        <div class="col-lg-12 text-">
-          <h1 class="display-4 text-dark mt-5 mb-2">Welcome to our website!</h1>
-          <p class="lead mb-5 text-dark-50">We offer excellent products and services for your lovely pets.</p>
-          <p><a class="btn btn-lg btn-outline-info" href="https://www.facebook.com/DrSandJVetClinic/" role="button"><i class="fab fa-facebook"></i> Visit us on facebook</a></p>
-        </div>
-      </div>
-    </div>
-  </header>
+
   <!-- Page Content -->
 
     @yield('content')
@@ -90,7 +78,7 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 " style="background-color: #54C4CF">
+  <footer class="py-2" style="background-color: #2c3e50">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Dr S & J Veterinary Clinic 2019</p>
     </div>

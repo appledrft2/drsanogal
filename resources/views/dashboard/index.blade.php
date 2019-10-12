@@ -53,6 +53,71 @@
 	</div>
 
 <div class="row">
+  <div class="@if(Auth::user()->role == 'doctor') col-md-12 @else col-md-8 @endif">
+    <div class="card">
+      <div class="card-header border-transparent">
+        <h3 class="card-title">Today's Appointments</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table m-0 table-hover">
+            <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Patient ID</th>
+              <th>Name</th>
+              <th>Appointment</th>
+              <th>Date of appointment</th>
+
+              <th>SMS Notification</th>
+      
+            </tr>
+            </thead>
+            <tbody>
+            @if(count($appointments))
+              @foreach($appointments as $appointment)
+              <tr>
+                <td>{{$appointment->patient->client->name}}</td>
+                <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
+                <td >{{$appointment->patient->name}}</td>
+                <td>{{$appointment->appointment}}</td>
+                <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
+     
+                <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
+               
+              </tr>
+              @endforeach
+              @else
+                <tr>
+                  <td colspan="7" class="text-center">There are currently no appontments</td>
+                </tr>
+              @endif
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer clearfix text-center">
+        <div class="float-left"><a href="/dashboard/patient" class="btn-link">View All Patients</a></div>
+        <div class="float-right">{{ $appointments->appends(Request::all())->links() }}</div>
+      </div>
+      <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+  </div>
+  
+  
   <!-- JUMBOTRON -->
   @if(Auth::user()->role == 'doctor')
   <div class="col-md-8">
@@ -192,70 +257,7 @@
     </div>
     <!-- /.card -->
   </div>
-  <div class="@if(Auth::user()->role == 'doctor') col-md-12 @else col-md-8 @endif">
-    <div class="card">
-      <div class="card-header border-transparent">
-        <h3 class="card-title">Today's Appointments</h3>
 
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-widget="collapse">
-            <i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-widget="remove">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body p-0">
-        <div class="table-responsive">
-          <table class="table m-0 table-hover">
-            <thead>
-            <tr>
-              <th>Owner</th>
-              <th>Patient ID</th>
-              <th>Name</th>
-              <th>Appointment</th>
-              <th>Date of appointment</th>
-
-              <th>SMS Notification</th>
-      
-            </tr>
-            </thead>
-            <tbody>
-            @if(count($appointments))
-              @foreach($appointments as $appointment)
-              <tr>
-                <td>{{$appointment->patient->client->name}}</td>
-                <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
-                <td >{{$appointment->patient->name}}</td>
-                <td>{{$appointment->appointment}}</td>
-                <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
-     
-                <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
-               
-              </tr>
-              @endforeach
-              @else
-                <tr>
-                  <td colspan="7" class="text-center">There are currently no appontments</td>
-                </tr>
-              @endif
-            </tbody>
-          </table>
-        </div>
-        <!-- /.table-responsive -->
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer clearfix text-center">
-        <div class="float-left"><a href="/dashboard/patient" class="btn-link">View All Patients</a></div>
-        <div class="float-right">{{ $appointments->appends(Request::all())->links() }}</div>
-      </div>
-      <!-- /.card-footer -->
-    </div>
-    <!-- /.card -->
-  </div>
- 
 </div>
 
 @endsection
