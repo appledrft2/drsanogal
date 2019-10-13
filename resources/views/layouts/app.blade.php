@@ -165,7 +165,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/dashboard/product" class="nav-link @if($title=='Product') active @endif">
+                <a href="/dashboard/product" class="nav-link ">
                   <i class="nav-icon fa fa-list"></i>
                   <p>
                     Product List
@@ -173,13 +173,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                 <a href="/dashboard/productcategory" class="nav-link @if($title=='category') active @endif">
+                 <a href="/dashboard/productcategory" class="nav-link ">
                   <i class="nav-icon fa fa-tags"></i>
                   <p>Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                 <a href="/dashboard/productunit" class="nav-link @if($title=='unit') active @endif">
+                 <a href="/dashboard/productunit" class="nav-link ">
                   <i class="nav-icon fa  fa-balance-scale"></i>
                   <p>Unit</p>
                 </a>
