@@ -25,7 +25,15 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-
+  <style type="text/css" media="print">
+    @media print
+    {    
+        .no-print, .no-print *
+        {
+            display: none !important;
+        }
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -134,16 +142,6 @@
               </p>
             </a>
           </li>
-          @if(Auth::user()->role == 'doctor')
-          <li class="nav-item">
-            <a href="/dashboard/billingreport" class="nav-link @if($title=='Billing Report') active @endif">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Billing Report
-              </p>
-            </a>
-          </li>
-          @endif
 
           <li class="nav-header">INVENTORY</li>
           <li class="nav-item">
@@ -156,7 +154,7 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link @if($title=='Product') active @endif">
+            <a href="#" class="nav-link @if($title=='Product' || $title=='Product Category' || $title=='Product Unit') active @endif">
               <i class="nav-icon fas fa-archive"></i>
               <p>
                 Product
@@ -165,7 +163,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/dashboard/product" class="nav-link ">
+                <a href="/dashboard/product" class="nav-link  @if($title=='Product') active @endif">
                   <i class="nav-icon fa fa-list"></i>
                   <p>
                     Product List
@@ -173,13 +171,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                 <a href="/dashboard/productcategory" class="nav-link ">
+                 <a href="/dashboard/productcategory" class="nav-link  @if($title=='Product Category') active @endif">
                   <i class="nav-icon fa fa-tags"></i>
                   <p>Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                 <a href="/dashboard/productunit" class="nav-link ">
+                 <a href="/dashboard/productunit" class="nav-link  @if($title=='Product Unit') active @endif">
                   <i class="nav-icon fa  fa-balance-scale"></i>
                   <p>Unit</p>
                 </a>
@@ -207,25 +205,48 @@
               </p>
             </a>
           </li>
+
           @if(Auth::user()->role == 'doctor')
-          <li class="nav-item">
-            <a href="/dashboard/report" class="nav-link @if($title=='Report') active @endif">
-              <i class="nav-icon fas fa-book"></i>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link @if($title=='Billing Report' || $title=='Report' || $title=='Inventory Report') active @endif">
+              <i class="nav-icon fas fa-archive"></i>
               <p>
-                Sales Report
+                Reports
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/billingreport" class="nav-link @if($title=='Billing Report') active @endif">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Billing Report
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/report" class="nav-link @if($title=='Report') active @endif">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Sales Report
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/inventoryreport" class="nav-link @if($title=='Inventory Report') active @endif">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Inventory Report
+                  </p>
+                </a>
+              </li>
+            </ul>
           </li>
 
+          
 
-          <li class="nav-item">
-            <a href="/dashboard/inventoryreport" class="nav-link @if($title=='Inventory Report') active @endif">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Inventory Report
-              </p>
-            </a>
-          </li>
+
+          
             @endif
 
       	@if(Auth::user()->role == 'doctor')

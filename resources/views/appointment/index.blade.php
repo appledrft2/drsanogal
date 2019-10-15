@@ -78,12 +78,12 @@
 
 				</div>
 			</div>
-			<div class="card">
+			<div class="card collapsed-card">
 				<div class="card-header">
 					<p class="lead">List of Appointments</p>
 					<div class="card-tools " >
 					    <button type="button" class="btn btn-tool" data-widget="collapse">
-					      <i class="fas fa-minus"></i>
+					      <i class="fas fa-plus"></i>
 					    </button>
 				
 

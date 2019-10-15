@@ -8,7 +8,7 @@ use Yajra\Datatables\Datatables;
 
 class ProductCategoryController extends Controller
 {
-    public $title = "Product";
+    public $title = "Product Category";
     /**
      * Display a listing of the resource.
      *

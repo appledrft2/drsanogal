@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductUnitController extends Controller
 {
-    public $title = "Product";
+    public $title = "Product Unit";
     /**
      * Display a listing of the resource.
      *

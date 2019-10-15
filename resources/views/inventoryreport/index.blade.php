@@ -1,8 +1,15 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-	<div class="card">
-		<h4 class="card-header">Generate Report</h4>
+	<div class="card collapsed-card">
+	  <div class="card-header">
+	    <h4 >Generate Report</h4>
+	    <div class="card-tools " >
+	        <button type="button" class="btn btn-tool" data-widget="collapse">
+	          <i class="fas fa-plus"></i>
+	        </button>
+	     </div>
+	  </div>
 		<div class="card-body">
 			
 			<div class="col-md-6 mx-auto">
@@ -39,9 +46,9 @@
 						<tr>
 							<th>#</th>
 							<th>Product Name</th>
-							<th>Selling Price</th>
-              				<th>Quantity bought</th>
-							<th>Profit</th>
+							
+              				<th width="15%">Quantity Sold</th>
+						
 							<th>Date</th>
               			
 						</tr>
@@ -56,9 +63,9 @@
 							<tr>
 							<td>{{$i++}}</td>
 							 <td>{{$ts->name}}</td>
-							 <td class="float-right">&#8369; {{number_format($ts->price,2)}}</td>
+							
 							 <td>{{$ts->quantity}}</td>
-							 <td class="float-right">&#8369; {{number_format($ts->netamount,2)}}</td>
+			
 							 <td>{{date('M d, D Y', strtotime($ts->date))}}</td>
 							</tr>
 							 @endforeach

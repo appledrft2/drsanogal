@@ -17,7 +17,7 @@
 
 		
 
-			<div class="col-8">
+			<div class="col-12">
 					<div class="card ">
 						<div class="card-header"><label>Product List</label></div>
 						<div class="card-body">
@@ -30,7 +30,9 @@
 										<th>Category</th>
 										<th>Unit</th>
 										<th>Price</th>
-										<th>Quantity</th>
+										<th>Available</th>
+										
+								
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -43,7 +45,7 @@
 											<td>{{$product->unit}}</td>
 											<td>{{number_format($product->price,2)}}</td>
 											<td>{{$product->quantity}}</td>
-											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
+											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-shopping-cart"></i> Add to List</button></td>
 										</tr>
 										@endforeach
 									@endif
@@ -53,7 +55,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-4">
+		<!-- 	<div class="col-4">
 				<div class="form-group">
 					
 					<div class="card">
@@ -84,7 +86,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header"><label>Product Table</label></div>
@@ -133,13 +135,61 @@
 
     var price = parseFloat(product.price);
 
-    $("input[name=prod_id]").val(product.id);
-    $("input[name=prod_name]").val(product.name);
-    $("input[name=prod_category]").val(product.category);
-    $("input[name=prod_original").val(product.original);
-    $("input[name=prod_unit]").val(product.unit);
-    $("input[name=prod_price]").val(price.toFixed(2));
-    $("input[name=prod_quantity]").val(1);
+    $("#productlist2").DataTable().destroy();
+
+
+	if(product.id == ''){
+		$("#productlist2").DataTable();
+		return alert('No Product');
+	}
+
+	i++;
+    var row = '<tr id="row'+i+'">'+
+    			'<td>'+
+    				'<div class="form-group mr-2">'+
+    					product.name+
+    					'<input type="hidden" class="form-control" readonly name="id[]" value="'+product.id+'">'+
+    					'<input type="hidden" class="form-control" readonly name="original[]" value="'+product.original+'">'+
+    					'<input type="hidden" class="form-control" readonly name="name[]" value="'+product.name+'">'+
+    				'</div>'+
+    			'</td>'+
+    			'<td>'+
+    				'<div class="form-group mr-2 text-right">'+
+    				product.category+
+    					'<input type="hidden" class="form-control" readonly name="category[]" value="'+product.category+'">'+
+    				'</div>'+
+    			'</td>'+
+    			'<td>'+
+    				'<div class="form-group mr-2 text-right">'+
+    				product.unit+
+    					'<input type="hidden" class="form-control" readonly name="unit[]" value="'+product.unit+'">'+
+    				'</div>'+
+    			'</td>'+
+    			'<td>'+
+    				'<div class="form-group mr-2 text-right">&#8369;'+
+    				product.price+
+    					'<input type="hidden" class="form-control" readonly name="price[]" value="'+product.price+'">'+
+    				'</div>'+
+    			'</td>'+
+    			'<td>'+
+    				'<div class="form-group mr-2">'+
+    
+    					'<input type="text" class="form-control"  name="quantity[]" value="1">'+
+    				'</div>'+
+    			'</td>'+
+    			'<td>'+
+    				'<div class="form-group mr-2">'+
+    					'<button type="button" class="btn btn-danger btn-block btn-sm removeRow" id="'+i+'">Cancel</button>'+
+    				'</div>'+
+    			'</td>'+
+
+    		'</tr>';
+
+    		$('#row').append(row);
+
+
+    		$("#productlist2").DataTable();
+
   });
 </script>
 

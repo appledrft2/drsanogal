@@ -16,7 +16,7 @@
 						<th>Occupation</th>
 						<th>Address</th>
 						<th>Pets</th>
-						<th>Action</th>
+						<th class="no-print">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,7 +30,7 @@
 								<td >{{$client->occupation}}</td>
 								<td>{{str_limit($client->address, 15)}}</td>
 								<td ><a href="/dashboard/client/{{$client->id}}/patient" class="text-bold">{{$client->patients->count()}}</a></td>
-								<td width="15%">
+								<td width="15%" class="no-print">
 									<div class="form-inline">
 										@if(Auth::user()->role == 'doctor')
 										<a href="/dashboard/client/{{$client->id}}/forms" class="btn btn-block btn-default btn-sm btn-block"><i class="fa fa-folder"></i> Attachments</a>

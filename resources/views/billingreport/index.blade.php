@@ -23,8 +23,15 @@
                </div>
 		</div>
 	</div>
-  <div class="card">
-    <h4 class="card-header">Generate Report</h4>
+  <div class="card collapsed-card">
+    <div class="card-header">
+      <h4 >Generate Report</h4>
+      <div class="card-tools " >
+          <button type="button" class="btn btn-tool" data-widget="collapse">
+            <i class="fas fa-plus"></i>
+          </button>
+       </div>
+    </div>
     <div class="card-body">
       
       <div class="col-md-6 mx-auto">
