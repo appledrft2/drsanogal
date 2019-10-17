@@ -2,7 +2,8 @@
 /public/hot
 /public/storage
 /storage/*.key
-!vendor/laravel
+!*/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php
+
 /vendor
 
 .env
