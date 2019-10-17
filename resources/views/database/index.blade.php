@@ -33,8 +33,11 @@
 		</div>
 	</div>
 
+
 	
 			<?php
+
+			
 
 			if(isset($_POST['btnImport'])){
 				echo '
@@ -49,7 +52,13 @@
 					</div>
 					<div class="card-body">
 				';
-			  $connection = mysqli_connect('us-cdbr-iron-east-02.cleardb.net','b9ca3abbc228b4','526b1e7e','heroku_ee6cfbce9e8c843');
+
+			if (env('APP_ENV') === 'production') {
+			   $connection = mysqli_connect('us-cdbr-iron-east-02.cleardb.net','b9ca3abbc228b4','526b1e7e','heroku_ee6cfbce9e8c843');
+			}else{
+				$connection = mysqli_connect('localhost','root','','drsanogal');
+			}
+			  
 			  $filename = $_POST['file'];
 			  $handle = fopen($filename,"r+");
 			  $contents = fread($handle,filesize($filename));
@@ -81,7 +90,11 @@
 
 			if(isset($_POST['btnExport'])){
 
-				 $connection = mysqli_connect('us-cdbr-iron-east-02.cleardb.net','b9ca3abbc228b4','526b1e7e','heroku_ee6cfbce9e8c843');
+				if (env('APP_ENV') === 'production') {
+			   $connection = mysqli_connect('us-cdbr-iron-east-02.cleardb.net','b9ca3abbc228b4','526b1e7e','heroku_ee6cfbce9e8c843');
+			}else{
+				$connection = mysqli_connect('localhost','root','','drsanogal');
+			}
 				$tables = array();
 				$result = mysqli_query($connection,"SHOW TABLES");
 				while($row = mysqli_fetch_row($result)){
