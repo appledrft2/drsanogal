@@ -113,8 +113,19 @@ Route::post('/dashboard/inventoryreport/generateReport','InventoryReportControll
 // System Logs
 Route::get('/dashboard/systemlog/','SystemlogController@index');
 
+// Database import/export
+Route::get('/dashboard/database/',function(){
+	return view('database.index')->with('title','Database Import/Export');
+});
+
+Route::post('/dashboard/database',function(){
+	return view('database.index')->with('title','Database Import/Export');
+});
+
 });
 
 // Login module provided by laravel
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+

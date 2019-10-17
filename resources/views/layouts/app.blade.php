@@ -284,6 +284,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/dashboard/database" class="nav-link @if($title=='Database Import/Export') active @endif">
+              <i class="nav-icon fas fa-database"></i>
+              <p>
+                Database
+              </p>
+            </a>
+          </li>
       	@endif
         </ul>
 

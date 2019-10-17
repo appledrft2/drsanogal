@@ -200,7 +200,7 @@
     <!-- PRODUCT LIST -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Product Notification</h3>
+        <h3 class="card-title">Product Threshold</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-widget="collapse">
               <i class="fas fa-minus"></i>
@@ -228,7 +228,7 @@
                     <span class="product-description">
                        {{$lowproduct->category}}<br>
                        Only {{$lowproduct->quantity}} stocks remaining <br>
-                       Product critical: {{$lowproduct->lowstock}} items
+                       Product Threshold: {{$lowproduct->lowstock}} items
                     </span>
                 </div>
                 <div class="col-md-4">
@@ -241,7 +241,7 @@
             @endif
           @endforeach
             @if($check == 0)
-              <li class="item text-center">No product in critical level</li>
+              <li class="item text-center">No product in threshold</li>
             @endif
           @else
           <li class="item text-center">There are no products</li>
