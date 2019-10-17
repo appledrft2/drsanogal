@@ -49,7 +49,7 @@
 					</div>
 					<div class="card-body">
 				';
-			  $connection = mysqli_connect('heroku_ee6cfbce9e8c843','b9ca3abbc228b4','526b1e7e','das9j4ppsl73r4');
+			  $connection = mysqli_connect('us-cdbr-iron-east-02.cleardb.net','b9ca3abbc228b4','526b1e7e','heroku_ee6cfbce9e8c843');
 			  $filename = $_POST['file'];
 			  $handle = fopen($filename,"r+");
 			  $contents = fread($handle,filesize($filename));
@@ -81,7 +81,7 @@
 
 			if(isset($_POST['btnExport'])){
 
-				$connection = mysqli_connect('heroku_ee6cfbce9e8c843','b9ca3abbc228b4','526b1e7e','das9j4ppsl73r4');
+				 $connection = mysqli_connect('us-cdbr-iron-east-02.cleardb.net','b9ca3abbc228b4','526b1e7e','heroku_ee6cfbce9e8c843');
 				$tables = array();
 				$result = mysqli_query($connection,"SHOW TABLES");
 				while($row = mysqli_fetch_row($result)){
