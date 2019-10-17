@@ -9,16 +9,17 @@
 					<tr>
 						<th>#</th>
 						<th>Client Name</th>
-						<th>Gender</th>
+						<th>Address</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
+
 					@foreach($clients as $key => $client)
 						<tr>
 							<td>{{$key + 1}}</td>
 							<td>{{$client->name}}</td>
-							<td>{{$client->gender}}</td>
+							<td>{{$client->address}}</td>
 							
 							
 							<td><center><a href="/dashboard/billing/{{$client->id}}/client" class="btn  btn-default btn-sm"><i class="fa fa-credit-card"></i>&nbsp; Manage billing</a></center></td>

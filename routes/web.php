@@ -98,6 +98,7 @@ Route::get('/dashboard/suppliers/','StockInListController@index');
 // Stock In module
 Route::any('/dashboard/suppliers/{supplier}/stockin/search','StockInController@search');
 Route::resource('/dashboard/suppliers/{supplier}/stockin','StockInController');
+Route::get('/dashboard/suppliers/{code}/receipt','StockInController@receipt'); 
 // Stock Out module
 Route::get('/dashboard/stockout','StockOutController@index');
 Route::post('/dashboard/stockout','StockOutController@store');
@@ -105,9 +106,13 @@ Route::post('/dashboard/stockout','StockOutController@store');
 Route::get('/dashboard/receipt/{rcode}','ReceiptController@index');
 Route::get('/dashboard/report/','ReportController@index');
 Route::post('/dashboard/report/generateReport','ReportController@generateReport');
-
+// Inventory module
 Route::get('/dashboard/inventoryreport/','InventoryReportController@index');
 Route::post('/dashboard/inventoryreport/generateReport','InventoryReportController@generateReport');
+
+// System Logs
+Route::get('/dashboard/systemlog/','SystemlogController@index');
+
 });
 
 // Login module provided by laravel

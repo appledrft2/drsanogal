@@ -120,20 +120,37 @@
             </a>
           </li>
 
-       
-
           @if(Auth::user()->role == 'doctor')
-          <li class="nav-item">
-            <a href="/dashboard/services" class="nav-link @if($title=='Services') active @endif">
-              <i class="nav-icon fas fa-cogs"></i>
+          <li class="nav-item has-treeview  @if($title=='List' || $title=='Patient List' || $title=='Appointment List') menu-open @endif">
+            <a href="#" class="nav-link @if($title=='List' || $title=='Patient List' || $title=='Appointment List') active @endif">
+              <i class="nav-icon fas fa-list"></i>
               <p>
-                Services
+                List
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/patient" class="nav-link  @if($title=='Patient List') active @endif">
+                  <i class="nav-icon fa fa-paw"></i>
+                  <p>
+                    Patient List
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="/dashboard/appointmentlist" class="nav-link  @if($title=='Appointment List') active @endif">
+                  <i class="nav-icon fa fa-tags"></i>
+                  <p>Appointment List</p>
+                </a>
+              </li>
+             
+            </ul>
           </li>
           @endif
 
 
+<!-- 
           <li class="nav-item">
             <a href="/dashboard/billing" class="nav-link @if($title=='Billing') active @endif">
               <i class="fa fa-credit-card"></i>
@@ -141,7 +158,7 @@
                 &nbsp; Billing
               </p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-header">INVENTORY</li>
           <li class="nav-item">
@@ -153,7 +170,7 @@
             </a>
           </li>
 
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview  @if($title=='Product' || $title=='Product Category' || $title=='Product Unit') menu-open @endif">
             <a href="#" class="nav-link @if($title=='Product' || $title=='Product Category' || $title=='Product Unit') active @endif">
               <i class="nav-icon fas fa-archive"></i>
               <p>
@@ -207,7 +224,7 @@
           </li>
 
           @if(Auth::user()->role == 'doctor')
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview  @if($title=='Billing Report' || $title=='Report' || $title=='Inventory Report') menu-open @endif">
             <a href="#" class="nav-link @if($title=='Billing Report' || $title=='Report' || $title=='Inventory Report') active @endif">
               <i class="nav-icon fas fa-archive"></i>
               <p>
@@ -255,6 +272,15 @@
               <i class="nav-icon fas fa-key"></i>
               <p>
                 Account
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/dashboard/systemlog" class="nav-link @if($title=='System Logs') active @endif">
+              <i class="nav-icon fas fa-history"></i>
+              <p>
+                System Log
               </p>
             </a>
           </li>

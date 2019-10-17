@@ -5,7 +5,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="card card-sm">
-				<div class="card-header"><p class="lead float-left">Supplier Information</p> <span class="float-right"><button onclick="history.back()" class="btn btn-default">Go Back</button></span></div>
+				<div class="card-header"><p class="lead float-left">Supplier Information</p> <span class="float-right"><a href="/dashboard/suppliers" class="btn btn-default">Go Back</a></span></div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-7">
@@ -64,7 +64,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
+						
 						<th>Code</th>
 						<th>Delivery Date</th>
 						<th>Mode of Payment</th>
@@ -79,7 +79,7 @@
 					<?php $i=1; ?>
 						@foreach($stockins as $stockin)
 							<tr>
-								<td>{{$i++}}</td>
+							
 								<td>{{$stockin->code}}</td>
 								<td>{{ date('M d, Y', strtotime($stockin->delivery_date))}}</td>
 								<td>{{$stockin->mop}}</td>
@@ -95,7 +95,8 @@
 								<td class="text-right">&#8369; {{number_format($stockin->amount,2)}}</td>
 								<td width="15%">
 									<div class="form-inline">
-										
+										<a href="/dashboard/suppliers/{{$stockin->code}}/receipt" class="btn btn-default btn-sm"><i class="fa fa-print"></i> View Receipt</a>
+										<!-- @if(Auth::user()->role == 'doctor')
 										
 										<form method="POST" action="/dashboard/suppliers/{{$supplier->id}}/stockin/{{$stockin->id}}">
 											@method('delete')
@@ -103,6 +104,7 @@
 											<input type="hidden" name="sid" value="{{$stockin->id}}">
 											<button class="btn btn-danger btn-sm mt-3 btn-submit"><i class="fa fa-trash"></i> &nbsp; Delete Delivery</button>
 										</form>
+										@endif -->
 									</div>
 								</td>
 							</tr>

@@ -69,7 +69,7 @@
 				</div>
 			</div>
 
-			<div class="col-8">
+			<div class="col-12">
 					<div class="card ">
 						<div class="card-header"><label>Product List</label></div>
 						<div class="card-body">
@@ -81,7 +81,7 @@
 										<th>Name</th>
 										<th>Original</th>
 										<th>Selling</th>
-										<th>Quantity</th>
+										<th>In Stock</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -90,10 +90,10 @@
 										@foreach($products as $product)
 										<tr>
 											<td>{{$product->name}}</td>
-											<td>{{number_format($product->original,2)}}</td>
-											<td>{{number_format($product->price,2)}}</td>
+											<td class="text-right">&#8369; {{number_format($product->original,2)}}</td>
+											<td class="text-right">&#8369; {{number_format($product->price,2)}}</td>
 											<td>{{$product->quantity}}</td>
-											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-check"></i> Select</button></td>
+											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-shopping-cart"></i> Add to List</button></td>
 										</tr>
 										@endforeach
 									@endif
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-4">
+			<!-- <div class="col-4">
 				<div class="form-group">
 					
 					<div class="card">
@@ -130,7 +130,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header"><label>Product Table</label></div>
@@ -139,10 +139,10 @@
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Original</th>
-									<th>Selling</th>
-									<th>Quantity</th>
-									<th>Subtotal</th>
+									<th>Update Original</th>
+									<th>Update Selling</th>
+									<th>Quantity to add</th>
+									
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -186,14 +186,64 @@
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
     product = JSON.parse(product);
-    var orig = parseFloat(product.original);
-    var price = parseFloat(product.price);
 
-    $("input[name=prod_id]").val(product.id);
-    $("input[name=prod_name]").val(product.name);
-    $("input[name=prod_original]").val(orig.toFixed(2));
-    $("input[name=prod_price]").val(price.toFixed(2));
-    $("input[name=prod_quantity]").val(1);
+
+   			$("#productlist2").DataTable().destroy();
+   			var id = product.id;
+   			var name = product.name;
+   			var original = parseFloat(product.original);
+   			original.toFixed(2);
+   			var price = parseFloat(product.price);
+   			var quantity = product.quantity;
+   			var subtotal = product.original * product.quantity;
+
+   			if(id == ''){
+   				$("#productlist2").DataTable();
+   				return alert('No Product');
+   			}
+
+   			i++;
+   	var row = '<tr id="row'+i+'">'+
+   				'<td>'+
+   					'<div class="form-group mr-2">'+
+   						name+
+   						'<input type="hidden" class="form-control" readonly name="id[]" value="'+id+'">'+
+   						'<input type="hidden" class="form-control" readonly name="name[]" value="'+name+'">'+
+   					'</div>'+
+   				'</td>'+
+   				'<td>'+
+   					'<div class="form-group mr-2 text-right">'+
+   					
+   						'<input type="text" class="form-control"  name="original[]" value="'+original+'">'+
+   					'</div>'+
+   				'</td>'+
+   				'<td>'+
+   					'<div class="form-group mr-2 text-right">'+
+   					
+   						'<input type="text" class="form-control"  name="price[]" value="'+price+'">'+
+   					'</div>'+
+   				'</td>'+
+   				'<td>'+
+   					'<div class="form-group mr-2">'+
+   				
+   						'<input type="text" class="form-control"  name="quantity[]" value="'+1+'">'+
+   					'</div>'+
+   				'</td>'+
+   			
+   			
+   				'<td>'+
+
+   					'<div class="form-group mr-2">'+
+   						'<button type="button" class="btn btn-danger btn-block btn-sm removeRow" id="'+i+'">Cancel</button>'+
+   					'</div>'+
+   				'</td>'+
+
+   			'</tr>';
+
+   			$('#row').append(row);
+   			$("#productlist2").DataTable();
+
+
   });
 </script>
 
@@ -226,14 +276,14 @@ var row = '<tr id="row'+i+'">'+
 			'</td>'+
 			'<td>'+
 				'<div class="form-group mr-2 text-right">&#8369;'+
-				original+
-					'<input type="hidden" class="form-control" readonly name="original[]" value="'+original+'">'+
+				+
+					'<input type="text" class="form-control" readonly name="original[]" value="'+original+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+
 				'<div class="form-group mr-2 text-right">&#8369;'+
-				price+
-					'<input type="hidden" class="form-control" readonly name="price[]" value="'+price+'">'+
+				+
+					'<input type="text" class="form-control" readonly name="price[]" value="'+price+'">'+
 				'</div>'+
 			'</td>'+
 			'<td>'+

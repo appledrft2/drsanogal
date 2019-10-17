@@ -109,40 +109,12 @@ class StockInController extends Controller
         return redirect('dashboard/suppliers/'.$supplier_id.'/stockin')->with('title',$this->title);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
-     */
-    public function show($supplier,StockIn $stockIn)
-    {
-        //
-    }
+    public function receipt($code){
+        $stockin = Stockin::where('code',$code)->first();
+        $details = StockInDetail::where('stockin_id',$stockin->id)->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($supplier,StockIn $stockIn)
-    {
-        //
+        return view('receipt.stockinreceipt',compact('stockin','details'))->with('title',$this->title);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
-     */
-    public function update($supplier,Request $request, StockIn $stockIn)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *

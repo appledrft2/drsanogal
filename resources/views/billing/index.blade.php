@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="card">
-				<div class="card-header"><p class="lead float-left">Owner Information</p> <span class="float-right"><a href="/dashboard/billing" class="btn btn-default">Go Back</a></span></div>
+				<div class="card-header"><p class="lead float-left">Owner Information</p> <span class="float-right"><a href="/dashboard/client/" class="btn btn-default">Go Back</a></span></div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-7 " >

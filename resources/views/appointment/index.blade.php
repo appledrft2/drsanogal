@@ -93,7 +93,11 @@
 				<div class="card-body">
 					<div class="float-left mb-3">
 						<button class="btn btn_add btn-default "><i class="fa fa-plus-circle"></i> New Appointment</button>
-					</div>	
+					</div>
+					<div class="float-right mb-3">
+						<a href="/dashboard/services" class="btn  btn-default "><i class="fa fa-paw"></i> Services</a>
+					</div>
+					
 					
 					<div id="mytable" class="table-responsive">
 					<table id="table" class="table table-bordered table-hover">
@@ -188,9 +192,9 @@
 					</div>
 
 					<div class="col-12 form-group">
-						<label>Appointment</label>
+						<label>Service Rendered</label>
 						<select required name="appointment[]" class="form-control select2" style="width:100%">
-							<option value="">Select Appointment</option>
+							<option value="">Select Service</option>
 					
 							@if($services)
 								@foreach($services as $service)

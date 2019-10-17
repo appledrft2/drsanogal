@@ -44,7 +44,7 @@ class BillingController extends Controller
     	if($i >= 1){
     		return view('billing.create',compact('client','products'))->with('title',$this->title);
     	}else{
-    		toast('There are no patients that has unpaid appointment.','error');
+    		toast('This client has no unpaid appointments.','error');
         	return redirect('dashboard/billing/'.$id.'/client');
     	}
 	

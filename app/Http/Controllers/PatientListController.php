@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PatientListController extends Controller
 {
-	public $title = "Patient";
+	public $title = "Patient List";
 
     public function index(){
 
