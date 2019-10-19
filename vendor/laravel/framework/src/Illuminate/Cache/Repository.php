@@ -134,17 +134,13 @@ class Repository implements CacheContract, ArrayAccess
      */
     public function getMultiple($keys, $default = null)
     {
-        if (is_null($default)) {
-            return $this->many($keys);
-        }
+        $defaults = [];
 
         foreach ($keys as $key) {
-            if (! isset($default[$key])) {
-                $default[$key] = null;
-            }
+            $defaults[$key] = $default;
         }
 
-        return $this->many($default);
+        return $this->many($defaults);
     }
 
     /**
@@ -209,7 +205,7 @@ class Repository implements CacheContract, ArrayAccess
         $seconds = $this->getSeconds($ttl);
 
         if ($seconds <= 0) {
-            return $this->delete($key);
+            return $this->forget($key);
         }
 
         $result = $this->store->put($this->itemKey($key), $value, $seconds);
@@ -283,7 +279,7 @@ class Repository implements CacheContract, ArrayAccess
      */
     public function setMultiple($values, $ttl = null)
     {
-        return $this->putMany($values, $ttl);
+        return $this->putMany(is_array($values) ? $values : iterator_to_array($values), $ttl);
     }
 
     /**

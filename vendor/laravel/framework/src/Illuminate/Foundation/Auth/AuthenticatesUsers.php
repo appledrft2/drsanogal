@@ -2,7 +2,6 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Systemlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -120,8 +119,7 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        $user = Auth::user()->name;
-        Systemlog::create(['activity'=> $user.' has logged in successfully']);
+        //
     }
 
     /**
@@ -157,14 +155,11 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
-        $user = Auth::user()->name;
-        Systemlog::create(['activity'=> $user.' has logged out successfully']);
-
         $this->guard()->logout();
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/login');
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     /**
@@ -175,7 +170,7 @@ trait AuthenticatesUsers
      */
     protected function loggedOut(Request $request)
     {
-        
+        //
     }
 
     /**
