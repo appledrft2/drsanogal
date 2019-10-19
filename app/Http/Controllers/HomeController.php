@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Systemlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,9 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        Systemlog::create(['activity' => ucfirst(Auth::user()->role)." : ".Auth::user()->name." has Logged In Successfully"]);
         toast('Successfully Logged In','success');
         return redirect('/dashboard');
     }
+
 
    
 }

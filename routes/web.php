@@ -1,5 +1,7 @@
 <?php
 
+use App\Systemlog;
+
 if (env('APP_ENV') === 'production') {
     URL::forceScheme('https');
 }
@@ -128,4 +130,7 @@ Route::post('/dashboard/database',function(){
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::post('/home/logout',function(){
+	Systemlog::create(['activity' => ucfirst(Auth::user()->role)." : ".Auth::user()->name." has Logged Out Successfully"]);
+	return response()->json(['status' => 'success']);
+});

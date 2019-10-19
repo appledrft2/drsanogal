@@ -55,7 +55,7 @@
       <li class="nav-item">
         <form id="logout-form" style="margin:0px" action="{{ route('logout') }}" method="POST" >
             @csrf
-            <button type="submit" class="btn"><i class="icon ion-log-out"></i> Logout</button>
+            <button type="submit" id="btnLogout" class="btn"><i class="icon ion-log-out"></i> Logout</button>
         </form>
       </li>
       
@@ -435,6 +435,24 @@ function closeFullscreen() {
           form.submit();
         }
       });
+  });
+</script>
+
+<script type="text/javascript">
+  $('#btnLogout').click(function(){
+      
+      $.ajax({
+            type: "POST",
+            url: '/home/logout',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            dataType: "json",
+            data: {status: 1},
+            success: function(data){
+             
+          
+            },
+         
+        });
   });
 </script>
 
