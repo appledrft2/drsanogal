@@ -18,12 +18,12 @@ class FrontPageController extends Controller
     }
     public function products(){
          $initialInstall = \App\User::where('role','=','doctor')->count();
-        $products = \App\Product::orderBy('created_at','DESC')->paginate(3);
+        $products = \App\Product::orderBy('created_at','DESC')->paginate(9);
         return view('products',compact('products','initialInstall'));
     }
     public function services(){
          $initialInstall = \App\User::where('role','=','doctor')->count();
-        $services = \App\ManageAppointment::orderBy('created_at','DESC')->paginate(6);
+        $services = \App\ManageAppointment::orderBy('created_at','DESC')->paginate(12);
         return view('services',compact('services','initialInstall'));
     }
 }

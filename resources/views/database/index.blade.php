@@ -11,21 +11,22 @@
 				
 
 				<div class="col-md-6">
-					<h2>Database Import</h2>
+					<h2>Database Backup</h2>
+					<form method="POST" action="#">
+						<div class="form-group">
+						<input type="submit" name="btnExport" class="btn btn-info btn-md" value="Backup Database">
+						</div>
+					</form>
+				</div>
+
+				<div class="col-md-6">
+					<h2>Database Restore</h2>
 					<form method="POST" action="#">
 						<div class="form-group">
 							<small>Upload SQL file</small>
 							<input type="file" name="file" class="form-control-file" placeholder="file" accept=".sql">
 						</div>
-						<input type="submit" name="btnImport" class="btn btn-info btn-md" value="Import Database">
-					</form>
-				</div>
-				<div class="col-md-6">
-					<h2>Database Export</h2>
-					<form method="POST" action="#">
-						<div class="form-group">
-						<input type="submit" name="btnExport" class="btn btn-info btn-md" value="Export Database">
-						</div>
+						<input type="submit" name="btnImport" class="btn btn-info btn-md" value="Restore Database">
 					</form>
 				</div>
 

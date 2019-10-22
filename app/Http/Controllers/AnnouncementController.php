@@ -53,6 +53,9 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' created new announcement titled "'.request()->title.'" ']);
+
         $data = request()->validate([
             'title'=>'required',
             'body'=>'required',
@@ -142,7 +145,11 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request,$id)
     {
+
         $announcement = Announcement::findOrfail($id);
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' updated an announcement titled "'.$announcement->title.'" to '.request()->title]);
+
         $data = request()->validate([
             'title'=>'required',
             'body'=>'required',
@@ -188,7 +195,13 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
+        
+
         $announcement = Announcement::findOrfail($id);
+
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' deleted an announcement titled "'.$announcement->title.'" ']);
+
         if($announcement->cover_image != 'uploads/noimage.png'){
             // Delete image
             Storage::disk('s3')->delete($announcement->cover_image);

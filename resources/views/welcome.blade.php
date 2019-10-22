@@ -2,26 +2,44 @@
 @section('title','Home')
 @section('content')
   <!-- Header -->
-  <header class="bg-light py-5 mb-5" style="background-image: url('{{asset('adminlte3/dist/img/meow.png')}}');background-size:cover;height: 40em">
-    <div class="container h-100" >
-      <div class="row h-100 align-items-center" >
-        <div class="col-lg-12 text-">
-          <h1 class="display-4 text-dark mt-5 mb-2">Welcome to our website!</h1>
-          <p class="lead mb-5 text-dark-50">We offer excellent products and services for your lovely pets.</p>
-          <p><a class="btn btn-lg btn-outline-info" href="https://www.facebook.com/DrSandJVetClinic/" role="button"><i class="fab fa-facebook"></i> Visit us on facebook</a></p>
-        </div>
+  <center>
+    <div class="">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100"   src="{{asset('adminlte3/dist/img/wellness.png')}}" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{asset('adminlte3/dist/img/slide2.png')}}" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{asset('adminlte3/dist/img/slide3.png')}}" alt="Third slide">
       </div>
     </div>
-  </header>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  </div>
+  </center>
+
+
+
   <!-- Page Content -->
-  <div class="container">
+  <div class="container mt-5">
 
     <div class="row">
-      <div id="about" class="col-md-12 mb-5">
-        <h2 class="">Why are we here?</h2>
-        <hr>
-        <p class="text-justify" style="font-size:1.5em" >It is our mission to provide hollistic approach to animal health care with quality products, advance technology and continuous education to our staff, veterinarians and pet owners.</p>
-      </div>
+      
       
         <div id="contact" class="col-md-12 mb-5">
             <div class="row">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -72,6 +73,11 @@ class PatientController extends Controller
         $data['special_considerations'] = $special_considerations;
 
         $status = Patient::create($data);
+
+        $clientname = Client::findOrfail($client);
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' added new patient named "'.request()->name.'" from owner '.$clientname->name]);
+
         if ($status) {
             return response()->json([
                 'status'     => 'success',
@@ -130,6 +136,9 @@ class PatientController extends Controller
 
 
         $status = $patient->update($data);
+        $cname = Client::findOrfail($client);
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' updated a patient named "'.$patient->name.'" to '.request()->name.' from owner '.$cname->name]);
 
         if ($status) {
             return response()->json([
@@ -153,6 +162,10 @@ class PatientController extends Controller
      */
     public function destroy($client,Patient $patient)
     {
+        $cname = Client::findOrfail($client);
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' deleted a patient named "'.$patient->name.'" from owner '.$cname->name]);
+
         $status = $patient->delete();
         if ($status) {
             return response()->json([

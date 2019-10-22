@@ -208,7 +208,7 @@
             <a href="/dashboard/suppliers" class="nav-link @if($title=='Stock In') active @endif">
               <i class="nav-icon fa fa-truck"></i>
               <p>
-                Stock In
+                Delivery
               </p>
             </a>
           </li>
@@ -495,7 +495,7 @@ function closeFullscreen() {
    
       
         $("#table").DataTable({
-          dom: 'lBfrtip'
+          dom: 'Bfrtilp',
         });
    
   });

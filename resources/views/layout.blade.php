@@ -28,10 +28,10 @@
 
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #54C4CF;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #2c3e50">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <img src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="logo" width="5%" style="border-radius:90%;border:2px solid white">
+        <img src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="logo" width="5%" style="border-radius:90%;border:1px solid black">
        <span class="text-white"> Dr S & J Veterinary Clinic and Grooming Centre</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

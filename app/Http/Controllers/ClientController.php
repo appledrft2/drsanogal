@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -70,6 +71,10 @@ class ClientController extends Controller
 
 
         $status = Client::create($data);
+
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' added new client named "'.request()->name.'" ']);
+
         if ($status) {
             return response()->json([
                 'status'     => 'success',
@@ -133,6 +138,10 @@ class ClientController extends Controller
 
 
         $status = $client->update($data);
+
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' updated a client named "'.$client->name.'" to '.request()->name]);
+
         if ($status) {
             return response()->json([
                 'status'     => 'success',
@@ -155,7 +164,14 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+
+        //logging the activity
+        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' deleted a client named "'.$client->name.'" ']);
+        
         $status = $client->delete();
+
+        
+
         if ($status) {
             return response()->json([
                 'status'     => 'success',

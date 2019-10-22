@@ -15,7 +15,7 @@
 					
 						<th>Author</th>
 						<th>Created</th>
-						<th width="20%">Action</th>
+						<th class="no-print" width="20%">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -29,7 +29,7 @@
 								<td >{{$announcement->user->name}}</td>
 								<td >{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								
-								<td>
+								<td class="no-print">
 									<div class="form-inline">
 										<button id="{{$announcement->id}}" class="btn btn-sm btn-info btn_edit mr-1"><i class="fa fa-edit"></i> Edit</button>
 										<button id="{{$announcement->id}}" class="btn btn-sm btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</button>
