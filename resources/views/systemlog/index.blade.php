@@ -10,7 +10,7 @@
 				<table id="table" class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							
+							<th>User</th>
 							<th>Activity</th>
 							<th>Date</th>
 						</tr>
@@ -20,7 +20,7 @@
 				
 							@foreach($logs as $key => $ts)
 							<tr>
-								
+								<td>{{$ts->user}}</td>
 								 <td>{{$ts->activity}}</td>
 								 <td>{{$ts->created_at->isoFormat('MMM D YYYY, h:mm:ss a')}}</td>
 							</tr>

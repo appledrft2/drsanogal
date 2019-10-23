@@ -27,17 +27,15 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
   <style type="text/css" media="print">
     @media print
-    {    
-        .no-print, .no-print *
-        {
-            display: none !important;
-        }
+    {
+    html, body { height: auto; }
+    .dt-print-table, .dt-print-table thead, .dt-print-table th, .dt-print-table tr {border: 0 none !important;}
     }
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
+<?php $today = date('Y-m-d'); ?>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom">
     <!-- Left navbar links -->
@@ -485,7 +483,8 @@ function closeFullscreen() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script> -->
+<script type="text/javascript" src="{{asset('adminlte3/dist/js/dttprint.js')}}"></script>
 <script>
   $(function () {
     $("#productlist").DataTable();
@@ -493,12 +492,41 @@ function closeFullscreen() {
       $("#servicelist").DataTable();
       $("#table2").DataTable();
    
-      
-        $("#table").DataTable({
-          dom: 'Bfrtilp',
-        });
-   
+    
   });
+</script>
+<script>
+    $(document).ready(function() {
+        var d = new Date();
+        var getsdate = d.getFullYear()+' / '+d.getMonth()+' / '+d.getDate();
+       var user1 = '<?php echo Auth::user()->name; ?>';
+        // DataTable initialisation
+        $('#table').DataTable({
+            "dom": 'Bfrtip',
+            "paging": true,
+            "autoWidth": true,
+            "columnDefs": [{
+                "visible": true,
+                "targets": -1
+            }],
+            buttons: ['copy','excel','csv','pdf',{
+                extend: 'print',
+                autoPrint: true,
+                title: '',
+
+                //For repeating heading.
+                repeatingHead: {
+                    logo: 'https://i.imgur.com/2arTww8.png',
+                    logoPosition: 'float-left',
+                    logoStyle: 'width:30%',
+                    title: '<h3>Dr S & J Veterinary Clinic and Grooming Centre</h3>',
+                    dates: getsdate,
+                    users: user1
+                    
+                }
+            }]
+        });
+    });
 </script>
 <script type="text/javascript">
 	$('#tableapplist').DataTable({

@@ -60,7 +60,7 @@
 					<table id="table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>#</th>
+								<th>Patient ID</th>
 								<th>Name</th>
 								<th>Breed</th>
 								<th>Gender</th>
@@ -74,21 +74,21 @@
 							@if(count($patients))
 								@foreach($patients as $key => $patient)
 									<tr>
-										<td>{{$key + 1}}</td>
+										<td>{{$patient->id}}</td>
 										<td>{{$patient->name}}</td>
 										<td>{{$patient->breed}}</td>
 										<td>{{$patient->gender}}</td>
 										<td>{{$patient->specie}}</td>
 										<td>{{ date('M d, Y', strtotime($patient->date_of_birth))}}</td>
 										<td>{{$patient->veterinarian}}</td>
-										<td width="15%">
+										<td width="20%">
 											<div class="form-inline">
 												@if(Auth::user()->role == 'doctor')
-												<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-block btn-success btn-sm"><i class="fa fa-list"></i> Appointments</a>
+												<a style="margin:1px" href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-success btn-sm" title="Appointments"><i class="fa fa-list"></i></a>
 												@endif
-												<button id="{{$patient}}" class="btn btn_add btn-block btn-info btn-sm btn_edit"><i class="fa fa-edit"></i> Edit</button>
+												<button style="margin:1px" id="{{$patient}}" class="btn btn_add btn-info btn-sm btn_edit"><i class="fa fa-edit" title="Edit"></i></button>
 												
-												<button id="{{$patient->id}}" class="btn btn-danger btn-sm mt-3 btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
+												<button style="margin:1px" id="{{$patient->id}}" class="btn btn-danger btn-sm btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
 											</div>
 										</td>
 									</tr>

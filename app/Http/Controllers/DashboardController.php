@@ -54,25 +54,28 @@ class DashboardController extends Controller
 
 
         
-       
-        // Upcomming Appointments
-        $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->where('isNotified','=',0)->paginate(4, ['*'], 'appointments');
+       $tom = Carbon::today()->addDays(1)->todatestring();
+   
+        // today's Appointments
+        $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->where('isNotified','=',1)->paginate(4, ['*'], 'appointments');
+        // tommorow
+        $tommorows = Appointment::where('next_appointment2','=',$tom)->where('isNotified','=',0)->paginate(4, ['*'], 'appointments');
 
-        foreach($appointments as $appointment){
+        foreach($tommorows as $tommorow){
 
-            if($appointment->patient->client->smsNotify == 'Mobile'){
+            if($tommorow->patient->client->smsNotify == 'Mobile'){
 
                 $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU2MzY0MTA2OSwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjcxODc4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.1L8SvVoKmlDqpEqa-_4R90-AwxzLqsIf2C1kaMgkqis";
 
-                $phone_number = $appointment->patient->client->contact;
-                $message = "Appointment Reminder from Dr. S & J Veterinary Clinic,\nGood day! Mr/Mrs.".$appointment->patient->client->name.", \nWe would like to inform you that your appointment with ".$appointment->patient->name." is today! \nyour pet will be having the following procedures:\n".$appointment->appointment."\nWe appreciate your time and look forward to seeing you later today!\nThis is a system generated message.";
+                $phone_number = $tommorow->patient->client->contact;
+                $message = "Appointment Reminder from Dr. S & J Veterinary Clinic,\nGood day! Mr/Mrs.".$tommorow->patient->client->name.", \nWe would like to inform you that your appointment with ".$tommorow->patient->name." is tommorow! \nyour pet will be having the following procedures:\n".$tommorow->appointment.",\n If you wish to reschedule your appointment, please contact this number. thank you! -This is a system generated message.";
                 $deviceID = 112412;
                 $options = [];
 
                 $smsGateway = new SmsGateway($token);
                 $result = $smsGateway->sendMessageToNumber($phone_number, $message, $deviceID, $options);
              
-                $app = Appointment::findOrfail($appointment->id);
+                $app = Appointment::findOrfail($tommorow->id);
                 $app->isNotified = 1;
                 $app->update();
                 

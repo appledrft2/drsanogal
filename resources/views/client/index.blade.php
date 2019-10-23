@@ -10,7 +10,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
+					
 						<th>Name</th>
 						<th>Gender</th>
 						<th>Occupation</th>
@@ -21,27 +21,27 @@
 				</thead>
 				<tbody>
 					@if(count($clients))
-					<?php $i=1; ?>
+	
 						@foreach($clients as $client)
 							<tr>
-								<td >{{$i++}}</td>
+							
 								<td >{{$client->name}}</td>
 								<td >{{$client->gender}}</td>
 								<td >{{$client->occupation}}</td>
 								<td>{{str_limit($client->address, 15)}}</td>
 								
-								<td width="15%" class="no-print">
+								<td width="20%" class="no-print">
 									<div class="form-inline">
 										@if(Auth::user()->role == 'doctor')
-										<a href="/dashboard/client/{{$client->id}}/forms" class="btn btn-block btn-default btn-sm btn-block"><i class="fa fa-folder"></i> Attachments</a>
+										<a style="margin:1px" href="/dashboard/client/{{$client->id}}/forms" class="btn  btn-default btn-sm " title="Attachments"><i class="fa fa-folder"></i></a>
 										@endif
 
-										<button id="{{$client->id}}" class="btn btn-warning btn-block btn-sm mbilling"><i class="fa fa-credit-card"></i> Manage Billing</button>
+										<button style="margin:1px" id="{{$client->id}}" class="btn btn-warning  btn-sm mbilling" title="Manage Billing"><i class="fa fa-credit-card"></i></button>
 
-										<a href="/dashboard/client/{{$client->id}}/patient" class="btn btn-block btn-success btn-sm btn-block"><i class="fa fa-paw"></i> Manage Pets</a>
-										<button id="{{$client}}" class="btn btn_edit btn-block btn-info btn-sm "><i class="fa fa-edit"></i> Edit </button>
+										<a style="margin:1px" href="/dashboard/client/{{$client->id}}/patient" class="btn  btn-success btn-sm " title="Manage Pets"><i class="fa fa-paw"></i></a>
+										<button style="margin:1px" id="{{$client}}" class="btn btn_edit  btn-info btn-sm "><i class="fa fa-edit" title="Edit"></i></button>
 									
-										<button id="{{$client->id}}" class="btn btn-danger btn-block btn-sm btn_delete"><i class="fa fa-trash"></i> Delete</button>
+										<button style="margin:1px" id="{{$client->id}}" class="btn btn-danger  btn-sm btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
 
 									
 										

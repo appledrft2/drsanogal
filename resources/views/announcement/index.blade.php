@@ -7,7 +7,7 @@
 				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Announcement</button>
 			</div>
 			<div id="mytable" class="table-responsive">
-			<table id="table" width="100%" class="table table-bordered table-hover">
+			<table id="table" width="100%" class="table  table-bordered table-hover dt-print-table">
 				<thead>
 					<tr>
 						<th>#</th>

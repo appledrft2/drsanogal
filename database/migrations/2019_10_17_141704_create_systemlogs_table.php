@@ -15,6 +15,7 @@ class CreateSystemlogsTable extends Migration
     {
         Schema::create('systemlogs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user');
             $table->string('activity');
             $table->timestamps();
         });

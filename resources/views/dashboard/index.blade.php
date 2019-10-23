@@ -93,7 +93,7 @@
                 <td>{{$appointment->appointment}}</td>
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
      
-                <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
+                <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified yesterday</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
                
               </tr>
               @endforeach

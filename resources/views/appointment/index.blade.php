@@ -103,7 +103,7 @@
 					<table id="table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>#</th>
+								
 								<th>Appointment</th>
 								
 								<th>Next appointment</th>
@@ -114,11 +114,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php $i=1; ?>
+							
 							@if(count($appointments))
 								@foreach($appointments as $appointment)
 									<tr>
-										<td>{{$i++}}</td>
+									
 										<td>{{$appointment->appointment}}</td>
 								
 										<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
@@ -131,9 +131,9 @@
 											@endif
 										</td>
 										<td>
-											<button id="{{$appointment}}" class=" btn-sm btn btn-info btn_edit btn-block"><i class="fa fa-edit"></i> Edit</button>
+											<button style="margin:1px" id="{{$appointment}}" class=" btn-sm btn btn-info btn_edit"><i class="fa fa-edit"></i></button>
 
-											<button id="{{$appointment->id}}" class="btn btn-block btn-danger btn-sm mt-3 btn_delete"><i class="fa fa-trash"></i> Delete</button>
+											<button style="margin:1px" id="{{$appointment->id}}" class="btn btn-danger btn-sm btn_delete"><i class="fa fa-trash"></i></button>
 										</td>
 									</tr>
 								@endforeach
