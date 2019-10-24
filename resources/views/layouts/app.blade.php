@@ -119,7 +119,7 @@
             </a>
           </li>
 
-          @if(Auth::user()->role == 'doctor')
+        
      
             
               <li class="nav-item">
@@ -129,7 +129,7 @@
                 </a>
               </li>
         
-          @endif
+ 
 
 
 <!-- 

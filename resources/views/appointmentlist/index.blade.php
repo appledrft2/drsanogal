@@ -43,7 +43,9 @@
 								<td>
 
 									<button id="{{$appointment}}" class="btn btn-info btn-sm btn_resched btn-block"><i class="fa fa-sync"></i>&nbsp;&nbsp;Reschedule</button>
+										@if(Auth::user()->role == 'doctor')
 									<button id="{{$appointment}}" class="btn btn-default btn_edit btn-sm btn-block"><i class="fa fa-info"></i>&nbsp;&nbsp;More Details</button>
+									@endif
 							
 								</td>
 							</tr>
