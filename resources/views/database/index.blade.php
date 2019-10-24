@@ -152,7 +152,7 @@
 
 				//save file
 				$backname = "backup-".rand(1000,9999)."-".date('Y-m-d').".sql";
-				$handle = fopen('database-backup/'.$backname,"w+");
+				$handle = fopen($backname,"w+");
 				fwrite($handle,$return);
 				fclose($handle);
 				
