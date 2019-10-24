@@ -63,7 +63,7 @@ Route::any('/dashboard/appointmentlist/search','AppointmentListController@search
 
 Route::any('/dashboard/appointmentlist/reschedule','AppointmentListController@reschedule')
 
-Route::get('/dashboard/appointmentlist','AppointmentListController@index')
+Route::get('/dashboard/appointmentlist','AppointmentListController@index');
 Route::patch('/dashboard/appointmentlist/{id}','AppointmentListController@update')->middleware('denyStaff'); 
 Route::patch('/dashboard/appointmentlist/{appointment_id}','AppointmentListController@UpdatePayment')->middleware('denyStaff'); 
 
