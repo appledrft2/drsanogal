@@ -70,6 +70,9 @@ class AppointmentListController extends Controller
             
         }
 
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Appointment "'.$appointment->Appointment.'" with pet '.$appointment->patient->name.' that was owned by '.$appointment->patient->client->name.' was Rescheduled to "'.request()->reschedule_date.'" from previous date '.request()->prev_date.'. ']);
+
         if ($status) {
             return response()->json([
                 'status'     => 'success',
