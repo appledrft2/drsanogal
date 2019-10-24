@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Systemlog::create(['activity' => ucfirst(Auth::user()->role)." : ".Auth::user()->name." has Logged In Successfully"]);
+        Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role) ,'activity' => "Logged In Successfully"]);
         toast('Successfully Logged In','success');
         return redirect('/dashboard');
     }

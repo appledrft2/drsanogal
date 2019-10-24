@@ -31,9 +31,9 @@
 								<td width="15%">
 									<div class="form-inline">
 										
-										<button id="{{$user}}" class="btn btn-info btn-sm btn_edit btn-block"><i class="fa fa-edit"></i> Edit</button>
+										<button style="margin:1px" id="{{$user}}" class="btn btn-info btn-sm btn_edit"><i class="fa fa-edit" title="Edit"></i></button>
 								
-										<button id="{{$user->id}}" class="btn btn-danger btn-sm btn_delete btn-block"><i class="fa fa-trash"></i> Delete</button>
+										<button style="margin:1px" id="{{$user->id}}" class="btn btn-danger btn-sm btn_delete"><i class="fa fa-trash" title="Delete"></i></button>
 								
 									</div>
 								</td>

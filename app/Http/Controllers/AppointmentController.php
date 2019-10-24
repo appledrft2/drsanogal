@@ -6,6 +6,7 @@ use App\Patient;
 use App\Appointment;
 use App\ManageAppointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -109,7 +110,6 @@ class AppointmentController extends Controller
             $data['patient_id'] = $patient;
             $data['price'] = $request->price[$key];
             $data['amount'] = $request->price[$key];
-            $data['appointment'] = $request->appointment[$key];
             $data['next_appointment2'] = $request->next_appointment2[$key];
             $data['appointment'] = $request->appointment[$key];
             $data['description'] = $request->description[$key];
@@ -117,7 +117,13 @@ class AppointmentController extends Controller
         
             $status = Appointment::create($data);
 
+            $petname = Patient::findOrfail($patient);
+            //logging the activity
+            \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new appointment "'.$request->appointment[$key].'" from pet '.$petname->name.' owned by '.$petname->client->name]);
+
         }
+
+        
 
         if ($status) {
             return response()->json([
@@ -194,6 +200,10 @@ class AppointmentController extends Controller
         $data['amount'] = $request->price;
 
         $appointment =Appointment::findOrfail($appointment_id);
+        $petname = Patient::findOrfail($patient);
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated appointment "'.$request->appointment.'" from pet '.$petname->name.' owned by '.$petname->client->name]);
+
         $status = $appointment->update($data);
 
         if ($status) {
@@ -229,6 +239,10 @@ class AppointmentController extends Controller
      */
     public function destroy($patient,Appointment $appointment)
     {
+        $petname = Patient::findOrfail($patient);
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Deleted appointment "'.$appointment->appointment.'" from pet '.$petname->name.' owned by '.$petname->client->name]);
+
         $status = $appointment->delete();
         if ($status) {
             return response()->json([

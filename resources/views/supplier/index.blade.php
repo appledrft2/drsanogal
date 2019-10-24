@@ -30,8 +30,9 @@
 								<!-- <th><form method="post" action="/dashboard/product/search">@csrf<input type="hidden" name="data" value="{{$supplier->id}}"><button class="btn btn-link">{{$supplier->products->count()}}</button></form></th> -->
 								<td width="15%">	
 									<!-- <a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-default btn-sm btn-block"><i class="fa fa-truck"></i> &nbsp;Stock In</a> -->
-									<button id="{{$supplier}}" class="btn btn-info btn-sm btn-block btn_edit"><i class="fa fa-edit"></i> Edit</button>
-									<button id="{{$supplier->id}}" class="btn btn-danger btn_block btn-sm btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
+									<a href="/dashboard/suppliers/{{$supplier->id}}/stockin" class="btn btn-success btn-sm"><i class="fa fa-truck" title="Manage Delivery"></i></a>
+									<button id="{{$supplier}}" class="btn btn-info btn-sm  btn_edit"><i class="fa fa-edit" title="Edit"></i></button>
+									<button id="{{$supplier->id}}" class="btn btn-danger  btn-sm  btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
 								</td>
 							</tr>
 						@endforeach

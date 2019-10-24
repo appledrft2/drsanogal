@@ -47,9 +47,6 @@
 					    <button type="button" class="btn btn-tool" data-widget="collapse">
 					      <i class="fas fa-plus"></i>
 					    </button>
-				
-
-
 					 </div>
 				</div>
 				<div class="card-body">
@@ -60,7 +57,7 @@
 					<table id="table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>Patient ID</th>
+								<th width="5%">Patient ID</th>
 								<th>Name</th>
 								<th>Breed</th>
 								<th>Gender</th>
@@ -84,7 +81,7 @@
 										<td width="20%">
 											<div class="form-inline">
 												@if(Auth::user()->role == 'doctor')
-												<a style="margin:1px" href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-success btn-sm" title="Appointments"><i class="fa fa-list"></i></a>
+												<a style="margin:1px" href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-success btn-sm" title="Appointments"><i class="fa fa-calendar-check"></i></a>
 												@endif
 												<button style="margin:1px" id="{{$patient}}" class="btn btn_add btn-info btn-sm btn_edit"><i class="fa fa-edit" title="Edit"></i></button>
 												
@@ -154,7 +151,15 @@
 	        		<textarea name="special_considerations" class="form-control" rows="2" placeholder="Special Considerations (Allergies,Surgeries,etc.)"></textarea>
 	        	</div>
 	        	<div class="form-group">
-	        	<input type="text" name="veterinarian" class="form-control " placeholder="Attending Veterinarian" value="" >
+	        	<!-- <input type="text" name="veterinarian" class="form-control " placeholder="Attending Veterinarian" value="" > -->
+	        	<select  name="veterinarian" class="form-control select2" style="width:100%">
+	        		<option value="" disabled selected>Veterinarian</option>
+	        		
+	        			@foreach($vets as $vet)
+	        				<option>{{$vet->name}}</option>
+	        			@endforeach
+	        			<option>Other</option>
+	        		</select>
              <!--      <label>Veterinarian</label>
                   <select class="select2" multiple="multiple" name="veterinarian[]" data-placeholder="Select a veterinarian"
                           style="width: 100%;">
@@ -214,7 +219,8 @@
         $('select[name=specie]').val(data.specie);
         $('textarea[name=markings]').val(data.markings);
         $('input[name=date_of_birth]').val(data.date_of_birth);
-        $('input[name=veterinarian]').val(data.veterinarian);
+       
+        $('select[name=veterinarian]').val(data.veterinarian);
         $('textarea[name=special_considerations]').val(data.special_considerations);
         $('.select2').trigger('change');
         $('#Modal').modal('show');

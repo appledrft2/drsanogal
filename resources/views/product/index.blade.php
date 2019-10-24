@@ -47,8 +47,8 @@
 								
 								<td width="15%">
 									<div class="form-inline">		
-										<button id="{{$product}}" class="btn btn-info btn-block btn_edit btn-sm "><i class="fa fa-edit"></i> Edit</button>
-										<button id="{{$product->id}}" class="btn btn-danger btn-sm btn-block btn_delete"><i class="fa fa-trash"></i> Delete</button>
+										<button style="margin: 1px" id="{{$product}}" class="btn btn-info btn_edit btn-sm " title="Edit"><i class="fa fa-edit"></i></button>
+										<button style="margin: 1px" id="{{$product->id}}" class="btn btn-danger btn-sm btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
 										
 									</div>
 								</td>

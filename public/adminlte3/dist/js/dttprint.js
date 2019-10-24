@@ -130,9 +130,9 @@ DataTable.ext.buttons.print = {
 		
 		// Adding title (repeats for every page while print)
 		if(config.repeatingHead.title) {
-			html += '<tr><th  colspan="'+data.header.length+'">Report type: Announcement</th></tr>';
-			html += '<tr><th  colspan="'+data.header.length+'">Prepared By: '+config.repeatingHead.users+' </th></tr>';
-			html += '<tr><th  colspan="'+data.header.length+'">As of: '+config.repeatingHead.dates+'</th></tr>';
+			html += '<tr><th style="font-weight:normal"  colspan="'+data.header.length+'"><b>Report type:</b> '+config.repeatingHead.reporttype+'</th></tr>';
+			html += '<tr><th style="font-weight:normal"  colspan="'+data.header.length+'"><b>Prepared By:</b> '+config.repeatingHead.users+' </th></tr>';
+			html += '<tr><th style="font-weight:normal"  colspan="'+data.header.length+'"><b>Date:</b> '+config.repeatingHead.dates+'</th></tr>';
 
 		}
 		

@@ -231,18 +231,8 @@
 	      <div class="modal-footer">
 	      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	        <div class="float-right">
-	        	
+	        	<button type="button" class="btn btn-info btn_save"  value="0">Save Changes</button>
 
-	        	<div class="input-group">
-	        	  <div class="input-group-append">
-	        	    <button class="btn btn-info dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Save Changes</button>
-	        	    <div name="savechoice" class="dropdown-menu">
-	        	      <button class="dropdown-item btn_save" value="0" >Save Changes</button>
-	        	      <button class="dropdown-item btn_save" value="1" >Save Changes proceed to billing</button>
-	        	   
-	        	    </div>
-	        	  </div>
-	        	</div>
 	        </div>
 
 	        

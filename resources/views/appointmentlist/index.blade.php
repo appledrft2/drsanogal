@@ -39,6 +39,7 @@
 								<td>{{date('M d, D Y', strtotime($appointment->created_at))}}</td>
 								<td>
 
+									<button id="{{$appointment}}" class="btn btn-info btn-sm btn-block"><i class="fa fa-sync"></i>&nbsp;&nbsp;Reschedule</button>
 									<button id="{{$appointment}}" class="btn btn-default btn_edit btn-sm btn-block"><i class="fa fa-info"></i>&nbsp;&nbsp;More Details</button>
 							
 								</td>
@@ -52,6 +53,36 @@
 			</table>
 			</div>
 
+		</div>
+	</div>
+
+	<div class="card">
+		<h4 class="card-header">Rescheduled Appointments</h4>
+		<div class="card-body">
+			<table id="table2" class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>Patient ID</th>
+						<th>Name</th>
+						<th>Appointment</th>
+						<th>Date of Appointment</th>
+						<th>Rescheduled Date</th>
+						<th>Amount</th>
+						<th>SMS notification</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><span class="badge badge-success">Owner is notified</span></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
@@ -98,22 +129,17 @@
 						<label>Appointment</label>
 						<select required name="appointment" class="form-control select2 appointment" style="width:100%">
 							<option value="">Select Appointment</option>
-							<option>5in1 Vaccination</option>
-							<option>Deworming</option>
-							<option>Rabies Vaccination</option>
-							<option>Bordetella</option>
-							<option>Leptospirosis</option>
-							<option>Heartworm Prevention</option>
-							<option>Tick and Flea Prevention</option>
-							<option>Manage Treatment</option>
-							<option>Laboratory</option>
-							<option>Check-up</option>
+							@if($services)
+								@foreach($services as $service)
+									<option>{{$service->title}}</option>
+								@endforeach
+							@endif
 							<option>Others</option>
 						</select>
 					</div>
 					<div class="col-12 form-group">
 						<label>Next Appointment</label>
-						<input type="date" value="" name="next_appointment2" class="form-control next_appointment2" placeholder="Next Appointment">
+						<input readonly type="date" value="" name="next_appointment2" class="form-control next_appointment2" placeholder="Next Appointment">
 					</div>
 					<div class="col-12 form-group">
 						<label>Price</label>

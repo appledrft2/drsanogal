@@ -30,6 +30,7 @@
     {
     html, body { height: auto; }
     .dt-print-table, .dt-print-table thead, .dt-print-table th, .dt-print-table tr {border: 0 none !important;}
+    .action { display:none; }
     }
   </style>
 </head>
@@ -119,32 +120,15 @@
           </li>
 
           @if(Auth::user()->role == 'doctor')
-          <li class="nav-item has-treeview  @if($title=='List' || $title=='Patient List' || $title=='Appointment List') menu-open @endif">
-            <a href="#" class="nav-link @if($title=='List' || $title=='Patient List' || $title=='Appointment List') active @endif">
-              <i class="nav-icon fas fa-list"></i>
-              <p>
-                List
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+     
+            
               <li class="nav-item">
-                <a href="/dashboard/patient" class="nav-link  @if($title=='Patient List') active @endif">
-                  <i class="nav-icon fa fa-paw"></i>
-                  <p>
-                    Patient List
-                  </p>
+                 <a href="/dashboard/appointmentlist" class="nav-link  @if($title=='Appointments') active @endif">
+                  <i class="nav-icon fa fa-calendar-check"></i>
+                  <p>Appointments</p>
                 </a>
               </li>
-              <li class="nav-item">
-                 <a href="/dashboard/appointmentlist" class="nav-link  @if($title=='Appointment List') active @endif">
-                  <i class="nav-icon fa fa-tags"></i>
-                  <p>Appointment List</p>
-                </a>
-              </li>
-             
-            </ul>
-          </li>
+        
           @endif
 
 
@@ -176,7 +160,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
               <li class="nav-item">
                 <a href="/dashboard/product" class="nav-link  @if($title=='Product') active @endif">
                   <i class="nav-icon fa fa-list"></i>
@@ -202,14 +186,7 @@
 
          
 
-           <li class="nav-item">
-            <a href="/dashboard/suppliers" class="nav-link @if($title=='Stock In') active @endif">
-              <i class="nav-icon fa fa-truck"></i>
-              <p>
-                Delivery
-              </p>
-            </a>
-          </li>
+           
          
 
           <li class="nav-item">
@@ -230,7 +207,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
               <li class="nav-item">
                 <a href="/dashboard/billingreport" class="nav-link @if($title=='Billing Report') active @endif">
                   <i class="nav-icon fas fa-book"></i>
@@ -274,7 +251,16 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore') menu-open @endif">
+            <a href="#" class="nav-link @if($title=='System Logs' || $title=='Database Backup/Restore') active @endif">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                Options
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
+              <li class="nav-item">
             <a href="/dashboard/systemlog" class="nav-link @if($title=='System Logs') active @endif">
               <i class="nav-icon fas fa-history"></i>
               <p>
@@ -283,13 +269,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/dashboard/database" class="nav-link @if($title=='Database Import/Export') active @endif">
+            <a href="/dashboard/database" class="nav-link @if($title=='Database Backup/Restore') active @endif">
               <i class="nav-icon fas fa-database"></i>
               <p>
                 Database
               </p>
             </a>
           </li>
+            </ul>
+          </li>
+
+          
       	@endif
         </ul>
 
@@ -343,6 +333,9 @@
 <script src="{{asset('adminlte3/dist/js/adminlte.min.js')}}"></script>
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
+<script type="text/javascript">
+  var printtype = '<?php echo $title; ?>';
+</script>
 <script type="text/javascript">
   //Timepicker
   $('#timepicker').datetimepicker({
@@ -498,11 +491,12 @@ function closeFullscreen() {
 <script>
     $(document).ready(function() {
         var d = new Date();
-        var getsdate = d.getFullYear()+' / '+d.getMonth()+' / '+d.getDate();
+        var getsdate = d.getMonth()+' / '+d.getDate()+' / '+d.getFullYear();
        var user1 = '<?php echo Auth::user()->name; ?>';
+
         // DataTable initialisation
         $('#table').DataTable({
-            "dom": 'Bfrtip',
+            "dom": 'Bfrtilp',
             "paging": true,
             "autoWidth": true,
             "columnDefs": [{
@@ -521,8 +515,8 @@ function closeFullscreen() {
                     logoStyle: 'width:30%',
                     title: '<h3>Dr S & J Veterinary Clinic and Grooming Centre</h3>',
                     dates: getsdate,
-                    users: user1
-                    
+                    users: user1,
+                    reporttype: printtype
                 }
             }]
         });

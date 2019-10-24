@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Systemlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -64,6 +66,9 @@ class AccountController extends Controller
         $data['image'] = 'uploads/no-profile.jpg';
 
         $data['password'] = Hash::make($data['password']);
+
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new account named "'.$request->name.'"']);
 
         $status = User::create($data);
          if ($status) {
@@ -126,6 +131,10 @@ class AccountController extends Controller
         }
 
         $user = User::findOrfail($id);
+
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated account named "'.$request->name.'"']);
+
         $status = $user->update($data);
          if ($status) {
             return response()->json([
@@ -162,7 +171,10 @@ class AccountController extends Controller
             // Delete image
             Storage::disk('s3')->delete($user->image);
         }
-        
+
+        //logging the activity 
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Deleted account named "'.$user->name.'"']);
+
         $status = $user->delete();
          if ($status) {
             return response()->json([

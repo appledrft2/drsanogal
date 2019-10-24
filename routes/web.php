@@ -1,6 +1,7 @@
 <?php
 
 use App\Systemlog;
+use App\Backuplist;
 
 if (env('APP_ENV') === 'production') {
     URL::forceScheme('https');
@@ -117,11 +118,13 @@ Route::get('/dashboard/systemlog/','SystemlogController@index');
 
 // Database import/export
 Route::get('/dashboard/database/',function(){
-	return view('database.index')->with('title','Database Import/Export');
+	$backuplist = Backuplist::latest()->get();
+	return view('database.index',compact('backuplist'))->with('title','Database Backup/Restore');
 });
 
 Route::post('/dashboard/database',function(){
-	return view('database.index')->with('title','Database Import/Export');
+	$backuplist = Backuplist::latest()->get();
+	return view('database.index',compact('backuplist'))->with('title','Database Backup/Restore');
 });
 
 });
@@ -131,6 +134,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/home/logout',function(){
-	Systemlog::create(['activity' => ucfirst(Auth::user()->role)." : ".Auth::user()->name." has Logged Out Successfully"]);
+	Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role) ,'activity' => "Logged Out Successfully"]);
 	return response()->json(['status' => 'success']);
 });

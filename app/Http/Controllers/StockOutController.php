@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\StockOut;
+use App\Systemlog;
 use App\StockOutDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StockOutController extends Controller
 {
@@ -56,6 +58,9 @@ class StockOutController extends Controller
     	  $udpateamount = StockOut::findOrfail($stockout_id->id);
     	  $udpateamount->amount = $sum;
     	  $udpateamount->update();
+
+          //logging the activity
+                  \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new transaction from point of sales with an amount of ₱'.$sum]);
 
     	  toast('Successfully added!','success');
     	  return redirect('dashboard/receipt/'.$data['rcode'])->with('title',$this->title);

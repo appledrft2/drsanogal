@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Supplier;
+use App\Systemlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SupplierController extends Controller
 {
@@ -56,6 +58,8 @@ class SupplierController extends Controller
             'contact'=>'required',
             'address'=>'required'
         ]);
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Created new supplier named "'.request()->name.'" ']);
 
         $status = Supplier::create($data);
         if ($status) {
@@ -108,6 +112,10 @@ class SupplierController extends Controller
             'contact'=>'required',
             'address'=>'required'
         ]);
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated supplier named "'.$supplier->name.'"']);
+
+
         $status = $supplier->update($data);
         if ($status) {
             return response()->json([
@@ -131,6 +139,8 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Deleted supplier named "'.$supplier->name.'"']);
         $status = $supplier->delete();
         if ($status) {
             return response()->json([

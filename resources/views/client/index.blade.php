@@ -15,6 +15,7 @@
 						<th>Gender</th>
 						<th>Occupation</th>
 						<th>Address</th>
+						<th>Status</th>
 			
 						<th class="no-print">Action</th>
 					</tr>
@@ -29,6 +30,7 @@
 								<td >{{$client->gender}}</td>
 								<td >{{$client->occupation}}</td>
 								<td>{{str_limit($client->address, 15)}}</td>
+								<td>@if($client->status == 'Active') <span class="badge badge-success">Active</span> @else <span class="badge badge-danger">Inactive</span> @endif</td>
 								
 								<td width="20%" class="no-print">
 									<div class="form-inline">
@@ -42,8 +44,6 @@
 										<button style="margin:1px" id="{{$client}}" class="btn btn_edit  btn-info btn-sm "><i class="fa fa-edit" title="Edit"></i></button>
 									
 										<button style="margin:1px" id="{{$client->id}}" class="btn btn-danger  btn-sm btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
-
-									
 										
 									</div>
 								</td>
@@ -142,6 +142,15 @@
 					<textarea class="form-control" id="address" name="address" cols="5" rows="5" placeholder="Address"></textarea>
 				</div>
 				<div class="form-group">
+					<label>Status</label>
+					<select name="status" class="form-control select2" style="width:100%">
+						<option value="">Status</option>
+						<option>Active</option>
+						<option>Inactive</option>
+						
+					</select>
+				</div>
+				<div class="form-group">
 					<div id="form-errors"></div>
 				</div>
 	      </div>
@@ -199,6 +208,7 @@
         $('input[name=work]').val(data.work);
         $('input[name=home]').val(data.home);
         $('select[name=smsNotify]').val(data.smsNotify);
+        $('select[name=status]').val(data.status);
         $('input[name=email]').val(data.email);
         $('#address').val(data.address);
         $('.select2').trigger('change');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSystemlogsTable extends Migration
+class CreateBackuplistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSystemlogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('systemlogs', function (Blueprint $table) {
+        Schema::create('backuplists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user');
-            $table->string('role');
-            $table->string('activity');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateSystemlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('systemlogs');
+        Schema::dropIfExists('backuplists');
     }
 }

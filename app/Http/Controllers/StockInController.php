@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\StockIn;
 use App\Supplier;
+use App\Systemlog;
+use App\ProductUnit;
 use App\StockInDetail;
+use App\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StockInController extends Controller
 {
@@ -24,9 +28,9 @@ class StockInController extends Controller
         $stockins = Stockin::where('supplier_id',$supplier_id)->get();
         return view('stockin.index',compact('stockins','supplier'))->with('title',$this->title);
         }else{
-            toast('There are no products with this supplier yet','error');
-            $suppliers = Supplier::latest()->get();
-            return view('supplier.index',compact('suppliers'))->with('title',$this->title);
+            toast('There are no products with this supplier yet, please add a product for the chosen supplier','error');
+            return redirect('dashboard/supplier');
+        
         }
     }
 
@@ -100,10 +104,15 @@ class StockInController extends Controller
         }
 
         $discount = $sum * $request->discount;
-
+        $overall = $sum - $discount;
         $udpateamount = Stockin::findOrfail($stockin_id->id);
-        $udpateamount->amount = $sum - $discount;
+        $udpateamount->amount = $overall;
+
         $udpateamount->update();
+
+        $supplier = Supplier::findOrfail($supplier_id);
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new delivery from supplier "'.$supplier->name.'" with an amount of ₱'.$overall]);
 
         toast('Successfully added!','success');
         return redirect('dashboard/suppliers/'.$supplier_id.'/stockin')->with('title',$this->title);

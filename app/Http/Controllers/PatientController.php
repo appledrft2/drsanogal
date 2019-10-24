@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Client;
 use App\Patient;
 use Illuminate\Http\Request;
@@ -17,9 +18,10 @@ class PatientController extends Controller
      */
     public function index($client)
     {
+        $vets = User::where('role','=','Doctor')->get(); 
         $patients = Client::findOrfail($client)->patients()->get();
         $client = Client::findOrfail($client);
-        return view('patient.index',['patients'=>$patients,'client'=>$client])->with('title',$this->title);
+        return view('patient.index',compact('vets','patients','client'))->with('title',$this->title);
     }
 
     /**
@@ -76,7 +78,7 @@ class PatientController extends Controller
 
         $clientname = Client::findOrfail($client);
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' added new patient named "'.request()->name.'" from owner '.$clientname->name]);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new patient named "'.request()->name.'" from owner '.$clientname->name]);
 
         if ($status) {
             return response()->json([
@@ -123,6 +125,10 @@ class PatientController extends Controller
      */
     public function update($client,Request $request, Patient $patient)
     {
+        $cname = Client::findOrfail($client);
+         //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated patient named "'.$patient->name.'" from owner '.$cname->name]);
+
         $data = $request->validate([
             'name' => 'required',
             'breed' => 'required',
@@ -134,11 +140,13 @@ class PatientController extends Controller
             'special_considerations' => 'required'
         ]);
 
+       
 
         $status = $patient->update($data);
-        $cname = Client::findOrfail($client);
-        //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' updated a patient named "'.$patient->name.'" to '.request()->name.' from owner '.$cname->name]);
+        
+
+
+        
 
         if ($status) {
             return response()->json([
@@ -164,7 +172,7 @@ class PatientController extends Controller
     {
         $cname = Client::findOrfail($client);
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' deleted a patient named "'.$patient->name.'" from owner '.$cname->name]);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Deleted patient named "'.$patient->name.'" from owner '.$cname->name]);
 
         $status = $patient->delete();
         if ($status) {

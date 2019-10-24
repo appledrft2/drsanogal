@@ -102,6 +102,7 @@
 
 @section('script')
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+
 <script type="text/javascript">
 	const Toast = Swal.mixin({
 	  toast: true,

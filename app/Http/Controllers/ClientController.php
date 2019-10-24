@@ -58,7 +58,7 @@ class ClientController extends Controller
             'name'=>'required',
             'gender'=>'required',
             'occupation'=>'required',
-           
+            'status' => 'required',
             'address'=>'required',
             'smsNotify'=>'required',
             'email'=>'nullable'
@@ -73,7 +73,7 @@ class ClientController extends Controller
         $status = Client::create($data);
 
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' added new client named "'.request()->name.'" ']);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new client named "'.request()->name.'" ']);
 
         if ($status) {
             return response()->json([
@@ -123,7 +123,7 @@ class ClientController extends Controller
         $data = $request->validate([
             'name'=>'required',
             'gender'=>'required',
-           
+            'status'=>'required',
             'address'=>'required',
             'occupation'=>'required',
             'smsNotify'=>'required',
@@ -135,12 +135,13 @@ class ClientController extends Controller
         $data['home'] =  (request()->home) ? request()->home : ' ';
         $data['email'] =  (request()->email) ? request()->email : ' ';
 
-
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated client named "'.$client->name.'"']);
 
         $status = $client->update($data);
 
-        //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' updated a client named "'.$client->name.'" to '.request()->name]);
+        
+
 
         if ($status) {
             return response()->json([
@@ -166,7 +167,7 @@ class ClientController extends Controller
     {
 
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' deleted a client named "'.$client->name.'" ']);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' => ' Deleted  client named "'.$client->name.'" ']);
         
         $status = $client->delete();
 

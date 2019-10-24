@@ -11,6 +11,7 @@
 					<thead>
 						<tr>
 							<th>User</th>
+							<th>Role</th>
 							<th>Activity</th>
 							<th>Date</th>
 						</tr>
@@ -21,8 +22,9 @@
 							@foreach($logs as $key => $ts)
 							<tr>
 								<td>{{$ts->user}}</td>
-								 <td>{{$ts->activity}}</td>
-								 <td>{{$ts->created_at->isoFormat('MMM D YYYY, h:mm:ss a')}}</td>
+								<td>{{$ts->role}}</td>
+								<td>{{$ts->activity}}</td>
+								<td>{{$ts->created_at->isoFormat('MMM D YYYY, h:mm:ss a')}}</td>
 							</tr>
 							@endforeach
 						@endif

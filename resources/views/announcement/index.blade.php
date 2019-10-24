@@ -10,29 +10,29 @@
 			<table id="table" width="100%" class="table  table-bordered table-hover dt-print-table">
 				<thead>
 					<tr>
-						<th>#</th>
+				
 						<th>Title</th>
 					
 						<th>Author</th>
 						<th>Created</th>
-						<th class="no-print" width="20%">Action</th>
+						<th class="action" width="20%">Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@if(count($announcements))
-					<?php $i=1; ?>
+
 						@foreach($announcements as $announcement)
 							<tr>
-								<td>{{$i++}}</td>
+				
 								<td >{{$announcement->title}}</td>
 				
 								<td >{{$announcement->user->name}}</td>
 								<td >{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								
-								<td class="no-print">
+								<td class="action">
 									<div class="form-inline">
-										<button id="{{$announcement->id}}" class="btn btn-sm btn-info btn_edit mr-1"><i class="fa fa-edit"></i> Edit</button>
-										<button id="{{$announcement->id}}" class="btn btn-sm btn-danger btn_delete"><i class="fa fa-trash"></i> Delete</button>
+										<button id="{{$announcement->id}}" class="btn btn-sm btn-info btn_edit mr-1"><i class="fa fa-edit" title="Edit"></i></button>
+										<button id="{{$announcement->id}}" class="btn btn-sm btn-danger btn_delete"><i class="fa fa-trash" title="Delete"></i></button>
 									</div>
 								</td>
 							</tr>
@@ -93,6 +93,7 @@
 
 @section('script')
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+
 <script type="text/javascript">
 	const Toast = Swal.mixin({
 	  toast: true,

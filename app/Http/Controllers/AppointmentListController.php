@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\ManageAppointment;
 use Illuminate\Http\Request;
 
 class AppointmentListController extends Controller
 {	
-	public $title = "Appointment List";
+	public $title = "Appointments";
     public function index(){
+        $services = ManageAppointment::orderBy('created_at','asc')->get();
     	$appointments = Appointment::orderByDesc('next_appointment2')->get();
-    	return view('appointmentlist.index',compact('appointments'))->with('title',$this->title);
+    	return view('appointmentlist.index',compact('appointments','services'))->with('title',$this->title);
     }
 
     public function search($patient)
@@ -62,7 +64,7 @@ class AppointmentListController extends Controller
         if ($status) {
             return response()->json([
                 'status'     => 'success',
-                'message' => 'Records added successfully'
+                'message' => 'Records updated successfully'
 
             ]);
         } else {

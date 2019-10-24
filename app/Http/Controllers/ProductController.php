@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Supplier;
+use App\Systemlog;
 use App\ProductUnit;
 use App\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -89,6 +91,9 @@ class ProductController extends Controller
         // Save filename to database
         $data['image'] = $pathToSave;
 
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Added new product named "'.$request->name.'"']);
+
         $status = Product::create($data);
         if ($status) {
             return response()->json([
@@ -146,6 +151,8 @@ class ProductController extends Controller
             'lowstock'=>'required',
             'image' => 'image|nullable|max:1999'
         ]);
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated product named "'.$request->name.'"']);
 
         //handle file uploading
         if($request->hasFile('image')){
@@ -190,6 +197,8 @@ class ProductController extends Controller
             // Delete image
             Storage::disk('s3')->delete($product->image);
         }
+        //logging the activity
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Deleted product named "'.$product->name.'"']);
 
         $status = $product->delete();
         if ($status) {

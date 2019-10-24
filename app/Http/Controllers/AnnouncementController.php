@@ -54,7 +54,8 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' created new announcement titled "'.request()->title.'" ']);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Created new announcement titled "'.request()->title.'" ']);
+
 
         $data = request()->validate([
             'title'=>'required',
@@ -148,7 +149,7 @@ class AnnouncementController extends Controller
 
         $announcement = Announcement::findOrfail($id);
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' updated an announcement titled "'.$announcement->title.'" to '.request()->title]);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated an announcement titled "'.$announcement->title.'"']);
 
         $data = request()->validate([
             'title'=>'required',
@@ -200,7 +201,7 @@ class AnnouncementController extends Controller
         $announcement = Announcement::findOrfail($id);
 
         //logging the activity
-        \App\Systemlog::create(['activity' => ' '.ucfirst(Auth::user()->role).' : '.Auth::user()->name.' deleted an announcement titled "'.$announcement->title.'" ']);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Deleted an announcement titled "'.$announcement->title.'" ']);
 
         if($announcement->cover_image != 'uploads/noimage.png'){
             // Delete image
