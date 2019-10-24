@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Systemlog;
 use App\reschedule;
 use App\Appointment;
+use App\Custom\SmsGateway;
 use App\ManageAppointment;
 use Illuminate\Http\Request;
-use App\Custom\SmsGateway;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentListController extends Controller
 {	
@@ -71,7 +73,7 @@ class AppointmentListController extends Controller
         }
 
         //logging the activity
-        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Appointment "'.$appointment->Appointment.'" with pet '.$appointment->patient->name.' that was owned by '.$appointment->patient->client->name.' was Rescheduled to "'.request()->reschedule_date.'" from previous date '.request()->prev_date.'. ']);
+        \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Appointment "'.$appointment->appointment.'" with pet '.$appointment->patient->name.' owned by Mr/Mrs. '.$appointment->patient->client->name.' was Rescheduled to "'.$request->reschedule_date.'" from previous date '.$request->prev_date.'. ']);
 
         if ($status) {
             return response()->json([
