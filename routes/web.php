@@ -59,11 +59,11 @@ Route::resource('/dashboard/client/{client}/patient','PatientController');
 Route::any('/dashboard/patient/search','PatientListController@search')->middleware('denyStaff'); 
 Route::get('/dashboard/patient','PatientListController@index')->middleware('denyStaff'); 
 // Appointment List module
-Route::any('/dashboard/appointmentlist/search','AppointmentListController@search')->middleware('denyStaff');
+Route::any('/dashboard/appointmentlist/search','AppointmentListController@search')
 
-Route::any('/dashboard/appointmentlist/reschedule','AppointmentListController@reschedule')->middleware('denyStaff'); 
+Route::any('/dashboard/appointmentlist/reschedule','AppointmentListController@reschedule')
 
-Route::get('/dashboard/appointmentlist','AppointmentListController@index')->middleware('denyStaff'); 
+Route::get('/dashboard/appointmentlist','AppointmentListController@index')
 Route::patch('/dashboard/appointmentlist/{id}','AppointmentListController@update')->middleware('denyStaff'); 
 Route::patch('/dashboard/appointmentlist/{appointment_id}','AppointmentListController@UpdatePayment')->middleware('denyStaff'); 
 
