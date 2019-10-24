@@ -66,13 +66,13 @@
 
 				$name       = $_FILES['file']['name'];  
 			    $temp_name  = $_FILES['file']['tmp_name'];
-			    
-			    $path = $location.$name;   
+			    $location = '/';
+			    $path = $location.'import-'.$name;   
 
 			    if(isset($name)){
 			        if(!empty($name)){      
 			               
-			            if(move_uploaded_file($temp_name, '/'.$name)){
+			            if(move_uploaded_file($temp_name, $path)){
 			                echo 'File uploaded successfully';
 			            }
 			        }       
