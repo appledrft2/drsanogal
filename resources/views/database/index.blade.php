@@ -188,7 +188,7 @@
 							<td>{{$list->created_at->isoFormat('MMM D YYYY, h:mm:ss a')}}</td>
 					
 							<td>
-							<!-- 	<button class="btn btn-default btn-sm"><i class="fa fa-sync" title="Restore"></i> Restore</button> -->
+					
 								<a href="/database-backup/{{$list->name}}" class="btn btn-primary btn-sm"><i class="fa fa-download" title="Download"></i> Download</a>
 
 							</td>
