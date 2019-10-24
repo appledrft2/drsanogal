@@ -218,7 +218,7 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-
+	 $("#tableapplist2").DataTable();
 	const Toast = Swal.mixin({
 	  toast: true,
 	  position: 'top-end',
