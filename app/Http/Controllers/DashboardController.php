@@ -57,7 +57,7 @@ class DashboardController extends Controller
        $tom = Carbon::today()->addDays(1)->todatestring();
    
         // today's Appointments
-        $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->where('isNotified','=',1)->paginate(4, ['*'], 'appointments');
+        $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
         // tommorow
         $tommorows = Appointment::where('next_appointment2','=',$tom)->where('isNotified','=',0)->paginate(4, ['*'], 'appointments');
 
