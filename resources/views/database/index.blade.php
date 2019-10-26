@@ -64,24 +64,12 @@
 			}
 			  
 
-				$name       = $_FILES['file']['name'];  
-			    $temp_name  = $_FILES['file']['tmp_name'];
-			    $location = 'uploads/';
-			    $path = $location.$name;   
+			
+			  $temp_name  = $_FILES['file']['tmp_name'];
+	
 
-			    if(isset($name)){
-			        if(!empty($name)){      
-			               
-			            if(move_uploaded_file($temp_name, $location.$name)){
-			                echo 'File uploaded successfully';
-			            }
-			        }       
-			    }  else {
-			        echo 'You should select a file to upload !!';
-			    }
-
-			  $handle = fopen($path,"r+");
-			  $contents = fread($handle,filesize($path));
+			  $handle = fopen($temp_name,"r+");
+			  $contents = fread($handle,filesize($temp_name));
 			  $sql = explode(';',$contents);
 
 			 
@@ -152,7 +140,7 @@
 
 				//save file
 				$backname = "backup-".rand(1000,9999)."-".date('Y-m-d').".sql";
-				$handle = fopen('database-backup/'.$backname,"w+");
+				$handle = fopen($backname,"w+");
 				fwrite($handle,$return);
 				fclose($handle);
 				
@@ -164,7 +152,7 @@
 				
 				
 
-				echo '<div class="card"><div class="card-body"><a href="/database-backup/'.$backname.'" class="btn btn-link btn-lg">Download Latest Backup File</a></div></div>';
+				// echo '<div class="card"><div class="card-body"><a href="/database-backup/'.$backname.'" class="btn btn-link btn-lg">Download Latest Backup File</a></div></div>';
 				
 			}
 
@@ -189,7 +177,7 @@
 					
 							<td>
 							<!-- 	<button class="btn btn-default btn-sm"><i class="fa fa-sync" title="Restore"></i> Restore</button> -->
-								<a href="/database-backup/{{$list->name}}" class="btn btn-primary btn-sm"><i class="fa fa-download" title="Download"></i> Download</a>
+								<a href="/{{$list->name}}" class="btn btn-primary btn-sm"><i class="fa fa-download" title="Download"></i> Download</a>
 
 							</td>
 						</tr>
