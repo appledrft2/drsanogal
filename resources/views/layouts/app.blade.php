@@ -21,7 +21,7 @@
     <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
    <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
