@@ -10193,8 +10193,8 @@ body,
 }
 
 .nav-sidebar .menu-open > .nav-link i.right {
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-180deg);
+  transform: rotate(-180deg);
 }
 
 .nav-sidebar > .nav-item {
