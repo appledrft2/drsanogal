@@ -702,15 +702,15 @@
       CARD_BODY: '.card-body',
       CARD_FOOTER: '.card-footer',
       COLLAPSED: '.collapsed-card',
-      COLLAPSE_ICON: '.fa-minus',
-      EXPAND_ICON: '.fa-plus'
+      COLLAPSE_ICON: '.fa-angle-down',
+      EXPAND_ICON: '.fa-angle-up'
     };
     var ClassName = {
       COLLAPSED: 'collapsed-card',
       WAS_COLLAPSED: 'was-collapsed',
       MAXIMIZED: 'maximized-card',
-      COLLAPSE_ICON: 'fa-minus',
-      EXPAND_ICON: 'fa-plus',
+      COLLAPSE_ICON: 'fa-angle-down',
+      EXPAND_ICON: 'fa-angle-up',
       MAXIMIZE_ICON: 'fa-expand',
       MINIMIZE_ICON: 'fa-compress'
     };

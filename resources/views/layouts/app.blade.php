@@ -157,7 +157,7 @@
               <i class="nav-icon fas fa-archive"></i>
               <p>
                 Product
-                <i class="right fas fa-angle-left"></i>
+                <i class="right fas fa-angle-down"></i>
               </p>
             </a>
             <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
@@ -204,7 +204,7 @@
               <i class="nav-icon fas fa-archive"></i>
               <p>
                 Reports
-                <i class="right fas fa-angle-left"></i>
+                <i class="right fas fa-angle-down"></i>
               </p>
             </a>
             <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
@@ -256,7 +256,7 @@
               <i class="nav-icon fas fa-cogs"></i>
               <p>
                 Options
-                <i class="right fas fa-angle-left"></i>
+                <i class="right fas fa-angle-down"></i>
               </p>
             </a>
             <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
@@ -330,7 +330,7 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('adminlte3/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('adminlte3/dist/js/adminlte.js')}}"></script>
 <!-- for mobile browsers -->
 <script src="{{asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
 <script type="text/javascript">

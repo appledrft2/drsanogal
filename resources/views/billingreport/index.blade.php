@@ -28,7 +28,7 @@
       <h4 >Generate Report</h4>
       <div class="card-tools " >
           <button type="button" class="btn btn-tool" data-widget="collapse">
-            <i class="fas fa-plus"></i>
+            <i class="fas fa-angle-down"></i>
           </button>
        </div>
     </div>

@@ -11,7 +11,7 @@
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                \
                 </div>
               </div>
 
@@ -29,7 +29,7 @@
         <h4 >Generate Report</h4>
         <div class="card-tools " >
             <button type="button" class="btn btn-tool" data-widget="collapse">
-              <i class="fas fa-plus"></i>
+              <i class="fas fa-angle-down"></i>
             </button>
          </div>
       </div>
