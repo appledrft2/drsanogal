@@ -4,7 +4,7 @@
 <div class="form-group"><a href="/dashboard/stockout" class="btn btn-default">Go Back</a></div>
 <div class="card">
 	<div class="card-body">
-		<form method="POST" action="/dashboard/stockout">
+		<form id="form1" method="POST" action="/dashboard/stockout">
 		@csrf
 		<div class="row mb-5">
 			<div class="col-6">
@@ -91,7 +91,7 @@
 				<div class="card">
 					<div class="card-header"><label>Product Table</label></div>
 					<div class="card-body">
-						<table id="productlist2" class="table table-bordered">
+						<table id="testing" class="table table-bordered">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -111,7 +111,7 @@
 					<div class="card-footer">
 						<div class="float-right">
 
-							<button class="btn btn-primary"><i class="fa fa-check"></i> Process Order</button>
+							<button id="process" class="btn btn-primary"><i class="fa fa-check"></i> Process Order</button>
 						</div>
 					</div>
 				</div>
@@ -129,6 +129,22 @@
 @section('script')
 
 <script type="text/javascript">
+	$('#testing').DataTable();
+	$('#process').click(function(e){
+		
+		var count = $('#testing tbody tr').length;
+
+		if(count < 2){
+			e.preventDefault();
+			alert('Please add one or more product.')
+		}else{
+			var choice = confirm('are you sure?');
+			if(choice == false){
+				e.preventDefault();
+			}
+		}
+	})
+
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
     product = JSON.parse(product);

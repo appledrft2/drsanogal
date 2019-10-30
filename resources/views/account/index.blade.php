@@ -14,7 +14,7 @@
 						<th>Name</th>
 						<th>Email</th>
 						<th>Role</th>
-						<th width="10%">Posted Announcements</th>
+						
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -27,7 +27,7 @@
 								<td>{{$user->name}}</td>
 								<td>{{$user->email}}</td>
 								<td>{{ucfirst($user->role)}}</td>
-								<td><a href="/dashboard/announcement" class="text-bold">{{$user->announcements->count()}}</a></td>
+								
 								<td width="15%">
 									<div class="form-inline">
 										

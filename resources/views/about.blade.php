@@ -8,17 +8,19 @@
 
       <div id="about" class=" col-md-12 mb-5" >
         <h2 class="col-md-12">Announcements</h2>
+        <hr>
         <div class="">
           @if(count($announcements))
            <div class="col-md-8 mx-auto">
                @foreach($announcements as $announcement)
                    <div class="card mt-2">
                      <div class="card-body">
-                       <h4 class="card-title" style="margin-bottom: 0px">{{$announcement->title}}</h4>
-                       <small><strong>Author:</strong> {{$announcement->user->email}}</small><br>
+                       <h2 class="card-title" style="margin-bottom: 0px">{{ucfirst($announcement->title)}}</h2>
+             
                         <small><strong>Date Posted: </strong>{{$announcement->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</small>
-                        <center><img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$announcement->cover_image}}" width="400px" height="200px"></center>
-              
+                        <hr>
+                        
+
                         <div class="mt-2">
                           <p class="card-text" style="text-align: justify">{!!$announcement->body!!}</p>
                         </div>

@@ -222,7 +222,7 @@
       
           
 
-          <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore' || $title=='Product Unit' || $title=='Product Category') menu-open @endif">
+          <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore' || $title=='Product Unit' || $title=='Product Category' || $title =='Attachments Category'  || $title =='Services' || $title =='Account') menu-open @endif">
             <a href="#" class="nav-link @if($title=='System Logs' || $title=='Database Backup/Restore') active @endif">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
@@ -245,6 +245,14 @@
                   <i class="nav-icon fas fa-paw"></i>
                   <p>
                     Services
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/attachmentcategory" class="nav-link @if($title=='Attachments Category') active @endif">
+                  <i class="nav-icon fas fa-folder"></i>
+                  <p>
+                    Attachments Category
                   </p>
                 </a>
               </li>

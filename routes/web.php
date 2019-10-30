@@ -50,7 +50,7 @@ Route::any('/dashboard/client/search','ClientController@search');
 Route::resource('/dashboard/client','ClientController');
 //Client Forms module
 Route::resource('/dashboard/client/{client}/forms','ClientFormController');
-Route::resource('/dashboard/formcategory','FormCategoryController');
+Route::resource('/dashboard/attachmentcategory','FormCategoryController');
 
 // Patient module
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');

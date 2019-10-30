@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-	<div class="form-group"><button onclick="GoBackWithRefresh();return false;" class="btn btn-default">Go Back</button></div>
+
 	<div class="card">
 		
 		<div class="card-body">
 			<div class="form-group mb-3">
-				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Category</button>
+				<button class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Attachment Category</button>
 			</div>
 		
 				<div id="mytable" class="table-container">
-				  <table id="table" class="table table-hover" width="100%">
+				  <table id="table2" class="table table-hover" width="100%">
 				  	<thead>
 				  		<tr>
 				  			<th>#</th>
@@ -212,9 +212,7 @@
 	// Refresh the table
 	function refreshTable() {  
 	   	$( "#mytable" ).load( "/dashboard/formcategory #mytable", function(){
-		  $("#table").DataTable({
-		  			            dom: 'lBfrtip'
-		  			          });
+		  $("#table2").DataTable();
 		});
 	}
 </script>

@@ -10,7 +10,7 @@
 			</div>
 		
 				<div id="mytable" class="table-container">
-				  <table id="table" class="table table-hover" width="100%">
+				  <table id="table2" class="table table-hover" width="100%">
 				  	<thead>
 				  		<tr>
 				  			<th>#</th>
@@ -219,9 +219,7 @@
 	// Refresh the table
 	function refreshTable() {  
 	   	$( "#mytable" ).load( "/dashboard/productunit #mytable", function(){
-		   $("#table").DataTable({
-		   			            dom: 'lBfrtip'
-		   			          });
+		   $("#table2").DataTable();
 		});
 	}
 </script>

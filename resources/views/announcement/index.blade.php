@@ -74,7 +74,7 @@
 	        		<label>Description</label>
 	        			<textarea  class="form-control textarea " cols="5" rows="5" name="body" placeholder="Description"></textarea>
 	        	</div>
-	        	<div class="form-group">
+	        	<div class="form-group" style="display:none">
 	        		<label>Attach an image</label>
 	        		<div class="form-group" ><span id="img"></span></div>
 	        		<input type="file" id="cover_image" name="cover_image" class="form-control-file mb-5"  accept="image/*">

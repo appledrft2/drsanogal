@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FormCategoryController extends Controller
 {   
-    public $title = "Client";
+    public $title = "Attachments Category";
     /**
      * Display a listing of the resource.
      *
