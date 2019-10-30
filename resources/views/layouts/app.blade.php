@@ -152,37 +152,15 @@
             </a>
           </li>
 
-          <li class="nav-item has-treeview  @if($title=='Product' || $title=='Product Category' || $title=='Product Unit') menu-open @endif">
-            <a href="#" class="nav-link @if($title=='Product' || $title=='Product Category' || $title=='Product Unit') active @endif">
-              <i class="nav-icon fas fa-archive"></i>
-              <p>
-                Product
-                <i class="right fas fa-angle-down"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
               <li class="nav-item">
                 <a href="/dashboard/product" class="nav-link  @if($title=='Product') active @endif">
-                  <i class="nav-icon fa fa-list"></i>
+                  <i class="nav-icon fa fa-archive"></i>
                   <p>
-                    Product List
+                    Product
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
-                 <a href="/dashboard/productcategory" class="nav-link  @if($title=='Product Category') active @endif">
-                  <i class="nav-icon fa fa-tags"></i>
-                  <p>Category</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                 <a href="/dashboard/productunit" class="nav-link  @if($title=='Product Unit') active @endif">
-                  <i class="nav-icon fa  fa-balance-scale"></i>
-                  <p>Unit</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
 
          
 
@@ -241,25 +219,50 @@
           
             @endif
 
-      	@if(Auth::user()->role == 'doctor')
-          <li class="nav-item">
-            <a href="/dashboard/account" class="nav-link @if($title=='Account') active @endif">
-              <i class="nav-icon fas fa-key"></i>
-              <p>
-                Account
-              </p>
-            </a>
-          </li>
+      
+          
 
           <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore') menu-open @endif">
             <a href="#" class="nav-link @if($title=='System Logs' || $title=='Database Backup/Restore') active @endif">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Options
+                Settings
                 <i class="right fas fa-angle-down"></i>
               </p>
             </a>
             <ul class="nav nav-treeview" style="padding:0 0 0 20px;background-color: #45505a">
+                @if(Auth::user()->role == 'doctor')
+              <li class="nav-item">
+                <a href="/dashboard/account" class="nav-link @if($title=='Account') active @endif">
+                  <i class="nav-icon fas fa-key"></i>
+                  <p>
+                    Account
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/services" class="nav-link @if($title=='Services') active @endif">
+                  <i class="nav-icon fas fa-paw"></i>
+                  <p>
+                    Services
+                  </p>
+                </a>
+              </li>
+              @endif
+              <li class="nav-item">
+                 <a href="/dashboard/productcategory" class="nav-link  @if($title=='Product Category') active @endif">
+                  <i class="nav-icon fa fa-tags"></i>
+                  <p>Product Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="/dashboard/productunit" class="nav-link  @if($title=='Product Unit') active @endif">
+                  <i class="nav-icon fa  fa-balance-scale"></i>
+                  <p>Product Unit</p>
+                </a>
+              </li>
+             
+                @if(Auth::user()->role == 'doctor')
               <li class="nav-item">
             <a href="/dashboard/systemlog" class="nav-link @if($title=='System Logs') active @endif">
               <i class="nav-icon fas fa-history"></i>
@@ -276,11 +279,12 @@
               </p>
             </a>
           </li>
+          @endif
             </ul>
           </li>
 
           
-      	@endif
+      
         </ul>
 
       </nav>

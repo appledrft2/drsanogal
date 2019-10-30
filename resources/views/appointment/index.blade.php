@@ -94,9 +94,7 @@
 					<div class="float-left mb-3">
 						<button class="btn btn_add btn-default "><i class="fa fa-plus-circle"></i> New Appointment</button>
 					</div>
-					<div class="float-right mb-3">
-						<a href="/dashboard/services" class="btn  btn-default "><i class="fa fa-paw"></i> Services</a>
-					</div>
+					
 					
 					
 					<div id="mytable" class="table-responsive">
@@ -183,11 +181,11 @@
 	                      </div>   
 					</div>
 					<div class="col-6 form-group">
-					<label>Temperature</label>
+					<label>Temperature (C)</label>
 					<input type="text" name="temperature" class="form-control  " placeholder="Temperature">
 					</div>
 					<div class="col-6 form-group">
-						<label>Weight</label>
+						<label>Weight (Kg)</label>
 						<input type="text" name="kilogram" class="form-control  " placeholder="Weight">
 					</div>
 
@@ -213,8 +211,8 @@
 						<input required type="text" name="price[]" class="form-control" placeholder="Price">
 					</div>
 					<div class="col-12 form-group">
-						<label>Description</label>
-						<textarea  name="description[]" class="form-control" rows="5" placeholder="Description.."></textarea>
+						<label>Findings</label>
+						<textarea  name="description[]" class="form-control" rows="5" placeholder="Findings.."></textarea>
 					</div>
 					<div id="rows" class="col-12 form-group">
 						

@@ -124,6 +124,7 @@
 	        	<input type="hidden" name="_method" value="">
 	        	<div class="form-group"><input type="text" name="name" class="form-control " placeholder="Name" value="" ></div>
 	        	<div class="form-group"><input type="text" name="breed" class="form-control " placeholder="Breed" value="" ></div>
+	        	<label>Date of birth</label>
 	        	<div class="form-group"><input type="date" name="date_of_birth" class="form-control " placeholder="birthday" value="" ></div>
 	        	<div class="form-group">
 	        		<select name="specie" class="form-control select2" style="width:100%">
