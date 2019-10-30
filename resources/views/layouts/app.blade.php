@@ -222,7 +222,7 @@
       
           
 
-          <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore') menu-open @endif">
+          <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore' || $title=='Product Unit' || $title=='Product Category') menu-open @endif">
             <a href="#" class="nav-link @if($title=='System Logs' || $title=='Database Backup/Restore') active @endif">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
