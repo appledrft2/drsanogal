@@ -2,8 +2,9 @@
 @section('title','Register')
 @section('content')
 <div class="register-box">
-  <div class="register-logo">
-    <a href="#"><img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 50%"></a>
+  <div class="login-logo animated pulse">
+    <a href="#"><img src="{{asset('adminlte3/dist/img/logo.jpg')}}" class="img-fluid" style="border-radius: 90%;width: 40%"></a>
+    <h4 class="text-white ">Veterinary Assistant</h4>
   </div>
 
   <div class="card">

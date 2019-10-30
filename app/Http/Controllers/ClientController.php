@@ -55,19 +55,19 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'name'=>'required',
+            'name'=>'required|unique:clients|max:255',
             'gender'=>'required',
             'occupation'=>'required',
             'status' => 'required',
             'address'=>'required',
             'smsNotify'=>'required',
-            'email'=>'nullable'
+            'email'=>'nullable|unique:clients|max:255',
+            'contact'=>'nullable|unique:clients|max:255',
+            'work'=>'nullable|unique:clients|max:255',
+            'home'=>'nullable|unique:clients|max:255'
         ]);
 
-        $data['contact'] = (request()->contact) ? request()->contact : ' ';
-        $data['work'] = (request()->work) ? request()->work : ' ';
-        $data['home'] =  (request()->home) ? request()->home : ' ';
-         $data['email'] =  (request()->email) ? request()->email : ' ';
+
 
 
         $status = Client::create($data);

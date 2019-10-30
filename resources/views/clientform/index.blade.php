@@ -7,10 +7,7 @@
 			<div class="float-left ">
 				<button class="btn btn-default btn_add" ><i class="fa fa-plus-circle"></i> New Attachment</button>
 			</div>
-			<div class="float-right mb-5">
-				
-				<a href="/dashboard/formcategory" class="btn btn-default" ><i class="fa fa-tags"></i> Category</a>
-			</div>
+			
 			<div id="mytable" class="table-responsive">
 			<table id="table" width="100%" class="table table-bordered table-hover">
 				<thead>

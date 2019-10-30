@@ -129,13 +129,9 @@
 				<hr>	
 				<div class="form-group">
 					<label>Email</label>
-					<!-- <input type="email" value="" name="email" class="form-control " placeholder="Email Address" ></div>	 -->
-					<div class="input-group mb-3">
-	                  <div class="input-group-prepend">
-	                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-	                  </div>
+			
 	                  <input type="email" name="email" class="form-control" placeholder="Email Address">
-	                </div>
+	         
 	            </div>
 				<div class="form-group">
 					<label>Address</label>

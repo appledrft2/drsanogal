@@ -18,13 +18,13 @@ class CreateClientsTable extends Migration
             $table->string('name')->unique();
             $table->string('gender');
             $table->string('occupation')->nullable();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('contact')->nullable()->unique();
-            $table->string('work')->nullable(); 
-            $table->string('home')->nullable();
+            $table->string('work')->nullable()->unique();; 
+            $table->string('home')->nullable()->unique();;
             $table->string('smsNotify')->default(0);
             $table->text('address');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
