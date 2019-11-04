@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use Illuminate\Http\Request;
 
-class TestingController extends Controller
+class TestingController extends BaseController
 {
 	public $title = 'testing module';
 

@@ -7,7 +7,7 @@ use App\FormCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ClientFormController extends Controller
+class ClientFormController extends BaseController
 {
     public $title = "Client";
     /**

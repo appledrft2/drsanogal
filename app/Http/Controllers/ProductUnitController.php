@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\ProductUnit;
 use Illuminate\Http\Request;
 
-class ProductUnitController extends Controller
+class ProductUnitController extends BaseController
 {
     public $title = "Product Unit";
     /**

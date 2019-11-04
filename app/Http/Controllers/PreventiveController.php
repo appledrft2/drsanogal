@@ -6,7 +6,7 @@ use App\Preventive;
 use App\Appointment;
 use Illuminate\Http\Request;
 
-class PreventiveController extends Controller
+class PreventiveController extends BaseController
 {
     public $title = "Patient";
     /**

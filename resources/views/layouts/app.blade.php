@@ -51,6 +51,77 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+         <span id="notifcnt">
+           <i class="far fa-bell"></i>
+           <?php $cnt = 0; ?>
+           @foreach($clientnotif as $c)
+
+            @foreach($c->patients as $cp)
+              
+              @foreach($cp->appointments as $cpa)
+               @if($cpa->isPaid == 0)
+                  <?php $cnt++; ?>
+                 <span class="badge badge-danger navbar-badge">{{$cnt}}</span>
+               @endif
+              @endforeach
+
+            @endforeach
+
+           @endforeach
+         </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-header">Unpaid Appointments</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; height: 230px">
+         
+
+           <div id="billingnotif">
+             @foreach($clientnotif as $c)
+
+              @foreach($c->patients as $cp)
+                
+                @foreach($cp->appointments as $cpa)
+                 @if($cpa->isPaid == 0)
+
+                  
+                     <div class="card">
+                       
+                       <div class="card-body">
+                         <small>Client Name:</small><br>
+                         {{$cpa->patient->client->name}}<br>
+                         <small>Service Rendered:</small><br>
+                         {{$cpa->appointment}}<br>
+                         <small>Patient:</small><br>
+                         {{$cpa->patient->name}}<br>
+                         <small>Amount:</small><br>
+                         {{$cpa->price}}<br>
+                       </div>
+                       <div class="card-footer">
+                        <button id="{{$cpa->patient->client->id}}" class="btn ptb btn-primary form-control"> Proceed to bill</button>
+                       </div>
+                     </div>
+                   
+                   
+                 @endif
+                @endforeach
+
+              @endforeach
+
+             @endforeach
+           </div>
+
+
+           
+          </a>
+
+         
+        </div>
+      </li>
+      
       <li class="nav-item">
         <form id="logout-form" style="margin:0px" action="{{ route('logout') }}" method="POST" >
             @csrf
@@ -499,6 +570,28 @@ function closeFullscreen() {
    
     
   });
+</script>
+<script type="text/javascript">
+  $(document).on('click','.ptb',function(){
+    let id = $(this).attr('id');
+    window.location.href = "<?php echo url('/'); ?>/dashboard/billing/"+id+"/client/create";
+  });
+
+  setInterval(function() {
+    
+     refreshNotif();
+     
+  }, 5000);
+
+  function refreshNotif() {  
+      $( "#billingnotif" ).load( "/dashboard #billingnotif", function(){
+       
+    });
+
+      $( "#notifcnt" ).load( "/dashboard #notifcnt", function(){
+       
+    });
+  }
 </script>
 <script>
     $(document).ready(function() {

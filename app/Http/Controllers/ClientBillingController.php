@@ -8,7 +8,7 @@ use App\Preventive;
 use App\Appointment;
 use Illuminate\Http\Request;
 
-class ClientBillingController extends Controller
+class ClientBillingController extends BaseController
 {
 	public $title = "Client";
     public function index($client_id){

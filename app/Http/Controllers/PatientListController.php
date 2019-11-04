@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use Illuminate\Http\Request;
 
-class PatientListController extends Controller
+class PatientListController extends BaseController
 {
 	public $title = "Patient List";
 

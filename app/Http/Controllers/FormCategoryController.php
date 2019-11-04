@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\FormCategory;
 use Illuminate\Http\Request;
 
-class FormCategoryController extends Controller
+class FormCategoryController extends BaseController
 {   
     public $title = "Attachments Category";
     /**

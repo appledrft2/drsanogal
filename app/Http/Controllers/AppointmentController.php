@@ -8,7 +8,7 @@ use App\ManageAppointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AppointmentController extends Controller
+class AppointmentController extends BaseController
 {
     public $title = 'Patient';
     /**

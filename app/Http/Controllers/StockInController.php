@@ -12,7 +12,7 @@ use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StockInController extends Controller
+class StockInController extends BaseController
 {
     public $title = "Stock In";
     /**

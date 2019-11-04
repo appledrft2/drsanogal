@@ -6,7 +6,7 @@ use App\ProductCategory;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
-class ProductCategoryController extends Controller
+class ProductCategoryController extends BaseController
 {
     public $title = "Product Category";
     /**

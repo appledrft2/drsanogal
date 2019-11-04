@@ -6,7 +6,7 @@ use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ClientController extends Controller
+class ClientController extends BaseController
 {
 
     public $title = 'Client';

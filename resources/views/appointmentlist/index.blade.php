@@ -15,9 +15,9 @@
 						<th>Appointment</th>
 
 						<th>Date of Appointment</th>
-						<th>Amount</th>
 						
-						<th>Payment</th>
+						
+		
 <!-- 						<th>Created at</th> -->
 						<th width="15%">Action</th>
 					</tr>
@@ -32,13 +32,9 @@
 								<td>{{$appointment->patient->name}}</td>
 								<td>{{$appointment->appointment}}</td>
 								<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
-								<td>&#8369; {{number_format($appointment->amount,2)}}</td>
 							
-								<td>
-									@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
-									@else <span class="badge badge-secondary">Unpaid</span> 
-									@endif
-								</td>
+							
+							
 							<!-- 	<td>{{date('M d, D Y', strtotime($appointment->created_at))}}</td> -->
 								<td>
 

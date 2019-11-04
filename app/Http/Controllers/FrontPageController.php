@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FrontPageController extends Controller
+class FrontPageController extends BaseController
 {
      public function welcome(){
         $initialInstall = \App\User::where('role','=','doctor')->count();

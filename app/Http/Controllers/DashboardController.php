@@ -17,7 +17,7 @@ use App\StockOutDetail;
 use Illuminate\Http\Request;
 use App\Custom\SmsGateway;
 
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
 	public $title = "Dashboard";
 
@@ -83,6 +83,8 @@ class DashboardController extends Controller
                 
         }
 
+       
+
         $stockins = StockIn::where('mop','!=','Cash')->orderBy('due','desc')->paginate(2);
         $app = Appointment::where('next_appointment2','=',date('Y-m-d'))->where('isNotified','=',1)->paginate(4, ['*'], 'appointments');
     	return view('dashboard.index',[
@@ -94,6 +96,7 @@ class DashboardController extends Controller
             'lowproducts'=>$lowproducts,
             'appointments'=> $app,
             'stockins' => $stockins
+           
     	]);
     }
 

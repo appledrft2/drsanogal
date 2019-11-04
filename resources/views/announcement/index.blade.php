@@ -111,7 +111,7 @@
 		$('#img').find('img').remove();
 		$('input[name=_method]').val('POST');
 		$('.modal-title').text('New');
-		$('#Modal').modal('show');
+		$('#Modal').modal({backdrop: 'static', keyboard: false});
 	});
 	// btn for editing data
 	$(document).on('click','.btn_edit',function(){
@@ -136,7 +136,7 @@
 	            $('input[name=title]').val(data.title);
 	            $('textarea[name=body]').summernote('code',data.body);
 	            $('#img').append('<img src="https://vetassist.s3.ap-southeast-1.amazonaws.com/'+data.cover_image+'" width="20%">');
-	            $('#Modal').modal('show');
+	            $('#Modal').modal({backdrop: 'static', keyboard: false});
 	        },
 	        error: function(data){
 	        	$('#loading').prop('hidden',true);

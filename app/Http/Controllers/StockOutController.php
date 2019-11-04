@@ -9,7 +9,7 @@ use App\StockOutDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StockOutController extends Controller
+class StockOutController extends BaseController
 {
 	public $title = "Point of Sale";
 

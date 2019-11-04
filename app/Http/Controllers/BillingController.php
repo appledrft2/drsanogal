@@ -10,7 +10,7 @@ use App\BillingProduct;
 use App\BillingService;
 use Illuminate\Http\Request;
 
-class BillingController extends Controller
+class BillingController extends BaseController
 {
 	public $title = "Billing";
 

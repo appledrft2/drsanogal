@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\BillingProduct;
 use Illuminate\Http\Request;
 
-class BillingReportController extends Controller
+class BillingReportController extends BaseController
 {
 	public $title = "Billing Report";
     public function index(){

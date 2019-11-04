@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\StockOutDetail;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class ReportController extends BaseController
 {
 	public $title = "Report";
     public function index(){

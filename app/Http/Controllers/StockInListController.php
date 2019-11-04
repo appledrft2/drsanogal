@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Supplier;
 use Illuminate\Http\Request;
 
-class StockInListController extends Controller
+class StockInListController extends BaseController
 {
 	public $title = 'Stock In';
 

@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="pull-left mb-3">
-				<a href="/dashboard/billing/{{$client->id}}/client/create" class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> New Transaction</a>
+				<a href="/dashboard/billing/{{$client->id}}/client/create" class="btn btn-default btn_add"><i class="fa fa-plus-circle"></i> Process Bill</a>
 			</div>
 			<div class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">

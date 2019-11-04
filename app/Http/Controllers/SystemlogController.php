@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Systemlog;
 use Illuminate\Http\Request;
 
-class SystemlogController extends Controller
+class SystemlogController extends BaseController
 {
     public $title = "System Logs";
     /**

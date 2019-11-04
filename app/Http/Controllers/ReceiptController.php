@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\StockOut;
 use Illuminate\Http\Request;
 
-class ReceiptController extends Controller
+class ReceiptController extends BaseController
 {
 	public $title = "Report";
 

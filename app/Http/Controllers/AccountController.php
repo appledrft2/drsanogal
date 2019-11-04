@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class AccountController extends Controller
+class AccountController extends BaseController
 {
     public $title = "Account";
     /**

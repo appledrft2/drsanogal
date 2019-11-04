@@ -10,7 +10,7 @@ use App\ManageAppointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AppointmentListController extends Controller
+class AppointmentListController extends BaseController
 {	
 	public $title = "Appointments";
     public function index(){

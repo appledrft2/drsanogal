@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="pull-left mb-3">
-				<button class="btn btn_add btn-default"><i class="fa fa-plus-circle"></i> New Client</button>
+				<button class="btn btn_add btn-default" ><i class="fa fa-plus-circle"></i> New Client</button>
 			</div>
 			<div id="mytable" class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">

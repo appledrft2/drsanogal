@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\ManageAppointment;
 use Illuminate\Http\Request;
 
-class ManageAppointmentController extends Controller
+class ManageAppointmentController extends BaseController
 {
    
     public $title = 'Services';

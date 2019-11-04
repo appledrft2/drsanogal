@@ -5,7 +5,7 @@ use App\StockOutDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class InventoryReportController extends Controller
+class InventoryReportController extends BaseController
 {
 	public $title = "Inventory Report";
     public function index(){

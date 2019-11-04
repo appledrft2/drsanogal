@@ -7,7 +7,7 @@ use App\Systemlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SupplierController extends Controller
+class SupplierController extends BaseController
 {
     public $title = "Supplier";
     /**
