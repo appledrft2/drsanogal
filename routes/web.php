@@ -122,12 +122,14 @@ Route::get('/dashboard/systemlog/','SystemlogController@index');
 // Database import/export
 Route::get('/dashboard/database/',function(){
 	$backuplist = Backuplist::latest()->get();
-	return view('database.index',compact('backuplist'))->with('title','Database Backup/Restore');
+	 $clientnotif = Client::all();
+	return view('database.index',compact('backuplist','clientnotif'))->with('title','Database Backup/Restore');
 });
 
 Route::post('/dashboard/database',function(){
 	$backuplist = Backuplist::latest()->get();
-	return view('database.index',compact('backuplist'))->with('title','Database Backup/Restore');
+	 $clientnotif = Client::all();
+	return view('database.index',compact('backuplist','clientnotif'))->with('title','Database Backup/Restore');
 });
 
 });
