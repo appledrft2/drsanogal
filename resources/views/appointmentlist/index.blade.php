@@ -191,7 +191,7 @@
 						<input required type="text" name="price" class="form-control price" placeholder="Price">
 					</div>
 					<div class="col-12 form-group">
-						<label>Description</label>
+						<label>Findings</label>
 						<textarea  name="description" class="form-control description" rows="5" placeholder="Description.."></textarea>
 					</div>
 					
