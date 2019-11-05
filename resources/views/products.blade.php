@@ -17,14 +17,19 @@
         @foreach($products as $product)
         <div class="col-md-4 mb-5">
         <div class="card h-100">
-          <img class="card-img-top" src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$product->image}}" style="width: 100%;height: 200px" alt="product">
-          <div class="card-body">
-            <h4 class="card-title">{{$product->name}}</h4>
-            <p class="card-text">
-              <span><strong>Price:</strong> &#8369;{{number_format($product->price,2)}}</span><br>
-              <span><strong>Category:</strong> {{$product->category}}</span><br>
-            </p>
-          </div>
+          <h4 class="card-header display-5">{{$product->name}}</h4>
+           <img class="card-img-top" src="https://vetassist.s3.ap-southeast-1.amazonaws.com/{{$product->image}}" style="width: 100%;height: 200px" alt="product">
+     
+              <ul class="list-group">
+                 <li class="list-group-item">
+                  <strong>Category:</strong> {{$product->category}}
+                </li>
+                <li class="list-group-item">
+                  <strong>Price:</strong> &#8369;{{number_format($product->price,2)}}
+                </li>
+               
+              </ul>
+         
         </div>
          </div>
         @endforeach

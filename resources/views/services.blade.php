@@ -18,10 +18,10 @@
         @foreach($services as $service)
         <div class="col-md-4 mb-5">
         <div class="card h-100">
-          
+            <h4 class="card-header display-5 text-center">{{$service->title}}</h4>
           <div class="card-body">
-            <h4 class="card-title">{{$service->title}}</h4>
-            <p>{{$service->description}}</p>
+          
+            <p class="text-justify">{{$service->description}}</p>
             
           </div>
         </div>
