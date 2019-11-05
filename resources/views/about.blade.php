@@ -2,13 +2,17 @@
 @section('title','Announcements')
 @section('content')
   <!-- Page Content -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-6">Announcements</h1>
+    
+    </div>
+  </div>
   <div class="container mt-5" style="margin-bottom: 30%">
 
     <div class="row" >
-
       <div id="about" class=" col-md-12 mb-5" >
-        <h2 class="col-md-12">Announcements</h2>
-        <hr>
+     
         <div class="">
           @if(count($announcements))
            <div class="col-md-8 mx-auto">

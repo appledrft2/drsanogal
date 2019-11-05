@@ -2,11 +2,16 @@
 @section('title','Products')
 @section('content')
   <!-- Page Content -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-6">Available Products</h1>
+    
+    </div>
+  </div>
   <div class="container mt-5 " style="margin-bottom: 30%">
 
     <div class="row">
-      <div class="col-md-12"><h2>Available Products</h2><hr></div>
-      
+    
         
        @if(count($products))
         @foreach($products as $product)

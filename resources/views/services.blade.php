@@ -2,10 +2,16 @@
 @section('title','services')
 @section('content')
   <!-- Page Content -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-6">What We Offer</h1>
+    
+    </div>
+  </div>
   <div class="container mt-5" style="margin-bottom: 30%">
 
     <div class="row">
-      <div class="col-md-12"><h2>Services Offered</h2><hr></div>
+  
       
         
        @if(count($services))
