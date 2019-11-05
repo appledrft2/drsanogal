@@ -24,7 +24,7 @@
 
 					<div class="form-group">
 						<label>Appointments</label>
-						<table class="table table-bordered">
+						<table id="appointmnt" class="table table-bordered">
 							<thead>
 								<tr>
 									<td>Appointment</td>
@@ -117,13 +117,37 @@
 
 	<div class="card">
 		<div class="card-body">
-			<button class="float-right btn btn-primary"><i class="fa fa-check"></i> Process Transaction</button>
+			<button id="process" class="float-right btn btn-primary"><i class="fa fa-check"></i> Process Transaction</button>
 		</div>
 	</div>
 	</form>
 @endsection
 
 @section('script')
+<script type="text/javascript">
+	$('#process').click(function(e){
+		
+		var count = 0;
+
+		$('select[name^="isPaid"]').each( function() {
+	        
+
+	        if(this.value == 1){
+	        	count++;
+	        }
+	    });
+
+		if(count < 1){
+			e.preventDefault();
+			alert('Please pay one or more unpaid appointments.')
+		}else{
+			var choice = confirm('are you sure?');
+			if(choice == false){
+				e.preventDefault();
+			}
+		}
+	});
+</script>
 <script type="text/javascript">
 	let i = 0;
 	$(document).on('click','.btn_add',function(){
