@@ -282,9 +282,9 @@
 					</div>
 
 					<div class="col-12 form-group">
-						<label>Appointment</label>
+						<label>Service Rendered</label>
 						<select required name="appointment" class="form-control select2 appointment" style="width:100%">
-							<option value="">Select Appointment</option>
+							<option value="">Select Service</option>
 
 							@if($services)
 								@foreach($services as $service)
