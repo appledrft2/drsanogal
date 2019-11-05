@@ -132,18 +132,42 @@
 	$('#testing').DataTable();
 	$('#process').click(function(e){
 		
-		var count = $('#testing tbody tr').length;
+		var count = $('#testing tbody tr td').length;
+	
 
-		if(count < 2){
+		if(count <= 1){
 			e.preventDefault();
-			alert('Please add one or more product.')
+
+
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please add one or more product.'
+			
+			})
+
 		}else{
-			var choice = confirm('are you sure?');
-			if(choice == false){
-				e.preventDefault();
+			e.preventDefault();	
+			Swal.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			if(result.value){
+			   $('form').submit();
+			  	
 			}
+			
+			});
+		
+
+			
 		}
-	})
+	});
 
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
@@ -151,11 +175,11 @@
 
     var price = parseFloat(product.price);
 
-    $("#productlist2").DataTable().destroy();
+    $("#testing").DataTable().destroy();
 
 
 	if(product.id == ''){
-		$("#productlist2").DataTable();
+		$("#testing").DataTable();
 		return alert('No Product');
 	}
 
@@ -204,7 +228,7 @@
     		$('#row').append(row);
 
 
-    		$("#productlist2").DataTable();
+    		$("#testing").DataTable();
 
   });
 </script>
@@ -292,9 +316,9 @@ var row = '<tr id="row'+i+'">'+
 	$(document).on('click', '.removeRow', function(){
 		var id = $(this).attr("id"); 
 
-		$("#productlist2").DataTable().destroy();
+		$("#testing").DataTable().destroy();
 		 $('#row').find('#row'+id).remove();
-		$("#productlist2").DataTable();
+		$("#testing").DataTable();
 
 	
 	});

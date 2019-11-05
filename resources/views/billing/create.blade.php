@@ -139,12 +139,30 @@
 
 		if(count < 1){
 			e.preventDefault();
-			alert('Please pay one or more unpaid appointments.')
+		
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please pay one or more unpaid appointments.'
+			
+			})
 		}else{
-			var choice = confirm('are you sure?');
-			if(choice == false){
-				e.preventDefault();
+			e.preventDefault();	
+			Swal.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes'
+			}).then((result) => {
+			if(result.value){
+			   $('form').submit();
+			  	
 			}
+			
+			});
 		}
 	});
 </script>
