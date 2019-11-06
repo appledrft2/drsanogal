@@ -8,7 +8,7 @@
 			</div>
 			<div id="mytable" class="table-responsive">
 			<table id="table" class="table table-bordered table-hover">
-				<thead>
+				<thead >
 					<tr>
 					
 						<th>Name</th>

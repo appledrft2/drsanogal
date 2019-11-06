@@ -25,7 +25,7 @@
 						<div class="form-group ">
 							<label>Mode of payment </label>
 							<select class="form-control select_mop" name="mop">
-								<option selected disabled>Select</option>
+								<option selected disabled value="">Select</option>
 								<option>Credit</option>
 								<option>Partial</option>
 								<option>Cash</option>
@@ -153,7 +153,7 @@
 						</table>
 						<div class="mt-5 float-right">
 
-							<button class="btn btn-primary"><i class="fa fa-truck"></i> Process Delivery</button>
+							<button id="process" class="btn btn-primary"><i class="fa fa-truck"></i> Process Delivery</button>
 						</div>
 					</div>
 				</div>
@@ -171,6 +171,63 @@
 
 
 @section('script')
+
+<script type="text/javascript">
+	$('#process').click(function(e){
+		
+		var count = $('#productlist2 tbody tr td').length;
+	
+
+		if(count <= 1){
+			e.preventDefault();
+
+
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please add one or more product.'
+			
+			})
+
+		}else{
+			e.preventDefault();
+
+			if($('input[name=delivery_date]').val() == '' || $('input[name=due]').val() == '' || $('select[name=mop]').val() == '' || $('select[name=discount]').val() == ''){
+
+				Swal.fire({
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: 'Please fill in required fields.'
+				
+				})
+
+			}else{
+
+
+				Swal.fire({
+				  title: 'Are you sure?',
+				  text: "You won't be able to revert this!",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes'
+				}).then((result) => {
+				if(result.value){
+				   $('form').submit();
+				  	
+				}
+				
+				});
+			}
+
+		
+
+			
+		}
+	});
+
+</script>
 <script type="text/javascript">
 	$(document).on('change','.select_mop',function(){
 		var choice = $(this).val();
