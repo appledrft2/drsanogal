@@ -15,7 +15,7 @@
      
         <div class="">
           @if(count($announcements))
-           <div class="col-md-8 mx-auto">
+           <div class="col-md-12 mx-auto">
                @foreach($announcements as $announcement)
                    <div class="card mt-2">
                      <div class="card-body">
@@ -26,7 +26,7 @@
                         
 
                         <div class="mt-2">
-                          <p class="card-text" style="text-align: justify">{!!$announcement->body!!}</p>
+                          <p class="card-title" style="text-align: justify !important;">{!!$announcement->body!!}</p>
                         </div>
                      </div>
                      
