@@ -39,7 +39,7 @@
   <!-- Page Content -->
   <div class="container mt-5">
     <div class="row mb-5">
-              <h1 class="display-4 col-lg-12 col-sm-12 text-center mt-5 mb-5">About Us</h1>
+              <h1 class="display-4 col-lg-12 col-sm-12 text-center mt-2 mb-5">About Us</h1>
     
               <div class="col-lg-6 col-sm-12 ">
                <div class="card">
