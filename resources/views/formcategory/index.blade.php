@@ -124,8 +124,8 @@
 		$('#form').find('.error_flash').remove();
 		let method = $('input[name=_method]').val();
 		let id = $('input[name=id]').val();
-		let post = '/dashboard/formcategory';
-		let patch = '/dashboard/formcategory/'+id;
+		let post = '/dashboard/attachmentcategory';
+		let patch = '/dashboard/attachmentcategory/'+id;
 		let url = '';
 
 		if(method == "POST"){
@@ -185,7 +185,7 @@
 
         	$.ajax({
                 type: "DELETE",
-                url: '/dashboard/formcategory/'+id,
+                url: '/dashboard/attachmentcategory/'+id,
                 dataType: "json",
                 data: $('#form').serialize(),
                 success: function(data){
@@ -211,7 +211,7 @@
 	});
 	// Refresh the table
 	function refreshTable() {  
-	   	$( "#mytable" ).load( "/dashboard/formcategory #mytable", function(){
+	   	$( "#mytable" ).load( "/dashboard/attachmentcategory #mytable", function(){
 		  $("#table2").DataTable();
 		});
 	}
