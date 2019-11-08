@@ -15,7 +15,7 @@
 						<th>Appointment</th>
 
 						<th>Date of Appointment</th>
-						
+						<th>Status</th>
 						
 		
 <!-- 						<th>Created at</th> -->
@@ -33,7 +33,13 @@
 								<td>{{$appointment->appointment}}</td>
 								<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
 							
-							
+								<td>
+									@if($appointment->isCompleted == 1)
+								      <span class="badge badge-success">Completed</span>
+								      @else
+								       <span class="badge badge-danger">Not Completed</span>
+								      @endif
+								</td>
 							
 							<!-- 	<td>{{date('M d, D Y', strtotime($appointment->created_at))}}</td> -->
 								<td>

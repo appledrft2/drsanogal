@@ -78,7 +78,7 @@
               <th>Name</th>
               <th>Appointment</th>
               <th>Date of appointment</th>
-
+              <th>Status</th>
               <th>SMS Notification</th>
       
             </tr>
@@ -92,7 +92,16 @@
                 <td >{{$appointment->patient->name}}</td>
                 <td>{{$appointment->appointment}}</td>
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
-     
+                <td>
+                  <form method="POST" action="/dashboard/patient/{{$appointment->patient->id}}/appointment/{{$appointment->id}}/UpdateStatus">
+                    @csrf
+                     @method('PATCH')
+                    <select onchange="this.form.submit()" name="isCompleted" class="form-control">
+                      <option @if($appointment->isCompleted == 1) selected @endif value="1">Completed</option>
+                      <option @if($appointment->isCompleted == 0) selected @endif value="0">Not Completed</option>
+                    </select>
+                  </form>
+                </td>
                 <td> @if($appointment->isNotified == 1) <span class="badge badge-success">SMS Sent - Owner is notified yesterday</span> @else <span class="badge badge-secondary">SMS Failed: The owner may not <br> have a mobile #</span> @endif</td>
                
               </tr>
