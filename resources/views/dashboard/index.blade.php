@@ -74,7 +74,7 @@
             <thead>
             <tr>
               <th>Owner</th>
-              <th>Patient ID</th>
+            
               <th>Name</th>
               <th>Appointment</th>
               <th>Date of appointment</th>
@@ -84,10 +84,11 @@
             </tr>
             </thead>
             <tbody>
+            @if(count($appointments))
               @foreach($appointments as $appointment)
               <tr>
                 <td>{{$appointment->patient->client->name}}</td>
-                <td ><a href="/dashboard/patient/{{$appointment->patient->id}}/appointment" class="text-primary">{{$appointment->patient->id}}</a></td>
+              
                 <td >{{$appointment->patient->name}}</td>
                 <td>{{$appointment->appointment}}</td>
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
@@ -105,6 +106,11 @@
                
               </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="7" class="text-center">There are currently no appointments</td>
+                </tr>
+              @endif
             </tbody>
           </table>
         </div>

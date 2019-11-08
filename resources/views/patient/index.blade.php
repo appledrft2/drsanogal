@@ -57,7 +57,7 @@
 					<table id="table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th width="5%">Patient ID</th>
+								
 								<th>Name</th>
 								<th>Breed</th>
 								<th>Gender</th>
@@ -71,7 +71,7 @@
 							@if(count($patients))
 								@foreach($patients as $key => $patient)
 									<tr>
-										<td>{{$patient->id}}</td>
+										
 										<td>{{$patient->name}}</td>
 										<td>{{$patient->breed}}</td>
 										<td>{{$patient->gender}}</td>

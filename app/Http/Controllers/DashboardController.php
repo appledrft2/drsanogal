@@ -55,17 +55,20 @@ class DashboardController extends BaseController
 
         
        $tom = Carbon::today()->addDays(1)->todatestring();
+       $date_today = Carbon::today();
    
         // today's Appointments
         $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
-
+  
         // tommorow
-        $tommorows = Appointment::where('next_appointment2','=',$tom)->where('isNotified','=',0)->paginate(4, ['*'], 'appointments');
+        $tommorows = Appointment::where('next_appointment2','=',$tom)->get();
+
 
         foreach($tommorows as $tommorow){
 
             if($tommorow->patient->client->smsNotify == 'Mobile'){
 
+               if($tommorow->isNotified == 0){
                 $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU2MzY0MTA2OSwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjcxODc4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.1L8SvVoKmlDqpEqa-_4R90-AwxzLqsIf2C1kaMgkqis";
 
                 $phone_number = $tommorow->patient->client->contact;
@@ -75,10 +78,11 @@ class DashboardController extends BaseController
 
                 $smsGateway = new SmsGateway($token);
                 $result = $smsGateway->sendMessageToNumber($phone_number, $message, $deviceID, $options);
-             
+                
                 $app = Appointment::findOrfail($tommorow->id);
                 $app->isNotified = 1;
                 $app->update();
+               }
                 
             }
                 
@@ -87,7 +91,7 @@ class DashboardController extends BaseController
        
 
         $stockins = StockIn::where('mop','!=','Cash')->orderBy('due','desc')->paginate(2);
-        $app = Appointment::where('next_appointment2','=',date('Y-m-d'))->where('isNotified','=',1)->paginate(4, ['*'], 'appointments');
+       
     	return view('dashboard.index',[
     		'title'=>$this->title,
             'gross'=>$gross,
@@ -95,7 +99,7 @@ class DashboardController extends BaseController
             'today'=>$today,
             'week'=>$week,
             'lowproducts'=>$lowproducts,
-            'appointments'=> $app,
+            'appointments'=> $appointments,
             'stockins' => $stockins
            
     	]);
