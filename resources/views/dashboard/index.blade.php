@@ -84,6 +84,7 @@
             </tr>
             </thead>
             <tbody>
+            @if(count($appointments))
               @foreach($appointments as $appointment)
               <tr>
                 <td>{{$appointment->patient->client->name}}</td>
@@ -105,7 +106,11 @@
                
               </tr>
               @endforeach
-             
+              @else
+                <tr>
+                  <td colspan="7" class="text-center">There are currently no appontments</td>
+                </tr>
+              @endif
             </tbody>
           </table>
         </div>
