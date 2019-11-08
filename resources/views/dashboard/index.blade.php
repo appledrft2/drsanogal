@@ -53,7 +53,7 @@
 	</div>
 
 <div class="row">
-  <div class="@if(Auth::user()->role == 'doctor') col-md-12 @else col-md-8 @endif">
+  <div class="@if(Auth::user()->role == 'doctor') col-md-12 @else col-md-12 @endif">
     <div class="card">
       <div class="card-header border-transparent">
         <h3 class="card-title">Today's Appointments</h3>
