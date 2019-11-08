@@ -59,7 +59,6 @@ class DashboardController extends BaseController
         // today's Appointments
         $appointments = Appointment::where('next_appointment2','=',date('Y-m-d'))->paginate(4, ['*'], 'appointments');
 
-        dd($appointments);
         // tommorow
         $tommorows = Appointment::where('next_appointment2','=',$tom)->where('isNotified','=',0)->paginate(4, ['*'], 'appointments');
 
