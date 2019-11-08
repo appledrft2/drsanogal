@@ -571,28 +571,7 @@ function closeFullscreen() {
     
   });
 </script>
-<script type="text/javascript">
-  $(document).on('click','.ptb',function(){
-    let id = $(this).attr('id');
-    window.location.href = "<?php echo url('/'); ?>/dashboard/billing/"+id+"/client/create";
-  });
 
-  setInterval(function() {
-    
-     refreshNotif();
-     
-  }, 5000);
-
-  function refreshNotif() {  
-      $( "#billingnotif" ).load( "/dashboard #billingnotif", function(){
-       
-    });
-
-      $( "#notifcnt" ).load( "/dashboard #notifcnt", function(){
-       
-    });
-  }
-</script>
 <script>
     $(document).ready(function() {
         var d = new Date();
