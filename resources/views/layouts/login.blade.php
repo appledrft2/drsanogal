@@ -22,7 +22,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page" style="background-color: #2c3e50">
+<body class="hold-transition login-page" style="background-color:  #141E30">
 @yield('content')
 
 <!-- jQuery -->
