@@ -13,7 +13,7 @@
 				  <table id="table2" class="table table-hover" width="100%">
 				  	<thead>
 				  		<tr>
-				  			<th>#</th>
+				  		
 				  			<th>Title</th>
 				  			<th>Description</th>
 				  			<th width="20%">Action</th>
@@ -22,7 +22,7 @@
 				  	<tbody>
 				  		@foreach($categories as $key => $category)
 				  		<tr>
-				  			<td>{{$key + 1}}</td>
+				  		
 				  			<td>{{$category->title}}</td>
 				  			<td>{{$category->description}}</td>
 				  			<td>

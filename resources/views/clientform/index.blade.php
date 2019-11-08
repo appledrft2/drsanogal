@@ -4,7 +4,7 @@
 	<div class="form-group "><a href="/dashboard/client" class="btn btn-default">Go Back</a></div>
 	<div class="card">
 		<div class="card-body">
-			<div class="float-left ">
+			<div class="float-left mb-3 ">
 				<button class="btn btn-default btn_add" ><i class="fa fa-plus-circle"></i> New Attachment</button>
 			</div>
 			

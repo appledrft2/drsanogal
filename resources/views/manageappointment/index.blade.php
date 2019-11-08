@@ -12,7 +12,7 @@
 				  <table id="table" class="table table-hover" width="100%">
 				  	<thead>
 				  		<tr>
-				  			<th>#</th>
+				  	
 				  			<th>Title</th>
 				  			<th>Description</th>
 				  			<th width="20%">Action</th>
@@ -21,7 +21,7 @@
 				  	<tbody>
 				  		@foreach($mas as $key => $manageappointment)
 				  		<tr>
-				  			<td>{{$key + 1}}</td>
+		
 				  			<td>{{$manageappointment->title}}</td>
 				  			<td>{{$manageappointment->description}}</td>
 				  			<td>

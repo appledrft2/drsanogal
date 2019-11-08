@@ -13,7 +13,7 @@
 				  <table id="table2" class="table table-hover" width="100%">
 				  	<thead>
 				  		<tr>
-				  			<th>#</th>
+				  	
 				  			<th>Name</th>
 				  			<th>Description</th>
 				  			<th width="20%">Action</th>
@@ -22,7 +22,7 @@
 				  	<tbody>
 				  		@foreach($formcategorys as $key => $formcategory)
 				  		<tr>
-				  			<td>{{$key + 1}}</td>
+		
 				  			<td>{{$formcategory->name}}</td>
 				  			<td>{{$formcategory->description}}</td>
 				  			<td>
