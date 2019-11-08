@@ -12,7 +12,7 @@
 			<table id="table" width="100%" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
+				
 						<th>Filename</th>
 						<th>Category</th>
 						<th>Created at</th>
@@ -23,7 +23,7 @@
 					@if(count($forms))	
 						@foreach($forms as $key => $form)
 							<tr>
-								<td>{{$key+1}}</td>
+						
 								<td >{{substr($form->file,6)}}</td>
 								<td >{{$form->category}}</td>
 								<td >{{$form->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
