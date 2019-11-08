@@ -88,7 +88,6 @@
               @foreach($appointments as $appointment)
               <tr>
                 <td>{{$appointment->patient->client->name}}</td>
-              
                 <td >{{$appointment->patient->name}}</td>
                 <td>{{$appointment->appointment}}</td>
                 <td>{{date('M d, D Y', strtotime($appointment->next_appointment2))}}</td>
