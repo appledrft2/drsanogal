@@ -20,7 +20,9 @@
         <div class="card h-100">
             <h4 class="card-header display-5 text-center">{{$service->title}}</h4>
           <div class="card-body">
-          
+            <label><b>Price:</b></label> {{$service->price}}
+            <br>
+            <label><b>Description:</b></label>
             <p class="text-justify">{{$service->description}}</p>
             
           </div>
