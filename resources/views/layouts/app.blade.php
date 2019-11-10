@@ -205,6 +205,15 @@
               </p>
             </a>
           </li>
+          
+          <li class="nav-item">
+            <a href="/dashboard/patient" class="nav-link @if($title=='Patient List') active @endif">
+              <i class="nav-icon fas fa-paw"></i>
+              <p>
+                Patient
+              </p>
+            </a>
+          </li>
 
         
      

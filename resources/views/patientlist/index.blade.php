@@ -23,21 +23,23 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
+						
 						<th>Name</th>
 						<th>Breed</th>
 						<th>Specie</th>
 						<th>Gender</th>
 						<th>Veterinarian</th>
 						<th>Owner</th>
+						@if(Auth::user()->role == 'doctor')
 						<th>Action</th>
+						@endif
 					</tr>
 				</thead>
 				<tbody>
 					@if(count($patients))
 						@foreach($patients as $patient)
 							<tr>
-								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->id}}</td>
+								
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->name}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->breed}}</td>
 								
@@ -45,9 +47,11 @@
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->gender}}</td>
 								<td onclick="window.location = '/dashboard/patient/{{$patient->id}}/appointment';">{{$patient->veterinarian}}</td>
 								<td  onclick="window.location = '/dashboard/client/{{$patient->client->id}}/patient';"><span class="text-primary">{{$patient->client->name}}</span></td>
+								 @if(Auth::user()->role == 'doctor')
 								<td width="20%">
-									<a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-default btn-block btn-sm"><i class="fa fa-calendar-check"></i>&nbsp;&nbsp;View Appointments</a>
+									<center><a href="/dashboard/patient/{{$patient->id}}/appointment" class="btn btn-primary  btn-sm"><i class="fa fa-paw"></i> Pet Profile</a></center>
 								</td>
+								@endif
 							</tr>
 						@endforeach
 					@else

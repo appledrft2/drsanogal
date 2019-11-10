@@ -58,8 +58,8 @@ Route::resource('/dashboard/attachmentcategory','FormCategoryController');
 Route::any('/dashboard/client/{client}/patient/search','PatientController@search');
 Route::resource('/dashboard/client/{client}/patient','PatientController');
 // Patient List module
-Route::any('/dashboard/patient/search','PatientListController@search')->middleware('denyStaff'); 
-Route::get('/dashboard/patient','PatientListController@index')->middleware('denyStaff'); 
+Route::any('/dashboard/patient/search','PatientListController@search');
+Route::get('/dashboard/patient','PatientListController@index');
 // Appointment List module
 Route::any('/dashboard/appointmentlist/search','AppointmentListController@search');
 
