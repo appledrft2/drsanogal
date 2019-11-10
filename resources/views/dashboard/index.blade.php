@@ -80,7 +80,9 @@
               <th>Date of appointment</th>
                <th>SMS Notification</th>
               <th>Status</th>
+               @if(Auth::user()->role == 'doctor')
               <th>Action</th>
+              @endif
              
       
             </tr>
@@ -104,9 +106,13 @@
                     </select>
                   </form>
                 </td>
-                <td>
+                
+                   @if(Auth::user()->role == 'doctor')
+                   <td>
                   <a href="dashboard/patient/{{$appointment->patient->id}}/appointment/" class="btn btn-primary btn-sm"><i class="fa fa-paw"> </i>&nbsp;Pet Profile</a>
-                </td>
+                   </td>
+                  @endif
+               
                
                
               </tr>
