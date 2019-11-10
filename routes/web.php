@@ -32,6 +32,7 @@ Route::group(['middleware'=>'auth'],function(){
 Route::get('/dashboard/test','TestingController@index')->middleware('denyStaff');
 // Dashboard module
 Route::get('/dashboard','DashboardController@index');
+Route::get('/dashboard/purchaseorderprint','DashboardController@purchaseOrderPrint');
 Route::patch('/dashboard/UpdateStockin/{id}','DashboardController@UpdateStockin');
 // My profile module
 Route::get('/dashboard/profile','ProfileController@index');
@@ -65,6 +66,7 @@ Route::any('/dashboard/appointmentlist/search','AppointmentListController@search
 Route::any('/dashboard/appointmentlist/reschedule','AppointmentListController@reschedule');
 
 Route::get('/dashboard/appointmentlist','AppointmentListController@index');
+Route::post('/dashboard/appointmentlist/massreschedule','AppointmentListController@MassReschedule');
 Route::patch('/dashboard/appointmentlist/{id}','AppointmentListController@update')->middleware('denyStaff'); 
 Route::patch('/dashboard/appointmentlist/{appointment_id}','AppointmentListController@UpdatePayment')->middleware('denyStaff'); 
 
@@ -75,6 +77,7 @@ Route::resource('/dashboard/patient/{patient}/appointment','AppointmentControlle
 
 // Manage Appointment Module
 Route::resource('/dashboard/services','ManageAppointmentController')->middleware('denyStaff'); 
+Route::post('/dashboard/getserviceprice','ManageAppointmentController@getServicePrice')->middleware('denyStaff'); 
 
 // Preventive module
 Route::any('/dashboard/appointment/{appointment}/detail/search','PreventiveController@search')->middleware('denyStaff');

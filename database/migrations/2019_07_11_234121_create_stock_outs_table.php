@@ -17,6 +17,7 @@ class CreateStockOutsTable extends Migration
             $table->bigIncrements('id');
             $table->string('rcode');
             $table->double('amount');
+            $table->double('payments');
             $table->timestamps();
         });
     }

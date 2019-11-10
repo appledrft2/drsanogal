@@ -5,7 +5,7 @@
 	<div class="row">
       <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dollar-sign"></i></span>
+        <span class="info-box-icon bg-info elevation-1">&#8369;</span>
 
         <div class="info-box-content">
           <span class="info-box-text">Monthly Gross</span>
@@ -17,7 +17,7 @@
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-dollar-sign"></i></span>
+        <span class="info-box-icon bg-secondary elevation-1">&#8369;</span>
         <div class="info-box-content">
           <span class="info-box-text">Monthly Profit</span>
           <span class="info-box-number text-center">
@@ -28,7 +28,7 @@
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-dollar-sign"></i></span>
+        <span class="info-box-icon bg-success elevation-1">&#8369;</span>
 
         <div class="info-box-content">
           <span class="info-box-text">Today's Income</span>
@@ -40,7 +40,7 @@
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-dollar-sign"></i></span>
+        <span class="info-box-icon bg-danger elevation-1">&#8369;</span>
 
         <div class="info-box-content">
           <span class="info-box-text">Last week's Income</span>
@@ -80,6 +80,7 @@
               <th>Date of appointment</th>
                <th>SMS Notification</th>
               <th>Status</th>
+              <th>Action</th>
              
       
             </tr>
@@ -102,6 +103,9 @@
                       <option @if($appointment->isCompleted == 0) selected @endif value="0">Not Completed</option>
                     </select>
                   </form>
+                </td>
+                <td>
+                  <a href="dashboard/patient/{{$appointment->patient->id}}/appointment/" class="btn btn-primary btn-sm"><i class="fa fa-paw"> </i>&nbsp;Pet Profile</a>
                 </td>
                
                
@@ -261,7 +265,10 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer text-center">
-        <a href="/dashboard/product" class="uppercase">View All Products</a>
+        <a href="#"  onclick="window.open('dashboard/purchaseorderprint', 
+                         'newwindow', 
+                         'width=500,height=500'); 
+              return false;" class="text-uppercase">Print Purchase Order</a>
       </div>
       <!-- /.card-footer -->
     </div>

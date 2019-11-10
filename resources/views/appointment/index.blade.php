@@ -80,7 +80,7 @@
 			</div>
 			<div class="card collapsed-card">
 				<div class="card-header">
-					<p class="lead">List of Appointments</p>
+					<p class="lead">Pet Details</p>
 					<div class="card-tools " >
 					    <button type="button" class="btn btn-tool" data-widget="collapse">
 					      <i class="fas fa-angle-down"></i>
@@ -102,7 +102,7 @@
 						<thead>
 							<tr>
 								
-								<th>Appointment</th>
+								<th>Service</th>
 								
 								<th>Next appointment</th>
 								<th>Amount</th>
@@ -122,7 +122,7 @@
 								
 										<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
 									
-										<td>&#8369; {{number_format($appointment->amount,2)}}</td>
+										<td>&#8369; {{number_format($appointment->price,2)}}</td>
 										
 										<td>
 											@if($appointment->isPaid != '') <span class="badge badge-success">Paid</span> 
@@ -193,7 +193,7 @@
 
 					<div class="col-12 form-group">
 						<label>Service Rendered</label>
-						<select required name="appointment[]" class="form-control select2" style="width:100%">
+						<select required name="appointment[]" class="form-control select2 getservprice1" style="width:100%">
 							<option value="">Select Service</option>
 					
 							@if($services)
@@ -203,6 +203,7 @@
 							@endif
 							<option>Others</option>
 						</select>
+						<input type="hidden" name="pricecounter" value="">
 					</div>
 					<div class="col-12 form-group">
 						<label>Next Appointment</label>
@@ -210,7 +211,7 @@
 					</div>
 					<div class="col-12 form-group">
 						<label>Price</label>
-						<input required type="text" name="price[]" class="form-control" placeholder="Price">
+						<input id="price1" required type="text" name="price[]" class="form-control" placeholder="Price">
 					</div>
 					<div class="col-12 form-group">
 						<label>Findings</label>
@@ -327,12 +328,47 @@
 
 @section('script')
 <script type="text/javascript">
+	$(document).on('change','.getservprice1',function(){
+		let sid = $(this).val();
+		
+			$.ajax({
+		        type: 'POST',
+		        url: '/dashboard/getserviceprice',
+		        dataType: "json",
+		        data: {'sid':sid,"_token": "{{ csrf_token() }}"},
+		        success: function(data){
+		   
+		        	$('#price1').val(data.message[0].price);
+		        	
+		        }
+		    });
+		
+	});
+	$(document).on('change','.getservprice',function(){
+		let sid = $(this).val();
+		let data2 = $(this).attr('id');
+			$.ajax({
+		        type: 'POST',
+		        url: '/dashboard/getserviceprice',
+		        dataType: "json",
+		        data: {'sid':sid,"_token": "{{ csrf_token() }}"},
+		        success: function(data){
+
+		        	$('input[name=price'+data2+']').val(data.message[0].price);
+		        }
+		    });
+
+		
+	});
+</script>
+<script type="text/javascript">
 	let i = 0;
+
 	$('#add').click(function(){
 		i++;
 		$('#rows').append('<div class="data'+i+'"><hr>'+
 			'<label>Appointment</label>'+
-			'<select required name="appointment[]" class="form-control mb-1 select3" style="width:100%">'+
+			'<select required name="appointment[]" id="'+i+'" class="form-control mb-1 select3 getservprice" style="width:100%">'+
 			'<option value="">Select Appointment</option>'+
 			
 			'@if($services)'+
@@ -347,12 +383,12 @@
 			'<label>Next Appointment</label>'+
 			'<input type="date" name="next_appointment2[]" class="form-control mb-1" placeholder="Next Appointment">'+
 			'<label>Price</label>'+
-			'<input required type="text" name="price[]" class="form-control mb-1" placeholder="Price">'+
+			'<input id="price'+i+'" required type="text" name="price'+i+'" class="form-control mb-1" placeholder="Price">'+
 			'<label>Description</label>'+
 			'<textarea  name="description[]" class="form-control" rows="5" cols="5" placeholder="Description"></textarea>'+
 			'</div>');
 		$('.select3').select2();
-		
+		$('input[name=pricecounter]').val(i);
 	});
 
 	$('#remove').click(function(){
@@ -361,7 +397,10 @@
 			$('#rows').find('.data'+i).remove();
 			i--;
 		}
+		$('input[name=pricecounter]').val(i);
 	});
+
+
 
 </script>
 <script type="text/javascript">

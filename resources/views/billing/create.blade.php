@@ -7,7 +7,7 @@
 	<div class="card mt-3 col-6">
 		<div class="card-body">
 			<div class=" form-group">
-				<label>Receipt #</label>
+				<label>Invoice #</label>
 				<input type="text" readonly name="rcode" class="form-control" value="RS-{{rand(1000,9999)}}">
 			</div>
 		</div>
@@ -23,11 +23,11 @@
 					</div>
 
 					<div class="form-group">
-						<label>Appointments</label>
+						<label>Services Rendered</label>
 						<table id="appointmnt" class="table table-bordered">
 							<thead>
 								<tr>
-									<td>Appointment</td>
+									<td>Service </td>
 									<td>Amount</td>
 							
 									<td>Payment</td>
@@ -51,7 +51,7 @@
 											</td>
 											
 											<td>
-												<select required name="isPaid[]" class="form-control">
+												<select id="{{$appointment->amount}}" required name="isPaid[]" class="form-control ispaidchange">
 													
 													<option value="0">Unpaid</option>
 													<option value="1">Paid</option>
@@ -114,7 +114,26 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="card" >
+		<div class="card-body">
+			<div class="float-right">
+				<div class="col-md-12 ">
+					<div class="">
+						<label>Total Amount:</label>
+						<input type="text" class="form-control form-control-sm" name="overallamnt" id="overallamnt" value="0.00" readonly>
+					</div>
+					<div class="">
+						<label>Payment:</label>
+						<input type="number" class="form-control form-control-sm" name="payments" id="payment">
+					</div>
+					<div class="">
+						<label>Change:</label>
+						<input type="text" class="form-control form-control-sm" name="invoicechange" id="invoicechange" value="0.00" readonly>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="card">
 		<div class="card-body">
 			<button id="process" class="float-right btn btn-primary"><i class="fa fa-check"></i> Process Transaction</button>
@@ -125,6 +144,95 @@
 
 @section('script')
 <script type="text/javascript">
+
+	$('#payment').keyup(function(){
+		let getoa = $('#overallamnt').val();
+		let getpay = $(this).val();
+
+		let newoverall = parseFloat(getpay) - parseFloat(getoa);
+		newoverall = newoverall.toFixed(2);
+
+		if(newoverall < 0){
+			$('#invoicechange').val(newoverall).css('border','1px solid red');
+		}else{
+			$('#invoicechange').val(newoverall).css('border','1px solid white')
+		}
+		
+	});
+
+	let total_amount = 0;
+	$(document).on('change','.ispaidchange',function(){
+		let service_price = $(this).attr('id');
+		let status = $(this).val();
+		if(status == 1){
+			total_amount = parseFloat(service_price) + parseFloat(total_amount);
+
+			total_amount = total_amount.toFixed(2);
+
+			$('input[name=overallamnt').val(total_amount);
+		}else{
+			total_amount = parseFloat(total_amount) - parseFloat(service_price) ;
+			total_amount = total_amount.toFixed(2);
+			$('input[name=overallamnt').val(total_amount);
+		}
+
+		
+
+	});
+
+	$(document).on('change','.getprodprice',function(){
+		let geti = $(this).attr('id');
+		setTimeout(function(){ 
+
+
+	    let prod_price = $('#row').find('#prodprice'+geti).val();
+	    let prod_quan = $('#row').find('.prodquan'+geti).val();
+
+	    prod_price = parseFloat(prod_price) * parseFloat(prod_quan);
+
+
+		if(prod_price == ''){
+			prod_price = 0;
+		}
+
+			total_amount = parseFloat(prod_price) + parseFloat(total_amount);
+
+			total_amount = total_amount.toFixed(2);
+
+			$('input[name=overallamnt').val(total_amount);
+
+			$(this).prop('readonly', true);
+
+		 }, 500);
+
+		$(this).css('pointer-events','none').css('background-color','#e9ecef');
+		
+
+	});
+
+	$(document).on('keyup','.getprodquantity',function(){
+		let quanid = $(this).attr('id');
+		let prod_price2 = $('#row').find('#prodprice'+quanid).val();
+		let quanval = $(this).val();
+		total_amount = parseFloat(total_amount) -  parseFloat(prod_price2);
+		prod_price2 = parseFloat(prod_price2) * parseFloat(quanval);
+
+		total_amount = parseFloat(prod_price2) + parseFloat(total_amount);
+
+			total_amount = total_amount.toFixed(2);
+
+	
+			$('input[name=overallamnt').val(total_amount);
+			
+
+			$(this).prop('readonly',true);
+			
+
+	});
+
+
+
+
 	$('#process').click(function(e){
 		
 		var count = 0;
@@ -167,6 +275,7 @@
 	});
 </script>
 <script type="text/javascript">
+
 	let i = 0;
 	$(document).on('click','.btn_add',function(){
 		
@@ -175,7 +284,7 @@
 			'<td>'+
 			'<input type="hidden" id="prodid'+i+'" name="hidden_id[]" value="">'+
 			'<input type="hidden" id="prodnme'+i+'" name="hidden_prodname[]" value="">'+
-			'<select id="'+i+'" required  name="product_name[]" class="prodname form-control">'+
+			'<select id="'+i+'" required  name="product_name[]" class="prodname form-control getprodprice">'+
 			'<option value="">Select Product</option>'+
 			'@foreach($products as $product)'+
 				'<option value="{{$product}}" >{{$product->name}}</option>'+
@@ -192,10 +301,10 @@
 			'<input readonly id="prodprice'+i+'" name="product_price[]" class="form-control" value="">'+
 			'</td>'+
 			'<td>'+
-			'<input  required placeholder="Quantity" name="product_quantity[]" class="form-control" value="">'+
+			'<input  required id="'+i+'" placeholder="Quantity" name="product_quantity[]" class="form-control prodquan'+i+' getprodquantity"  value="1">'+
 			'</td>'+
 			'<td>'+
-			'<button id="'+i+'" class="btn btn_cancel btn-danger"> Cancel</button>'+
+			'<button id="'+i+'" class="btn btn_cancel btn-danger btn-sm"> x</button>'+
 			'</td>'+
 
 			'</tr>');
@@ -207,11 +316,38 @@
 
 	});
 
-	$(document).on('click','.btn_cancel',function(){
+	$(document).on('click','.btn_cancel',function(e){
 		let id = $(this).attr('id');
+		e.preventDefault();
+
+
+
+
+
+	    let prod_price = $('#row').find('#prodprice'+id).val();
+	    let prod_quan = $('#row').find('.prodquan'+id).val();
+
+	    prod_price = parseFloat(prod_price) * parseFloat(prod_quan);
+
+
+		if(prod_price == ''){
+			prod_price = 0;
+		}
+
+			total_amount = parseFloat(total_amount) - parseFloat(prod_price);
+
+			total_amount = total_amount.toFixed(2);
+
+			$('input[name=overallamnt').val(total_amount);
+
+			$(this).prop('readonly', true);
+
+		 
+		setTimeout(function(){ 
 		$('#table').DataTable().destroy();
 		$('#row').find('#data'+id).remove();
 		$('#table').DataTable();
+		},100);
 
 	});
 

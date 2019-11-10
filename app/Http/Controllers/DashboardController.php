@@ -104,7 +104,12 @@ class DashboardController extends BaseController
            
     	]);
     }
-
+    public function purchaseOrderPrint(){
+        // Low product notification
+        $lowproducts = Product::where('lowstock','>','quantity')->get(); 
+        
+        return view('dashboard.poprint',compact('lowproducts'))->with('title',$this->title);
+    }
     public function UpdateStockin($id){
         $stockins = StockIn::findOrfail($id);
         $stockins->status = request()->status;

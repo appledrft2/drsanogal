@@ -104,12 +104,37 @@ class AppointmentController extends BaseController
         // }else{
         //     $data['next_appointment2'] = '';
         // }
+        $cnt = $request->pricecounter;
+         $pricearr = $request->price;
+
+        if($cnt == 0){
+          $test = $request->price;
+          
+        }
+        if($cnt == 1){
+          $testdata[1] = $request->price1;
+           $test = array_merge($pricearr,$testdata);
+        }if($cnt == 2){
+          $testdata[1] = $request->price1;
+          $testdata[2] = $request->price2;
+           $test = array_merge($pricearr,$testdata);
+        }if($cnt == 3){
+          $testdata[1] = $request->price1;
+          $testdata[2] = $request->price2;
+          $testdata[3] = $request->price3;
+           $test = array_merge($pricearr,$testdata);
+        }
+        
+       
+
+       
+        
 
         foreach($request->appointment as $key => $value){
             $data['next_appointment'] = date('Y-m-d');
             $data['patient_id'] = $patient;
-            $data['price'] = $request->price[$key];
-            $data['amount'] = $request->price[$key];
+            $data['price'] = $test[$key];
+            $data['amount'] = $test[$key];
             $data['next_appointment2'] = $request->next_appointment2[$key];
             $data['appointment'] = $request->appointment[$key];
             $data['description'] = $request->description[$key];

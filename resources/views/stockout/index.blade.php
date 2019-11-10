@@ -9,7 +9,7 @@
 		<div class="row mb-5">
 			<div class="col-6">
 				<div class="form-group ">
-					<label>Receipt #</label>
+					<label>Invoice #</label>
 					<input type="text" name="rcode" placeholder="Code" value="RS-{{rand(1000,9999)}}" readonly class="form-control">
 				</div>
 				
@@ -108,7 +108,33 @@
 							
 						</table>
 					</div>
-					<div class="card-footer">
+					
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="float-right">
+							<input type="hidden" id="hsum" name="hsum" value="0">
+							<div class="">
+								<label>Total Amount:</label>
+								<input type="text" class="form-control form-control-sm" name="overallamnt" id="overallamnt" value="0.00" readonly>
+							</div>
+							<div class="">
+								<label>Payment:</label>
+								<input type="number" class="form-control form-control-sm" name="payments" id="payment">
+							</div>
+							<div class="">
+								<label>Change:</label>
+								<input type="text" class="form-control form-control-sm" name="invoicechange" id="invoicechange" value="0.00" readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
 						<div class="float-right">
 
 							<button id="process" class="btn btn-primary"><i class="fa fa-check"></i> Process Order</button>
@@ -171,6 +197,7 @@
 
 	$(document).on('click', '.select_prod', function(){
     var product = $(this).attr("id");
+    var sum1 = $('#overallamnt').val();
     product = JSON.parse(product);
 
     var price = parseFloat(product.price);
@@ -208,13 +235,13 @@
     			'<td>'+
     				'<div class="form-group mr-2 text-right">&#8369;'+
     				product.price+
-    					'<input type="hidden" class="form-control" readonly name="price[]" value="'+product.price+'">'+
+    					'<input type="hidden" class="form-control price'+i+'" readonly name="price[]" value="'+product.price+'">'+
     				'</div>'+
     			'</td>'+
     			'<td>'+
     				'<div class="form-group mr-2">'+
     
-    					'<input type="text" class="form-control"  name="quantity[]" value="1">'+
+    					'<input type="text" id="'+product.price+'" class="form-control getquantity quan'+i+'"  name="quantity[]" value="1">'+
     				'</div>'+
     			'</td>'+
     			'<td>'+
@@ -227,12 +254,54 @@
 
     		$('#row').append(row);
 
-
     		$("#testing").DataTable();
 
+    		sum1 = parseFloat(sum1) + parseFloat(product.price);
+    		sum1 = sum1.toFixed(2);
+			$('#overallamnt').val(sum1);
+
+	
   });
 </script>
+<script type="text/javascript">
+	$(document).on('keyup','.getquantity',function(){
+		let qprice = $(this).attr('id');
+		let quant = $(this).val();
+		let oamt = $('#overallamnt').val();
 
+		if(quant == '' || quant == 0){
+			quant = 1;
+		}
+
+		oamt = parseFloat(oamt) - parseFloat(qprice);
+
+		mult = parseFloat(quant) * parseFloat(qprice);
+
+		oamt = parseFloat(oamt) + parseFloat(mult);
+
+		$('#overallamnt').val(oamt.toFixed(2));
+
+		$(this).prop('readonly',true);
+
+		
+	});
+</script>
+<script type="text/javascript">
+	$('#payment').keyup(function(){
+		let getoa = $('#overallamnt').val();
+		let getpay = $(this).val();
+
+		let newoverall = parseFloat(getpay) - parseFloat(getoa);
+		newoverall = newoverall.toFixed(2);
+
+		if(newoverall < 0){
+			$('#invoicechange').val(newoverall).css('border','1px solid red');
+		}else{
+			$('#invoicechange').val(newoverall).css('border','1px solid white')
+		}
+		
+	});
+</script>
 <script type="text/javascript">
 	var i = 0;
 	var overall = 0;
@@ -315,6 +384,18 @@ var row = '<tr id="row'+i+'">'+
 	});
 	$(document).on('click', '.removeRow', function(){
 		var id = $(this).attr("id"); 
+		var overamnt = $('#overallamnt').val();
+		var currentprdctprice = $('#row').find('#row'+id).find('.price'+id).val();
+		var currentprdctquan = $('#row').find('#row'+id).find('.quan'+id).val();
+
+		currentprdctprice = parseFloat(currentprdctprice) * parseFloat(currentprdctquan);
+
+		overamnt = parseFloat(overamnt) - parseFloat(currentprdctprice);
+
+		overamnt = overamnt.toFixed(2);
+
+		$('#overallamnt').val(overamnt);
+
 
 		$("#testing").DataTable().destroy();
 		 $('#row').find('#row'+id).remove();

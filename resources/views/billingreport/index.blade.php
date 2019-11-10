@@ -65,7 +65,7 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Receipt No.</th>
+							<th>Invoice No.</th>
 							<th>Amount</th>
 							<th>Transaction Date</th>
 							<th>Action</th>
@@ -80,7 +80,7 @@
 								<td>&#8369; {{number_format($report->amount,2)}}</td>
 								<td>{{$report->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
 								<td>
-									<a href="billing/{{$report->rcode}}/receipt" class="btn btn-default btn-sm"><i class="fa fa-print"></i> View Receipt</a>
+									<a href="billing/{{$report->rcode}}/receipt" class="btn btn-default btn-sm"><i class="fa fa-print"></i> View Invoice</a>
 								</td>
 							</tr>
 						@endforeach

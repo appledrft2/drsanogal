@@ -54,6 +54,7 @@ class BillingController extends BaseController
     public function store($id){
     	$data = request()->validate([
     	      'rcode' => 'required',
+              'payments' => 'required'
     	  ]);
 
     	$data['amount'] = 0;

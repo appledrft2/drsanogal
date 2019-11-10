@@ -13,7 +13,8 @@
 				  	<thead>
 				  		<tr>
 				  	
-				  			<th>Title</th>
+				  			<th>Name</th>
+				  			<th>Price</th>
 				  			<th>Description</th>
 				  			<th width="20%">Action</th>
 				  		</tr>
@@ -23,6 +24,7 @@
 				  		<tr>
 		
 				  			<td>{{$manageappointment->title}}</td>
+				  			<td>{{number_format($manageappointment->price,2)}}</td>
 				  			<td>{{$manageappointment->description}}</td>
 				  			<td>
 				  				<button id="{{$manageappointment->id}}" class="btn_edit btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</button>
@@ -59,8 +61,12 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 	        	<div class="form-group">
-	        		<label>Title</label>
+	        		<label>Name</label>
 	        		<input type="text" name="title" required class="form-control" placeholder="Title">
+	        	</div>
+	        	<div class="form-group">
+	        		<label>Price</label>
+	        		<input type="number" name="price" required class="form-control" placeholder="Price">
 	        	</div>
 	        	<div class="form-group">
 	        		<label>Description</label>
@@ -150,6 +156,7 @@
 	        success: function(data){
 	        	$('#loading').prop('hidden',true);
 	            $('input[name=title]').val(data.title);
+	            $('input[name=price]').val(data.price);
 	            $('textarea[name=description]').val(data.description);
 	            $('#Modal').modal('show');
 	        },
@@ -186,6 +193,7 @@
             		$('#loading').prop('hidden',false);
             	},
 		        success: function(data){
+		        	 console.log(data);
 		        	$('#loading').prop('hidden',true);
 		        	$('#Modal').modal('hide');
 		        	Toast.fire({
@@ -195,6 +203,7 @@
 		        	refreshTable();
 		        },
 		        error: function(data){
+		        	 console.log(data);
 		        	$('#loading').prop('hidden',true);
 		        	// display errors on each form field
 		        	$.each(data.responseJSON.errors, function (i, error) {

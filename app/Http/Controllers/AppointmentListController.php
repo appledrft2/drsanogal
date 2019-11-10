@@ -124,4 +124,34 @@ class AppointmentListController extends BaseController
 
         
     }
+
+    public function MassReschedule(Request $request){
+        $data = $request->validate(['from' => 'required','to'=>'required']);
+        $prev = Appointment::where('next_appointment2','=',$request->from)->get();
+        if(count($prev)){
+                foreach($prev as $p){
+                $set = Appointment::findOrfail($p->id);
+                $status = Reschedule::create(['reschedule_date' => $request->to,'prev_date'=>$request->from,'appointment_id'=>$p->id]);
+                $set->update(['next_appointment2'=>$request->to,'isNotified'=>0]);
+
+
+            }
+            $services = ManageAppointment::orderBy('created_at','asc')->get();
+            $appointments = Appointment::orderByDesc('next_appointment2')->get();
+            $reschedule = Reschedule::latest()->get();
+            toast('Appointments Successfully Moved','success');
+            return view('appointmentlist.index',compact('appointments','services','reschedule'))->with('title',$this->title);
+        }else{
+            
+            $services = ManageAppointment::orderBy('created_at','asc')->get();
+            $appointments = Appointment::orderByDesc('next_appointment2')->get();
+            $reschedule = Reschedule::latest()->get();
+            toast('Appointment Date has no match!','error');
+            return view('appointmentlist.index',compact('appointments','services','reschedule'))->with('title',$this->title);
+        }
+
+       
+        
+        
+    }
 }

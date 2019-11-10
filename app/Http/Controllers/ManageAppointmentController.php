@@ -30,11 +30,23 @@ class ManageAppointmentController extends BaseController
     {
         //
     }
+    public function getServicePrice(Request $request){
+        $data = $request->validate([
+            'sid' => 'required'
+        ]);
+        $sprice = ManageAppointment::where('title','like','%'.$request->sid.'%')->get();
+        return response()->json([
+                'status'     => 'success',
+                'message' => $sprice
+
+            ]);
+    }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'title' => 'required',
+            'price' => 'required',
             'description' => 'nullable'
         ]);
 
@@ -79,6 +91,7 @@ class ManageAppointmentController extends BaseController
             return response()->json([
                 'status' => 'success',
                 'title' => $status->title,
+                'price' => $status->price,
                 'description' => $status->description
             ]);
         }else{
@@ -102,6 +115,7 @@ class ManageAppointmentController extends BaseController
 
        $data = $request->validate([
             'title' => 'required',
+            'price' => 'required',
             'description' => 'nullable'
         ]);
 

@@ -24,7 +24,7 @@
 			                            Contact No.: 09086958978
 			                            <br>
 			                            ************************************************************************
-			                            <br><i class="text-center" style="font-size: 1.5em">Receipt</i>
+			                            <br><i class="text-center" style="font-size: 1.5em">Invoice</i>
 			                            </p>                          
 			                              
 			                          </tr>
@@ -35,7 +35,7 @@
 
 			                          <tr>
 			                         
-			                            <td  colspan="2" ><span class="float-right"><b>Receipt #:</b> {{$receipt->rcode}}&nbsp; </span>
+			                            <td  colspan="2" ><span class="float-right"><b>Invoice #:</b> {{$receipt->rcode}}&nbsp; </span>
 
 			                            </td>
 			                          </tr>
@@ -74,9 +74,18 @@
 			                                  <tr>
 			                                    <td><br><br><br><br><br><br></td>
 			                                  </tr>
-			                                  <tr>
+			                                  <tr border="">
 			                                    <td colspan="6" class="text-right"><b>Overall Amount:</b> </td>
 			                                    <td class="text-center">&#8369 {{number_format($receipt->amount,2)}}</td>
+			                                  </tr>
+			                                  <tr>
+			                                    <td colspan="6" class="text-right"><b>Payment:</b> </td>
+			                                    <td class="text-center">&#8369 {{number_format($receipt->payments,2)}}</td>
+			                                  </tr>
+
+			                                  <tr>
+			                                    <td colspan="6" class="text-right"><b>Change:</b> </td>
+			                                    <td class="text-center">&#8369 {{number_format($receipt->payments - $receipt->amount,2)}}</td>
 			                                  </tr>
 			                                  
 			                                </table>

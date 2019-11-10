@@ -16,6 +16,7 @@ class CreateManageAppointmentsTable extends Migration
         Schema::create('manage_appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->decimal('price', 5,2);
             $table->text('description')->nullable();
             $table->timestamps();
         });

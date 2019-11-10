@@ -23,7 +23,7 @@
 			                            Contact No.: 09086958978
 			                            <br>
 			                            ************************************************************************
-			                            <br><i class="text-center" style="font-size: 1.5em">Receipt</i>
+			                            <br><i class="text-center" style="font-size: 1.5em">Invoice</i>
 			                            </p>                          
 			                              
 			                          </tr>
@@ -34,7 +34,7 @@
 
 			                          <tr>
 			                         
-			                            <td  colspan="2" ><span class="float-right"><b>Receipt #:</b> {{$billing->rcode}}&nbsp; </span>
+			                            <td  colspan="2" ><span class="float-right"><b>Invoice #:</b> {{$billing->rcode}}&nbsp; </span>
 
 			                            </td>
 			                          </tr>
@@ -112,8 +112,19 @@
 			                                	</tr>
 			                                	<tr>
 			                                	  <td  colspan="7" class="text-right"><b></b> </td>
-			                                	  <td class="text-right" style="border-top:1px solid black;" ><label>Overall Amount:</label> &#8369 {{number_format($billing->amount,2)}}</td>
+			                                	  <td class="text-right" style="border-top:1px solid black;" ><label>Overall Amount:</label> &#8369 {{number_format($billing->amount,2)}}</td> 
 			                                	</tr>
+			                                	<tr>
+			                                	  <td  colspan="7" class="text-right"><b></b> </td>
+			                                	  <td class="text-right" style="border-top:1px solid black;" ><label>Payment:</label> &#8369 {{number_format($billing->payments,2)}}</td> 
+			                                	</tr>
+			                                	<tr>
+			                                	  <td  colspan="7" class="text-right"><b></b> </td>
+			                                	  <td class="text-right" style="border-top:1px solid black;" ><label>Change:</label> &#8369 {{number_format($billing->payments - $billing->amount,2)}}</td> 
+			                                	</tr>
+
+			                                	
+			                                	
 			                                </table>
 
 			                              </div>

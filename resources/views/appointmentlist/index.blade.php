@@ -5,7 +5,35 @@
 	<div class="card">
 		<h4 class="card-header">Upcomming Appointments</h4>
 		<div class="card-body">
-			
+					<form method="POST" action="/dashboard/appointmentlist/massreschedule">
+					<div class="row mb-3">
+						
+					
+							@csrf
+							<div class="col-md-2">
+								<label>Appointment Date:</label>
+								<input type="date" class="form-control" name="from">
+								@if ($errors->has('from'))
+								    <div class="text-danger">{{ $errors->first('from') }}</div>
+								@endif
+							</div>
+							<div class="col-md-6 ">
+								<label>Rescheduled Date:</label>
+								<div class="form-inline">
+									<input type="date" class="form-control" name="to">
+									<button type="submit" class="btn btn-primary ml-3"> Move</button>
+								</div>
+								@if ($errors->has('to'))
+								    <div class="text-danger">{{ $errors->first('to') }}</div>
+								@endif
+							</div>
+
+						
+						
+					
+					</div>
+					</form>
+		
 			<div id="mytable" class="table-responsive">
 			<table id="tableapplist" class="table table-bordered table-hover">
 				<thead>
@@ -15,6 +43,7 @@
 						<th>Appointment</th>
 
 						<th>Date of Appointment</th>
+						<th>Veterinarian</th>
 						<th>Status</th>
 						
 		
@@ -32,6 +61,7 @@
 								<td>{{$appointment->patient->name}}</td>
 								<td>{{$appointment->appointment}}</td>
 								<td>@if($appointment->next_appointment2) {{date('M d, D Y', strtotime($appointment->next_appointment2))}} @else <span class="badge badge-secondary">No next appointment</span> @endif</td>
+								<td>{{$appointment->patient->veterinarian}}</td>
 							
 								<td>
 									@if($appointment->isCompleted == 1)

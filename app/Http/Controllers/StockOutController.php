@@ -22,6 +22,7 @@ class StockOutController extends BaseController
 
     	$data = $request->validate([
     	      'rcode' => 'required',
+              'payments'=>'required'
     	  ]);
 
     	  $data['amount'] = 1;

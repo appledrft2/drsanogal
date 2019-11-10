@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('adminlte3/dist/dttbtn/buttons.dataTables.min.css')}}">
   <style type="text/css" media="print">
     @media print
     {
@@ -73,13 +73,24 @@
            @endforeach
          </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">Unpaid Appointments</span>
+        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right ">
+          <span class="dropdown-header">Unpaid Services</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item" style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; height: 230px">
+          <span class="dropdown-item " style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; height: 330px;">
          
 
            <div id="billingnotif">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  
+                  <th class="text-sm">Name</th>
+                  <th class="text-sm">Pet</th>
+                  <th class="text-sm">Service</th>
+                  <th class="text-sm">Bill</th>
+                </tr>
+              </thead>
+              <tbody>
              @foreach($clientnotif as $c)
 
               @foreach($c->patients as $cp)
@@ -87,23 +98,26 @@
                 @foreach($cp->appointments as $cpa)
                  @if($cpa->isPaid == 0)
 
-                  
-                     <div class="card">
-                       
-                       <div class="card-body">
-                         <small>Client Name:</small><br>
-                         {{$cpa->patient->client->name}}<br>
-                         <small>Service Rendered:</small><br>
-                         {{$cpa->appointment}}<br>
-                         <small>Patient:</small><br>
-                         {{$cpa->patient->name}}<br>
-                         <small>Amount:</small><br>
-                         {{$cpa->price}}<br>
-                       </div>
-                       <div class="card-footer">
-                        <button id="{{$cpa->patient->client->id}}" class="btn ptb btn-primary form-control"> Proceed to bill</button>
-                       </div>
-                     </div>
+                
+                          <tr id="{{$cpa->patient->client->id}}" class="ptb">
+                            <td class="text-sm">
+                              {{$cpa->patient->client->name}}
+                        
+                            </td>
+                            
+                             <td class="text-sm">
+                              {{$cpa->patient->name}}
+                        
+                            </td> 
+                            <td class="text-sm">
+                              {{$cpa->appointment}}
+                        
+                            </td>
+                            <td class="text-sm">
+                               <a href="#">{{$cpa->price}}</a>
+                            </td>
+                          </tr>
+                      
                    
                    
                  @endif
@@ -112,11 +126,13 @@
               @endforeach
 
              @endforeach
+           </tbody>
+             </table>
            </div>
 
 
            
-          </a>
+          </span >
 
          
         </div>
@@ -125,7 +141,7 @@
       <li class="nav-item">
         <form id="logout-form" style="margin:0px" action="{{ route('logout') }}" method="POST" >
             @csrf
-            <button type="submit" id="btnLogout" class="btn"><i class="icon ion-log-out"></i> Logout</button>
+            <button type="submit" id="btnLogout" class="btn"><i class="fa fa-sign-out-alt"></i> Sign-out</button>
         </form>
       </li>
       
@@ -553,14 +569,14 @@ function closeFullscreen() {
 
 </script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/dataTables.buttons.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/buttons.flash.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/jszip.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/pdfmake.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/vfs_fonts.js')}}"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/buttons.html5.min.js')}}"></script>
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script> -->
-<script type="text/javascript" src="{{asset('adminlte3/dist/js/dttprint.js')}}"></script>
+<script type="text/javascript" src="{{asset('adminlte3/dist/dttbtn/dttprint.js')}}"></script>
 <script>
   $(function () {
     $("#productlist").DataTable();
@@ -598,6 +614,7 @@ function closeFullscreen() {
         var d = new Date();
         var getsdate = d.getMonth()+' / '+d.getDate()+' / '+d.getFullYear();
        var user1 = '<?php echo Auth::user()->name; ?>';
+       var logoo = '<?php echo asset('adminlte3/dist/img/logo.jpg'); ?>';
 
         // DataTable initialisation
         $('#table').DataTable({
@@ -615,7 +632,7 @@ function closeFullscreen() {
 
                 //For repeating heading.
                 repeatingHead: {
-                    logo: 'https://i.imgur.com/2arTww8.png',
+                    logo: logoo,
                     logoPosition: 'float-left',
                     logoStyle: 'width:30%',
                     title: '<h3>Dr S & J Veterinary Clinic and Grooming Centre</h3>',
