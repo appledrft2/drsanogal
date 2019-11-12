@@ -12,13 +12,48 @@
 			</div>
 		</div>
 	</div>
-	@foreach($client->patients as $patient)
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-7 " >
+					<div class=" ">
+						<label style="font-size:1em" class="lead">Client Name:</label>
+						<span class="lead" style="font-size: 1em">{{$client->name}}</span>
+					</div>
+					
+					<div class="">
+						<label style="font-size:1em" class="lead">Gender:</label>
+						<span class="lead" style="font-size: 1em">{{$client->gender}}</span>
+					</div>
+					
+					<div class="">
+						<label style="font-size:1em" class="lead">Contact:</label>
+						<span class="lead" style="font-size: 1em">{{$client->contact}}</span>
+					</div>
+					
+					<div class="">
+						<div class="form-inline">
+							<label style="font-size:1em" class=" lead">Address:</label>&nbsp;
+							<span class="lead" style="font-size: 1em">{!!$client->address!!}</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-5">
+					<div class="float-right">
+						<img src="@if($client->gender == 'Male') {{asset('adminlte3/dist/img/male.png')}} @else {{asset('adminlte3/dist/img/female.png')}} @endif" class="img-fluid" style="border-radius: 90%;width: 30%">
+					</div>
+				</div>
+			</div>
 
+		</div>
+	</div>
+	@foreach($client->patients as $patient)
+		
 		@if(!$patient->appointments->isEmpty())
 			<div class="card mt-3">
 				<div class="card-body">
 					<div class="form-group">
-						<label>Patient Name</label>
+						<label>Pet Name</label>
 						<input type="text" class="form-control" name="pname" readonly value="{{$patient->name}}">
 					</div>
 
@@ -73,16 +108,7 @@
 			</div>
 
 		@else
-		<div class="card">
-
-			<div class="card-body">
-				<div class="form-group">
-					<label>Patient Name</label>
-					<input type="text" class="form-control" name="pname" readonly value="{{$patient->name}}">
-				</div>
-				<p class="text-center alert alert-info"><i class="fa fa-info float-left"></i> This patient has no appointments yet.</p>
-			</div>
-		</div>
+	
 		@endif
 
 	@endforeach

@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\StockOutDetail;
 use Carbon\Carbon;
+use App\StockOutDetail;
+use App\dynamic_product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class InventoryReportController extends BaseController
 {
 	public $title = "Inventory Report";
     public function index(){
+
+
+        
+        
+
+
+        // get inventory date
     	$today = date('Y-m-d');
     	$dates = StockOutDetail::latest()
     	->groupBy('date')
@@ -16,6 +24,7 @@ class InventoryReportController extends BaseController
         ->get(array(
             DB::raw('DATE(created_at) as date'),
         ));
+        // get inventory products based on date
         $stockouts = [];
         $i=0;
         foreach($dates as $date){
@@ -32,6 +41,8 @@ class InventoryReportController extends BaseController
         	));
         	$i++;
         }
+
+
 
     	
 
