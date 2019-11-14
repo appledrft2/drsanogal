@@ -332,7 +332,7 @@ var calendar = new Calendar(calendarEl, {
   events    : [
     <?php 
       $i = 0;
-      $colors = array('red','blue','yellow','green','brown');
+      $colors = array('red','blue','green','brown','grey');
 
      ?>
     @foreach($appcalendar as $apc)
