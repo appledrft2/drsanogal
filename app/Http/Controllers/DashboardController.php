@@ -91,7 +91,10 @@ class DashboardController extends BaseController
        
 
         $stockins = StockIn::where('mop','!=','Cash')->orderBy('due','desc')->paginate(2);
-       
+        $appcalendar = Appointment::orderBy('next_appointment2','DESC')->get();
+
+        
+
     	return view('dashboard.index',[
     		'title'=>$this->title,
             'gross'=>$gross,
@@ -100,7 +103,8 @@ class DashboardController extends BaseController
             'week'=>$week,
             'lowproducts'=>$lowproducts,
             'appointments'=> $appointments,
-            'stockins' => $stockins
+            'stockins' => $stockins,
+            'appcalendar' => $appcalendar
            
     	]);
     }

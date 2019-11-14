@@ -281,6 +281,93 @@
     <!-- /.card -->
   </div>
 
+  <div class="col-md-12">
+    <div class="card">
+      <h4 class="card-header">Appointment Calendar</h4>
+      <div class="card-body p-0">
+        <!-- THE CALENDAR -->
+        <div id="calendar"></div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+
 </div>
+
+@endsection
+
+@section('script')
+
+  <script>
+
+
+/* initialize the calendar
+ -----------------------------------------------------------------*/
+//Date for the calendar events (dummy data)
+var date = new Date()
+var d    = date.getDate(),
+    m    = date.getMonth(),
+    y    = date.getFullYear()
+
+var Calendar = FullCalendar.Calendar;
+var Draggable = FullCalendarInteraction.Draggable;
+
+var containerEl = document.getElementById('external-events');
+var checkbox = document.getElementById('drop-remove');
+var calendarEl = document.getElementById('calendar');
+
+// initialize the external events
+// -----------------------------------------------------------------
+
+
+var calendar = new Calendar(calendarEl, {
+  plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
+  header    : {
+    left  : 'prev,next today',
+    center: 'title',
+    right : 'dayGridMonth,timeGridWeek,timeGridDay'
+  },
+  //fetch appointment list
+  events    : [
+    <?php 
+      $i = 0;
+      $colors = array('red','blue','yellow','green','brown');
+
+     ?>
+    @foreach($appcalendar as $apc)
+
+      @if($i == 5)
+        <?php $i = 0; ?>
+      @endif
+
+      {
+        title          : '{{$apc->patient->client->name}} - {{$apc->patient->name}} - {{$apc->appointment}}',
+        start          : new Date('{{$apc->next_appointment2}}'),
+        end            : false,
+        allDay         : true,
+        textColor: 'white',
+        backgroundColor: '{{$colors[$i]}}',
+        borderColor    : '{{$colors[$i]}}',
+      },
+      <?php $i++; ?>
+    @endforeach
+  
+  ],
+  editable  : true,
+  droppable : true, // this allows things to be dropped onto the calendar !!!
+  drop      : function(info) {
+    // is the "remove after drop" checkbox checked?
+    if (checkbox.checked) {
+      // if so, remove the element from the "Draggable Events" list
+      info.draggedEl.parentNode.removeChild(info.draggedEl);
+    }
+  }    
+});
+
+calendar.render();
+    
+
+  </script>
 
 @endsection

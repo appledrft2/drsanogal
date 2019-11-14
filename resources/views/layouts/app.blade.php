@@ -22,6 +22,13 @@
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
    <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte3/dist/css/adminlte.css')}}">
+
+  <!-- fullCalendar -->
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/fullcalendar/main.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/fullcalendar-interaction/main.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/fullcalendar-daygrid/main.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/fullcalendar-timegrid/main.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte3/plugins/fullcalendar-bootstrap/main.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{asset('adminlte3/dist/dttbtn/buttons.dataTables.min.css')}}">
@@ -659,6 +666,14 @@ function closeFullscreen() {
 		"aaSorting": [[3,'desc']]
 	});
 </script>
+<!-- fullCalendar 2.2.5 -->
+<script src="{{asset('adminlte3/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/fullcalendar/main.min.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/fullcalendar-daygrid/main.min.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/fullcalendar-timegrid/main.min.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/fullcalendar-interaction/main.min.js')}}"></script>
+<script src="{{asset('adminlte3/plugins/fullcalendar-bootstrap/main.min.js')}}"></script>
+    
 @yield('script','')
 </body>
 </html>

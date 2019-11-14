@@ -2,7 +2,7 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('adminlte3/plugins/fontawesome-free/css/all.min.css')}}">
 
-<div class="container-fluid">
+<body onload="window.print();" class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<center><img class="" src="{{asset('adminlte3/dist/img/logo.jpg')}}" alt="logo" width="10%" style="border-radius:90%;border:0px solid white"></center>
@@ -42,8 +42,6 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-md-12 ">
-			<center><button onclick="window.print();" class="btn btn-primary"><i class="fas fa-print"></i> Print</button></center>
-		</div>
+		
 	</div>
 </div>
