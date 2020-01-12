@@ -46,7 +46,7 @@
 								<td>{{$product->quantity}}</td>
 								<td class="text-right">&#8369; {{number_format($product->quantity * $product->price,2)}}</td>
 								
-								<td >
+								<td width="15%" >
 									<div class="form-inline">		
 										<button style="margin: 1px" id="{{$product}}" class="btn btn-info btn_edit btn-sm " title="Edit"><i class="fa fa-edit"></i></button>
 										<button style="margin: 1px" id="{{$product->id}}" class="btn btn-danger btn-sm btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
