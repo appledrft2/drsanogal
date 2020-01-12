@@ -109,6 +109,8 @@
 					</tr>
 				</thead>
 				<tbody>
+					@if(count($reschedule))
+
 					@foreach($reschedule as $re)
 					<tr>
 						<td>{{$re->appointment->patient->client->name}}</td>
@@ -116,11 +118,14 @@
 						<td>{{$re->appointment->appointment}}</td>
 						<td>{{$re->prev_date}}</td>
 						<td>{{$re->reschedule_date}}</td>
-				
+					
 					
 						<td><span class="badge badge-success">Owner is notified</span></td>
 					</tr>
 					@endforeach
+
+					@endif
+
 				</tbody>
 			</table>
 		</div>

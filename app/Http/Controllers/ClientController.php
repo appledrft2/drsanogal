@@ -57,11 +57,11 @@ class ClientController extends BaseController
         $data = request()->validate([
             'name'=>'required|unique:clients|max:255',
             'gender'=>'required',
-            'occupation'=>'required',
+            'occupation'=>'nullable',
             'status' => 'required',
             'address'=>'required',
             'smsNotify'=>'required',
-            'email'=>'nullable|unique:clients|max:255',
+            'email'=>'nullable|max:255',
             'contact'=>'nullable|unique:clients|max:255',
             'work'=>'nullable|unique:clients|max:255',
             'home'=>'nullable|unique:clients|max:255'
@@ -121,19 +121,18 @@ class ClientController extends BaseController
     public function update(Request $request, Client $client)
     {
         $data = $request->validate([
-            'name'=>'required',
+            'name'=>'required|max:255',
             'gender'=>'required',
-            'status'=>'required',
+            'occupation'=>'nullable',
+            'status' => 'required',
             'address'=>'required',
-            'occupation'=>'required',
             'smsNotify'=>'required',
-            'email'=>'nullable',
+            'email'=>'nullable|max:255',
+            'contact'=>'nullable|max:255',
+            'work'=>'nullable|max:255',
+            'home'=>'nullable|max:255'
         ]);
 
-        $data['contact'] = (request()->contact) ? request()->contact : ' ';
-        $data['work'] = (request()->work) ? request()->work : ' ';
-        $data['home'] =  (request()->home) ? request()->home : ' ';
-        $data['email'] =  (request()->email) ? request()->email : ' ';
 
         //logging the activity
         \App\Systemlog::create(['user'=>Auth::user()->name ,'role' => ucfirst(Auth::user()->role),'activity' =>' Updated client named "'.$client->name.'"']);

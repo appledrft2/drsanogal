@@ -13,7 +13,7 @@
 					
 						<th>Name</th>
 						<th>Gender</th>
-						<th>Occupation</th>
+						<th>Contact</th>
 						<th>Address</th>
 						<th>Status</th>
 			
@@ -28,7 +28,7 @@
 							
 								<td >{{$client->name}}</td>
 								<td >{{$client->gender}}</td>
-								<td >{{$client->occupation}}</td>
+								<td >{{$client->contact}}</td>
 								<td>{{str_limit($client->address, 15)}}</td>
 								<td>@if($client->status == 'Active') <span class="badge badge-success">Active</span> @else <span class="badge badge-danger">Inactive</span> @endif</td>
 								
@@ -141,7 +141,7 @@
 					<label>Status</label>
 					<select name="status" class="form-control select2" style="width:100%">
 						<option value="">Status</option>
-						<option>Active</option>
+						<option selected>Active</option>
 						<option>Inactive</option>
 						
 					</select>

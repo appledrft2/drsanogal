@@ -10,9 +10,9 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
+					
 						<th>Name</th>
-						<th>Contact</th>
+						<th>Contact/Tel.</th>
 						<th>Address</th>
 						<!-- <th width="20%">Products in stock</th> -->
 						<th>Action</th>
@@ -23,7 +23,7 @@
 					<?php $i=1; ?>
 						@foreach($suppliers as $supplier)
 							<tr>
-								<td>{{$i++}}</td>
+							
 								<td>{{$supplier->name}}</td>
 								<td>{{$supplier->contact}}</td>
 								<td>{{str_limit($supplier->address, 15)}}</td>
@@ -65,7 +65,7 @@
 	        	<input type="hidden" name="id" value="">
 	        	<input type="hidden" name="_method" value="">
 	        	<div class="form-group"><label>Name</label><input type="text" name="name" class="form-control " placeholder="Name" value="" ></div>
-				<div class="form-group"><label>Contact</label><input type="number" value="" name="contact" class="form-control " placeholder="Contact" ></div>
+				<div class="form-group"><label>Contact/Tel.</label><input type="text" value="" name="contact" class="form-control " placeholder="Contact" ></div>
 
 				<div class="form-group"><label>Address</label><textarea class="form-control" cols="5" rows="5"  name="address" placeholder="Address"></textarea></div>
 	        	

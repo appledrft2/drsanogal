@@ -91,7 +91,7 @@ class DashboardController extends BaseController
        
 
         $stockins = StockIn::where('mop','!=','Cash')->orderBy('due','desc')->paginate(2);
-        $appcalendar = Appointment::orderBy('next_appointment2','DESC')->get();
+        $appcalendar = Appointment::where('isCompleted','=',0)->get();
 
         
 

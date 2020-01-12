@@ -18,7 +18,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
+					
 						<th>Supplier</th>
 						<th>Name</th>
 						<th>Category</th>
@@ -26,16 +26,17 @@
 						<th>Original</th>
 						<th>Selling</th>
 						<th>Quantity</th>
-						<th >Sub Total</th>
+						<th width="15%" >Sub Total</th>
 						<th >Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@if(count($products))
-					<?php $i=1; ?>
+					<?php $i=1;$sumprod=0; ?>
 						@foreach($products as $product)
+							<?php $sumprod = $sumprod + ($product->quantity * $product->price); ?>
 							<tr>
-								<td>{{$i++}}</td>
+				
 								<td><a href="/dashboard/supplier/{{$product->supplier->id}}/edit">{{$product->supplier->name}}</a></td>
 								<td>{{$product->name}}</td>
 								<td>{{$product->category}}</td>
@@ -45,7 +46,7 @@
 								<td>{{$product->quantity}}</td>
 								<td class="text-right">&#8369; {{number_format($product->quantity * $product->price,2)}}</td>
 								
-								<td width="15%">
+								<td >
 									<div class="form-inline">		
 										<button style="margin: 1px" id="{{$product}}" class="btn btn-info btn_edit btn-sm " title="Edit"><i class="fa fa-edit"></i></button>
 										<button style="margin: 1px" id="{{$product->id}}" class="btn btn-danger btn-sm btn_delete" title="Delete"><i class="fa fa-trash"></i></button>
@@ -54,12 +55,23 @@
 								</td>
 							</tr>
 						@endforeach
-						
+
 					@else
 					@endif
 				</tbody>
 				
 			</table>
+		<div class="form-group col-6">
+			<div class="card card-primary">
+				<h5 class="card-header">
+					Total Amount:
+				</h5>
+				<div class="card-body">
+					
+					<h5>&#8369; {{number_format($sumprod,2)}}</h5>
+				</div>
+			</div>
+		</div>	
 
 			</div>
 
