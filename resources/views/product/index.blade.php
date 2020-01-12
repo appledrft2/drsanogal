@@ -61,18 +61,7 @@
 				</tbody>
 				
 			</table>
-		<div class="form-group col-6">
-			<div class="card card-primary">
-				<h5 class="card-header">
-					Total Amount:
-				</h5>
-				<div class="card-body">
-					
-					<h5>&#8369; {{number_format($sumprod,2)}}</h5>
-				</div>
-			</div>
-		</div>	
-
+		
 			</div>
 
 		</div>
