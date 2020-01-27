@@ -45,7 +45,7 @@
 											<td>{{$product->unit}}</td>
 											<td>{{number_format($product->price,2)}}</td>
 											<td>{{$product->quantity}}</td>
-											<td><button id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-shopping-cart"></i> Add to List</button></td>
+											<td><button @if($product->quantity <= 0) disabled @endif id="{{$product}}" type="button" class="select_prod btn btn-info btn-sm"><i class="fa fa-shopping-cart"></i> Add to List</button></td>
 										</tr>
 										@endforeach
 									@endif
@@ -89,7 +89,7 @@
 			</div> -->
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header"><label>Product Table</label></div>
+					<div class="card-header"><label>Cart</label></div>
 					<div class="card-body">
 						<table id="testing" class="table table-bordered">
 							<thead>
