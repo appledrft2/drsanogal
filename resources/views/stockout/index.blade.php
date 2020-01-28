@@ -245,6 +245,9 @@
     				'</div>'+
     			'</td>'+
     			'<td>'+
+    			'<div class="form-group mr-2">'+
+    					'<button type="button" class="btn btn-success btn-sm finallizeRow fnrow'+i+'" id="'+i+'">Finalize</button>'+
+    				'</div>'+
     				'<div class="form-group mr-2">'+
     					'<button type="button" class="btn btn-danger btn-sm removeRow" id="'+i+'">remove</button>'+
     				'</div>'+
@@ -256,42 +259,38 @@
 
     		$("#testing").DataTable();
 
-    		sum1 = parseFloat(sum1) + parseFloat(product.price);
-    		sum1 = sum1.toFixed(2);
-			$('#overallamnt').val(sum1);
+   //  		sum1 = parseFloat(sum1) + parseFloat(product.price);
+   //  		sum1 = sum1.toFixed(2);
+			// $('#overallamnt').val(sum1);
 
 	
   });
 </script>
 <script type="text/javascript">
-	$(document).on('keyup','.getquantity',function(){
-		let qprice = $(this).attr('id');
-		let quant = $(this).val();
+
+	$(document).on('click','.finallizeRow',function(){
+		let id = $(this).attr('id');
+		let quant = $('.quan'+id).val();
+		let qprice = $('.price'+id).val();
 		let oamt = $('#overallamnt').val();
-
-		if(quant != ''){
-			oamt = parseFloat(oamt) - parseFloat(qprice);
-
-			mult = parseFloat(quant) * parseFloat(qprice);
-
-			oamt = parseFloat(oamt) + parseFloat(mult);
-
-			$('#overallamnt').val(oamt.toFixed(2));
-
-			if(quant >= 100){
-
-				$(this).prop('readonly',true);
-			}
-		}else{
-			$(this).prop('readonly',false);
+		
+		if(oamt == '' || oamt == 0){
+			oamt = 0;
 		}
+
+		// if(oamt != '' || oamt != 0){
+		// 	oamt = parseFloat(oamt) - parseFloat(qprice);
+		// }
 		
 
-		
+		mult = parseFloat(quant) * parseFloat(qprice);
 
-		
+		oamt = parseFloat(oamt) + parseFloat(mult);
 
-		
+		$('#overallamnt').val(oamt.toFixed(2));
+
+		$('.fnrow'+id).prop('disabled',true);	
+		$('.quan'+id).prop('readonly',true);	
 	});
 </script>
 <script type="text/javascript">
