@@ -241,12 +241,12 @@
     			'<td>'+
     				'<div class="form-group mr-2">'+
     
-    					'<input type="text" id="'+product.price+'" class="form-control getquantity quan'+i+'"  name="quantity[]" value="1">'+
+    					'<input type="number" id="'+product.price+'" onClick="this.select();" class="form-control getquantity quan'+i+'"  name="quantity[]" value="1">'+
     				'</div>'+
     			'</td>'+
     			'<td>'+
     				'<div class="form-group mr-2">'+
-    					'<button type="button" class="btn btn-danger btn-block btn-sm removeRow" id="'+i+'">Cancel</button>'+
+    					'<button type="button" class="btn btn-danger btn-sm removeRow" id="'+i+'">remove</button>'+
     				'</div>'+
     			'</td>'+
 
@@ -269,19 +269,27 @@
 		let quant = $(this).val();
 		let oamt = $('#overallamnt').val();
 
-		if(quant == '' || quant == 0){
-			quant = 1;
+		if(quant != ''){
+			oamt = parseFloat(oamt) - parseFloat(qprice);
+
+			mult = parseFloat(quant) * parseFloat(qprice);
+
+			oamt = parseFloat(oamt) + parseFloat(mult);
+
+			$('#overallamnt').val(oamt.toFixed(2));
+
+			if(quant >= 100){
+
+				$(this).prop('readonly',true);
+			}
+		}else{
+			$(this).prop('readonly',false);
 		}
+		
 
-		oamt = parseFloat(oamt) - parseFloat(qprice);
+		
 
-		mult = parseFloat(quant) * parseFloat(qprice);
-
-		oamt = parseFloat(oamt) + parseFloat(mult);
-
-		$('#overallamnt').val(oamt.toFixed(2));
-
-		$(this).prop('readonly',true);
+		
 
 		
 	});
