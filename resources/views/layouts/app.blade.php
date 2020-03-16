@@ -53,8 +53,8 @@
       </li>
       <li class="nav-item">
         <button onclick="togglefs()" type="button" class="toggle-expand-btn btn"><i class="fa fa-expand"></i></button>
-      </li>   
-     
+      </li>
+
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -67,7 +67,7 @@
            @foreach($clientnotif as $c)
 
             @foreach($c->patients as $cp)
-              
+
               @foreach($cp->appointments as $cpa)
                @if($cpa->isPaid == 0)
                   <?php $cnt++; ?>
@@ -84,13 +84,13 @@
           <span class="dropdown-header">Unpaid Services</span>
           <div class="dropdown-divider"></div>
           <span class="dropdown-item " style=" margin-bottom: 10px;overflow:scroll;-webkit-overflow-scrolling: touch; height: 330px;">
-         
+
 
            <div id="billingnotif">
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  
+
                   <th class="text-sm">Name</th>
                   <th class="text-sm">Pet</th>
                   <th class="text-sm">Service</th>
@@ -101,32 +101,32 @@
              @foreach($clientnotif as $c)
 
               @foreach($c->patients as $cp)
-                
+
                 @foreach($cp->appointments as $cpa)
                  @if($cpa->isPaid == 0)
 
-                
+
                           <tr id="{{$cpa->patient->client->id}}" class="ptb">
                             <td class="text-sm">
                               {{$cpa->patient->client->name}}
-                        
+
                             </td>
-                            
+
                              <td class="text-sm">
                               {{$cpa->patient->name}}
-                        
-                            </td> 
+
+                            </td>
                             <td class="text-sm">
                               {{$cpa->appointment}}
-                        
+
                             </td>
                             <td class="text-sm">
                                <a href="#">{{$cpa->price}}</a>
                             </td>
                           </tr>
-                      
-                   
-                   
+
+
+
                  @endif
                 @endforeach
 
@@ -138,20 +138,20 @@
            </div>
 
 
-           
+
           </span >
 
-         
+
         </div>
       </li>
-      
+
       <li class="nav-item">
         <form id="logout-form" style="margin:0px" action="{{ route('logout') }}" method="POST" >
             @csrf
             <button type="submit" id="btnLogout" class="btn"><i class="fa fa-sign-out-alt"></i> Sign-out</button>
         </form>
       </li>
-      
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -169,13 +169,13 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        <!-- <div class="image">
           <img src="https://vetassist.s3-ap-southeast-1.amazonaws.com/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" style="width: 40px;height: 40px">
-        </div>
+        </div> -->
         <div class="info">
             <a href="#" class="d-block">{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}</a>
             <div class="form-inline">
-                <a href="#" class="d-block text-sm">{{ ucfirst(Auth::user()->role) }} - &nbsp;</a> 
+                <a href="#" class="d-block text-sm">{{ ucfirst(Auth::user()->role) }} - &nbsp;</a>
                 <a href="/dashboard/profile" class="d-block text-sm">View Profile</a>
             </div>
         </div>
@@ -185,7 +185,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          
+
           <li class="nav-item">
             <a href="/dashboard" class="nav-link @if($title=='Dashboard') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -212,7 +212,7 @@
               </p>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a href="/dashboard/patient" class="nav-link @if($title=='Patient List') active @endif">
               <i class="nav-icon fas fa-paw"></i>
@@ -222,20 +222,20 @@
             </a>
           </li>
 
-        
-     
-            
+
+
+
               <li class="nav-item">
                  <a href="/dashboard/appointmentlist" class="nav-link  @if($title=='Appointments') active @endif">
                   <i class="nav-icon fa fa-calendar-check"></i>
                   <p>Appointments</p>
                 </a>
               </li>
-        
- 
 
 
-<!-- 
+
+
+<!--
           <li class="nav-item">
             <a href="/dashboard/billing" class="nav-link @if($title=='Billing') active @endif">
               <i class="fa fa-credit-card"></i>
@@ -265,10 +265,10 @@
               </li>
 
 
-         
 
-           
-         
+
+
+
 
           <li class="nav-item">
             <a href="/dashboard/stockout" class="nav-link @if($title=='Point of Sale') active @endif">
@@ -316,14 +316,14 @@
             </ul>
           </li>
 
-          
 
 
-          
+
+
             @endif
 
-      
-          
+
+
 
           <li class="nav-item has-treeview  @if($title=='System Logs' || $title=='Database Backup/Restore' || $title=='Product Unit' || $title=='Product Category' || $title =='Attachments Category'  || $title =='Services' || $title =='Account') menu-open @endif">
             <a href="#" class="nav-link @if($title=='System Logs' || $title=='Database Backup/Restore') active @endif">
@@ -372,7 +372,7 @@
                   <p>Product Unit</p>
                 </a>
               </li>
-             
+
                 @if(Auth::user()->role == 'doctor')
               <li class="nav-item">
             <a href="/dashboard/systemlog" class="nav-link @if($title=='System Logs') active @endif">
@@ -394,8 +394,8 @@
             </ul>
           </li>
 
-          
-      
+
+
         </ul>
 
       </nav>
@@ -412,7 +412,7 @@
     <div class="content">
       <div class="container">
         <br/ >
-        
+
         @yield('content')
         <br />
       </div><!-- /.container-fluid -->
@@ -421,7 +421,7 @@
   </div>
   <!-- /.content-wrapper -->
 
- 
+
 
   <!-- Main Footer -->
   <footer class="main-footer">
@@ -546,7 +546,7 @@ function closeFullscreen() {
 
 <script type="text/javascript">
   $('#btnLogout').click(function(){
-      
+
       $.ajax({
             type: "POST",
             url: '/home/logout',
@@ -554,10 +554,10 @@ function closeFullscreen() {
             dataType: "json",
             data: {status: 1},
             success: function(data){
-             
-          
+
+
             },
-         
+
         });
   });
 </script>
@@ -599,8 +599,8 @@ function closeFullscreen() {
      $("#productlist2").DataTable();
       $("#servicelist").DataTable();
       $("#table2").DataTable();
-   
-    
+
+
   });
 </script>
 <script type="text/javascript">
@@ -610,18 +610,18 @@ function closeFullscreen() {
   });
 
   setInterval(function() {
-    
+
      refreshNotif();
-     
+
   }, 5000);
 
-  function refreshNotif() {  
+  function refreshNotif() {
       $( "#billingnotif" ).load( "/dashboard #billingnotif", function(){
-       
+
     });
 
       $( "#notifcnt" ).load( "/dashboard #notifcnt", function(){
-       
+
     });
   }
 </script>
@@ -662,7 +662,7 @@ function closeFullscreen() {
 </script>
 <script type="text/javascript">
 	$('#tableapplist').DataTable({
-		
+
 		"aaSorting": [[3,'desc']]
 	});
 </script>
@@ -673,7 +673,7 @@ function closeFullscreen() {
 <script src="{{asset('adminlte3/plugins/fullcalendar-timegrid/main.min.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/fullcalendar-interaction/main.min.js')}}"></script>
 <script src="{{asset('adminlte3/plugins/fullcalendar-bootstrap/main.min.js')}}"></script>
-    
+
 @yield('script','')
 </body>
 </html>

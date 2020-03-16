@@ -24,22 +24,22 @@ class ProfileController extends BaseController
 
         $user = User::findOrfail($id);
 
-         //handle file uploading
-        if(request()->hasFile('image')){
-            if($user->image != 'uploads/no-profile.jpg'){
-                // finds the old image and delete
-                Storage::disk('s3')->delete($user->image);
-            }
+        //  //handle file uploading
+        // if(request()->hasFile('image')){
+        //     if($user->image != 'uploads/no-profile.jpg'){
+        //         // finds the old image and delete
+        //         Storage::disk('s3')->delete($user->image);
+        //     }
+				//
+        //     // upload new image
+        //     $path = request()->file('image');
+        //     $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
+				//
+        //     // Save filename to database
+        //     $data['image'] = $pathToSave;
+        // }
 
-            // upload new image
-            $path = request()->file('image');
-            $pathToSave = Storage::disk('s3')->put('uploads',$path,'public');
 
-            // Save filename to database
-            $data['image'] = $pathToSave;
-        }
-
-        
         $user->update($data);
         toast('Record successfully updated!','success');
         return redirect('dashboard/profile');
