@@ -10,7 +10,7 @@
 			<table id="table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Profile</th>
+						
 						<th>Name</th>
 						<th>Email</th>
 						<th>Role</th>
@@ -23,7 +23,7 @@
 					@if(count($users))
 						@foreach($users as $user)
 							<tr>
-								<td><center><img src="https://vetassist.s3-ap-southeast-1.amazonaws.com/{{$user->image}}" class="elevation-1 img-fluid img-circle" alt="User Image" style="width: 50px;height: 50px"></center></td>
+								
 								<td>{{$user->name}}</td>
 								<td>{{$user->email}}</td>
 								<td>{{ucfirst($user->role)}}</td>
